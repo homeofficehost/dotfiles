@@ -1206,7 +1206,7 @@ sudo spctl --master-disable;ok
 # sudo languagesetup
 
 ###############################################################################
-bot "Developer folder"
+bot "Developer"
 ###############################################################################
 
 running "Create dev folder in home directory"

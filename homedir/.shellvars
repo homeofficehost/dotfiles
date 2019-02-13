@@ -1,5 +1,7 @@
 # Set vim as default editor (vi is the default otherwise)
 export EDITOR="vim"
+export VISUAL='subl'
+export HOMEBREW_EDITOR=$VISUAL
 bindkey -v
 
 #########################################################################
