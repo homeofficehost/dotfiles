@@ -32,6 +32,11 @@ inquirer.prompt([{
     }
   }
 
+  console.info(emoji.get('coffee'), ' adding more repositories to the list of formulae that brew tracks.')
+  command('brew tap adoptopenjdk/openjdk dart-lang/dart heroku/brew homebrew/bundle homebrew/cask homebrew/cask-fonts homebrew/cask-versions homebrew/core homebrew/php homebrew/services puma/puma mas-cli/tap; brew tap-pin mas-cli/tap', __dirname, function(err, out) {
+    if(err) console.error(emoji.get('fire'), err)
+  })
+
   ['brew', 'cask', 'npm', 'gem'].forEach( type => {
     if(config[type] && config[type].length){
       console.info(emoji.get('coffee'), ' installing '+type+' packages')

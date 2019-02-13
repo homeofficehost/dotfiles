@@ -18,7 +18,7 @@ alias bpc='git add -A . && git cam "$(buzzphrase 2)" && git push'
 alias dos2lf='dos2unix `find ./ -type f`'
 
 # Flush the DNS on Mac
-alias dnsflush='dscacheutil -flushcache'
+alias dnsflush='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
 
 # Empty the Trash on all mounted volumes and the main HDD.
 # Also, clear Apple’s System Logs to improve shell startup speed.
@@ -100,3 +100,63 @@ alias td="todo.sh"
 alias tda="todo.sh add"
 alias tdl="todo.sh list"
 alias tdd="todo.sh do"
+
+git.gitlab.new() {
+	gitlab create_project "$1" "{ description: '$2' }" --json
+}
+
+git.gitlab.new.init() {
+	json=$(git.gitlab.new "$1" "$2" --json)
+	http_url_to_repo=$(echo $json | jq .result.http_url_to_repo)
+	http_url_to_repo="${http_url_to_repo%\"}"
+	http_url_to_repo="${http_url_to_repo#\"}"
+
+	git init
+	git remote add origin $http_url_to_repo
+	git add .
+	git commit -m "Initial commit"
+	git push -u origin master
+}
+
+# alias ssh-addd='chmod 600 ~/.ssh/github_tgroch_id_rsa | ssh-add ~/.ssh/github_tgroch_id_rsa'
+
+alias crack.intellij='dvt-jb_licsrv.darwin.386'
+alias pstorm='open -a PhpStorm'
+alias pstorm='open -a PhpStorm'
+alias ws='open -a Webstorm'
+alias ws='open -a Webstorm'
+
+alias qq="cat ~/.zsh_history | grep "
+alias ww="which "
+
+alias mysql.new='mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $1;"'
+alias mysql.rm='mysql -uroot -e "DROP DATABASE IF EXISTS $1;"'
+
+alias pi.magazine="wget -A pdf -m -p -E -k -K -npc https://www.raspberrypi.org/magpi-issues/"
+alias pi.findit="dns-sd -G v4 raspberrypi.local"
+
+alias down="aria2c --max-connection-per-server=16 --min-split-size=1M "
+
+alias stress="ab -n 10000 -c 10 "
+alias "?"="tldr"
+
+alias curl.download="curl -L -O -C - "
+
+# Reboot my home Linksys WAG160N / WAG54 / WAG320 / WAG120N Router / Gateway from *nix.
+alias rebootlinksys="curl -u 'admin:my-super-password' 'http://192.168.1.2/setup.cgi?todo=reboot'"
+
+# Reboot tomato based Asus NT16 wireless bridge
+alias reboottomato="ssh admin@192.168.1.1 /sbin/reboot"
+
+alias brew.off="sudo brew services stop --all && brew services stop --all"
+alias brew.on="sudo brew services start dnsmasq && \
+	brew services start mariadb && \
+	sudo brew services start nginx && \
+	brew services start redis && \
+	sudo brew services start php;"
+
+cat ~/Downloads/MasterRepo.list.txt | ssh root@192.168.0.15 "cat >> /etc/apt/sources.list.d/MasterRepo.list | chmod 0655 /etc/apt/sources.list.d/MasterRepo.list"
+
+findc() {
+	find $1 -type f -exec grep --color=auto -nH $2 /dev/null {} +
+}
