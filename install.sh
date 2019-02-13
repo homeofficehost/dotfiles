@@ -1203,7 +1203,7 @@ running "Allow Apps from Anywhere in macOS Sierra Gatekeeper"
 sudo spctl --master-disable;ok
 
 # Changing the System Language
-# sudo languagesetup
+sudo languagesetup
 
 ###############################################################################
 bot "Developer"
