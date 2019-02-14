@@ -81,7 +81,7 @@ response=${response:-Y}
 if [[ $response =~ ^(no|n|N) ]];then
 	read -r -p "What is your GPG email? " gpg_email
 	if [[ ! $gpg_email ]];then
-		error "you must provide an email to configure .gitconfig"
+		error "you must provide an email as gpg fingerprint"
 		exit 1
 	fi
 fi

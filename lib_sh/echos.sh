@@ -2,7 +2,7 @@
 
 ###
 # some colorized echo helpers
-# @author Adam Eivy
+# @author Thomas Letsch Groch
 ###
 
 # Colors

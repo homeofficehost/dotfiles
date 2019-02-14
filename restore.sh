@@ -2,7 +2,7 @@
 
 ###########################
 # This script restores backed up dotfiles
-# @author Adam Eivy
+# @author Thomas Letsch Groch
 ###########################
 
 # include my library helpers for colorized echo and require_brew, etc

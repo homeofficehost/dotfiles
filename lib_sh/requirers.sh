@@ -2,7 +2,7 @@
 
 ###
 # convienience methods for requiring installed software
-# @author Adam Eivy
+# @author Thomas Letsch Groch
 ###
 
 # source ./echos.sh

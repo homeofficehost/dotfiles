@@ -52,11 +52,11 @@ You don't need to install or configure anything upfront! This works with a brand
 
 Don't you hate getting a new laptop or joining a new team and then spending a whole day setting up your system preferences and tools? Me too. That's why we automate; we did it once and we don't want to do have to do it again.
 
-\\[^_^]/ - This started as [Adam Eivy](http://adameivy.com)'s MacOS shell configuration dotfiles but has grown to a multi-developer platform for machine configuration.
+\\[^_^]/ - This started as [Thomas Letsch Groch](https://thomasgroch.com)'s MacOS shell configuration dotfiles but has grown to a multi-developer platform for machine configuration.
 
 When I finish with your machine, you will be able to look at your command-line in full-screen mode like this (running iTerm):
 
-![iTerm Screenshot](https://raw.githubusercontent.com/atomantic/dotfiles/master/img/term.png)
+![iTerm Screenshot](https://raw.githubusercontent.com/thomasgroch/dotfiles/master/img/term.png)
 
 Check out how your shell prompt includes the full path, node.js version & the working git branch along with a lot of other info!
 We use powerlevel9k for command prompt, so customization of what you want is easily changable in `./.zshrc`
@@ -76,12 +76,12 @@ To launch fullscreen, hit `Command + Enter` in iTerm, then use `Command + d` and
 
 > Note: I recommend forking this repo in case you don't like anything I do and want to set your own preferences (and pull request them!)
 
-> REVIEW WHAT THIS SCRIPT DOES PRIOR TO RUNNING: https://github.com/atomantic/dotfiles/blob/master/install.sh#L275-L1038
+> REVIEW WHAT THIS SCRIPT DOES PRIOR TO RUNNING: https://github.com/thomasgroch/dotfiles/blob/master/install.sh#L275-L1038
 > It's always a good idea to review arbitrary code from the internet before running it on your machine with sudo power!
 > You are responsible for everything this script does to your machine (see LICENSE)
 
 ```bash
-git clone --recurse-submodules https://github.com/atomantic/dotfiles ~/.dotfiles
+git clone --recurse-submodules https://github.com/thomasgroch/dotfiles ~/.dotfiles
 cd ~/.dotfiles;
 # run this using terminal (not iTerm, lest iTerm settings get discarded on exit)
 ./install.sh
@@ -124,7 +124,7 @@ You can `cron ~/.crontab` if you want to add my nightly cron software updates.
 
 ## Remap Caps-Lock
 - I highly recommend remapping your Caps Lock key to Control per [Dr. Bunsen](http://www.drbunsen.org/remapping-caps-lock/):
-![Remap Caps Lock](https://raw.githubusercontent.com/atomantic/dotfiles/master/img/remap_capslock.png)
+![Remap Caps Lock](https://raw.githubusercontent.com/thomasgroch/dotfiles/master/img/remap_capslock.png)
 
 # Settings
 This project changes a number of settings and configures software on MacOS.
@@ -315,63 +315,18 @@ The following will only happen if you agree on the prompt
 
 # Software Installation
 
-homebrew, fontconfig, git, ruby (latest), nvm (node + npm), and zsh (latest) are all installed inside the `install.sh` as foundational software for running this project.
-Additional software is configured in `config.js` and can be customized in your own fork/branch (you can change everything in your own fork/brance).
-The following is the software that I have set as default:
 
 ## Utilities
 
-* ack
-* ag
-* coreutils
-* dos2unix
-* findutils
-* fortune
-* gawk
-* gifsicle
-* gnupg
-* gnu-sed
-* homebrew/dupes/grep
-* httpie
-* imagemagick (only if gitshots enabled)
-* imagesnap (only if gitshots enabled)
-* jq
-* mas
-* moreutils
-* nmap
-* openconnect
-* reattach-to-user-namespace
-* homebrew/dupes/screen
-* tmux
-* tree
-* ttyrec
-* vim --override-system-vi
-* watch
-* wget --enable-iri
 
 ## Apps
-* box-sync
-* gpgtools
-* iterm2
-* sizeup
-* slack
-* the-unarchiver
-* xquartz
+
 
 ## NPM Global Modules
 
-* antic
-* buzzphrase
-* eslint
-* gulp
-* instant-markdown-d
-* npm-check
-* prettyjson
-* trash
-* vtop
 
 ## Ruby Gems
-* git-up
+
 
 # License
 This project is licensed under ISC. Please fork, contribute and share.
@@ -379,21 +334,13 @@ This project is licensed under ISC. Please fork, contribute and share.
 # Contributions
 Contributions are always welcome in the form of pull requests with explanatory comments.
 
-Please refer to the [Contributor Covenant](https://github.com/atomantic/dotfiles/blob/master/CODE_OF_CONDUCT.md)
+Please refer to the [Contributor Covenant](https://github.com/thomasgroch/dotfiles/blob/master/CODE_OF_CONDUCT.md)
 
 # Loathing, Mehs and Praise
 1. Loathing should be directed into pull requests that make it better. woot.
 2. Bugs with the setup should be put as GitHub issues.
 3. Mehs should be > /dev/null
 4. Praise should be directed to [![@antic](https://img.shields.io/twitter/follow/antic.svg?style=social&label=@antic)](https://twitter.com/antic)
-
-# Tips Accepted
-⚡ Lightning Network Satoshi Tips Accepted https://tippin.me/@antic
-> With the advent of Bitcoin Lightning Network, you can tip me as little as 1 satoshi (.00000001 $BTC). 1000 satoshi is about $.04 as of this writing. Any amount is appreciated and playing with Lightning will help you learn about the future of the internet! :)
-
-Don't have Lightning? 
-- [Blue Wallet (for iOS and Android)](https://bluewallet.io/)
-- [Eclair Wallet (for Android)](https://play.google.com/store/apps/details?id=fr.acinq.eclair.wallet.mainnet2)
 
 
 # ¯\\_(ツ)_/¯ Warning / Liability

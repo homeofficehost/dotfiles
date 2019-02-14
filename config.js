@@ -1,5 +1,7 @@
 module.exports = {
   brew: [
+    // Program that can automate interactive applications
+    'expect',
     // Search tool like grep, but optimized for programmers - http://conqueringthecommandline.com/book/ack_ag
     'ack',
     'ag',
@@ -43,6 +45,10 @@ module.exports = {
     'diffutils',
     // GNU Transport Layer Security (TLS) Library
     'gnutls',
+    // World's fastest and most advanced password recovery utility
+    'hashcat',
+    // Bash script to format a block device to UDF
+    'format-udf',
     // GNU Emacs text editor
     'emacs',
     // Free (GNU) replacement for the Pico text editor

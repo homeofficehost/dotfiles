@@ -118,8 +118,6 @@ git.gitlab.new.init() {
 	git push -u origin master
 }
 
-# alias ssh-addd='chmod 600 ~/.ssh/github_tgroch_id_rsa | ssh-add ~/.ssh/github_tgroch_id_rsa'
-
 alias crack.intellij='dvt-jb_licsrv.darwin.386'
 alias pstorm='open -a PhpStorm'
 alias pstorm='open -a PhpStorm'
