@@ -1203,7 +1203,7 @@ running "Allow Apps from Anywhere in macOS Sierra Gatekeeper"
 sudo spctl --master-disable;ok
 
 # Changing the System Language
-sudo languagesetup
+# sudo languagesetup
 
 ###############################################################################
 bot "Developer"
@@ -1218,7 +1218,10 @@ sleep 2
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
-bot "OK. Note that some of these changes require a logout/restart to take effect. Killing affected applications (so they can reboot)...."
+bot "OK. Note that some of these changes require a logout/restart to take effect. I will kill affected applications (so they can reboot)...."
+
+read -n 1 -s -r -p "Press any key to continue"
+
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
   "Dock" "Finder" "Google Chrome" "Google Chrome Canary" "Mail" "Messages" \
   "Opera" "Photos" "Safari" "SizeUp" "Spectacle" "SystemUIServer" "Terminal" "Spectacle" \

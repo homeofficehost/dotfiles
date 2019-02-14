@@ -153,7 +153,7 @@ alias brew.on="sudo brew services start dnsmasq && \
 	brew services start redis && \
 	sudo brew services start php;"
 
-cat ~/Downloads/MasterRepo.list.txt | ssh root@192.168.0.15 "cat >> /etc/apt/sources.list.d/MasterRepo.list | chmod 0655 /etc/apt/sources.list.d/MasterRepo.list"
+# cat ~/Downloads/MasterRepo.list.txt | ssh root@192.168.0.15 "cat >> /etc/apt/sources.list.d/MasterRepo.list | chmod 0655 /etc/apt/sources.list.d/MasterRepo.list"
 
 findc() {
 	find $1 -type f -exec grep --color=auto -nH $2 /dev/null {} +
