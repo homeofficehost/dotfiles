@@ -223,7 +223,8 @@ for file in .*; do
   # if the file exists:
   if [[ -e ~/$file ]]; then
       mkdir -p ~/.dotfiles_backup/$now
-      mv --dereference ~/$file ~/.dotfiles_backup/$now/$file
+      cp ~/$file ~/.dotfiles_backup/$now/$file
+      rm -f ~/$file
       echo "backup saved as ~/.dotfiles_backup/$now/$file"
   fi
   # symlink might still exist
