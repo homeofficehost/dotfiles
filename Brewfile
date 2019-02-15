@@ -1,4 +1,4 @@
-tap "adoptopenjdk/openjdk"
+tap "AdoptOpenJDK/openjdk"
 tap "dart-lang/dart"
 tap "heroku/brew"
 tap "homebrew/bundle"
@@ -20,7 +20,7 @@ brew "bat"
 brew "coreutils"
 brew "dos2unix"
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
-brew "findutils", args: ["with-default-names"]
+brew "findutils"
 brew "fortune"
 brew "fzf"
 brew "readline" # ensure gawk gets good readline
@@ -31,17 +31,17 @@ brew "gifsicle"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # C code prettifier
-brew "gnu-indent", args: ["with-default-names"]
+brew "gnu-indent"
 # Install GNU `sed`, overwriting the built-in `sed`
 # so we can do "sed -i 's/foo/bar/' file" instead of "sed -i '' 's/foo/bar/' file"
 # GNU implementation of the famous stream editor
-brew "gnu-sed", args: ["with-default-names"]
+brew "gnu-sed"
 # GNU version of the tar archiving utility
-brew "gnu-tar", args: ["with-default-names"]
+brew "gnu-tar"
 # GNU implementation of which utility
-brew "gnu-which", args: ["with-default-names"]
+brew "gnu-which"
 # upgrade grep so we can get things like inverted match (-v)
-brew "grep", args: ["with-default-names"]
+brew "grep"
 # better, more recent grep
 brew "homebrew/dupes/grep"
 # https://github.com/jkbrzt/httpie
@@ -67,17 +67,17 @@ brew "nmap"
 brew "openconnect"
 brew "reattach-to-user-namespace"
 # better/more recent version of screen
-brew "homebrew/dupes/screen"
+brew "screen"
 brew "tmux"
 brew "todo-txt"
 brew "tree"
 brew "ttyrec"
 # Vi 'workalike' with many additional features
-brew "vim", args: ["with-override-system-vi"]
+brew "vim"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
-# Install wget with IRI support
-brew "wget", args: ["enable-iri"]
+# Internet file retriever
+brew "wget"
 # Interpreted, interactive, object-oriented programming language
 brew "python"
 # Open source programming language to build simple/reliable/efficient software
@@ -98,9 +98,7 @@ brew "postgresql"
 # Persistent key-value database, with built-in net interface
 brew "redis"
 # Classic UNIX line editor
-brew "ed", args: ["with-default-names"]
-# AdoptOpenJDK main binary releases for OpenJDK 10 with HotSpot
-brew "adoptopenjdk-openjdk10"
+brew "ed"
 # Download with resuming and segmented downloading
 brew "aria2"
 # General-purpose data compression with high compression ratio
@@ -241,11 +239,10 @@ cask "dbvisualizer"
 cask "firefox"
 cask "flux"
 cask "gitup"
-cask "google-chrome"
 cask "integrity"
 cask "istumbler"
 cask "iterm2"
-cask "java"
+cask "adoptopenjdk"
 cask "jdownloader"
 cask "keka"
 cask "dupeguru"
