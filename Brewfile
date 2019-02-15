@@ -6,9 +6,97 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
-tap "homebrew/php"
 tap "homebrew/services"
 tap "puma/puma"
+tap "mas-cli/tap", pin: true
+# Program that can automate interactive applications
+brew "expect"
+# Search tool like grep, but optimized for programmers - http://conqueringthecommandline.com/book/ack_ag
+brew "ack"
+brew "ag"
+# alternative to `cat`: https://github.com/sharkdp/bat
+brew "bat"
+# Install GNU core utilities (those that come with macOS are outdated)
+brew "coreutils"
+brew "dos2unix"
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
+brew "findutils", args: ["with-default-names"]
+brew # 'fortune"
+brew "fzf"
+brew "readline" # ensure gawk gets good readline
+# GNU awk utility
+brew "gawk"
+# http://www.lcdf.org/gifsicle/ (because I'm a gif junky)
+brew "gifsicle"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
+# C code prettifier
+brew "gnu-indent", args: ["with-default-names"]
+# Install GNU `sed`, overwriting the built-in `sed`
+# so we can do "sed -i 's/foo/bar/' file" instead of "sed -i '' 's/foo/bar/' file"
+# GNU implementation of the famous stream editor
+brew "gnu-sed", args: ["with-default-names"]
+# GNU version of the tar archiving utility
+brew "gnu-tar", args: ["with-default-names"]
+# GNU implementation of which utility
+brew "gnu-which", args: ["with-default-names"]
+# upgrade grep so we can get things like inverted match (-v)
+brew "grep", args: ["with-default-names"]
+# better, more recent grep
+brew "homebrew/dupes/grep"
+# https://github.com/jkbrzt/httpie
+brew "httpie"
+# Mac App Store CLI: https://github.com/mas-cli/mas
+brew "mas"
+# Install some other useful utilities like `sponge`
+brew "moreutils"
+brew "binutils"
+brew "diffutils"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# World's fastest and most advanced password recovery utility
+brew "hashcat"
+# Bash script to format a block device to UDF
+brew "format-udf"
+# GNU Emacs text editor
+brew "emacs"
+# Free (GNU) replacement for the Pico text editor
+brew "nano"
+# Port scanning utility for large networks
+brew "nmap"
+brew "openconnect"
+brew "reattach-to-user-namespace"
+# better/more recent version of screen
+brew "homebrew/dupes/screen"
+brew "tmux"
+brew "todo-txt"
+brew "tree"
+brew "ttyrec"
+# Vi 'workalike' with many additional features
+brew "vim", args: ["with-override-system-vi"]
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Install wget with IRI support
+brew "wget", args: ["enable-iri"]
+# Interpreted, interactive, object-oriented programming language
+brew "python"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Highly capable, feature-rich programming language
+brew "perl@5.18"
+# Platform built on V8 to build network applications
+brew "node"
+# Ruby version manager
+brew "rbenv"
+brew "ruby"
+# Lightweight DNS forwarder and DHCP server
+brew "dnsmasq"
+# Drop-in replacement for MySQL
+brew "mariadb"
+# Object-relational database system
+brew "postgresql"
+# Persistent key-value database, with built-in net interface
+brew "redis"
 # Classic UNIX line editor
 brew "ed", args: ["with-default-names"]
 # AdoptOpenJDK main binary releases for OpenJDK 10 with HotSpot
@@ -27,10 +115,6 @@ brew "composer"
 brew "libevent"
 # Monitor DHCP traffic for debugging purposes
 brew "dhcpdump"
-# Isolated development environments using Docker
-brew "docker-compose"
-# Docker Machine Parallels Driver
-brew "docker-machine-parallels"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
 # Play, record, convert, and stream audio and video
@@ -41,6 +125,8 @@ brew "file-formula"
 brew "git"
 # Git extension for versioning large files
 brew "git-lfs"
+# Configure transparent encryption of files in a Git repo
+brew "transcrypt"
 # Ruby client and CLI for GitLab API
 brew "gitlab-gem"
 # Version Control Visualization Tool
@@ -63,6 +149,8 @@ brew "graphicsmagick"
 brew "imagemagick"
 # Convert JPG images to ASCII
 brew "jp2a"
+# Tool to capture still images from an iSight or other video source
+brew "imagesnap"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Pager program similar to more
@@ -104,8 +192,6 @@ brew "parallel"
 brew "php-cs-fixer"
 # Programmer-oriented testing framework for PHP
 brew "phpunit"
-# Object-relational database system
-brew "postgresql"
 # Rsync for cloud storage
 brew "rclone"
 # Unit testing tool
@@ -132,8 +218,6 @@ brew "unrar"
 brew "unzip"
 # Display word differences between text files
 brew "wdiff"
-# Internet file retriever
-brew "wget"
 # Download YouTube videos from the command-line
 brew "youtube-dl"
 # The Dart SDK
@@ -144,4 +228,59 @@ brew "heroku/brew/heroku"
 brew "wp-cli"
 # HTTP benchmarking tool
 brew "wrk"
-
+# Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-autosuggestions"
+cask "balenaetcher"
+cask "brave"
+cask "ccleaner"
+cask "cryptomator"
+cask "disk-inventory-x"
+cask "docker"
+cask "dropbox"
+cask "dbvisualizer"
+cask "firefox"
+cask "flux"
+cask "gitup"
+cask "google-chrome"
+cask "integrity"
+cask "istumbler"
+cask "iterm2"
+cask "java"
+cask "jdownloader"
+cask "keka"
+cask "dupeguru"
+cask "iina"
+cask "qtpass"
+cask "keybase"
+cask "macs-fan-control"
+cask "mongohub"
+cask "mysqlworkbench"
+cask "numi"
+cask "onyx"
+cask "opera"
+cask "osxfuse"
+cask "parsehub"
+cask "phpstorm"
+cask "postman"
+cask "rocket-chat"
+cask "robomongo"
+cask "sdformatter"
+cask "sequel-pro"
+cask "postico"
+cask "spectacle"
+cask "sqlitebrowser"
+cask "srware-iron"
+cask "sublime-text"
+cask "telegram"
+cask "torbrowser"
+cask "transmission"
+cask "vlc"
+cask "vnc-viewer"
+cask "transmit-disk"
+cask "karabiner-elements"
+cask "gpg-suite"
+mas "Xcode", id: 497799835
+mas "Pages", id: 409201541
+mas "Xcode", id: 497799835
+mas "Affinity Photo", id: 824183456
+mas "Affinity Designer", id: 824171161

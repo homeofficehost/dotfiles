@@ -1,7 +1,6 @@
 const emoji = require('node-emoji')
 const fs = require('fs')
 const inquirer = require('inquirer')
-const config = require('./config')
 const command = require('./lib_node/command')
 
 inquirer.prompt([{
@@ -31,22 +30,5 @@ inquirer.prompt([{
       })
     }
   }
-
-  // console.info(emoji.get('coffee'), ' adding more repositories to the list of formulae that brew tracks.')
-  // command('brew tap adoptopenjdk/openjdk dart-lang/dart heroku/brew homebrew/bundle homebrew/cask homebrew/cask-fonts homebrew/cask-versions homebrew/core homebrew/php homebrew/services puma/puma; brew tap mas-cli/tap; brew tap-pin mas-cli/tap', __dirname, function(err, out) {
-  //   if(err) console.error(emoji.get('fire'), err)
-  // })
-
-  ['brew', 'cask', 'npm', 'gem', 'mas'].forEach( type => {
-    if(config[type] && config[type].length){
-      console.info(emoji.get('coffee'), ' installing '+type+' packages')
-      config[type].map(function(item){
-        console.info(type+':', item)
-        command('. lib_sh/echos.sh && . lib_sh/requirers.sh && require_'+type+' ' + item, __dirname, function(err, out) {
-          if(err) console.error(emoji.get('fire'), err)
-        })
-      })
-    }
-  })
 
 })

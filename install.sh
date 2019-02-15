@@ -279,24 +279,14 @@ npm config set save-exact true
 #####################################
 
 bot "installing npm tools needed to run this project..."
-npm install
+yarn install --no-lockfile
 ok
 
-brew tap adoptopenjdk/openjdk
-brew tap dart-lang/dart
-brew tap heroku/brew
-brew tap homebrew/bundle
-brew tap homebrew/cask
-brew tap homebrew/cask-fonts
-brew tap homebrew/cask-versions
-brew tap homebrew/core
-brew tap homebrew/php
-brew tap homebrew/services
-brew tap puma/puma
-brew tap mas-cli/tap
-brew tap-pin mas-cli/tap
+bot "installing brew bundle..."
+brew bundle
+ok
 
-bot "installing packages from config.js..."
+bot "installing gitshots..."
 node index.js
 ok
 

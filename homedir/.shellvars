@@ -7,10 +7,11 @@ bindkey -v
 #########################################################################
 # Temporary aliases useful for demos, other current projects
 #########################################################################
-export MYTEMP=~/Documents/tmp
-export MYCODE=~/dev
-export MYDOWNLOADS=~/Downloads
-export MYDOCUMENTS=~/Documents
+export MY_TEMP=~/Documents/tmp
+export MY_DOTFILES=~/.dotfiles
+export MY_CODE=~/dev
+export MY_DOWNLOADS=~/Downloads
+export MY_DOCUMENTS=~/Documents
 
 #########################################################################
 # Tool paths
