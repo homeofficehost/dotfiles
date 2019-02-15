@@ -21,7 +21,7 @@ brew "coreutils"
 brew "dos2unix"
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
 brew "findutils", args: ["with-default-names"]
-brew # 'fortune"
+brew "fortune"
 brew "fzf"
 brew "readline" # ensure gawk gets good readline
 # GNU awk utility
