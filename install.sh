@@ -11,6 +11,14 @@ source ./lib_sh/requirers.sh
 
 bot "Hi! I'm going to install tooling and tweak your system settings. Here I go..."
 
+# Changing the System Language
+read -r -p "Change OS language? (y|N) [default=N] " response
+response=${response:-N}
+if [[ $response =~ (no|n|Y) ]];then
+    sudo languagesetup
+    bot "Reboot to take effect."
+fi
+
 # Ask for the administrator password upfront
 if ! sudo grep -q "%wheel   ALL=(ALL) NOPASSWD: ALL #atomantic/dotfiles" "/etc/sudoers"; then
 
@@ -1207,8 +1215,7 @@ defaults write org.m0k.transmission BlocklistAutoUpdate -bool true;ok
 running "Allow Apps from Anywhere in macOS Sierra Gatekeeper"
 sudo spctl --master-disable;ok
 
-# Changing the System Language
-# sudo languagesetup
+sudo /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -license
 
 ###############################################################################
 bot "Developer"
