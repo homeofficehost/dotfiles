@@ -66,6 +66,7 @@
     "surge": "^0.20.1",
     "torrent": "^2.0.0",
     "trash-cli": "^1.4.0",
+    "ungit": "^1.4.42",
     "vtop": "^0.6.1",
     "vuepress": "^0.14.8",
     "wallpaper-cli": "^2.0.0",
