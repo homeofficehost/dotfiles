@@ -66,6 +66,52 @@ then
   alias la='gls -A --color'
 fi
 
+alias gs="git status"
+alias gl="git log"
+alias gcom="git checkout master"
+alias gaa="git add ."
+alias gc="git commit -m "
+alias gp="git push"
+alias nah="git reset --hard && git clean -df"
+
+alias qq="cat ~/.zsh_history | grep "
+alias ww="which "
+
+alias nginx.start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
+alias nginx.stop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
+alias nginx.restart='nginx.stop && nginx.start'
+alias nginx.config='sudo $EDITOR /usr/local/etc/nginx/valet/valet.conf'
+alias nginx.config='$EDITOR /usr/local/etc/nginx/valet/valet.conf'
+alias nginx.configtest='sudo nginx -t'
+
+alias php-fpm.start="sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.php71.plist"
+alias php-fpm.stop="sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.php71.plist"
+alias php-fpm.restart='php-fpm.stop && php-fpm.start'
+
+alias mariadb.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
+alias mariadb.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
+alias mariadb.logs="tail -250f /tmp/mysql.log"
+
+alias mysql.new='mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $1;"'
+alias mysql.rm='mysql -uroot -e "DROP DATABASE IF EXISTS $1;"'
+
+alias mysql.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
+alias mysql.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
+alias mysql.restart='mysql.stop && mysql.start'
+
+# newest log file matching
+alias mariadb.logs='tail -250f /var/log/mysql/all.log'
+alias ci.logs='tail -250f $(ls -t application/logs/log-* | head -1)'
+alias nginx.logs.error='tail -250f /Users/tg/.valet/Log/nginx-error.log'
+alias nginx.logs.access='tail -250f /Users/tg/.valet/Log/nginx-access.log'
+alias nginx.logs.default.access='tail -250f /usr/local/etc/nginx/logs/default.access.log'
+alias nginx.logs.default-ssl.access='tail -250f /usr/local/etc/nginx/logs/default-ssl.access.log'
+alias nginx.logs.phpmyadmin.error='tail -250f /usr/local/etc/nginx/logs/phpmyadmin.error.log'
+alias nginx.logs.phpmyadmin.access='tail -250f /usr/local/etc/nginx/logs/phpmyadmin.access.log'
+
+alias router='dig | grep "SERVER: "'
+
+
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
@@ -127,12 +173,6 @@ alias pstorm='open -a PhpStorm'
 alias ws='open -a Webstorm'
 alias ws='open -a Webstorm'
 
-alias qq="cat ~/.zsh_history | grep "
-alias ww="which "
-
-alias mysql.new='mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $1;"'
-alias mysql.rm='mysql -uroot -e "DROP DATABASE IF EXISTS $1;"'
-
 alias pi.magazine="wget -A pdf -m -p -E -k -K -npc https://www.raspberrypi.org/magpi-issues/"
 alias pi.findit="dns-sd -G v4 raspberrypi.local"
 
@@ -156,7 +196,7 @@ alias brew.on="sudo brew services start dnsmasq && \
 	brew services start redis && \
 	sudo brew services start php;"
 
-# cat ~/Downloads/MasterRepo.list.txt | ssh root@192.168.0.15 "cat >> /etc/apt/sources.list.d/MasterRepo.list | chmod 0655 /etc/apt/sources.list.d/MasterRepo.list"
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
 findc() {
 	find $1 -type f -exec grep --color=auto -nH $2 /dev/null {} +

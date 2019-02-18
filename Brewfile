@@ -49,6 +49,7 @@ brew "mas"
 brew "moreutils"
 brew "binutils"
 brew "diffutils"
+brew "diff-so-fancy"
 brew "pass"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"

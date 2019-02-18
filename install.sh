@@ -154,32 +154,30 @@ fi
 #####
 # install homebrew (CLI Packages)
 #####
-
-running "checking homebrew install"
+bot "checking homebrew install"
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
-  action "installing homebrew"
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    if [[ $? != 0 ]]; then
-      error "unable to install homebrew, script $0 abort!"
-      exit 2
-  fi
+ action "installing homebrew"
+ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+ if [[ $? != 0 ]]; then
+   error "unable to install homebrew, script $0 abort!"
+   exit 2
+ fi
 else
-  ok
-  # Make sure we’re using the latest Homebrew
-  running "updating homebrew"
-  brew update
-  ok
-  bot "before installing brew packages, we can upgrade any outdated packages."
-  read -r -p "run brew upgrade? (y|N) [default=Y] " response
-  response=${response:-Y}
-  if [[ $response =~ ^(y|yes|Y) ]];then
-      # Upgrade any already-installed formulae
-      action "upgrade brew packages..."
-      brew upgrade
-      ok "brews updated..."
+ bot "before installing brew packages, we can upgrade any outdated packages."
+ read -r -p "run brew upgrade? (y|N) [default=Y] " response
+ response=${response:-Y}
+
+ running "updating homebrew"
+ brew update
+ ok
+if [[ $response =~ ^(y|yes|Y) ]];then
+  # Upgrade any already-installed formulae
+  action "upgrade brew packages..."
+  brew upgrade
+  ok "brews updated..."
   else
-      ok "skipped brew package upgrades.";
+    ok "skipped brew package upgrades.";
   fi
 fi
 
@@ -1017,10 +1015,10 @@ defaults write com.apple.terminal SecureKeyboardEntry -bool true;ok
 # i.e. hover over a window and start `typing in it without clicking first
 defaults write com.apple.terminal FocusFollowsMouse -bool true
 #defaults write org.x.X11 wm_ffm -bool true;ok
-running "Installing the Solarized Light theme for iTerm (opening file)"
-open "./configs/Solarized Light.itermcolors";ok
-running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
-open "./configs/Solarized Dark Patch.itermcolors";ok
+# running "Installing the Solarized Light theme for iTerm (opening file)"
+# open "./configs/Solarized Light.itermcolors";ok
+# running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
+# open "./configs/Solarized Dark Patch.itermcolors";ok
 
 running "Don’t display the annoying prompt when quitting iTerm"
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false;ok
@@ -1218,7 +1216,28 @@ sudo spctl --master-disable;ok
 sudo /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -license
 
 ###############################################################################
-bot "Developer"
+bot "Developer default settings"
+###############################################################################
+
+# diff-so-fancy
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+
+git config --global color.ui true
+
+git config --global color.diff-highlight.oldNormal    "red bold"
+git config --global color.diff-highlight.oldHighlight "red bold 52"
+git config --global color.diff-highlight.newNormal    "green bold"
+git config --global color.diff-highlight.newHighlight "green bold 22"
+
+git config --global color.diff.meta       "yellow"
+git config --global color.diff.frag       "magenta bold"
+git config --global color.diff.commit     "yellow bold"
+git config --global color.diff.old        "red bold"
+git config --global color.diff.new        "green bold"
+git config --global color.diff.whitespace "red reverse"
+Options
+###############################################################################
+bot "Developer workspace"
 ###############################################################################
 
 running "Create dev folder in home directory"
