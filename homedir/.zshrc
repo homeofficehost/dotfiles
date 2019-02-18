@@ -1,7 +1,8 @@
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.dotfiles/oh-my-zsh
+
 # export ZSH_THEME="powerlevel9k/powerlevel9k"
-export ZSH_THEME="agnoster"
+export ZSH_THEME="robbyrussell"
 
 # Powerlevel9k Settings
 # if you want to use this, change your non-ascii font to Droid Sans Mono for Awesome
@@ -24,11 +25,27 @@ export CASE_SENSITIVE="true"
 # disable weekly auto-update checks
 # export DISABLE_AUTO_UPDATE="true"
 
-# disable colors in ls
-# export DISABLE_LS_COLORS="true"
-
 # disable autosetting terminal title.
 export DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+HIST_STAMPS="yyyy-mm-dd"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.dotfiles/oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -58,7 +75,8 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source $ZSH/oh-my-zsh.sh
 
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && 
+source "${HOME}/.iterm2_shell_integration.zsh"
 
 # source /usr/local/opt/nvm/nvm.sh
 
@@ -74,8 +92,19 @@ source $ZSH/oh-my-zsh.sh
 # add-zsh-hook chpwd load-nvmrc
 # load-nvmrc
 
-# # Customize to your needs...
-# # unsetopt correct
+# User configuration
 
-# # run fortune on new terminal :)
-# # fortune
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
