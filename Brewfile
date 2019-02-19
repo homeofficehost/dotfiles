@@ -160,6 +160,7 @@ brew "lynx"
 brew "m4"
 # Utility for directing compilation
 brew "make"
+brew "cmake"
 # High-performance, schema-free, document-oriented database
 brew "mongodb"
 # Recursively compute digests on files/directories

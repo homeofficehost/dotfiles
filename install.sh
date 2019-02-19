@@ -151,10 +151,7 @@ if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
   fi
 fi
 
-#####
-# install homebrew (CLI Packages)
-#####
-bot "checking homebrew install"
+bot "checking if homebrew CLI is already installed"
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
  action "installing homebrew"
@@ -164,34 +161,32 @@ if [[ $? != 0 ]]; then
    exit 2
  fi
 else
- bot "before installing brew packages, we can upgrade any outdated packages."
- read -r -p "run brew upgrade? (y|N) [default=Y] " response
- response=${response:-Y}
+  running "Prevent Homebrew from gathering analytics"
+  brew analytics off;ok
 
- running "updating homebrew"
- brew update
- ok
-if [[ $response =~ ^(y|yes|Y) ]];then
-  # Upgrade any already-installed formulae
-  action "upgrade brew packages..."
-  brew upgrade
-  ok "brews updated..."
+  bot "before installing brew packages, we can upgrade any outdated packages."
+  read -r -p "run brew upgrade? (y|N) [default=Y] " response
+  response=${response:-Y}
+
+  running "updating homebrew"
+  brew update;ok
+
+  if [[ $response =~ ^(y|yes|Y) ]];then
+    # Upgrade any already-installed formulae
+    action "upgrade brew packages..."
+    brew upgrade
+    ok "brews updated..."
   else
     ok "skipped brew package upgrades.";
   fi
 fi
 
-#####
-# install brew cask (UI Packages)
-#####
-running "checking brew-cask install"
+bot "checking if cask CLI is already installed"
 output=$(brew tap | grep cask)
 if [[ $? != 0 ]]; then
   action "installing brew-cask"
   require_brew caskroom/cask/brew-cask
-fi
-brew tap caskroom/versions > /dev/null 2>&1
-ok
+fi;ok
 
 # skip those GUI clients, git command-line all the way
 require_brew git
@@ -242,37 +237,6 @@ done
 
 popd > /dev/null 2>&1
 
-
-bot "Installing vim plugins"
-# cmake is required to compile vim bundle YouCompleteMe
-# require_brew cmake
-vim +PluginInstall +qall > /dev/null 2>&1
-
-bot "installing fonts"
-./fonts/install.sh;ok
-
-if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
-  running "Fixing Ruby Gems Directory Permissions"
-  sudo chown -R $(whoami) /Library/Ruby/Gems/2.0.0
-  ok
-fi
-
-# node version manager
-require_brew nvm
-
-# nvm
-require_nvm stable
-
-# always pin versions (no surprises, consistent dev/build machines)
-npm config set save-exact true
-
-#####################################
-# Now we can switch to node.js mode
-# for better maintainability and
-# easier configuration via
-# JSON files and inquirer prompts
-#####################################
-
 bot "installing npm tools needed to run this project..."
 yarn install --no-lockfile
 ok
@@ -289,8 +253,28 @@ running "cleanup homebrew"
 brew cleanup > /dev/null 2>&1
 ok
 
-running "Prevent Homebrew from gathering analytics"
-brew analytics off;ok
+bot "Installing vim plugins"
+vim +PluginInstall +qall > /dev/null 2>&1
+
+bot "installing fonts"
+./fonts/install.sh;ok
+
+if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
+  running "Fixing Ruby Gems Directory Permissions"
+  sudo chown -R $(whoami) /Library/Ruby/Gems/2.0.0
+  ok
+fi
+
+# # node version manager
+# require_brew nvm
+
+# # nvm
+# require_nvm stable
+
+bot "Configuring git"
+action "always pin versions (no surprises, consistent dev/build machines)"
+npm config set save-exact true
+
 
 ###############################################################################
 bot "Configuring General System UI/UX..."
