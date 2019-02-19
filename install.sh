@@ -213,9 +213,9 @@ if [[ "$CURRENTSHELL" != "/usr/local/bin/zsh" ]]; then
   ok
 fi
 
-if [[ ! -d "./oh-my-zsh/custom/themes/powerlevel9k" ]]; then
-  git clone https://github.com/bhilburn/powerlevel9k.git oh-my-zsh/custom/themes/powerlevel9k
-fi
+# if [[ ! -d "./oh-my-zsh/custom/themes/powerlevel9k" ]]; then
+#   git clone https://github.com/bhilburn/powerlevel9k.git oh-my-zsh/custom/themes/powerlevel9k
+# fi
 
 bot "creating symlinks for project dotfiles..."
 pushd homedir > /dev/null 2>&1
@@ -249,18 +249,7 @@ bot "Installing vim plugins"
 vim +PluginInstall +qall > /dev/null 2>&1
 
 bot "installing fonts"
-./fonts/install.sh
-brew tap caskroom/fonts
-require_cask font-fontawesome
-require_cask font-awesome-terminal-fonts
-require_cask font-hack
-require_cask font-inconsolata-dz-for-powerline
-require_cask font-inconsolata-g-for-powerline
-require_cask font-inconsolata-for-powerline
-require_cask font-roboto-mono
-require_cask font-roboto-mono-for-powerline
-require_cask font-source-code-pro
-ok
+./fonts/install.sh;ok
 
 if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
   running "Fixing Ruby Gems Directory Permissions"

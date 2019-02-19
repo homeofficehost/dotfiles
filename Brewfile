@@ -274,6 +274,15 @@ cask "vnc-viewer"
 cask "transmit-disk"
 cask "karabiner-elements"
 cask "gpg-suite"
+cask "font-fontawesome"
+cask "font-awesome-terminal-fonts"
+cask "font-hack"
+cask "font-inconsolata-dz-for-powerline"
+cask "font-inconsolata-g-for-powerline"
+cask "font-inconsolata-for-powerline"
+cask "font-roboto-mono"
+cask "font-roboto-mono-for-powerline"
+cask "font-source-code-pro"
 mas "Xcode", id: 497799835
 mas "Pages", id: 409201541
 mas "Xcode", id: 497799835
