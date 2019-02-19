@@ -228,6 +228,7 @@ brew "wp-cli"
 brew "wrk"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
+brew "npm"
 brew "yarn"
 cask "balenaetcher"
 cask "brave-browser"

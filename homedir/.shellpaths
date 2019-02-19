@@ -6,6 +6,7 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 # Node
+export PATH=$PATH:~/.local/bin
 export PATH=$PATH:$MY_DOTFILES/node_modules/.bin
 
 # My Scripts

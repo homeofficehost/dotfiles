@@ -253,6 +253,11 @@ running "cleanup homebrew"
 brew cleanup > /dev/null 2>&1
 ok
 
+running "installing npm global packages"
+action "npm config set prefix ~/.local"
+npm config set prefix ~/.local
+mkdir -p "${HOME}/.local";ok
+
 bot "Installing vim plugins"
 vim +PluginInstall +qall > /dev/null 2>&1
 

@@ -22,6 +22,8 @@ export ZSH_THEME="robbyrussell"
 # Set to this to use case-sensitive completion
 export CASE_SENSITIVE="true"
 
+export DISABLE_UPDATE_PROMPT="true"
+
 # disable weekly auto-update checks
 # export DISABLE_AUTO_UPDATE="true"
 

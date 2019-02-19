@@ -66,6 +66,8 @@ then
   alias la='gls -A --color'
 fi
 
+alias laratail="tail -f $(find /laravel/storage/logs | tail -n 1)"
+
 alias gs="git status"
 alias gl="git log"
 alias gcom="git checkout master"
@@ -201,5 +203,6 @@ function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 findc() {
 	find $1 -type f -exec grep --color=auto -nH $2 /dev/null {} +
 }
+alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
 
 alias dot="cd ~/.dotfiles"
