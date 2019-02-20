@@ -38,7 +38,7 @@ fi
 # Changing the System Language
 read -r -p "Change OS language? (y|N) [default=N] " response
 response=${response:-N}
-if [[ $response =~ (no|n|N) ]];then
+if [[ $response =~ ^(no|n|N) ]];then
     sudo languagesetup
     bot "Reboot to take effect."
 fi
