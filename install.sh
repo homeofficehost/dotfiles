@@ -250,13 +250,19 @@ pushd ~/ > /dev/null 2>&1
 npm install -g;ok
 popd > /dev/null 2>&1
 
-bot "installing npm tools needed to run this project..."
-npm install
-ok
-
-bot "installing gitshots..."
-node index.js
-ok
+read -r -p "Do you want to install gitshots? (y|N) [default=N] " response
+response=${response:-N}
+if [[ $response =~ (yes|y|Y) ]];then
+  mkdir -p ~/.gitshots
+  running "adding post-commit hook for gitshots"
+  cp ./.git_template/hooks/gitshot-pc ./.git_template/hooks/post-commit
+  ok
+else
+  if [[ -e ./.git_template/hooks/post-commit ]];then
+    rm ./.git_template/hooks/post-commit; touch ./.git_template/hooks/disabled-pc
+    ok;
+  fi
+fi
 
 running "cleanup homebrew"
 brew cleanup > /dev/null 2>&1

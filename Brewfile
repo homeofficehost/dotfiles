@@ -143,11 +143,11 @@ brew "hub"
 # Image processing tools collection
 brew "graphicsmagick"
 # Tools and libraries to manipulate images in many formats
-brew "imagemagick"
+brew "imagemagick" # needed to support gitshots
+# Tool to capture still images from an iSight or other video source
+brew "imagesnap" # needed to support gitshots
 # Convert JPG images to ASCII
 brew "jp2a"
-# Tool to capture still images from an iSight or other video source
-brew "imagesnap"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Pager program similar to more
