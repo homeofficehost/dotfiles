@@ -237,12 +237,20 @@ done
 
 popd > /dev/null 2>&1
 
-bot "installing npm tools needed to run this project..."
-yarn install --no-lockfile
-ok
-
 bot "installing brew bundle..."
 brew bundle
+ok
+
+running "installing npm global packages"
+cd ~/
+npm install -g
+
+action "npm config set prefix ~/.local"
+npm config set prefix ~/.local
+mkdir -p "${HOME}/.local";ok
+
+bot "installing npm tools needed to run this project..."
+yarn
 ok
 
 bot "installing gitshots..."
@@ -252,11 +260,6 @@ ok
 running "cleanup homebrew"
 brew cleanup > /dev/null 2>&1
 ok
-
-running "installing npm global packages"
-action "npm config set prefix ~/.local"
-npm config set prefix ~/.local
-mkdir -p "${HOME}/.local";ok
 
 bot "Installing vim plugins"
 vim +PluginInstall +qall > /dev/null 2>&1
@@ -976,14 +979,14 @@ running "Only use UTF-8 in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4;ok
 
 # running "Use a modified version of the Solarized Dark theme by default in Terminal.app"
-TERM_PROFILE='Solarized Dark xterm-256color';
-CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
-if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-  open "./configs/${TERM_PROFILE}.terminal";
-  sleep 1; # Wait a bit to make sure the theme is loaded
-  defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
-  defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
-fi;
+# TERM_PROFILE='Solarized Dark xterm-256color';
+# CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
+# if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
+#   open "./configs/${TERM_PROFILE}.terminal";
+#   sleep 1; # Wait a bit to make sure the theme is loaded
+#   defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
+#   defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
+# fi;
 
 running "Enable Secure Keyboard Entry in Terminal.app"
 # See: https://security.stackexchange.com/a/47786/8918
