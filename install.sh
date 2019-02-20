@@ -47,11 +47,10 @@ read -r -p "Overwrite /etc/hosts with the ad-blocking hosts file from someonewho
 response=${response:-Y}
 if [[ $response =~ (yes|y|Y) ]];then
     action "cp /etc/hosts /etc/hosts.backup"
-    sudo cp /etc/hosts /etc/hosts.backup
-    ok
+    sudo cp /etc/hosts /etc/hosts.backup;ok
+
     action "cp ./configs/hosts /etc/hosts"
-    sudo cp ./configs/hosts /etc/hosts
-    ok
+    sudo cp ./configs/hosts /etc/hosts;ok
     bot "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
 fi
 
@@ -216,6 +215,7 @@ bot "creating symlinks for project dotfiles..."
 pushd homedir > /dev/null 2>&1
 now=$(date +"%Y.%m.%d.%H.%M.%S")
 
+shopt -s dotglob
 for file in *; do
   if [[ $file == "." || $file == ".." ]]; then
     continue
@@ -242,15 +242,17 @@ brew bundle
 ok
 
 running "installing npm global packages"
+pushd homedir > /dev/null 2>&1
 cd ~/
-npm install -g
+npm install -g;ok
+popd > /dev/null 2>&1
 
 action "npm config set prefix ~/.local"
 npm config set prefix ~/.local
 mkdir -p "${HOME}/.local";ok
 
 bot "installing npm tools needed to run this project..."
-yarn
+npm install
 ok
 
 bot "installing gitshots..."
