@@ -243,7 +243,11 @@ done
 popd > /dev/null 2>&1
 
 bot "installing brew bundle..."
-brew bundle
+  while [[ $response_reinstall =~ (yes|y|Y) ]]; do
+      brew bundle
+      bot "Often some programs are not installed."
+      read -r -p "I would like to try again? (y|N)" response_reinstall
+  done
 ok
 
 running "installing npm global packages"
@@ -1206,7 +1210,7 @@ defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.n
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true;ok
 
 bot "Accept xcode build license"
-sudo /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -license
+sudo expect -c 'spawn xcodebuild -license; send "\n"; sleep 1; send "q"; expect "you are agreeing"; send "agree\n"; expect "You can view"; expect eof' > /dev/null
 
 ###############################################################################
 bot "Developer default settings"
