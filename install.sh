@@ -173,7 +173,7 @@ else
 
   if [[ $response =~ ^(y|yes|Y) ]];then
     # Upgrade any already-installed formulae
-    action "upgrade brew packages..."
+    bot "upgrade brew packages..."
     brew upgrade
     ok "brews updated..."
   else
