@@ -160,7 +160,7 @@ if [[ $? != 0 ]]; then
    exit 2
  fi
 else
-  running "Prevent Homebrew from gathering analytics"
+  action "Prevent Homebrew from gathering analytics"
   brew analytics off;ok
 
   read -r -p "Do you like to upgrade any outdated packages? (y|N) [default=Y] " response
@@ -182,8 +182,8 @@ fi
 bot "checking if cask CLI is already installed"
 output=$(brew tap | grep cask)
 if [[ $? != 0 ]]; then
-  action "installing brew-cask"
-  require_brew caskroom/cask/brew-cask
+  running "installing brew-cask"
+  require_brew caskroom/cask/brew-cask;ok
 fi;ok
 
 # skip those GUI clients, git command-line all the way
