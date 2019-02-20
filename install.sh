@@ -38,13 +38,18 @@ fi
 # Changing the System Language
 read -r -p "Change OS language? (y|N) [default=N] " response
 response=${response:-N}
-if [[ $response =~ (no|n|Y) ]];then
+if [[ $response =~ (no|n|N) ]];then
     sudo languagesetup
     bot "Reboot to take effect."
 fi
 
-# Add a message to the login window
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText ""
+read -r -p "Would you like to add/change the message on login window? (y|N) [default=N] " response
+response=${response:-N}
+if [[ $response =~ (yes|y|Y) ]];then
+  read -r -p "What message to use? " LOGIN_MESSAGE
+  # Add a message to the login window
+  sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "${LOGIN_MESSAGE}";ok
+fi
 
 running "Allow Apps from Anywhere in macOS Sierra Gatekeeper"
 sudo spctl --master-disable;ok
@@ -251,7 +256,7 @@ bot "installing brew bundle..."
 ok
 
 running "installing npm global packages"
-
+########################################################################################
 action "npm config set prefix ~/.local"
 npm config set prefix ~/.local
 mkdir -p "${HOME}/.local"
