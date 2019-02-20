@@ -246,8 +246,7 @@ action "npm config set prefix ~/.local"
 npm config set prefix ~/.local
 mkdir -p "${HOME}/.local"
 
-pushd homedir > /dev/null 2>&1
-cd ~/
+pushd ~/ > /dev/null 2>&1
 npm install -g;ok
 popd > /dev/null 2>&1
 
