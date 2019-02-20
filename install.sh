@@ -42,8 +42,7 @@ if [[ $response =~ (no|n|Y) ]];then
     bot "Reboot to take effect."
 fi
 
-# /etc/hosts
-read -r -p "Overwrite /etc/hosts with the ad-blocking hosts file from someonewhocares.org? (from ./configs/hosts file) (y|N) [default=Y] " response
+read -r -p "(Re)install ad-blocking /etc/hosts file from someonewhocares.org? (y|N) [default=Y] " response
 response=${response:-Y}
 if [[ $response =~ (yes|y|Y) ]];then
     action "cp /etc/hosts /etc/hosts.backup"
@@ -51,7 +50,7 @@ if [[ $response =~ (yes|y|Y) ]];then
 
     action "cp ./configs/hosts /etc/hosts"
     sudo cp ./configs/hosts /etc/hosts;ok
-    bot "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
+    ok "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
 fi
 
 grep 'user = GITHUBUSER' ./homedir/.gitconfig > /dev/null 2>&1
