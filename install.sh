@@ -256,7 +256,6 @@ bot "installing brew bundle..."
 ok
 
 running "installing npm global packages"
-########################################################################################
 action "npm config set prefix ~/.local"
 npm config set prefix ~/.local
 mkdir -p "${HOME}/.local"
