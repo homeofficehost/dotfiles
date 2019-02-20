@@ -150,7 +150,7 @@ if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
   fi
 fi
 
-bot "checking if homebrew CLI is already installed"
+running "checking if homebrew CLI is already installed"
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
  action "installing homebrew"
@@ -163,8 +163,7 @@ else
   running "Prevent Homebrew from gathering analytics"
   brew analytics off;ok
 
-  bot "before installing brew packages, we can upgrade any outdated packages."
-  read -r -p "run brew upgrade? (y|N) [default=Y] " response
+  read -r -p "Do you like to upgrade any outdated packages? (y|N) [default=Y] " response
   response=${response:-Y}
 
   running "updating homebrew"
@@ -172,7 +171,7 @@ else
 
   if [[ $response =~ ^(y|yes|Y) ]];then
     # Upgrade any already-installed formulae
-    bot "upgrade brew packages..."
+    running "upgrade brew packages..."
     brew upgrade
     ok "brews updated..."
   else
@@ -242,14 +241,15 @@ brew bundle
 ok
 
 running "installing npm global packages"
+
+action "npm config set prefix ~/.local"
+npm config set prefix ~/.local
+mkdir -p "${HOME}/.local"
+
 pushd homedir > /dev/null 2>&1
 cd ~/
 npm install -g;ok
 popd > /dev/null 2>&1
-
-action "npm config set prefix ~/.local"
-npm config set prefix ~/.local
-mkdir -p "${HOME}/.local";ok
 
 bot "installing npm tools needed to run this project..."
 npm install
