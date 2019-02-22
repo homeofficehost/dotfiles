@@ -1,36 +1,32 @@
 {
   "name": "dotfiles",
   "version": "1.0.0",
-  "description": "thomasgroch dotfiles for macos",
-  "main": "index.js",
-  "scripts": {
-    "install-password-store": "./install-password-store.sh",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "private": true,
+  "description": "thomasgroch dotfiles for macos",
+  "keywords": [
+    "automation",
+    "bootstrap",
+    "commandline",
+    "developer",
+    "dotfiles",
+    "iterm",
+    "macos",
+    "osx",
+    "setup"
+  ],
+  "homepage": "https://github.com/thomasgroch/dotfiles#readme",
+  "bugs": {
+    "url": "https://github.com/thomasgroch/dotfiles/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thomasgroch/dotfiles.git"
   },
-  "keywords": [
-    "dotfiles",
-    "osx",
-    "macos",
-    "automation",
-    "setup",
-    "developer",
-    "iterm",
-    "commandline",
-    "bootstrap"
-  ],
-  "author": "Thomas Letsch Groch <thomas.groch@gmail.com>",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/thomasgroch/dotfiles/issues"
-  },
-  "homepage": "https://github.com/thomasgroch/dotfiles#readme",
-  "dependencies": {
-    "inquirer": "^6.2.2",
-    "node-emoji": "^1.8.1"
+  "author": "Thomas Letsch Groch <thomas.groch@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "install-password-store": "./install-password-store.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

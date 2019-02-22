@@ -198,11 +198,140 @@ alias brew.on="sudo brew services start dnsmasq && \
 	brew services start redis && \
 	sudo brew services start php;"
 
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
-
 findc() {
 	find $1 -type f -exec grep --color=auto -nH $2 /dev/null {} +
 }
 alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
 
 alias dot="cd ~/.dotfiles"
+
+function node-project {
+  git init
+  npx license $(npm get init.license) -o "$(npm get init.author.name)" > LICENSE
+  npx gitignore node
+  npx covgen "$(npm get init.author.email)"
+  npm init -y
+  git add -A
+  git commit -m "Initial commit"
+}
+alias a.init-npm='node-project'
+
+# A set of aliases to use npx
+alias a.npm-check="npx npm-check $@"
+alias a.npm-check2="npx nsp check $@"
+alias a.david="npx david $@"
+alias a.create-vue-app="npx vue create ${@:-'my-app'}"
+alias a.create-react-app="npx create-react-app ${@:-'my-app'}"
+alias a.nsp="npx nsp ${@:-'check'}"
+alias a.npm-run-all="npx npm-run-all $@"
+alias a.nodemon="npx nodemon $@"
+alias a.webpack="npx webpack-cli $@"
+alias a.yo="npx yo $@" #https://yeoman.io/
+alias a.sort-package-json="npx sort-package-json $@"
+
+alias s.vue="npx vue/cli $@"
+alias s.whereami="npx github:@rafaelrinaldi/whereami $@"
+alias s.buzzphrase="npx buzzphrase $@"
+alias s.carbon-now="npx carbon-now-cli $@"
+alias s.codeceptjs="npx codeceptjs $@"
+alias s.empty-trash="npx empty-trash-cli $@"
+alias s.filepizza="npx filepizza $@"
+alias s.fkill="npx fkill-cli $@"
+alias s.get-urls="npx get-urls-cli $@"
+alias s.git-open="npx git-open $@"
+alias s.gitmoji="npx gitmoji-cli $@"
+alias s.gtop="npx gtop $@"
+alias s.instant-markdown-d="npx instant-markdown-d $@"
+alias s.iponmap="npx iponmap $@"
+alias s.kill-tabs="npx kill-tabs $@"
+alias s.netlify="npx netlify-cli $@"
+alias s.ngrok="npx ngrok $@"
+alias s.now="npx now $@"
+alias s.npm-check="npx npm-check $@"
+alias s.npms="npx npms-cli $@"
+alias s.osx-wifi="npx osx-wifi-cli $@"
+alias s.pen="npx pen $@"
+alias s.prettyaml="npx prettyaml $@"
+alias s.prettyjson="npx prettyjson $@"
+alias s.puppeteer="npx puppeteer $@"
+alias s.redis-commander="npx redis-commander $@"
+alias s.shorturl="npx shorturl $@"
+alias s.siteaudit="npx siteaudit $@"
+alias s.spoof="npx spoof $@"
+alias s.surge="npx surge $@"
+alias s.torrent="npx torrent $@"
+alias s.trash="npx trash-cli $@"
+alias s.ungit="npx ungit $@"
+alias s.vtop="npx vtop $@"
+alias s.vuepress="npx vuepress $@"
+alias s.wallpaper="npx wallpaper-cli $@"
+alias s.why-is-node-running="npx why-is-node-running $@"
+alias s.wifi-password="npx wifi-password-cli $@"
+alias s.yamlxjson="npx yamlxjson $@"
+
+alias d.qrcode='npx qrip $@'
+alias d.workin-hard='npx workin-hard $@'
+
+alias l.prettier="npx prettier $@"
+alias l.eslint="npx eslint $@"
+alias l.babel-eslint="npx babel-eslint $@"
+alias l.eslint-config-standard="npx eslint-config-standard $@"
+alias l.eslint-config-standard-react="npx eslint-config-standard-react $@"
+alias l.eslint-config-standard-jsx="npx eslint-config-standard-jsx $@"
+alias l.eslint-plugin-react="npx eslint-plugin-react $@"
+alias l.eslint-config-prettier="npx eslint-config-prettier $@"
+alias l.eslint-plugin-prettier="npx eslint-plugin-prettier $@"
+
+
+# A full set of cowsay aliases (includes all default cowsay options)
+alias pet.cow='npx cowsay $@'
+alias pet.turtle='npx cowsay $@ -f turtle'
+alias pet.beavis='npx cowsay $@ -f beavis.zen'
+alias pet.bong='npx cowsay $@ -f bong'
+alias pet.bud-frogs='npx cowsay $@ -f bud-frogs'
+alias pet.bunny='npx cowsay $@ -f bunny'
+alias pet.cheese='npx cowsay $@ -f cheese'
+alias pet.cower='npx cowsay $@ -f cower'
+alias pet.daemon='npx cowsay $@ -f daemon'
+alias pet.doge='npx cowsay $@ -f doge'
+alias pet.dragon-and-cow='npx cowsay $@ -f dragon-and-cow'
+alias pet.dragon='npx cowsay $@ -f dragon'
+alias pet.elephant-in-snake='npx cowsay $@ -f elephant-in-snake'
+alias pet.elephant='npx cowsay $@ -f elephant'
+alias pet.eyes='npx cowsay $@ -f eyes'
+alias pet.flaming-sheep='npx cowsay $@ -f flaming-sheep'
+alias pet.ghostbusters='npx cowsay $@ -f ghostbusters'
+alias pet.goat='npx cowsay $@ -f goat'
+alias pet.head-in='npx cowsay $@ -f head-in'
+alias pet.hedgehog='npx cowsay $@ -f hedgehog'
+alias pet.hellokitty='npx cowsay $@ -f hellokitty'
+alias pet.kiss='npx cowsay $@ -f kiss'
+alias pet.kitty='npx cowsay $@ -f kitty'
+alias pet.koala='npx cowsay $@ -f koala'
+alias pet.kosh='npx cowsay $@ -f kosh'
+alias pet.luke-koala='npx cowsay $@ -f luke-koala'
+alias pet.mech-and-cow='npx cowsay $@ -f mech-and-cow'
+alias pet.meow='npx cowsay $@ -f meow'
+alias pet.milk='npx cowsay $@ -f milk'
+alias pet.moofasa='npx cowsay $@ -f moofasa'
+alias pet.moose='npx cowsay $@ -f moose'
+alias pet.mutilated='npx cowsay $@ -f mutilated'
+alias pet.ren='npx cowsay $@ -f ren'
+alias pet.satanic='npx cowsay $@ -f satanic'
+alias pet.sheep='npx cowsay $@ -f sheep'
+alias pet.skeleton='npx cowsay $@ -f skeleton' 
+alias pet.small='npx cowsay $@ -f small'
+alias pet.sodomized='npx cowsay $@ -f sodomized'
+alias pet.squirrel='npx cowsay $@ -f squirrel'
+alias pet.stegosaurus='npx cowsay $@ -f stegosaurus'
+alias pet.stimpy='npx cowsay $@ -f stimpy'
+alias pet.supermilker='npx cowsay $@ -f supermilker'
+alias pet.surgery='npx cowsay $@ -f surgery'
+alias pet.telebears='npx cowsay $@ -f telebears'
+alias pet.turkey='npx cowsay $@ -f turkey'
+alias pet.turtle='npx cowsay $@ -f turtle'
+alias pet.tux='npx cowsay $@ -f tux'
+alias pet.vader-koala='npx cowsay $@ -f vader-koala'
+alias pet.vader='npx cowsay $@ -f vader'
+alias pet.whale='npx cowsay $@ -f whale'
+alias pet.www='npx cowsay $@ -f www'

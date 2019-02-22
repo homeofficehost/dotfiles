@@ -24,4 +24,3 @@ export MY_DOCUMENTS=~/Documents
 export HOMEBREW_NO_ANALYTICS=1
 export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 # export NVM_DIR=~/.nvm
-NPM_PACKAGES="${HOME}/.local"

@@ -51,31 +51,38 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Which plugins would you like to load? (plugins can be found in ~/.dotfiles/oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(ssh-agent)
+plugins=(git)
+plugins+=(ssh-agent)
+plugins+=(gnu-utils)
+plugins+=(pass)
+plugins+=(npx)
 plugins+=(gitfast)
+plugins+=(fasd)
 plugins+=(git-extras)
 plugins+=(brew)
-plugins+=(fasd)
 plugins+=(sudo)
 plugins+=(tmux)
-plugins+=(httpie)
-plugins+=(pass)
-plugins+=(sublime)
-plugins+=(copyfile)
-plugins+=(dircycle) # cycle your directory stack {left,right} using Ctrl+Shift+Left/Right. 
 plugins+=(composer)
-plugins+=(gnu-utils)
-plugins+=(colorize)
+plugins+=(sublime)
+plugins+=(httpie)
 plugins+=(compleat)
 plugins+=(dirpersist)
+plugins+=(dircycle) # cycle your directory stack {left,right} using Ctrl+Shift+Left/Right. 
+plugins+=(copyfile)
+plugins+=(colorize)
 plugins+=(autojump)
 plugins+=(history)
 plugins+=(cp)
+plugins+=(zsh-autosuggestions)
+plugins+=(zsh-better-npm-completion)
 
 # Load zsh plugins from Homebrew
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source $ZSH/oh-my-zsh.sh
+
+# npx as default fallback command
+source <(npx --shell-auto-fallback zsh)
 
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && 
 source "${HOME}/.iterm2_shell_integration.zsh"

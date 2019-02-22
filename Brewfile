@@ -8,8 +8,14 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "puma/puma"
 tap "mas-cli/tap", pin: true
-# Program that can automate interactive applications
-brew "expect"
+## Shell
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Classic UNIX line editor
+brew "ed"
+brew "readline" # ensure gawk gets good readline
+# General-purpose data compression with high compression ratio
+brew "xz"
 # Search tool like grep, but optimized for programmers - http://conqueringthecommandline.com/book/ack_ag
 brew "ack"
 brew "ag"
@@ -20,13 +26,12 @@ brew "coreutils"
 brew "dos2unix"
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
 brew "findutils"
-brew "fortune"
-brew "fzf"
-brew "readline" # ensure gawk gets good readline
 # GNU awk utility
 brew "gawk"
-# http://www.lcdf.org/gifsicle/ (because I'm a gif junky)
-brew "gifsicle"
+# Infamous electronic fortune-cookie generator
+brew "fortune"
+# Command-line fuzzy finder written in Go
+brew "fzf"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # C code prettifier
@@ -41,28 +46,26 @@ brew "gnu-tar"
 brew "gnu-which"
 # upgrade grep so we can get things like inverted match (-v)
 brew "grep"
-# https://github.com/jkbrzt/httpie
-brew "httpie"
-# Mac App Store CLI: https://github.com/mas-cli/mas
-brew "mas"
+# Utility for directing compilation
+brew "make"
+brew "cmake"
+# GNU Emacs text editor
+brew "emacs"
+# Free (GNU) replacement for the Pico text editor
+brew "nano"
 # Install some other useful utilities like `sponge`
 brew "moreutils"
 brew "binutils"
 brew "diffutils"
 brew "diff-so-fancy"
-brew "pass"
-# GNU Transport Layer Security (TLS) Library
-brew "gnutls"
-# World's fastest and most advanced password recovery utility
-brew "hashcat"
+# Internet file retriever
+brew "wget"
+# Download with resuming and segmented downloading
+brew "aria2"
 # Bash script to format a block device to UDF
 brew "format-udf"
-# GNU Emacs text editor
-brew "emacs"
-# Free (GNU) replacement for the Pico text editor
-brew "nano"
-# Port scanning utility for large networks
-brew "nmap"
+# https://github.com/jkbrzt/httpie
+brew "httpie"
 brew "openconnect"
 brew "reattach-to-user-namespace"
 # better/more recent version of screen
@@ -71,12 +74,20 @@ brew "tmux"
 brew "todo-txt"
 brew "tree"
 brew "ttyrec"
+# Program that can automate interactive applications
+brew "expect"
 # Vi 'workalike' with many additional features
 brew "vim"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
-# Internet file retriever
-brew "wget"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Mac App Store CLI: https://github.com/mas-cli/mas
+brew "mas"
+# Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-autosuggestions"
+
+## Languages
 # Interpreted, interactive, object-oriented programming language
 brew "python"
 # Open source programming language to build simple/reliable/efficient software
@@ -88,24 +99,20 @@ brew "node"
 # Ruby version manager
 brew "rbenv"
 brew "ruby"
+
+
+## Servers
 # Lightweight DNS forwarder and DHCP server
 brew "dnsmasq"
 # Drop-in replacement for MySQL
 brew "mariadb"
+# High-performance, schema-free, document-oriented database
+brew "mongodb"
 # Object-relational database system
 brew "postgresql"
 # Persistent key-value database, with built-in net interface
 brew "redis"
-# Classic UNIX line editor
-brew "ed"
-# Download with resuming and segmented downloading
-brew "aria2"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# Official Amazon AWS command-line interface
-brew "awscli"
-# Bourne-Again SHell, a UNIX command interpreter
-brew "bash"
+
 # Dependency Manager for PHP
 brew "composer"
 # Asynchronous event library
@@ -118,14 +125,47 @@ brew "exiftool"
 brew "ffmpeg"
 # Utility to determine file types
 brew "file-formula"
+
+## Git addons
 # Distributed revision control system
 brew "git"
-# Git extension for versioning large files
+brew "bfg"
+brew "git-extras"
+brew "git-flow"
+# Git extension for versioning large files"
 brew "git-lfs"
-# Configure transparent encryption of files in a Git repo
-brew "transcrypt"
 # Ruby client and CLI for GitLab API
 brew "gitlab-gem"
+# Add GitHub support to git on the command-line
+brew "hub"
+
+## Security
+brew "pass"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# World's fastest and most advanced password recovery utility
+brew "hashcat"
+# Recursively compute digests on files/directories
+brew "md5deep"
+# Searches a binary image for embedded files and executable code
+brew "binwalk"
+# Zip password cracker
+brew "fcrackzip"
+# Port scanning utility for large networks
+brew "nmap"
+# Network logon cracker which supports many services
+brew "hydra"
+# Featureful UNIX password cracker
+brew "john"
+# Intercept, modify, replay, save HTTP/S traffic
+brew "mitmproxy"
+
+
+# Utilities
+# Configure transparent encryption of files in a Git repo
+brew "transcrypt"
+# Improved top (interactive process viewer)
+brew "htop"
 # Version Control Visualization Tool
 brew "gource"
 # Apply a diff file to an original
@@ -136,10 +176,6 @@ brew "grc"
 brew "icu4c"
 # Popular GNU data compression program
 brew "gzip"
-# Improved top (interactive process viewer)
-brew "htop"
-# Add GitHub support to git on the command-line
-brew "hub"
 # Image processing tools collection
 brew "graphicsmagick"
 # Tools and libraries to manipulate images in many formats
@@ -158,13 +194,8 @@ brew "lsusb"
 brew "lynx"
 # Macro processing language
 brew "m4"
-# Utility for directing compilation
-brew "make"
-brew "cmake"
-# High-performance, schema-free, document-oriented database
-brew "mongodb"
-# Recursively compute digests on files/directories
-brew "md5deep"
+# Web server access log visualizer with retro style
+brew "logstalgia"
 # Fast and user friendly build system
 brew "meson"
 # Lightweight text-to-speech engine based on CMU Flite
@@ -172,6 +203,7 @@ brew "mimic"
 # Text to speech, software speech synthesizer
 brew "espeak"
 brew "prettyping"
+  # Utilities
 # Scriptable ping program for checking if multiple hosts are up
 brew "fping"
 # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
@@ -226,16 +258,30 @@ brew "heroku/brew/heroku"
 brew "wp-cli"
 # HTTP benchmarking tool
 brew "wrk"
-# Fish-like fast/unobtrusive autosuggestions for zsh
-brew "zsh-autosuggestions"
+# Programatically correct mistyped console commands
+brew "thefuck"
+# Monitor data's progress through a pipe
+brew "pv"
+# Instant coding answers via the command-line
+brew "howdoi"
+# Statistics utility to count lines of code
+brew "cloc"
+# Identify or delete duplicate files
+brew "fdupes"
 brew "npm"
 brew "yarn"
+#############################
+cask "kap"
+cask "amethyst"
+cask "diffmerge"
 cask "balenaetcher"
 cask "brave-browser"
 cask "ccleaner"
 cask "cryptomator"
 cask "disk-inventory-x"
 cask "docker"
+# Run containers through a simple, yet powerful graphical user interface.
+cask "kitematic"
 cask "dbvisualizer"
 cask "firefox"
 cask "flux"
@@ -249,7 +295,7 @@ cask "dupeguru"
 cask "iina"
 cask "qtpass"
 cask "keybase"
-cask "macs-fan-control"
+cask "smcfancontrol"
 cask "jeromelebel-mongohub"
 cask "mysqlworkbench"
 cask "numi"
@@ -262,6 +308,7 @@ cask "postman"
 cask "rocket-chat"
 cask "robo-3t"
 cask "sdformatter"
+cask "dbeaver-community"
 cask "sequel-pro"
 cask "postico"
 cask "spectacle"
@@ -272,6 +319,9 @@ cask "telegram"
 cask "tor-browser"
 cask "transmission"
 cask "vlc"
+cask "mpv"
+cask "typora"
+cask "marp"
 cask "vnc-viewer"
 cask "transmit-disk"
 cask "karabiner-elements"
@@ -285,6 +335,7 @@ cask "font-inconsolata-for-powerline"
 cask "font-roboto-mono"
 cask "font-roboto-mono-for-powerline"
 cask "font-source-code-pro"
+cask "0-ad"
 mas "Xcode", id: 497799835
 mas "Pages", id: 409201541
 mas "Xcode", id: 497799835

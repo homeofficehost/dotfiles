@@ -52,7 +52,9 @@ if [[ $response =~ (yes|y|Y) ]];then
 fi
 
 running "Allow Apps from Anywhere in macOS Sierra Gatekeeper"
-sudo spctl --master-disable;ok
+sudo spctl --master-disable
+sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
+defaults write com.apple.LaunchServices LSQuarantine -bool false;ok
 
 read -r -p "(Re)install ad-blocking /etc/hosts file from someonewhocares.org? (y|N) [default=Y] " response
 response=${response:-Y}
@@ -104,7 +106,7 @@ if [[ $? = 0 ]]; then
     response='n'
   else
     echo -e "The best I can make out, your email address is $COL_YELLOW$email$COL_RESET"
-    read -r -p "Is this correct? (Y|n) [default=N] " response
+    read -r -p "Is this correct? (y|N) [default=N] " response
     response=${response:-N}
   fi
 
@@ -140,7 +142,7 @@ fi
 MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
 MD5_OLDWP=$(md5 /System/Library/CoreServices/DefaultDesktop.jpg | awk '{print $4}')
 if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
-  read -r -p "Do you want to use the project's custom desktop wallpaper? (Y|n) [default=Y] " response
+  read -r -p "Do you want to use the project's custom desktop wallpaper? (y|N) [default=Y] " response
   response=${response:-Y}
   if [[ $response =~ ^(no|n|N) ]];then
     echo "skipping...";
@@ -255,15 +257,6 @@ bot "installing brew bundle..."
   done
 ok
 
-running "installing npm global packages"
-action "npm config set prefix ~/.local"
-npm config set prefix ~/.local
-mkdir -p "${HOME}/.local"
-
-pushd ~/ > /dev/null 2>&1
-npm install -g;ok
-popd > /dev/null 2>&1
-
 read -r -p "Do you want to install gitshots? (y|N) [default=N] " response
 response=${response:-N}
 if [[ $response =~ (yes|y|Y) ]];then
@@ -276,6 +269,45 @@ else
     rm ./.git_template/hooks/post-commit; touch ./.git_template/hooks/disabled-pc
     ok
   fi
+fi
+
+bot "Configuring npm global packages"
+action "npm config set prefix ~/.local"
+mkdir -p "${HOME}/.local"
+npm config set prefix ~/.local;ok
+
+read -r -p "Would you like to setup npm with your account? (y|N) [default=Y] " response
+response=${response:-Y}
+if [[ $response =~ (yes|y|Y) ]];then
+  running "Configuring npm account"
+  bot "Your email address is $COL_YELLOW$email$COL_RESET ?"
+  read -r -p "Is this correct? (y|N) [default=Y] " response
+  response=${response:-Y}
+  if [[ $response =~ ^(no|n|N) ]];then
+    read -r -p "What is your email? " email
+    if [[ ! $email ]];then
+      error "you must provide an email to configure npm account"
+      exit 1
+    fi
+  fi
+
+  bot "Your is full name} is $COL_YELLOW$fullname$COL_RESET?"
+  read -r -p "Is this correct? (y|N) [default=Y] " response
+  response=${response:-Y}
+  if [[ $response =~ ^(no|n|N) ]];then
+    read -r -p "What is your full name? " fullname
+    if [[ ! $fullname ]];then
+      error "you must provide an fullname to configure npm account"
+      exit 1
+    fi
+  fi
+  read -r -p "What is your website url? (https://example.com/) " url
+  npm set init.author.name "${fullname}"
+  npm set init.author.email "${email}"
+  npm set init.author.url "${url}"
+  npm set init.license "MIT"
+  npm set init.version "1.0.0"
+  ok
 fi
 
 running "cleanup homebrew"
@@ -1241,13 +1273,18 @@ bot "Developer workspace"
 running "Create dev folder in home directory"
 mkdir -p ~/dev;ok
 
+pushd scripts/ > /dev/null 2>&1
+running "Downloading App-Every "
+curl -O https://raw.github.com/iarna/App-Every/master/packed/every && chmod a+x every;ok
+popd > /dev/null 2>&1
+
 bot "Woot! All done. Killing this terminal and launch iTerm"
 sleep 2
 
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
-bot "OK. Note that some of these changes require a logout/restart to take effect. I will kill affected applications (so they can reboot)...."
+bot "Done. Note that some of these changes require a logout/restart to take effect. I will kill affected applications (so they can reboot)...."
 
 read -n 1 -s -r -p "Press any key to continue"
 
