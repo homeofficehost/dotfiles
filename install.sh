@@ -1283,6 +1283,7 @@ sudo expect -c 'spawn xcodebuild -license; send "\n"; sleep 1; send "q"; expect 
 ###############################################################################
 bot "Developer default settings"
 ###############################################################################
+touch /Users/$(whoami)/.hushlogin
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 git config --global color.ui true
