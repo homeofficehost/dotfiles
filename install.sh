@@ -118,51 +118,6 @@ if [[ $? = 0 ]]; then
     fi
   fi
 
-
-  running "replacing items in .gitconfig with your info ($COL_YELLOW$fullname, $email, $githubuser$COL_RESET)"
-
-  # test if gnu-sed or MacOS sed
-
-  sed -i "s/GITHUBFULLNAME/$firstname $lastname/" ./homedir/.gitconfig > /dev/null 2>&1 | true
-  if [[ ${PIPESTATUS[0]} != 0 ]]; then
-    echo
-    running "looks like you are using MacOS sed rather than gnu-sed, accommodating"
-    sed -i '' "s/GITHUBFULLNAME/$firstname $lastname/" ./homedir/.gitconfig;
-    sed -i '' 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig;
-    sed -i '' 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
-    ok
-  else
-    echo
-    bot "looks like you are already using gnu-sed. woot!"
-    sed -i 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig;
-    sed -i 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
-  fi
-fi
-
-MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
-MD5_OLDWP=$(md5 $(npx wallpaper) | awk '{print $4}')
-if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
-  read -r -p "Do you want to update desktop wallpaper? (y|N) [default=Y] " response
-  response=${response:-Y}
-  if [[ $response =~ (yes|y|Y) ]]; then
-    running "updating wallpaper image"
-    rm -rf ~/Library/Application Support/Dock/desktoppicture.db
-    sudo rm -f /System/Library/CoreServices/DefaultDesktop.jpg > /dev/null 2>&1
-    sudo rm -f /Library/Desktop\ Pictures/El\ Capitan.jpg > /dev/null 2>&1
-    sudo rm -f /Library/Desktop\ Pictures/Sierra.jpg > /dev/null 2>&1
-    sudo rm -f /Library/Desktop\ Pictures/Sierra\ 2.jpg > /dev/null 2>&1
-    wallpaper img/wallpaper.jpg;ok
-  fi
-fi
-
-
-read -r -p "Would you like to change the default TTS (text-to-speech) voices? (y|N) [default=Y] " response
-response=${response:-Y}
-if [[ $response =~ (yes|y|Y) ]];then
-  npx voices -m
-  ok
-fi
-
 running "checking if homebrew CLI is already installed"
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
@@ -256,6 +211,49 @@ bot "installing brew bundle..."
       read -r -p "I would like to try again? (y|N)" response_reinstall
   done
 ok
+
+  running "replacing items in .gitconfig with your info ($COL_YELLOW$fullname, $email, $githubuser$COL_RESET)"
+
+  # test if gnu-sed or MacOS sed
+
+  sed -i "s/GITHUBFULLNAME/$firstname $lastname/" ./homedir/.gitconfig > /dev/null 2>&1 | true
+  if [[ ${PIPESTATUS[0]} != 0 ]]; then
+    echo
+    running "looks like you are using MacOS sed rather than gnu-sed, accommodating"
+    sed -i '' "s/GITHUBFULLNAME/$firstname $lastname/" ./homedir/.gitconfig;
+    sed -i '' 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig;
+    sed -i '' 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
+    ok
+  else
+    echo
+    bot "looks like you are already using gnu-sed. woot!"
+    sed -i 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig;
+    sed -i 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
+  fi
+fi
+
+MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
+MD5_OLDWP=$(md5 $(npx wallpaper) | awk '{print $4}')
+if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
+  read -r -p "Do you want to update desktop wallpaper? (y|N) [default=Y] " response
+  response=${response:-Y}
+  if [[ $response =~ (yes|y|Y) ]]; then
+    running "updating wallpaper image"
+    rm -rf ~/Library/Application Support/Dock/desktoppicture.db
+    sudo rm -f /System/Library/CoreServices/DefaultDesktop.jpg > /dev/null 2>&1
+    sudo rm -f /Library/Desktop\ Pictures/El\ Capitan.jpg > /dev/null 2>&1
+    sudo rm -f /Library/Desktop\ Pictures/Sierra.jpg > /dev/null 2>&1
+    sudo rm -f /Library/Desktop\ Pictures/Sierra\ 2.jpg > /dev/null 2>&1
+    wallpaper img/wallpaper.jpg;ok
+  fi
+fi
+
+read -r -p "Would you like to change the default TTS (text-to-speech) voices? (y|N) [default=Y] " response
+response=${response:-Y}
+if [[ $response =~ (yes|y|Y) ]];then
+  npx voices -m
+  ok
+fi
 
 read -r -p "Do you want to install gitshots? (y|N) [default=N] " response
 response=${response:-N}
