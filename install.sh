@@ -222,6 +222,9 @@ popd > /dev/null 2>&1
 running "Never go into computer sleep mode"
 sudo systemsetup -setcomputersleep Off > /dev/null;ok
 
+bot "Accept xcode build license"
+sudo expect -c 'spawn xcodebuild -license; send "\n"; sleep 1; send "q"; expect "you are agreeing"; send "agree\n"; expect "You can view"; expect eof' > /dev/null
+
 response_retry_install=y
 while [[ $response_retry_install =~ (yes|y|Y) ]]; do
     running "installing brew bundle..."

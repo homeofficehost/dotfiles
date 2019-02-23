@@ -11,6 +11,8 @@ tap "mas-cli/tap", pin: true
 ## Shell
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Program that can automate interactive applications
+brew "expect"
 # Classic UNIX line editor
 brew "ed"
 brew "readline" # ensure gawk gets good readline
@@ -74,8 +76,6 @@ brew "tmux"
 brew "todo-txt"
 brew "tree"
 brew "ttyrec"
-# Program that can automate interactive applications
-brew "expect"
 # Vi 'workalike' with many additional features
 brew "vim"
 # Executes a program periodically, showing output fullscreen
