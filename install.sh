@@ -225,11 +225,20 @@ sudo systemsetup -setcomputersleep Off > /dev/null;ok
 response_retry_install=y
 while [[ $response_retry_install =~ (yes|y|Y) ]]; do
     running "installing brew bundle..."
-    brew bundle;ok
-    bot "Often some programs are not installed."
-    read -r -p "Would you like to try again brew bundle? (y|N) [default=y]" response_retry_install
-    response_retry_install=${response_retry_install:-Y}
-done;ok
+    brew bundle --verbose;ok
+
+    running "checking brew bundle..."
+    brew bundle check >& /dev/null
+    if [ $? -eq 0 ]; then
+      response_retry_install=N
+      ok "Full brew bundle successfully installed."
+    else
+      error "brew bundle check exited with error code"
+      bot "Often some programs are not installed."
+      read -r -p "Would you like to try again brew bundle? (y|N) [default=y]" response_retry_install
+      response_retry_install=${response_retry_install:-Y}
+    fi
+done
 
 MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
 MD5_OLDWP=$(md5 $(npx wallpaper) | awk '{print $4}')
@@ -245,14 +254,6 @@ if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
     sudo rm -f /Library/Desktop\ Pictures/Sierra\ 2.jpg > /dev/null 2>&1
     wallpaper img/wallpaper.jpg;ok
   fi
-fi
-
-bot "I will keep installing thinks while you install voices"
-read -r -p "Would you like to change the default TTS (text-to-speech) voices? (y|N) [default=Y] " response
-response=${response:-Y}
-if [[ $response =~ (yes|y|Y) ]];then
-  npx voices -m
-  ok
 fi
 
 read -r -p "Do you want to install gitshots? (y|N) [default=N] " response
@@ -273,6 +274,10 @@ bot "Configuring npm global packages"
 action "npm config set prefix ~/.local"
 mkdir -p "${HOME}/.local"
 npm config set prefix ~/.local;ok
+
+bot "Configuring git"
+action "always pin versions (no surprises, consistent dev/build machines)"
+npm config set save-exact true
 
 read -r -p "Would you like to setup npm with your account? (y|N) [default=Y] " response
 response=${response:-Y}
@@ -308,6 +313,7 @@ if [[ $response =~ (yes|y|Y) ]];then
   ok
 fi
 
+bot "I will keep installing thinks while you install voices"
 read -r -p "Would you like to change the default TTS (text-to-speech) voices? (y|N) [default=Y] " response
 response=${response:-Y}
 if [[ $response =~ (yes|y|Y) ]];then
@@ -330,17 +336,6 @@ if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
   sudo chown -R $(whoami) /Library/Ruby/Gems/2.0.0
   ok
 fi
-
-# # node version manager
-# require_brew nvm
-
-# # nvm
-# require_nvm stable
-
-bot "Configuring git"
-action "always pin versions (no surprises, consistent dev/build machines)"
-npm config set save-exact true
-
 
 ###############################################################################
 bot "Configuring General System UI/UX..."
