@@ -219,6 +219,9 @@ done
 
 popd > /dev/null 2>&1
 
+running "Never go into computer sleep mode"
+sudo systemsetup -setcomputersleep Off > /dev/null;ok
+
 response_retry_install=y
 while [[ $response_retry_install =~ (yes|y|Y) ]]; do
     running "installing brew bundle..."
