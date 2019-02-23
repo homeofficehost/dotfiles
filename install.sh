@@ -57,7 +57,7 @@ sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
 defaults write com.apple.LaunchServices LSQuarantine -bool false;ok
 
 running "Accepting xcode build license"
-sudo xcodebuild -license accept
+sudo xcodebuild -license accept;ok
 
 read -r -p "(Re)install ad-blocking /etc/hosts file from someonewhocares.org? (y|N) [default=Y] " response
 response=${response:-Y}
