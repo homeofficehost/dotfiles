@@ -59,11 +59,12 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false;ok
 read -r -p "(Re)install ad-blocking /etc/hosts file from someonewhocares.org? (y|N) [default=Y] " response
 response=${response:-Y}
 if [[ $response =~ (yes|y|Y) ]];then
+    running "Installing hosts file"
     action "cp /etc/hosts /etc/hosts.backup"
-    sudo cp /etc/hosts /etc/hosts.backup;ok
+    sudo cp /etc/hosts /etc/hosts.backup
 
     action "cp ./configs/hosts /etc/hosts"
-    sudo cp ./configs/hosts /etc/hosts;ok
+    sudo cp ./configs/hosts /etc/hosts
     ok "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
 fi
 
