@@ -140,27 +140,27 @@ if [[ $? = 0 ]]; then
 fi
 
 MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
-MD5_OLDWP=$(md5 /System/Library/CoreServices/DefaultDesktop.jpg | awk '{print $4}')
+MD5_OLDWP=$(md5 $(npx wallpaper) | awk '{print $4}')
 if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
-  read -r -p "Do you want to use the project's custom desktop wallpaper? (y|N) [default=Y] " response
+  read -r -p "Do you want to update desktop wallpaper? (y|N) [default=Y] " response
   response=${response:-Y}
-  if [[ $response =~ ^(no|n|N) ]];then
-    echo "skipping...";
-    ok
-  else
-    running "Set a custom wallpaper image"
-    # `DefaultDesktop.jpg` is already a symlink, and
-    # all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
+  if [[ $response =~ (yes|y|Y) ]]; then
+    running "updating wallpaper image"
     rm -rf ~/Library/Application Support/Dock/desktoppicture.db
     sudo rm -f /System/Library/CoreServices/DefaultDesktop.jpg > /dev/null 2>&1
     sudo rm -f /Library/Desktop\ Pictures/El\ Capitan.jpg > /dev/null 2>&1
     sudo rm -f /Library/Desktop\ Pictures/Sierra.jpg > /dev/null 2>&1
     sudo rm -f /Library/Desktop\ Pictures/Sierra\ 2.jpg > /dev/null 2>&1
-    sudo cp ./img/wallpaper.jpg /System/Library/CoreServices/DefaultDesktop.jpg;
-    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/Sierra.jpg;
-    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/Sierra\ 2.jpg;
-    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/El\ Capitan.jpg;ok
+    wallpaper img/wallpaper.jpg;ok
   fi
+fi
+
+
+read -r -p "Would you like to change the default TTS (text-to-speech) voices? (y|N) [default=Y] " response
+response=${response:-Y}
+if [[ $response =~ (yes|y|Y) ]];then
+  npx voices -m
+  ok
 fi
 
 running "checking if homebrew CLI is already installed"
@@ -307,6 +307,13 @@ if [[ $response =~ (yes|y|Y) ]];then
   npm set init.author.url "${url}"
   npm set init.license "MIT"
   npm set init.version "1.0.0"
+  ok
+fi
+
+read -r -p "Would you like to change the default TTS (text-to-speech) voices? (y|N) [default=Y] " response
+response=${response:-Y}
+if [[ $response =~ (yes|y|Y) ]];then
+  npx voices -m
   ok
 fi
 
@@ -637,6 +644,9 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false;ok
 bot "Trackpad, mouse, keyboard, Bluetooth accessories, and input"
 ###############################################################################
 
+running "Mouse: enable mouse right click"
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton;ok
+
 running "Trackpad: enable tap to click for this user and for the login screen"
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
@@ -647,6 +657,15 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCorner
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true;ok
+
+running "Trackpad: Enable 'tap-and-a-half' to drag."
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -int 1
+defaults write com.apple.AppleMultitouchTrackpad Dragging -int 1;ok
+
+
+running "Trackpad: Enable 3-finger drag."
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true;ok
 
 running "Two finger horizontal swipe"
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerHorizSwipeGesture -int 2
@@ -667,7 +686,7 @@ running "Disable 'natural' (Lion-style) scrolling"
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true;ok
 
 running "Set max mouse tracking speed"
-defaults write -g com.apple.mouse.scaling 4;ok
+defaults write -g com.apple.mouse.scaling 3;ok
 
 running "Increase sound quality for Bluetooth headphones/headsets"
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40;ok

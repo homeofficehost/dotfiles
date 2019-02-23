@@ -228,6 +228,7 @@ alias a.nodemon="npx nodemon $@"
 alias a.webpack="npx webpack-cli $@"
 alias a.yo="npx yo $@" #https://yeoman.io/
 alias a.sort-package-json="npx sort-package-json $@"
+alias a.rm-all-node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
 
 alias s.vue="npx vue/cli $@"
 alias s.whereami="npx github:@rafaelrinaldi/whereami $@"
