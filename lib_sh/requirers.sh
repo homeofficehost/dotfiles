@@ -29,7 +29,7 @@ function require_brew() {
         brew install $1 $2
         if [[ $? != 0 ]]; then
             error "failed to install $1! aborting..."
-            # exit -1
+            exit -1 # TODO: enable retry
         fi
     fi
     ok
