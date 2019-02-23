@@ -1157,17 +1157,37 @@ bot "Mac App Store"
 # running "Enable Debug Menu in the Mac App Store"
 # defaults write com.apple.appstore ShowDebugMenu -bool true;ok
 
-running "Enable the automatic update check"
-defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true;ok
+read -r -p "Do you want updates from App store? (y|N) [default=N] " response
+response=${response:-N}
+if [[ $response =~ (yes|y|Y) ]];then
+  running "Check for software updates daily, not just once per week"
+  defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1;ok
 
-running "Check for software updates daily, not just once per week"
-defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1;ok
+  running "Download newly available updates in background"
+  defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1;ok
 
-running "Download newly available updates in background"
-defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1;ok
+  running "Install System data files & security updates"
+  defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1;ok
+else
+  running "Disable Mac App Store apps been updated and installed automatically"
+  defaults write com.apple.commerce AutoUpdate -bool FALSE;ok
 
-running "Install System data files & security updates"
-defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1;ok
+  running "Disable App store from rebooting the machine on MacOS updates when installed automatically"
+  defaults write com.apple.commerce AutoUpdateRestartRequired -bool FALSE;ok
+
+  running "Disable the automatic update checks"
+  sudo softwareupdate --schedule off
+  defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool false;ok
+
+  running "Disable available updates background automatic download"
+  defaults write com.apple.SoftwareUpdate AutomaticDownload -int 0;ok
+
+  running "Disable system data files and security updates automatic installation"
+  defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 0;ok
+
+  running "Disable automatic download of apps purchased on other Apple computers"
+  defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 0;ok
+fi
 
 ###############################################################################
 bot "Photos"
