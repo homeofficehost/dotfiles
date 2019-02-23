@@ -56,6 +56,9 @@ sudo spctl --master-disable
 sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
 defaults write com.apple.LaunchServices LSQuarantine -bool false;ok
 
+running "Accepting xcode build license"
+sudo xcodebuild -license accept
+
 read -r -p "(Re)install ad-blocking /etc/hosts file from someonewhocares.org? (y|N) [default=Y] " response
 response=${response:-Y}
 if [[ $response =~ (yes|y|Y) ]];then
@@ -221,9 +224,6 @@ popd > /dev/null 2>&1
 
 running "Never go into computer sleep mode"
 sudo systemsetup -setcomputersleep Off > /dev/null;ok
-
-bot "Accept xcode build license"
-sudo expect -c 'spawn xcodebuild -license; send "\n"; sleep 1; send "q"; expect "you are agreeing"; send "agree\n"; expect "You can view"; expect eof' > /dev/null
 
 response_retry_install=y
 while [[ $response_retry_install =~ (yes|y|Y) ]]; do
@@ -1279,9 +1279,6 @@ running "IP block list."
 defaults write org.m0k.transmission BlocklistNew -bool true
 defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.net/public/biglist.p2p.gz"
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true;ok
-
-bot "Accept xcode build license"
-sudo expect -c 'spawn xcodebuild -license; send "\n"; sleep 1; send "q"; expect "you are agreeing"; send "agree\n"; expect "You can view"; expect eof' > /dev/null
 
 ###############################################################################
 bot "Developer default settings"
