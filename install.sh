@@ -662,10 +662,9 @@ defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool t
 
 running "Two finger horizontal swipe"
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerHorizSwipeGesture -int 2
-
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseVerticalScroll -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseMomentumScroll -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseHorizontalScroll -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseHorizontalScroll -int 1;ok
 
 running "Mouse: enable mouse right click"
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string "TwoButton"
