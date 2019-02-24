@@ -649,7 +649,9 @@ running "Trackpad: map bottom right corner to right-click"
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true;ok
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 
 running "Trackpad: Enable 'tap-and-a-half' to drag."
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -int 1
@@ -667,7 +669,7 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseMomentumScro
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseHorizontalScroll -int 1;ok
 
 running "Mouse: enable mouse right click"
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string "TwoButton"
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse "save.MouseButtonMode.v1" -int 1
 defaults write /Library/Preferences/com.apple.driver.AppleHIDMouse.plist Button2 -int 2;ok
 
@@ -840,6 +842,9 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 ###############################################################################
 bot "Dock & Dashboard"
 ###############################################################################
+
+running "Move dock to left"
+defaults write com.apple.dock pinning -string start;ok
 
 running "Enable highlight hover effect for the grid view of a stack (Dock)"
 defaults write com.apple.dock mouse-over-hilite-stack -bool true;ok
@@ -1281,6 +1286,7 @@ defaults write org.m0k.transmission BlocklistAutoUpdate -bool true;ok
 bot "Developer default settings"
 ###############################################################################
 touch /Users/$(whoami)/.hushlogin
+mkdir -p /Users/$(whoami)/.ssh
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 git config --global color.ui true
