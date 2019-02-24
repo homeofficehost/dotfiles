@@ -244,7 +244,7 @@ while [[ $response_retry_install =~ (yes|y|Y) ]]; do
 done
 
 MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
-MD5_OLDWP=$(md5 $(npx wallpaper) | awk '{print $4}')
+MD5_OLDWP=$(md5 $(npx wallpaper-cli) | awk '{print $4}')
 if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
   read -r -p "Do you want to update desktop wallpaper? (y|N) [default=Y] " response
   response=${response:-Y}
