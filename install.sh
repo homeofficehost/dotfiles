@@ -640,9 +640,6 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false;ok
 bot "Trackpad, mouse, keyboard, Bluetooth accessories, and input"
 ###############################################################################
 
-running "Mouse: enable mouse right click"
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton;ok
-
 running "Trackpad: enable tap to click for this user and for the login screen"
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
@@ -670,8 +667,9 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseVerticalScro
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseMomentumScroll -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseHorizontalScroll -int 1
 
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse "save.MouseButtonMode.v1" -int 1
+running "Mouse: enable mouse right click"
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string "TwoButton"
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse "save.MouseButtonMode.v1" -int 1
 defaults write /Library/Preferences/com.apple.driver.AppleHIDMouse.plist Button2 -int 2;ok
 
 running "Enable trackpad dragging without lock"
