@@ -54,18 +54,6 @@ alias network.established='lsof -l -i +L -R -V | grep ESTABLISHED'
 alias network.externalip='curl -s http://checkip.dyndns.org/ | sed "s/[a-zA-Z<>/ :]//g"'
 alias network.internalip="ifconfig en0 | egrep -o '([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)'"
 
-# Directory listings
-# grc overides for ls
-#   Made possible through contributions from generous benefactors like
-#   `brew install coreutils`
-if $(gls &>/dev/null)
-then
-  alias ls="gls -F --color"
-  alias l="gls -lAh --color"
-  alias ll="gls -l --color"
-  alias la='gls -A --color'
-fi
-
 # alias laratail="tail -f $(find /laravel/storage/logs | tail -n 1)"
 
 alias gs="git status"
