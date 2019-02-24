@@ -6,4 +6,5 @@ source ~/.shellvars
 source ~/.shellfn
 source ~/.shellpaths
 source ~/.shellaliases
-# source ~/.iterm2_shell_integration.`basename $SHELL`
+# Uncomment to enable integration
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
