@@ -670,9 +670,9 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseMomentumScro
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseHorizontalScroll -int 1;ok
 
 running "Mouse: enable mouse right click"
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse "save.MouseButtonMode.v1" -int 1
-defaults write /Library/Preferences/com.apple.driver.AppleHIDMouse.plist Button2 -int 2;ok
+defaults write /Library/Preferences/com.apple.driver.AppleHIDMouse.plist Button2 -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton;ok
 
 running "Enable trackpad dragging without lock"
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -int 1
@@ -1105,6 +1105,12 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true;ok
 
 running "Disable local Time Machine backups"
 hash tmutil &> /dev/null && sudo tmutil disablelocal;ok
+
+running "Menu bar: show remaining battery time & percentage"
+defaults write com.apple.menuextra.battery ShowTime -string "YES"
+currentUser=`ls -l /dev/console | cut -d " " -f4`
+sudo -u $currentUser defaults write com.apple.menuextra.battery ShowPercent YES
+sudo -u $currentUser killall SystemUIServer;ok
 
 ###############################################################################
 bot "Configuring Date & Time..."
