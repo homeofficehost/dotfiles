@@ -7,3 +7,6 @@
 [submodule "homedir/.vim/bundle/Vundle.vim"]
 	path = homedir/.vim/bundle/Vundle.vim
 	url = git://github.com/VundleVim/Vundle.vim.git
+[submodule "setup-keys"]
+	path = setup-keys
+	url = https://github.com/thomasgroch/setup-keys
