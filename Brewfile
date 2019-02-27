@@ -159,6 +159,9 @@ brew "hydra"
 brew "john"
 # Intercept, modify, replay, save HTTP/S traffic
 brew "mitmproxy"
+# Swiss army knife for network attacks and monitoring
+brew "bettercap"
+
 
 
 # Utilities
