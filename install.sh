@@ -1093,30 +1093,7 @@ defaults write com.apple.terminal FocusFollowsMouse -bool true
 # open "./configs/Solarized Light.itermcolors";ok
 # running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
 # open "./configs/Solarized Dark Patch.itermcolors";ok
-
-running "Don’t display the annoying prompt when quitting iTerm"
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false;ok
-running "hide tab title bars"
-defaults write com.googlecode.iterm2 HideTab -bool true;ok
-running "set system-wide hotkey to show/hide iterm with ^\`"
-defaults write com.googlecode.iterm2 Hotkey -bool true;ok
-running "hide pane titles in split panes"
-defaults write com.googlecode.iterm2 ShowPaneTitles -bool false;ok
-running "animate split-terminal dimming"
-defaults write com.googlecode.iterm2 AnimateDimming -bool true;ok
-defaults write com.googlecode.iterm2 HotkeyChar -int 96;
-defaults write com.googlecode.iterm2 HotkeyCode -int 50;
-defaults write com.googlecode.iterm2 FocusFollowsMouse -int 1;
-defaults write com.googlecode.iterm2 HotkeyModifiers -int 262401;
-running "Make iTerm2 load new tabs in the same directory"
-/usr/libexec/PlistBuddy -c "set \"New Bookmarks\":0:\"Custom Directory\" Recycle" ~/Library/Preferences/com.googlecode.iterm2.plist
-running "setting fonts"
-defaults write com.googlecode.iterm2 "Normal Font" -string "Hack-Regular 18";
-defaults write com.googlecode.iterm2 "Non Ascii Font" -string "RobotoMonoForPowerline-Regular 18";
-ok
-running "reading iterm settings"
-defaults read -app iTerm > /dev/null 2>&1;
-ok
+source ./macos/apps/iterm2.sh
 
 ###############################################################################
 bot "Time Machine"
