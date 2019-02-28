@@ -44,6 +44,13 @@ if [[ $response =~ (yes|y|Y) ]];then
 fi
 
 
+################################################
+bot "Standard System Changes"
+################################################
+
+running "Set standby delay to 24 hours (default is 1 hour)"
+sudo pmset -a standbydelay 86400;ok
+
 running "Disabling Screen Saver (System Preferences > Desktop & Screen Saver > Start after: Never)"
 defaults -currentHost write com.apple.screensaver idleTime -int 0;ok
 
