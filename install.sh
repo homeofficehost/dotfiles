@@ -43,6 +43,10 @@ if [[ $response =~ (yes|y|Y) ]];then
     bot "Reboot to take effect."
 fi
 
+
+running "Disabling Screen Saver (System Preferences > Desktop & Screen Saver > Start after: Never)"
+defaults -currentHost write com.apple.screensaver idleTime -int 0;ok
+
 read -r -p "Would you like to add/change the message on login window? (y|N) [default=N] " response
 response=${response:-N}
 if [[ $response =~ (yes|y|Y) ]];then
@@ -397,21 +401,21 @@ sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1;ok
 # Disable wifi captive portal
 #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
 
-# Disable remote apple events
-sudo systemsetup -setremoteappleevents off
+running "Disable remote apple events"
+sudo systemsetup -setremoteappleevents off;ok
 
 running "Enable remote login"
 sudo systemsetup -setremotelogin on;ok
 
-# Disable wake-on modem
-sudo systemsetup -setwakeonmodem off
+running "Disable wake-on modem"
+sudo systemsetup -setwakeonmodem off;ok
 
-# Disable wake-on LAN
-sudo systemsetup -setwakeonnetworkaccess off
+running "Disable wake-on LAN"
+sudo systemsetup -setwakeonnetworkaccess off;ok
 
-# Enable file-sharing via AFP or SMB
+running "Enable file-sharing via AFP or SMB"
 sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.smbd.plist
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server.plist EnabledServices -array disk
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server.plist EnabledServices -array disk;ok
 
 # Display login window as name and password
 #sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
@@ -419,8 +423,8 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 # Do not show password hints
 #sudo defaults write /Library/Preferences/com.apple.loginwindow RetriesUntilHint -int 0
 
-# Disable guest account login
-sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+running "Disable guest account login"
+sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false;ok
 
 # Automatically lock the login keychain for inactivity after 6 hours
 #security set-keychain-settings -t 21600 -l ~/Library/Keychains/login.keychain
@@ -655,7 +659,7 @@ defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -i
 defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 
 running "Trackpad: Enable 'tap-and-a-half' to drag."
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -int 1 ##
 defaults write com.apple.AppleMultitouchTrackpad Dragging -int 1;ok
 
 
@@ -676,7 +680,7 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode T
 
 running "Enable trackpad dragging without lock"
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -int 1
-defaults write com.apple.AppleMultitouchTrackpad Dragging -int 1;ok
+defaults write com.apple.AppleMultitouchTrackpad Dragging -int 1;ok ##
 
 running "Disable 'natural' (Lion-style) scrolling"
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true;ok
@@ -773,13 +777,13 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Down
 running "Show hidden files by default"
 defaults write com.apple.finder AppleShowAllFiles -bool true;ok
 
-running "Show all filename extensions"
+running "Show all filename extensions [Finder > Preferences > Show all filename extensions]"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true;ok
 
 running "Show status bar"
 defaults write com.apple.finder ShowStatusBar -bool true;ok
 
-running "Show path bar"
+running "Show path bar [Finder > View > Show Path Bar]"
 defaults write com.apple.finder ShowPathbar -bool true;ok
 
 running "Allow text selection in Quick Look"
@@ -791,8 +795,11 @@ defaults write com.apple.finder _FXShowPosixPathInTitle -bool true;ok
 running "When performing a search, search the current folder by default"
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf";ok
 
-running "Disable the warning when changing a file extension"
+running "Disable the warning when changing a file extension [Finder > Preferences > Show wraning before changing an extension]"
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false;ok
+
+running "Remove from warning IcloudDrive [Finder > Preferences > Show wraning before removing from iCloud Drive]"
+defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool false;ok
 
 running "Enable spring loading for directories"
 defaults write NSGlobalDomain com.apple.springing.enabled -bool true;ok
@@ -817,7 +824,7 @@ defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true;ok
 
-running "Use list view in all Finder windows by default"
+running "Use list view in all Finder windows by default [Finder > View > As List]"
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv";ok
 
@@ -853,6 +860,9 @@ defaults write com.apple.dock mouse-over-hilite-stack -bool true;ok
 running "Set the icon size of Dock items to 36 pixels"
 defaults write com.apple.dock tilesize -int 36;ok
 
+running "Enable dock Magnification [System Preferences > Dock > Magnification]"
+defaults write com.apple.dock magnification -bool true;ok
+
 running "Change minimize/maximize window effect to scale"
 defaults write com.apple.dock mineffect -string "scale";ok
 
@@ -878,7 +888,7 @@ defaults write com.apple.dock expose-group-by-app -bool false;ok
 running "Disable Dashboard"
 defaults write com.apple.dashboard mcx-disabled -bool true;ok
 
-running "Don’t show Dashboard as a Space"
+running "Don’t show Dashboard as a Space (System Preferences > Mission Controll > Dashboard)"
 defaults write com.apple.dock dashboard-in-overlay -bool true;ok
 
 running "Don’t automatically rearrange Spaces based on most recent use"
@@ -886,8 +896,9 @@ defaults write com.apple.dock mru-spaces -bool false;ok
 
 running "Remove the auto-hiding Dock delay"
 defaults write com.apple.dock autohide-delay -float 0;ok
+
 running "Remove the animation when hiding/showing the Dock"
-defaults write com.apple.dock autohide-time-modifier -float 0;ok
+defaults write com.apple.dock autohide-time-modifier -float 0.5;ok
 
 running "Automatically hide and show the Dock"
 defaults write com.apple.dock autohide -bool true;ok
@@ -919,16 +930,20 @@ bot "Configuring Hot Corners"
 # 11: Launchpad
 # 12: Notification Center
 
+running "Top left screen corner → Launchpad"
 defaults write com.apple.dock wvous-tl-corner -int 11 \
-defaults write com.apple.dock wvous-tl-modifier -int 0 \
-# Top right screen corner → Mission Control
+defaults write com.apple.dock wvous-tl-modifier -int 0;ok
+
+running "Top right screen corner → Mission Control"
 defaults write com.apple.dock wvous-tr-corner -int 2 \
-defaults write com.apple.dock wvous-tr-modifier -int 0 \
-# Bottom left screen corner → Start screen saver
+defaults write com.apple.dock wvous-tr-modifier -int 0;ok
+
+running "Bottom left screen corner → Start screen saver"
 defaults write com.apple.dock wvous-bl-corner -int 5 \
-defaults write com.apple.dock wvous-bl-modifier -int 0 \
-# Bottom right screen corner → Desktop
-defaults write com.apple.dock wvous-br-corner -int 4 \
+defaults write com.apple.dock wvous-bl-modifier -int 0;ok
+
+running "Bottom right screen corner → Nothing"
+defaults write com.apple.dock wvous-br-corner -int 0 \
 defaults write com.apple.dock wvous-br-modifier -int 0;ok
 
 ###############################################################################
