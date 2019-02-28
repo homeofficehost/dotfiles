@@ -1279,6 +1279,20 @@ defaults write com.divisiblebyzero.Spectacle RedoLastMove -data 62706c6973743030
 defaults write com.divisiblebyzero.Spectacle UndoLastMove -data 62706c6973743030d40102030405061a1b582476657273696f6e58246f626a65637473592461726368697665725424746f7012000186a0a40708111255246e756c6cd4090a0b0c0d0e0f10596d6f64696669657273546e616d65576b6579436f64655624636c6173731109008002100680035c556e646f4c6173744d6f7665d2131415165a24636c6173736e616d655824636c61737365735d5a65726f4b6974486f744b6579a31718195d5a65726f4b6974486f744b6579585a4b486f744b6579584e534f626a6563745f100f4e534b657965644172636869766572d11c1d54726f6f74800108111a232d32373c424b555a62696c6e70727f848f98a6aab8c1cadcdfe40000000000000101000000000000001e000000000000000000000000000000e6
 
 ###############################################################################
+bot "Macs Fan Control.app"
+###############################################################################
+
+running "Configuring 55C start cooling and 65C full speed"
+defaults write com.crystalidea.macsfancontrol "Fan_0" -string "2,TC0P,55,65"
+defaults write com.crystalidea.macsfancontrol InterfaceLanguage -string "English.xml"
+defaults write com.crystalidea.macsfancontrol RateOnMacupdateSkip -int 1
+defaults write com.crystalidea.macsfancontrol "UpdateChecker_Auto" -int 0
+defaults write com.crystalidea.macsfancontrol menubarIcon -int 0
+defaults write com.crystalidea.macsfancontrol menubarTwoLines -int 1
+defaults write com.crystalidea.macsfancontrol trayFan -string "-1"
+defaults write com.crystalidea.macsfancontrol traySensor -string "TC0P";ok
+
+###############################################################################
 bot "Transmission.app"
 ###############################################################################
 

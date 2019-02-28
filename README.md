@@ -346,3 +346,5 @@ Please refer to the [Contributor Covenant](https://github.com/thomasgroch/dotfil
 # ¯\\_(ツ)_/¯ Warning / Liability
 > Warning:
 The creator of this repo is not responsible if your machine ends up in a state you are not happy with. If you are concerned, look at the code to review everything this will do to your machine :)
+
+https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/
