@@ -51,6 +51,9 @@ bot "Standard System Changes"
 running "Set standby delay to 24 hours (default is 1 hour)"
 sudo pmset -a standbydelay 86400;ok
 
+running "Never go into computer sleep mode"
+sudo systemsetup -setcomputersleep Off > /dev/null;ok
+
 running "Disabling Screen Saver (System Preferences > Desktop & Screen Saver > Start after: Never)"
 defaults -currentHost write com.apple.screensaver idleTime -int 0;ok
 
@@ -66,9 +69,6 @@ running "Allow Apps from Anywhere in macOS Sierra Gatekeeper"
 sudo spctl --master-disable
 sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
 defaults write com.apple.LaunchServices LSQuarantine -bool false;ok
-
-running "Accepting xcode build license"
-sudo xcodebuild -license accept;ok
 
 read -r -p "(Re)install ad-blocking /etc/hosts file from someonewhocares.org? (y|N) [default=Y] " response
 response=${response:-Y}
@@ -233,11 +233,12 @@ done
 
 popd > /dev/null 2>&1
 
-running "Never go into computer sleep mode"
-sudo systemsetup -setcomputersleep Off > /dev/null;ok
-
+bot "Configuring brew global packages"
 response_retry_install=y
 while [[ $response_retry_install =~ (yes|y|Y) ]]; do
+    running "Accepting xcode build license"
+    sudo xcodebuild -license accept;ok
+
     running "installing brew bundle..."
     brew bundle --verbose;ok
 
@@ -866,9 +867,6 @@ defaults write com.apple.dock mouse-over-hilite-stack -bool true;ok
 
 running "Set the icon size of Dock items to 36 pixels"
 defaults write com.apple.dock tilesize -int 36;ok
-
-running "Enable dock Magnification [System Preferences > Dock > Magnification]"
-defaults write com.apple.dock magnification -bool true;ok
 
 running "Change minimize/maximize window effect to scale"
 defaults write com.apple.dock mineffect -string "scale";ok
