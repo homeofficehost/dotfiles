@@ -68,6 +68,8 @@ brew "aria2"
 brew "format-udf"
 # https://github.com/jkbrzt/httpie
 brew "httpie"
+# Organize Your macOS Launchpad Apps
+brew "blacktop/tap/lporg"
 brew "openconnect"
 brew "reattach-to-user-namespace"
 # better/more recent version of screen
@@ -306,6 +308,7 @@ cask "onyx"
 cask "opera"
 cask "osxfuse"
 cask "parsehub"
+cask "webstorm"
 cask "phpstorm"
 cask "postman"
 cask "rocket-chat"
