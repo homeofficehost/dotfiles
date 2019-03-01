@@ -275,13 +275,25 @@ fi
 read -r -p "Do you want to install gitshots? (y|N) [default=N] " response
 response=${response:-N}
 if [[ $response =~ (yes|y|Y) ]];then
-  mkdir -p ~/.gitshots
   running "adding post-commit hook for gitshots"
-  cp ./.git_template/hooks/gitshot-pc ./.git_template/hooks/post-commit
+  action "Enable git templates"
+  git config --global init.templatedir '~/.git-templates'
+  
+  action "Creating directory to hold the global hooks"
+  mkdir -p ~/.git-templates/hooks
+
+  action "and to gitshots photos"
+  mkdir -p ~/.gitshots
+
+  action "Installing gitshots"
+  cp ./configs/gitshot-post-commit-template.sh ~/.git-templates/hooks/post-commit
+
+  action "Making sure the hook is executable"
+  chmod a+x ~/.git-templates/hooks/post-commit
   ok
 else
-  if [[ -e ./.git_template/hooks/post-commit ]];then
-    rm ./.git_template/hooks/post-commit; touch ./.git_template/hooks/disabled-pc
+  if [[ -e ~/.git-templates/hooks/post-commit ]];then
+    rm ~/.git-templates/hooks/post-commit
     ok
   fi
 fi
@@ -574,12 +586,12 @@ running "Menu bar: hide the Time Machine, Volume, User, and Bluetooth icons"
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
   defaults write "${domain}" dontAutoLoad -array \
     "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-    "/System/Library/CoreServices/Menu Extras/Volume.menu" \
     "/System/Library/CoreServices/Menu Extras/User.menu"
 done;
 defaults write com.apple.systemuiserver menuExtras -array \
   "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
   "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+    "/System/Library/CoreServices/Menu Extras/Volume.menu" \
   "/System/Library/CoreServices/Menu Extras/Battery.menu" \
   "/System/Library/CoreServices/Menu Extras/Clock.menu"
 ok
@@ -1304,6 +1316,8 @@ git config --global color.diff.whitespace "red reverse"
 ###############################################################################
 bot "Developer workspace"
 ###############################################################################
+git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k
+
 running "Load Launchpad apps Organization"
 lporg load /Users/$(whoami)/.launchpad.yaml
 
@@ -1312,7 +1326,7 @@ mkdir -p ~/dev;ok
 
 pushd scripts/ > /dev/null 2>&1
 running "Downloading App-Every "
-curl -O https://raw.github.com/iarna/App-Every/master/packed/every && chmod a+x every;ok
+curl -O https://raw.githubusercontent.com/iarna/App-Every/master/packed/every && chmod a+x every;ok
 popd > /dev/null 2>&1
 
 running "KeyboardMaestro: Disable Welcome Window"

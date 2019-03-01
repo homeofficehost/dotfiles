@@ -4,6 +4,7 @@
 # Thumbnails
 ._*
 id_rsa
+scripts/every
 node_modules
 homedir/.vim/backup/*
 !homedir/.vim/backup/.gitignore
