@@ -1,0 +1,184 @@
+apps:
+  pages:
+  - number: 1
+    items:
+    - iTerm
+    - folder: ☕ code
+      pages:
+      - number: 1
+        items:
+        - Sublime Text
+        - WebStorm
+        - PhpStorm
+        - Postman
+        - Integrity
+        - Kitematic
+        - Xcode
+        - Docker
+    - folder: "\U0001F3B2 db"
+      pages:
+      - number: 1
+        items:
+        - Sequel Pro
+        - MySQLWorkbench
+        - Postico
+        - DBeaver
+        - DbVisualizer
+        - DB Browser for SQLite
+        - Robo 3T
+        - MongoHub
+    - Tower
+    - folder: "\U0001F4BC office"
+      pages:
+      - number: 1
+        items:
+        - Gisto
+        - Pages
+        - Marp
+        - Kap
+        - Numi
+    - Calculadora
+    - folder: "\U0001F4BE volumes"
+      pages:
+      - number: 1
+        items:
+        - Utilitário de Disco
+        - SD Card Formatter
+        - balenaEtcher
+    - folder: ☠ system
+      pages:
+      - number: 1
+        items:
+        - App Store
+        - CCleaner
+        - Disk Inventory X
+        - OnyX
+        - Macs Fan Control
+        - Utilitário AirPort
+        - iStumbler
+        - dupeGuru
+    - Typora
+    - folder: "\U0001F511 security"
+      pages:
+      - number: 1
+        items:
+        - Keybase
+        - GPG Keychain
+        - QtPass
+        - Cryptomator
+        - Acesso às Chaves
+    - Preferências do Sistema
+  - number: 2
+    items:
+    - folder: "\U0001F517 web"
+      pages:
+      - number: 1
+        items:
+        - Brave Browser
+        - Firefox
+        - Safari
+        - ParseHub
+        - Opera
+        - Tor Browser
+        - SRWare Iron
+    - folder: "\U0001F3AC media"
+      pages:
+      - number: 1
+        items:
+        - VLC
+        - QuickTime Player
+        - IINA
+        - mpv
+    - folder: "\U0001F4AC social"
+      pages:
+      - number: 1
+        items:
+        - Telegram
+        - Rocket.Chat
+        - FaceTime
+        - Discord
+    - Fotos
+    - Transmission
+    - JDownloader2
+    - Amethyst
+    - VNC Viewer
+    - folder: 
+      pages:
+      - number: 1
+        items:
+        - Automator
+        - Terminal
+        - Monitor de Atividade
+        - Console
+        - Informações do Sistema
+        - Editor de Scripts
+        - Catálogo de Fontes
+        - Notas
+        - Editor de Texto
+        - Calendário
+        - Mapas
+        - iTunes
+        - Mensagens
+        - Dicionário
+        - Lembretes
+        - Mail
+        - Contatos
+      - number: 2
+        items:
+        - Siri
+        - Assistente do Boot Camp
+        - Utilitário do VoiceOver
+        - Captura
+        - Configuração de Áudio e MIDI
+        - Assistente de Migração
+        - Time Machine
+        - Anotações
+        - Pré-Visualização
+        - iBooks
+        - Mission Control
+        - Dashboard
+        - Intercâmbio de Arquivos Bluetooth
+        - Grapher
+        - Utilitário ColorSync
+        - Medidor de Cor Digital
+        - Reprodutor de DVD
+        - Photo Booth
+        - Captura de Imagem
+    - folder: "\U0001F5D1"
+      pages:
+      - number: 1
+        items:
+        - Spectacle
+        - Keka
+        - Keyboard Maestro
+        - Transmit Disk
+        - Karabiner-Elements
+        - Karabiner-EventViewer
+        - Turbo Download Manager
+        - Flux
+        - DiffMerge
+    - folder: games
+      pages:
+      - number: 1
+        items:
+        - 0 A.D
+        - Xadrez
+widgets:
+  pages:
+  - number: 1
+    items:
+    - Anotações
+    - Bolsa
+    - Calculadora
+    - Calendário
+    - Contatos
+    - Conversor
+    - Dicionário
+    - Jogo de Peças
+    - Movies
+    - Previsão do Tempo
+    - Relógio
+    - Web Clip
+dock_items:
+- ============
+desktop: {}
