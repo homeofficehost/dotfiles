@@ -375,7 +375,7 @@ osascript -e 'tell application "System Preferences" to quit'
 ok
 
 ##############################################################################
-# Security                                                                   #
+bot "Security"
 ##############################################################################
 # Based on:
 # https://github.com/drduh/macOS-Security-and-Privacy-Guide
@@ -951,19 +951,19 @@ bot "Configuring Hot Corners"
 # 12: Notification Center
 
 running "Top left screen corner → Launchpad"
-defaults write com.apple.dock wvous-tl-corner -int 11 \
+defaults write com.apple.dock wvous-tl-corner -int 11
 defaults write com.apple.dock wvous-tl-modifier -int 0;ok
 
 running "Top right screen corner → Mission Control"
-defaults write com.apple.dock wvous-tr-corner -int 2 \
+defaults write com.apple.dock wvous-tr-corner -int 2
 defaults write com.apple.dock wvous-tr-modifier -int 0;ok
 
 running "Bottom left screen corner → Start screen saver"
-defaults write com.apple.dock wvous-bl-corner -int 5 \
+defaults write com.apple.dock wvous-bl-corner -int 5
 defaults write com.apple.dock wvous-bl-modifier -int 0;ok
 
 running "Bottom right screen corner → Nothing"
-defaults write com.apple.dock wvous-br-corner -int 0 \
+defaults write com.apple.dock wvous-br-corner -int 0
 defaults write com.apple.dock wvous-br-modifier -int 0;ok
 
 ###############################################################################
