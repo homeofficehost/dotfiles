@@ -115,3 +115,6 @@ source <(npx --shell-auto-fallback zsh)
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+# https://github.com/nvbn/thefuck#manual-installation
+eval $(thefuck --alias)

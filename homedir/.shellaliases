@@ -191,6 +191,8 @@ findc() {
 }
 alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
 
+alias asd="autossh -M 0 -N -o 'ServerAliveInterval 10' -o 'ServerAliveCountMax 3' -o ExitOnForwardFailure=yes "
+
 alias dot="cd ~/.dotfiles"
 
 function node-project {
