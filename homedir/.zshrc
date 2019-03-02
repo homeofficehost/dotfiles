@@ -1,3 +1,7 @@
+if [[ -n $TMUX ]]; then
+	[ -r ~/.profile ] && source ~/.profile
+fi
+
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.dotfiles/oh-my-zsh
 
@@ -62,7 +66,7 @@ plugins+=(fasd)
 plugins+=(git-extras)
 plugins+=(brew)
 plugins+=(sudo)
-plugins+=(tmux)
+# plugins+=(tmux)
 plugins+=(composer)
 plugins+=(sublime)
 plugins+=(httpie)

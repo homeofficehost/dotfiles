@@ -207,18 +207,18 @@ function node-project {
 alias a.init-npm='node-project'
 
 # A set of aliases to use npx
+alias a.create-vue-app="npx vue create ${@:-'my-app'}"
+alias a.create-react-app="npx create-react-app ${@:-'my-app'}"
+alias a.rm-all-node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
+alias a.sort-package-json="npx sort-package-json $@"
 alias a.npm-check="npx npm-check $@"
 alias a.npm-check2="npx nsp check $@"
 alias a.david="npx david $@"
-alias a.create-vue-app="npx vue create ${@:-'my-app'}"
-alias a.create-react-app="npx create-react-app ${@:-'my-app'}"
 alias a.nsp="npx nsp ${@:-'check'}"
-alias a.npm-run-all="npx npm-run-all $@"
 alias a.nodemon="npx nodemon $@"
+alias a.npm-run-all="npx npm-run-all $@"
 alias a.webpack="npx webpack-cli $@"
-alias a.yo="npx yo $@" #https://yeoman.io/
-alias a.sort-package-json="npx sort-package-json $@"
-alias a.rm-all-node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
+alias a.yo="npx yo $@"
 
 alias s.vue="npx vue/cli $@"
 alias s.whereami="npx github:@rafaelrinaldi/whereami $@"
