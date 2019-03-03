@@ -1106,7 +1106,7 @@ defaults write com.apple.terminal FocusFollowsMouse -bool true
 # open "./configs/Solarized Light.itermcolors";ok
 # running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
 # open "./configs/Solarized Dark Patch.itermcolors";ok
-source ./macos/apps/iterm2.sh
+./macos/apps/iterm2.sh
 
 ###############################################################################
 bot "Time Machine"
@@ -1250,7 +1250,7 @@ killall cfprefsd
 bot "Spectacle.app"
 ###############################################################################
 
-source ./macos/apps/spectacle.sh
+./macos/apps/spectacle.sh
 
 ###############################################################################
 bot "Macs Fan Control.app"
@@ -1316,6 +1316,7 @@ git config --global color.diff.whitespace "red reverse"
 ###############################################################################
 bot "Developer workspace"
 ###############################################################################
+mkdir -p $ZSH_CUSTOM/plugins/k
 git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k
 
 running "Load Launchpad apps Organization"
