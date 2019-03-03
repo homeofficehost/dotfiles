@@ -66,6 +66,7 @@ alias nah="git reset --hard && git clean -df"
 
 alias qq="cat ~/.zsh_history | grep "
 alias ww="which "
+alias ping="prettyping $@"
 
 alias nginx.start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
 alias nginx.stop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
