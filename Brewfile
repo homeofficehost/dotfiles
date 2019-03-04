@@ -110,8 +110,6 @@ brew "dnsmasq"
 brew "mariadb"
 # High-performance, schema-free, document-oriented database
 brew "mongodb"
-# nosqlbooster-for-mongodb
-brew "nosqlbooster-for-mongodb"
 # Object-relational database system
 brew "postgresql"
 # Persistent key-value database, with built-in net interface
@@ -324,6 +322,8 @@ cask "robo-3t"
 cask "sdformatter"
 cask "dbeaver-community"
 cask "sequel-pro"
+# nosqlbooster-for-mongodb
+cask "nosqlbooster-for-mongodb"
 cask "postico"
 cask "spectacle"
 cask "db-browser-for-sqlite"
