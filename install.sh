@@ -1297,6 +1297,9 @@ bot "Developer default settings"
 ###############################################################################
 touch /Users/$(whoami)/.hushlogin
 mkdir -p /Users/$(whoami)/.ssh
+
+git config --global gpg.program $(which gpg)
+
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 git config --global color.ui true
@@ -1324,6 +1327,9 @@ lporg load /Users/$(whoami)/.launchpad.yaml
 
 running "Create dev folder in home directory"
 mkdir -p ~/dev;ok
+
+running "Create blog folder in home directory"
+mkdir -p ~/blog;ok
 
 pushd scripts/ > /dev/null 2>&1
 running "Downloading App-Every "

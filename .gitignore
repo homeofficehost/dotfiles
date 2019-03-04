@@ -4,6 +4,7 @@
 # Thumbnails
 ._*
 id_rsa
+scripts/jetbrains-agent/
 scripts/every
 node_modules
 homedir/.vim/backup/*

@@ -158,7 +158,6 @@ git.gitlab.new.init() {
 	git push -u origin master
 }
 
-alias crack.intellij='dvt-jb_licsrv.darwin.386'
 alias pstorm='open -a PhpStorm'
 alias pstorm='open -a PhpStorm'
 alias ws='open -a Webstorm'
@@ -194,6 +193,10 @@ alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
 
 alias asd="waitforssh.sh $@"
 alias dot="cd ~/.dotfiles"
+alias dev="cd $MY_CODE"
+alias blog="cd $MY_BLOG"
+alias typora="open -a typora"
+alias blog.write="typora $MY_BLOG/src"
 
 function node-project {
   git init
@@ -205,6 +208,13 @@ function node-project {
   git commit -m "Initial commit"
 }
 alias a.init-npm='node-project'
+
+function take.my.wifi {
+	SSID="$(sudo npx osx-wifi-cli)"
+	PASS="$(npx wifi-password-cli)"
+	SSID=${SSID:21:-1}
+	npx qrcode "WIFI:T:WPA;S:${SSID};P:${PASS};;"
+}
 
 # A set of aliases to use npx
 alias a.create-vue-app="npx vue create ${@:-'my-app'}"

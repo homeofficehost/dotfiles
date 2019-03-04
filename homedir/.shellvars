@@ -10,6 +10,7 @@ bindkey -v
 export MY_TEMP=~/Documents/tmp
 export MY_DOTFILES=~/.dotfiles
 export MY_CODE=~/dev
+export MY_BLOG=~/blog
 export MY_DOWNLOADS=~/Downloads
 export MY_DOCUMENTS=~/Documents
 
