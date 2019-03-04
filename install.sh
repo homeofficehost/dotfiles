@@ -1106,7 +1106,11 @@ defaults write com.apple.terminal FocusFollowsMouse -bool true
 # open "./configs/Solarized Light.itermcolors";ok
 # running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
 # open "./configs/Solarized Dark Patch.itermcolors";ok
-./macos/apps/iterm2.sh
+if [[ "${TERM_PROGRAM}" == "Apple_Terminal" ]]; then
+  exec ./macos/apps/iterm2.sh
+else
+  warning "You are using iTerm, so I will not configure it."
+fi
 
 ###############################################################################
 bot "Time Machine"
@@ -1322,8 +1326,14 @@ bot "Developer workspace"
 mkdir -p $ZSH_CUSTOM/plugins/k
 git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k
 
-running "Load Launchpad apps Organization"
-lporg load /Users/$(whoami)/.launchpad.yaml
+running "Restore Launchpad apps Organization"
+expect << EOF
+  spawn lporg load /Users/$(whoami)/.launchpad.yaml $1
+  expect "Backup your current Launchpad settings?"
+  send "n\r"
+  expect eof
+EOF
+ok
 
 running "Create dev folder in home directory"
 mkdir -p ~/dev;ok
