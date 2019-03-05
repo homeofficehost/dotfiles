@@ -64,6 +64,7 @@ alias gc="git commit -m "
 alias gp="git push"
 alias nah="git reset --hard && git clean -df"
 
+alias j="lsd -la"
 alias qq="cat ~/.zsh_history | grep "
 alias ww="which "
 alias ping="prettyping $@"

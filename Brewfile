@@ -13,6 +13,8 @@ tap "mas-cli/tap", pin: true
 brew "bash"
 # Program that can automate interactive applications
 brew "expect"
+# Clone of ls with colorful output, file type icons, and more
+brew "lsd"
 # Classic UNIX line editor
 brew "ed"
 brew "readline" # ensure gawk gets good readline
