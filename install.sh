@@ -1323,6 +1323,34 @@ git config --global color.diff.whitespace "red reverse"
 ###############################################################################
 bot "Developer workspace"
 ###############################################################################
+running "Adding nightly cron software updates"
+sudo cron ~/.crontab
+
+running "Fixing a known PHP 7.3 bug"
+cat > /usr/local/etc/php/7.3/conf.d/zzz-myphp.ini << EOF
+; My php.ini settings
+; Fix for Bug #77260 PCRE "JIT compilation failed" error
+[Pcre]
+pcre.jit=0
+EOF
+ok
+
+running "Updating composer keys public keys"
+releases_key=$(curl -Ls https://composer.github.io/releases.pub)
+snapshots_key="$(curl -Ls https://composer.github.io/snapshots.pub)"
+expect << EOF
+  spawn composer self-update --update-keys
+  sleep 1
+  expect "Enter Dev / Snapshot Public Key (including lines with -----):"
+  send -- "$releases_key"
+  send "\r"
+  expect "Enter Tags Public Key (including lines with -----):"
+  send -- "${snapshots_key}\r"
+  send "\r"
+  expect eof
+EOF
+ok
+
 mkdir -p $ZSH_CUSTOM/plugins/k
 git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k
 
@@ -1352,7 +1380,7 @@ defaults read com.stairways.keyboardmaestro.editor DisplayWelcomeWindow -bool fa
 ###############################################################################
 bot "The End"
 ###############################################################################
-
+npx okimdone
 bot "Woot! All done. Killing this terminal and launch iTerm"
 sleep 2
 

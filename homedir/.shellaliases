@@ -192,23 +192,27 @@ findc() {
 }
 alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
 
+function emails() {
+	results=$(echo "$(curl -Ls $1) $(whois $1)" | node $MY_DOTFILES/scripts/find-emails-tool/src/index.js | jq '.[].address' | sort | uniq -i)
+	echo "${results//\"}" | grep -vF "`cat $MY_DOTFILES/scripts/find-emails-tool/excluded_strings.txt`"
+}
+function defaults-debug() {
+	before=$(defaults read $1)
+	echo "Now set the new config"
+	echo -n "Press any key to continue..." && read
+	after=$(defaults read $1)
+	colordiff <(echo "${before}" ) <(echo "${after}" )
+	if [[ $? = 0 ]]; then
+		echo "nothing changed."
+	fi
+}
+
 alias asd="waitforssh.sh $@"
 alias dot="cd ~/.dotfiles"
 alias dev="cd $MY_CODE"
 alias blog="cd $MY_BLOG"
 alias typora="open -a typora"
 alias blog.write="typora $MY_BLOG/src"
-
-function node-project {
-  git init
-  npx license $(npm get init.license) -o "$(npm get init.author.name)" > LICENSE
-  npx gitignore node
-  npx covgen "$(npm get init.author.email)"
-  npm init -y
-  git add -A
-  git commit -m "Initial commit"
-}
-alias a.init-npm='node-project'
 
 function take.my.wifi {
 	SSID="$(sudo npx osx-wifi-cli)"
@@ -217,9 +221,19 @@ function take.my.wifi {
 	npx qrcode "WIFI:T:WPA;S:${SSID};P:${PASS};;"
 }
 
-# A set of aliases to use npx
-alias a.create-vue-app="npx vue create ${@:-'my-app'}"
-alias a.create-react-app="npx create-react-app ${@:-'my-app'}"
+function init-npm {
+	git init
+	npx license $(npm get init.license) -o "$(npm get init.author.name)" > LICENSE
+	npx add-gitignore "${@} node macOS windows linux sublimetext visualstudiocode"
+	npx covgen "$(npm get init.author.email)"
+	npm init -y
+	git add -A
+	git commit -m "Initial commit"
+}
+
+alias a.create-laravel-project="composer create-project --prefer-dist laravel/laravel ${@:-'my-app'}; cd ${@:-'my-app'}; init-npm laravel phpstorm"
+alias a.create-vue-app="npx vue-cli create ${@:-'my-app'}; cd ${@:-'my-app'}; init-npm node webstorm"
+alias a.create-react-app="npx create-react-app ${@:-'my-app'}; cd ${@:-'my-app'}; init-npm node webstorm"
 alias a.rm-all-node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
 alias a.sort-package-json="npx sort-package-json $@"
 alias a.npm-check="npx npm-check $@"

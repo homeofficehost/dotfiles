@@ -25,6 +25,7 @@ apps:
         - DBeaver
         - DbVisualizer
         - DB Browser for SQLite
+        - NoSQLBooster for MongoDB
         - Robo 3T
         - MongoHub
     - Tower
@@ -68,6 +69,7 @@ apps:
         - Cryptomator
         - Acesso às Chaves
     - Preferências do Sistema
+    - Conferences
   - number: 2
     items:
     - folder: "\U0001F517 web"
@@ -89,6 +91,7 @@ apps:
         - QuickTime Player
         - IINA
         - mpv
+        - Stremio
     - folder: "\U0001F4AC social"
       pages:
       - number: 1
@@ -100,7 +103,6 @@ apps:
     - Fotos
     - Transmission
     - JDownloader2
-    - Amethyst
     - VNC Viewer
     - folder: 
       pages:
@@ -148,6 +150,7 @@ apps:
       pages:
       - number: 1
         items:
+        - Amethyst
         - Spectacle
         - Keka
         - Keyboard Maestro

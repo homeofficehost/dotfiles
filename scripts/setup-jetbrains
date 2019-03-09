@@ -21,7 +21,6 @@ function setup.jetbrains () {
 			echo 'Setting up'
 			cp -i $SYSTEM_VMOPTIONS_FILE $USER_VMOPTIONS_FILE
 			printf "\n\n-javaagent:${JETBRAINS_AGENT_DIR}/jetbrains-agent.jar" >> $USER_VMOPTIONS_FILE
-
 			return 0
 		else
 			echo 'Already installed'

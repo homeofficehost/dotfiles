@@ -1,0 +1,5 @@
+cert.br
+registro.br
+godaddy.com
+verisign-grs.com
+

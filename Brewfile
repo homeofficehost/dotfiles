@@ -61,6 +61,8 @@ brew "nano"
 brew "moreutils"
 brew "binutils"
 brew "diffutils"
+# Color-highlighted diff(1) output
+brew "colordiff"
 brew "diff-so-fancy"
 # Internet file retriever
 brew "wget"
