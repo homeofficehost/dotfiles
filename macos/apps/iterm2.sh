@@ -28,6 +28,9 @@ defaults write com.googlecode.iterm2 StretchTabsToFillBar -bool true;ok
 running "Disable automatic checks"
 defaults write com.googlecode.iterm2 SUEnableAutomaticChecks -bool false;ok
 
+running "Open tmux windows as tabs in existing window"
+defaults write com.googlecode.iterm2 OpenTmuxWindowsIn -int 2;ok
+
 running "Disable fullscreen transparency"
 defaults write com.googlecode.iterm2 DisableFullscreenTransparency -int 1;ok
 
