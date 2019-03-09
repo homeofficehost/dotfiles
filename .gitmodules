@@ -10,3 +10,6 @@
 [submodule "setup-keys"]
 	path = setup-keys
 	url = https://github.com/thomasgroch/setup-keys
+[submodule "macos/apps/chromium-extensions/AllSeeingEye"]
+	path = macos/apps/chromium-extensions/AllSeeingEye
+	url = https://github.com/idibidiart/AllSeeingEye.git

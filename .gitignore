@@ -6,6 +6,7 @@
 id_rsa
 scripts/jetbrains-agent/
 scripts/every
+anticaptcha-plugin_*.crx
 node_modules
 homedir/.vim/backup/*
 !homedir/.vim/backup/.gitignore
