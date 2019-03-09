@@ -25,3 +25,10 @@ export MY_DOCUMENTS=~/Documents
 export HOMEBREW_NO_ANALYTICS=1
 export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 # export NVM_DIR=~/.nvm
+
+# Set compilers to find ruby
+export LDFLAGS="-L/usr/local/opt/ruby/lib"
+export CPPFLAGS="-I/usr/local/opt/ruby/include"
+
+# Set pkg-config to find ruby
+export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
