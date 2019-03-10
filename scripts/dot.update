@@ -1,0 +1,21 @@
+#!/bin/bash
+
+source $MY_DOTFILES/lib_sh/echos.sh
+
+cd $MY_DOTFILES
+bot "Delete manually delete your repo"
+running "Did you deleted your current repo?"
+open http://github.com/camilasrody/dotfiles/settings
+echo -n "Press any key to continue..." && read
+ok
+
+bot "Fork again"
+running "Did you created the new fork?"
+open http://github.com/thomasgroch/dotfiles
+echo -n "Press any key to continue..." && read
+ok
+
+
+running "Updating dotfiles repo"
+git pull
+ok "done."
