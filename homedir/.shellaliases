@@ -231,9 +231,26 @@ function init-npm {
 	git commit -m "Initial commit"
 }
 
-alias a.create-laravel-project="composer create-project --prefer-dist laravel/laravel ${@:-'my-app'}; cd ${@:-'my-app'}; init-npm laravel phpstorm"
-alias a.create-vue-app="npx vue-cli create ${@:-'my-app'}; cd ${@:-'my-app'}; init-npm node webstorm"
-alias a.create-react-app="npx create-react-app ${@:-'my-app'}; cd ${@:-'my-app'}; init-npm node webstorm"
+function a.create-node-project() {
+	name=${1:-'my-app'}
+	mkdir -p $name && cd $name
+	init-npm yarn webstorm
+}
+function a.create-laravel-project() {
+	name=${1:-'my-app'}
+	composer create-project --prefer-dist laravel/laravel $name && cd $name
+	init-npm laravel phpstorm
+}
+function a.create-vue-app() {
+	name=${1:-'my-app'}
+	npx vue-cli create $name && cd $name
+	init-npm node webstorm
+}
+function a.create-react-app() {
+	name=${1:-'my-app'}
+	npx create-react-app $name && cd $name
+	init-npm node webstorm
+}
 alias a.rm-all-node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
 alias a.sort-package-json="npx sort-package-json $@"
 alias a.npm-check="npx npm-check $@"
