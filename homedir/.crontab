@@ -1,12 +1,11 @@
 # ruby gem nightly updates
-0 2 * * *  gem update -V -y
+0 4 * * *  gem update --verbose
 # brew nightly updates
-0 3 * * *  brew update
-0 4 * * *  brew upgrade
+10 4 * * *  brew update
+20 4 * * *  brew upgrade
+# brew cask
+30 4 * * *  brew cask upgrade
 # mas updates
-0 3 * * *  mas upgrade
-# npm
-0 5 * * *  npm update npm -g
-0 6 * * *  npm update -g
+40 4 * * *  mas upgrade
 # Others
-0 2 * * *  tldr --update
+50 4 * * *  tldr --update
