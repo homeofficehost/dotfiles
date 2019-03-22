@@ -22,6 +22,12 @@ defaults write com.googlecode.iterm2 ShowFullScreenTabBar -bool true;ok
 running "Use Native full screen windows"
 defaults write com.googlecode.iterm2 UseLionStyleFullscreen -int 0;ok
 
+running "Hide menubar In fullscreen"
+defaults write com.googlecode.iterm2 HideMenuBarInFullscreen -int 1;ok
+
+running "Hide from Dock and AppSwitcher"
+defaults write com.googlecode.iterm2 HideFromDockAndAppSwitcher -int 1;ok
+
 running "Stretch tabs to fill bar"
 defaults write com.googlecode.iterm2 StretchTabsToFillBar -bool true;ok
 
