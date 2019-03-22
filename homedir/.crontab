@@ -1,11 +1,2 @@
-# ruby gem nightly updates
-0 4 * * *  gem update --verbose
-# brew nightly updates
-10 4 * * *  brew update
-20 4 * * *  brew upgrade
-# brew cask
-30 4 * * *  brew cask upgrade
-# mas updates
-40 4 * * *  mas upgrade
-# Others
-50 4 * * *  tldr --update
+# update system (At minute 0 past every hour from 3 through 6.)
+0 3-6 * * * sh $HOME/.dotfiles/update.sh >$HOME/logs/job.system-update.`date +\%Y-\%m-\%d-\%H:\%M:\%S-cron.log` 2>&1
