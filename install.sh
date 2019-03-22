@@ -278,7 +278,7 @@ if [[ $response =~ (yes|y|Y) ]];then
   running "adding post-commit hook for gitshots"
   action "Enable git templates"
   git config --global init.templatedir '~/.git-templates'
-  
+
   action "Creating directory to hold the global hooks"
   mkdir -p ~/.git-templates/hooks
 
@@ -458,6 +458,13 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -boo
 
 # Disable the crash reporter
 defaults write com.apple.CrashReporter DialogType -string "none";ok
+sudo defaults write com.apple.CrashReporter DialogType none
+launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.Self.plist
+launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plist
+launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportPanic.plist
+launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportGPURestart.plist
+launchctl unload -w /System/Library/LaunchAgents/com.apple.SocialPushAgent.plist
+launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist
 
 # Disable diagnostic reports
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.SubmitDiagInfo.plist;ok
@@ -527,6 +534,15 @@ sudo chflags uchg /Private/var/vm/sleepimage;ok
 running "Stop iTunes from responding to the keyboard media keys"
 launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null;ok
 
+running "Disable the Ping sidebar in iTunes"
+defaults write com.apple.iTunes disablePingSidebar -bool true;ok
+
+running "Disable all the other Ping stuff in iTunes"
+defaults write com.apple.iTunes disablePing -bool true;ok
+
+running "Make ⌘ + F focus the search input in iTunes"
+defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F";ok
+
 running "Show icons for hard drives, servers, and removable media on the desktop"
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 running "Hide icons for local hard drives from the desktop"
@@ -546,8 +562,8 @@ running "Wipe all (default) app icons from the Dock"
 # # the Dock to launch apps.
 defaults write com.apple.dock persistent-apps -array "";ok
 
-#running "Enable the 2D Dock"
-#defaults write com.apple.dock no-glass -bool true;ok
+running "Enable the 2D Dock"
+defaults write com.apple.dock no-glass -bool true;ok
 
 #running "Disable the Launchpad gesture (pinch with thumb and three fingers)"
 #defaults write com.apple.dock showLaunchpadGestureEnabled -int 0;ok
@@ -834,9 +850,6 @@ running "Avoid creating .DS_Store files on network volumes"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true;ok
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
-running "Delete all .DS_Store from mac"
-sudo find / -name ".DS_Store"  -exec rm -f {} \;ok
-
 running "Disable disk image verification"
 defaults write com.apple.frameworks.diskimages skip-verify -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
@@ -854,8 +867,8 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv";ok
 running "Disable the warning before emptying the Trash"
 defaults write com.apple.finder WarnOnEmptyTrash -bool false;ok
 
-running "Empty Trash securely by default"
-defaults write com.apple.finder EmptyTrashSecurely -bool true;ok
+# running "Empty Trash securely by default"
+# defaults write com.apple.finder EmptyTrashSecurely -bool true;ok
 
 running "Enable AirDrop over Ethernet and on unsupported Macs running Lion"
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true;ok
@@ -924,7 +937,7 @@ running "Automatically hide and show the Dock"
 defaults write com.apple.dock autohide -bool true;ok
 
 running "Make Dock icons of hidden applications translucent"
-defaults write com.apple.dock showhidden -bool true;ok
+defaults write com.apple.dock showhidden -bool false;ok
 
 running "Make Dock more transparent"
 defaults write com.apple.dock hide-mirror -bool true;ok
@@ -1069,7 +1082,7 @@ defaults write com.apple.spotlight orderedItems -array \
   '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
   '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
   '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}';ok
-  
+
 running "Load new settings before rebuilding the index"
 killall mds > /dev/null 2>&1;ok
 running "Make sure indexing is enabled for the main volume"
@@ -1302,6 +1315,42 @@ defaults write org.m0k.transmission BlocklistNew -bool true
 defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.net/public/biglist.p2p.gz"
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true;ok
 
+#---------------------------------------------------------------------
+# Set NoAtime
+#---------------------------------------------------------------------
+if [[ -e /Library/LaunchDaemons/com.nullvision.noatime.plist ]]; then
+  running "Testing tweak for improving SSD performance"
+  mount | grep " / "
+  ok
+else
+  running "Installing tweak for improving SSD performance"
+  set noAtime
+  cat << EOF | sudo tee /Library/LaunchDaemons/com.nullvision.noatime.plist > /dev/null
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.nullvision.noatime</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>mount</string>
+            <string>-vuwo</string>
+            <string>noatime</string>
+            <string>/</string>
+        </array>
+        <key>RunAtLoad</key>
+        <true />
+    </dict>
+</plist>
+EOF
+
+  chown root:wheel /Library/LaunchDaemons/com.nullvision.noatime.plist
+  chmod 644 /Library/LaunchDaemons/com.nullvision.noatime.plist
+  launchctl load -w /Library/LaunchDaemons/com.nullvision.noatime.plist
+  ok
+fi
+
 ###############################################################################
 bot "Developer default settings"
 ###############################################################################
@@ -1329,8 +1378,11 @@ git config --global color.diff.whitespace "red reverse"
 ###############################################################################
 bot "Developer workspace"
 ###############################################################################
+
+git config --global credential.helper osxkeychain
+
 running "Adding nightly cron software updates"
-sudo cron ~/.crontab
+crontab ~/.crontab
 
 running "Fixing a known PHP 7.3 bug"
 cat > /usr/local/etc/php/7.3/conf.d/zzz-myphp.ini << EOF
@@ -1380,6 +1432,9 @@ mkdir -p ~/dev;ok
 
 running "Create blog folder in home directory"
 mkdir -p ~/blog;ok
+
+running "Create logs folder in home directory"
+mkdir -p ~/logs;ok
 
 pushd scripts/ > /dev/null 2>&1
 running "Downloading App-Every "
