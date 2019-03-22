@@ -10,11 +10,13 @@ apps:
         - Sublime Text
         - WebStorm
         - PhpStorm
+        - Visual Studio Code
         - Postman
         - Integrity
         - Kitematic
         - Xcode
         - Docker
+        - Tower
     - folder: "\U0001F3B2 db"
       pages:
       - number: 1
@@ -22,23 +24,32 @@ apps:
         - Sequel Pro
         - MySQLWorkbench
         - Postico
-        - DBeaver
         - DbVisualizer
         - DB Browser for SQLite
         - NoSQLBooster for MongoDB
         - Robo 3T
         - MongoHub
-    - Tower
+        - DBeaver
     - folder: "\U0001F4BC office"
       pages:
       - number: 1
         items:
-        - Gisto
         - Pages
         - Marp
         - Kap
         - Numi
-    - Calculadora
+        - Gisto
+    - folder: "\U0001F4AC social"
+      pages:
+      - number: 1
+        items:
+        - Telegram
+        - FaceTime
+        - Discord
+        - Volt
+        - Conferences
+        - Rocket.Chat
+        - Spectrum
     - folder: "\U0001F4BE volumes"
       pages:
       - number: 1
@@ -46,19 +57,18 @@ apps:
         - Utilitário de Disco
         - SD Card Formatter
         - balenaEtcher
+        - Disk Inventory X
     - folder: ☠ system
       pages:
       - number: 1
         items:
         - App Store
         - CCleaner
-        - Disk Inventory X
         - OnyX
         - Macs Fan Control
         - Utilitário AirPort
         - iStumbler
         - dupeGuru
-    - Typora
     - folder: "\U0001F511 security"
       pages:
       - number: 1
@@ -68,8 +78,9 @@ apps:
         - QtPass
         - Cryptomator
         - Acesso às Chaves
+        - MacPass
     - Preferências do Sistema
-    - Conferences
+    - Typora
   - number: 2
     items:
     - folder: "\U0001F517 web"
@@ -92,19 +103,8 @@ apps:
         - IINA
         - mpv
         - Stremio
-    - folder: "\U0001F4AC social"
-      pages:
-      - number: 1
-        items:
-        - Telegram
-        - Rocket.Chat
-        - FaceTime
-        - Discord
-        - Volt
     - Fotos
-    - Transmission
-    - JDownloader2
-    - VNC Viewer
+    - GreenAddress Wallet
     - folder: 
       pages:
       - number: 1
@@ -117,14 +117,8 @@ apps:
         - Editor de Scripts
         - Catálogo de Fontes
         - Notas
-        - Editor de Texto
         - Calendário
-        - Mapas
         - iTunes
-        - Mensagens
-        - Dicionário
-        - Lembretes
-        - Mail
         - Contatos
       - number: 2
         items:
@@ -135,17 +129,11 @@ apps:
         - Configuração de Áudio e MIDI
         - Assistente de Migração
         - Time Machine
-        - Anotações
         - Pré-Visualização
-        - iBooks
-        - Mission Control
-        - Dashboard
         - Intercâmbio de Arquivos Bluetooth
         - Grapher
         - Utilitário ColorSync
         - Medidor de Cor Digital
-        - Reprodutor de DVD
-        - Photo Booth
         - Captura de Imagem
     - folder: "\U0001F5D1"
       pages:
@@ -161,12 +149,11 @@ apps:
         - Turbo Download Manager
         - Flux
         - DiffMerge
-    - folder: games
-      pages:
-      - number: 1
-        items:
-        - 0 A.D
-        - Xadrez
+    - Transmission
+    - JDownloader2
+    - VNC Viewer
+    - 0 A.D
+    - Calculadora
 widgets:
   pages:
   - number: 1
@@ -184,5 +171,7 @@ widgets:
     - Relógio
     - Web Clip
 dock_items:
+- SRWare Iron
 - ============
+- Transferências
 desktop: {}

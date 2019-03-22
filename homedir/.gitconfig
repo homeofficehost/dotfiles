@@ -184,8 +184,7 @@
     # autosetuprebase = always
 
 [credential]
-    # cache creds (git help credential-cache)
-  helper = cache
+	helper = osxkeychain
 
 [filter "tabspace"]
   clean = expand -t 4
@@ -200,9 +199,10 @@
   smudge = git media smudge %f
 
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
   required = true
+	process = git-lfs filter-process
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52

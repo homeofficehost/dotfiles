@@ -127,8 +127,34 @@ brew "libevent"
 brew "dhcpdump"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
+# Graph visualization software from AT&T and Bell Labs
+brew 'graphviz', args:['with-bindings',
+                       "with-freetype",
+                       "with-librsvg"]
 # Play, record, convert, and stream audio and video
-brew "ffmpeg"
+brew "ffmpeg", args: ["with-fdk-aac",  # high-quality audio codec
+                      "with-fontconfig",
+                      "with-freetype",
+                      "with-game-music-emu",  # game music emulation
+                      "with-libass",
+                      "with-libcaca",   # video to text!
+                      "with-librsvg",
+                      "with-libsoxr",
+                      "with-libvidstab",  # video stabilization
+                      "with-libvorbis",
+                      "with-libvpx",
+                      "with-opus",  # high compression audio
+                      "with-rubberband",  # time-stretching and pitch shifting
+                      "with-sdl2",  # ffplay
+                      "with-srt",  # srt subtitle support
+                      "with-tesseract",  # allows OCR
+                      "with-tools",
+                      "with-wavpack",  # lossless audio compression
+                      "with-webp",  # google image format
+                      "with-x265",  # high compression video
+                      "with-zeromq",
+                      "without-qtkit",
+                      "without-xvid"]
 # Utility to determine file types
 brew "file-formula"
 
@@ -146,6 +172,8 @@ brew "gitlab-gem"
 brew "hub"
 
 ## Security
+# Rootkit detector
+brew "chkrootkit"
 brew "pass"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
@@ -188,7 +216,11 @@ brew "gzip"
 # Image processing tools collection
 brew "graphicsmagick"
 # Tools and libraries to manipulate images in many formats
-brew "imagemagick" # needed to support gitshots
+brew "imagemagick", args: ["with-fftw",
+                           "with-fontconfig",
+                           "with-ghostscript",
+                           "with-librsvg",
+                           "with-webp"]
 # Tool to capture still images from an iSight or other video source
 brew "imagesnap" # needed to support gitshots
 # Convert JPG images to ASCII

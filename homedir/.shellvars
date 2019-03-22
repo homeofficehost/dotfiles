@@ -1,8 +1,8 @@
 # Set vim as default editor (vi is the default otherwise)
-export EDITOR="vim"
+export EDITOR='vi'
 export VISUAL='subl'
 export HOMEBREW_EDITOR=$VISUAL
-bindkey -v
+# bindkey -v # Disabled for crontab be able to load
 
 #########################################################################
 # Temporary aliases useful for demos, other current projects
@@ -32,3 +32,6 @@ export CPPFLAGS="-I/usr/local/opt/ruby/include"
 
 # Set pkg-config to find ruby
 export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
+
+export GITLAB_API_ENDPOINT="https://gitlab.com/api/v4"
+export GITLAB_API_PRIVATE_TOKEN="YVvQgU1aThXL6YcV5-qv"
