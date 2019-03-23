@@ -127,6 +127,8 @@ brew "libevent"
 brew "dhcpdump"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
+# need fontconfig to install/build fonts
+brew "fontconfig"
 # Graph visualization software from AT&T and Bell Labs
 brew 'graphviz', args:['with-bindings',
                        "with-freetype",
@@ -385,6 +387,7 @@ cask "font-inconsolata-for-powerline"
 cask "font-roboto-mono"
 cask "font-roboto-mono-for-powerline"
 cask "font-source-code-pro"
+cask "font-hack-nerd-font"
 cask "0-ad"
 mas "Xcode", id: 497799835
 mas "Pages", id: 409201541

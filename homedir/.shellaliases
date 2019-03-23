@@ -64,6 +64,8 @@ alias gc="git commit -m "
 alias gp="git push"
 alias nah="git reset --hard && git clean -df"
 
+
+alias l="colorls --long --group-directories-first --almost-all --git-status"
 alias j="lsd -la"
 alias qq="cat ~/.zsh_history | grep "
 alias ww="which "
@@ -313,6 +315,7 @@ alias s.why-is-node-running="npx why-is-node-running $@"
 alias s.wifi-password="npx wifi-password-cli $@"
 alias s.yamlxjson="npx yamlxjson $@"
 
+alias d.hacker-news='npx @rafaelrinaldi/hn-cli --keep-open --latest $@'
 alias d.qrcode='npx qrip $@'
 alias d.workin-hard='npx workin-hard $@'
 alias d.image-processing='npx korkut $@'

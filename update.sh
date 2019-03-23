@@ -1,23 +1,25 @@
-#!/bin/sh
+#!/bin/bash
+
+# fail hard
+set -o pipefail
+# fail on first error
+# set -e # Disable by default
+# fail no variables
+set -u
+IFS=$'\n\t'
 
 source ~/.shellvars
 source ~/.shellpaths
 
-# ruby gem nightly updates
-gem update --verbose
-
-# brew nightly updates
-brew update
-brew upgrade
-
-# brew cask
-brew cask upgrade
-
-# mas updates
-mas upgrade
-
-# Others
-tldr --update
+# stdout to null, stderr to stdout
+gem update --verbose 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "gem update; exit code was ${code}"
+brew update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew update; exit code was ${code}"
+brew upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew upgrade; exit code was ${code}"
+brew cask upgrade 2>&1 >/dev/null;		code=$?; [[ code -ne 0 ]] && echo "cask upgrade; exit code was ${code}"
+mas upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "mas upgrade; exit code was ${code}"
+tldr --update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "tldr update; exit code was ${code}"
+brew cleanup 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew cleanup; exit code was ${code}"
+brew doctor 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew doctor; exit code was ${code}"
 
 # Local Notification
 osascript -e 'display notification "" with title "System Updated"'

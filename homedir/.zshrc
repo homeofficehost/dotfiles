@@ -1,6 +1,7 @@
-if [[ -n $TMUX ]]; then
-	[ -r ~/.profile ] && source ~/.profile
-fi
+# Is this needed?
+# if [[ -n $TMUX ]]; then
+# 	[ -r ~/.profile ] && source ~/.profile
+# fi
 
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.dotfiles/oh-my-zsh
@@ -24,7 +25,7 @@ export ZSH_THEME="robbyrussell"
 # POWERLEVEL9K_SHOW_CHANGESET=true
 
 # Set to this to use case-sensitive completion
-export CASE_SENSITIVE="true"
+export CASE_SENSITIVE="false"
 
 export DISABLE_UPDATE_PROMPT="true"
 

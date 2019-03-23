@@ -185,8 +185,6 @@ fi;ok
 
 # skip those GUI clients, git command-line all the way
 require_brew git
-# need fontconfig to install/build fonts
-require_brew fontconfig
 # update zsh to latest
 require_brew zsh
 # update ruby to latest
