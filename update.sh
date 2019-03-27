@@ -11,7 +11,18 @@ IFS=$'\n\t'
 source ~/.shellvars
 source ~/.shellpaths
 
+function finish {
+    # re-link system's python
+    brew link --overwrite --dry-run python@2
+}
+trap finish EXIT
+# Use python3 by default
+rm -f /usr/local/bin/python 2>&1 >/dev/null; ln -s $(which python3) /usr/local/bin/python
+
+
 # stdout to null, stderr to stdout
+pip3 install --upgrade setuptools 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "pip setuptools update; exit code was ${code}"
+pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "pip3 update; exit code was ${code}"
 gem update --verbose 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "gem update; exit code was ${code}"
 brew update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew update; exit code was ${code}"
 brew upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew upgrade; exit code was ${code}"

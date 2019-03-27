@@ -95,7 +95,7 @@ brew "zsh-autosuggestions"
 
 ## Languages
 # Interpreted, interactive, object-oriented programming language
-brew "python"
+brew "python3"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Highly capable, feature-rich programming language
@@ -205,6 +205,8 @@ brew "bettercap"
 brew "transcrypt"
 # Improved top (interactive process viewer)
 brew "htop"
+# Alternative to top/htop
+brew "glances"
 # Version Control Visualization Tool
 brew "gource"
 # Apply a diff file to an original
@@ -316,6 +318,7 @@ brew "fdupes"
 brew "npm"
 brew "yarn"
 #############################
+cask "fork"
 cask "kap"
 cask "amethyst"
 cask "diffmerge"
