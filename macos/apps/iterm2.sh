@@ -22,6 +22,10 @@ defaults write com.googlecode.iterm2 ShowFullScreenTabBar -bool true;ok
 running "Use Native full screen windows"
 defaults write com.googlecode.iterm2 UseLionStyleFullscreen -int 0;ok
 
+running "Ajusting Dimming Amount"
+defaults write com.googlecode.iterm2 DimOnlyText -bool true
+defaults write com.googlecode.iterm2 SplitPaneDimmingAmount -string "0.6";ok
+
 running "Hide menubar In fullscreen"
 defaults write com.googlecode.iterm2 HideMenuBarInFullscreen -int 1;ok
 
