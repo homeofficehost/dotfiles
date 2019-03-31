@@ -78,9 +78,9 @@ alias nginx.config='sudo $EDITOR /usr/local/etc/nginx/valet/valet.conf'
 alias nginx.config='$EDITOR /usr/local/etc/nginx/valet/valet.conf'
 alias nginx.configtest='sudo nginx -t'
 
-alias php-fpm.start="sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.php71.plist"
-alias php-fpm.stop="sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.php71.plist"
-alias php-fpm.restart='php-fpm.stop && php-fpm.start'
+alias php.start="sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.php71.plist"
+alias php.stop="sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.php71.plist"
+alias php.restart='php-fpm.stop && php-fpm.start'
 
 alias mariadb.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
 alias mariadb.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
@@ -138,34 +138,10 @@ alias vtop="vtop --theme wizard"
 
 alias jsonfix="pbpaste | jq . | pbcopy"
 
-alias lookbusy="cat /dev/urandom | hexdump -C | grep \"34 32\""
 alias td="todo.sh"
 alias tda="todo.sh add"
 alias tdl="todo.sh list"
 alias tdd="todo.sh do"
-
-# CRONTAB
-if test -z $GITLABCMD; then
-    # allows to source zshrc twice
-    export GITLABCMD=$(which gitlab)
-
-	git_gitlab_new() {
-		gitlab create_project "$1" "{ description: '$2' }" --json
-	}
-
-	git_gitlab_new_init() {
-		json=$(git_gitlab_new "$1" "$2" --json)
-		http_url_to_repo=$(echo $json | jq .result.http_url_to_repo)
-		http_url_to_repo="${http_url_to_repo%\"}"
-		http_url_to_repo="${http_url_to_repo#\"}"
-
-		git init
-		git remote add origin $http_url_to_repo
-		git add .
-		git commit -m "Initial commit"
-		git push -u origin master
-	}
-fi
 
 alias pstorm='open -a PhpStorm'
 alias pstorm='open -a PhpStorm'
@@ -222,7 +198,7 @@ alias blog="cd $MY_BLOG"
 alias typora="open -a typora"
 alias blog.write="typora $MY_BLOG/src"
 alias not="npx node-notifier-cli notify --title 'Notification' -s --open $@"
-
+alias mtop="glances"
 function take_my_wifi {
 	SSID="$(sudo npx osx-wifi-cli)"
 	PASS="$(npx wifi-password-cli)"
@@ -230,77 +206,114 @@ function take_my_wifi {
 	npx qrcode "WIFI:T:WPA;S:${SSID};P:${PASS};;"
 }
 
-function init_npm {
+if test -z $GITLABCMD; then
+    # allows to source zshrc twice
+    export GITLABCMD=$(which gitlab)
+
+	init_gitlab() {
+		json=$(gitlab create_project "$1" "{ description: '$2' }" --json)
+		http_url_to_repo=$(echo $json | jq .result.http_url_to_repo)
+		http_url_to_repo="${http_url_to_repo%\"}"
+		http_url_to_repo="${http_url_to_repo#\"}"
+
+		git remote add origin $http_url_to_repo
+		git push -u origin master
+	}
+fi
+
+function init_git {
 	git init
-	npx license $(npm get init.license) -o "$(npm get init.author.name)" > LICENSE
-	npx add-gitignore "${@} node macOS windows linux sublimetext visualstudiocode"
-	npx covgen "$(npm get init.author.email)"
-	npm init -y
 	git add -A
 	git commit -m "Initial commit"
 }
 
-function a_create_node_project() {
+function init_npm {
+	npx license $(npm get init.license) -o "$(npm get init.author.name)" > LICENSE
+	npx add-gitignore "${@} node macOS windows linux sublimetext visualstudiocode"
+	npx covgen "$(npm get init.author.email)"
+	npm init -y
+	npx okimdone
+}
+
+function a.create_vuepress_project() {
 	name=${1:-'my-app'}
+	description=${1:-'my-app description'}
 	mkdir -p $name && cd $name
+	init_git
 	init-npm yarn webstorm
-	npx okimdone
+	init_gitlab $name $description
 }
-function a_create_laravel_project() {
+function a.create_node_project() {
 	name=${1:-'my-app'}
+	description=${1:-'my-app description'}
+	mkdir -p $name && cd $name && mkdir src && touch src/index.js
+	init_git
+	init-npm yarn webstorm
+	init_gitlab $name $description
+}
+function a.create_laravel_project() {
+	name=${1:-'my-app'}
+	description=${2:-'my-app description'}
 	composer create-project --prefer-dist laravel/laravel $name && cd $name
+	init_git
 	init-npm laravel phpstorm
-	npx okimdone
+	init_gitlab $name $description
 }
-function a_create_vue_app() {
+function a.create_vue_app() {
 	name=${1:-'my-app'}
+	description=${2:-'my-app description'}
 	npx vue-cli create $name && cd $name
+	init_git
 	init-npm node webstorm
-	npx okimdone
+	init_gitlab $name $description
 }
-function a_create_react_app() {
+function a.create_react_app() {
 	name=${1:-'my-app'}
+	description=${2:-'my-app description'}
 	npx create-react-app $name && cd $name
+	init_git
 	init-npm node webstorm
-	npx okimdone
+	init_gitlab $name $description
 }
-alias a.rm-all-node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
-alias a.sort-package-json="npx sort-package-json $@"
-alias a.npm-check="npx npm-check $@"
-alias a.npm-check2="npx nsp check $@"
+alias a.git_gui_here="fork ."
+alias a.rm_all_node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
+alias a.rm_node_modules_reyarn_redev="rm -Rf node_modules && rm yarn.lock && yarn; yarn dev"
+alias a.sort_package_json="npx sort-package-json $@"
+alias a.npm_check="npx npm-check $@"
+alias a.npm_check2="npx nsp check $@"
 alias a.david="npx david $@"
 alias a.nsp="npx nsp ${@:-'check'}"
 alias a.nodemon="npx nodemon $@"
-alias a.npm-run-all="npx npm-run-all $@"
+alias a.npm_run_all="npx npm-run-all $@"
 alias a.webpack="npx webpack-cli $@"
 alias a.yo="npx yo $@"
 
 alias s.vue="npx vue/cli $@"
 alias s.whereami="npx github:@rafaelrinaldi/whereami $@"
 alias s.buzzphrase="npx buzzphrase $@"
-alias s.carbon-now="npx carbon-now-cli $@"
+alias s.carbon_now="npx carbon-now-cli $@"
 alias s.codeceptjs="npx codeceptjs $@"
-alias s.empty-trash="npx empty-trash-cli $@"
+alias s.empty_trash="npx empty-trash-cli $@"
 alias s.filepizza="npx filepizza $@"
 alias s.fkill="npx fkill-cli $@"
 alias s.get-urls="npx get-urls-cli $@"
-alias s.git-open="npx git-open $@"
+alias s.git_open="npx git-open $@"
 alias s.gitmoji="npx gitmoji-cli $@"
 alias s.gtop="npx gtop $@"
-alias s.instant-markdown-d="npx instant-markdown-d $@"
+alias s.instant_markdown_d="npx instant-markdown-d $@"
 alias s.iponmap="npx iponmap $@"
-alias s.kill-tabs="npx kill-tabs $@"
+alias s.kill_tabs="npx kill-tabs $@"
 alias s.netlify="npx netlify-cli $@"
 alias s.ngrok="npx ngrok $@"
 alias s.now="npx now $@"
-alias s.npm-check="npx npm-check $@"
+alias s.npm_check="npx npm-check $@"
 alias s.npms="npx npms-cli $@"
-alias s.osx-wifi="npx osx-wifi-cli $@"
+alias s.osx_wifi="npx osx-wifi-cli $@"
 alias s.pen="npx pen $@"
 alias s.prettyaml="npx prettyaml $@"
 alias s.prettyjson="npx prettyjson $@"
 alias s.puppeteer="npx puppeteer $@"
-alias s.redis-commander="npx redis-commander $@"
+alias s.redis_commander="npx redis-commander $@"
 alias s.shorturl="npx shorturl $@"
 alias s.siteaudit="npx siteaudit $@"
 alias s.spoof="npx spoof $@"
@@ -311,25 +324,25 @@ alias s.ungit="npx ungit $@"
 alias s.vtop="npx vtop $@"
 alias s.vuepress="npx vuepress $@"
 alias s.wallpaper="npx wallpaper-cli $@"
-alias s.why-is-node-running="npx why-is-node-running $@"
-alias s.wifi-password="npx wifi-password-cli $@"
+alias s.why_is_node_running="npx why-is-node-running $@"
+alias s.wifi_password="npx wifi-password-cli $@"
 alias s.yamlxjson="npx yamlxjson $@"
 
-alias d.hacker-news='npx @rafaelrinaldi/hn-cli --keep-open --latest $@'
+alias d.hacker_news='npx @rafaelrinaldi/hn-cli --keep-open --latest $@'
 alias d.qrcode='npx qrip $@'
-alias d.workin-hard='npx workin-hard $@'
-alias d.image-processing='npx korkut $@'
-alias d.image-mobile-gen='npx mobicon-cli $@'
+alias d.workin_hard='npx workin-hard $@'
+alias d.image_processing='npx korkut $@'
+alias d.image_mobile-gen='npx mobicon-cli $@'
 
 alias l.prettier="npx prettier $@"
 alias l.eslint="npx eslint $@"
-alias l.babel-eslint="npx babel-eslint $@"
-alias l.eslint-config-standard="npx eslint-config-standard $@"
-alias l.eslint-config-standard-react="npx eslint-config-standard-react $@"
-alias l.eslint-config-standard-jsx="npx eslint-config-standard-jsx $@"
-alias l.eslint-plugin-react="npx eslint-plugin-react $@"
-alias l.eslint-config-prettier="npx eslint-config-prettier $@"
-alias l.eslint-plugin-prettier="npx eslint-plugin-prettier $@"
+alias l.babel_eslint="npx babel-eslint $@"
+alias l.eslint_config_standard="npx eslint-config-standard $@"
+alias l.eslint_config_standard-react="npx eslint-config-standard-react $@"
+alias l.eslint_config_standard-jsx="npx eslint-config-standard-jsx $@"
+alias l.eslint_plugin_react="npx eslint-plugin-react $@"
+alias l.eslint_config_prettier="npx eslint-config-prettier $@"
+alias l.eslint_plugin_prettier="npx eslint-plugin-prettier $@"
 
 
 # A full set of cowsay aliases (includes all default cowsay options)
@@ -337,29 +350,29 @@ alias pet.cow='npx cowsay $@'
 alias pet.turtle='npx cowsay $@ -f turtle'
 alias pet.beavis='npx cowsay $@ -f beavis.zen'
 alias pet.bong='npx cowsay $@ -f bong'
-alias pet.bud-frogs='npx cowsay $@ -f bud-frogs'
+alias pet.bud_frogs='npx cowsay $@ -f bud-frogs'
 alias pet.bunny='npx cowsay $@ -f bunny'
 alias pet.cheese='npx cowsay $@ -f cheese'
 alias pet.cower='npx cowsay $@ -f cower'
 alias pet.daemon='npx cowsay $@ -f daemon'
 alias pet.doge='npx cowsay $@ -f doge'
-alias pet.dragon-and-cow='npx cowsay $@ -f dragon-and-cow'
+alias pet.dragon_and_cow='npx cowsay $@ -f dragon-and-cow'
 alias pet.dragon='npx cowsay $@ -f dragon'
-alias pet.elephant-in-snake='npx cowsay $@ -f elephant-in-snake'
+alias pet.elephant_in_snake='npx cowsay $@ -f elephant-in-snake'
 alias pet.elephant='npx cowsay $@ -f elephant'
 alias pet.eyes='npx cowsay $@ -f eyes'
-alias pet.flaming-sheep='npx cowsay $@ -f flaming-sheep'
+alias pet.flaming_sheep='npx cowsay $@ -f flaming-sheep'
 alias pet.ghostbusters='npx cowsay $@ -f ghostbusters'
 alias pet.goat='npx cowsay $@ -f goat'
-alias pet.head-in='npx cowsay $@ -f head-in'
+alias pet.head_in='npx cowsay $@ -f head-in'
 alias pet.hedgehog='npx cowsay $@ -f hedgehog'
 alias pet.hellokitty='npx cowsay $@ -f hellokitty'
 alias pet.kiss='npx cowsay $@ -f kiss'
 alias pet.kitty='npx cowsay $@ -f kitty'
 alias pet.koala='npx cowsay $@ -f koala'
 alias pet.kosh='npx cowsay $@ -f kosh'
-alias pet.luke-koala='npx cowsay $@ -f luke-koala'
-alias pet.mech-and-cow='npx cowsay $@ -f mech-and-cow'
+alias pet.luke_koala='npx cowsay $@ -f luke-koala'
+alias pet.mech_and_cow='npx cowsay $@ -f mech-and-cow'
 alias pet.meow='npx cowsay $@ -f meow'
 alias pet.milk='npx cowsay $@ -f milk'
 alias pet.moofasa='npx cowsay $@ -f moofasa'
@@ -385,7 +398,9 @@ alias pet.vader='npx cowsay $@ -f vader'
 alias pet.whale='npx cowsay $@ -f whale'
 alias pet.www='npx cowsay $@ -f www'
 
-# CRONTAB
+alias lookbusy="cat /dev/urandom | hexdump -C | grep \"34 32\""
+
+# Crontab auto reload
 if test -z $CRONTABCMD; then
     # allows to source zshrc twice
     export CRONTABCMD=$(which crontab)
