@@ -234,7 +234,6 @@ function init_npm {
 	npx add-gitignore "${@} node macOS windows linux sublimetext visualstudiocode"
 	npx covgen "$(npm get init.author.email)"
 	npm init -y
-	npx okimdone
 }
 
 function a.create_vuepress_project() {
@@ -242,41 +241,44 @@ function a.create_vuepress_project() {
 	description=${1:-'my-app description'}
 	mkdir -p $name && cd $name
 	init_git
-	init-npm yarn webstorm
+	init_npm yarn webstorm
 	init_gitlab $name $description
+	npx okimdone
 }
 function a.create_node_project() {
 	name=${1:-'my-app'}
 	description=${1:-'my-app description'}
 	mkdir -p $name && cd $name && mkdir src && touch src/index.js
 	init_git
-	init-npm yarn webstorm
+	init_npm yarn webstorm
 	init_gitlab $name $description
+	npx okimdone
 }
 function a.create_laravel_project() {
 	name=${1:-'my-app'}
 	description=${2:-'my-app description'}
 	composer create-project --prefer-dist laravel/laravel $name && cd $name
 	init_git
-	init-npm laravel phpstorm
+	init_npm laravel phpstorm
 	init_gitlab $name $description
+	npx okimdone
 }
 function a.create_vue_app() {
 	name=${1:-'my-app'}
 	description=${2:-'my-app description'}
-	mkdir -p $name && cd $name
-	npx @vue/cli create $name
-	init_git
-	init-npm node webstorm
+	npx @vue/cli create $name && cd $name && \
+	init_npm node webstorm && \
 	init_gitlab $name $description
+	npx okimdone
 }
 function a.create_react_app() {
 	name=${1:-'my-app'}
 	description=${2:-'my-app description'}
 	npx create-react-app $name && cd $name
 	init_git
-	init-npm node webstorm
+	init_npm node webstorm
 	init_gitlab $name $description
+	npx okimdone
 }
 alias a.git_gui_here="fork ."
 alias a.rm_all_node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
