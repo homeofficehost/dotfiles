@@ -191,6 +191,8 @@ function defaults_debug() {
 	fi
 }
 
+alias ff="fuck $@"
+alias tb="nc termbin.com 9999 | pbcopy"
 alias asd="waitforssh.sh $@"
 alias dot="cd ~/.dotfiles"
 alias dev="cd $MY_CODE"
@@ -262,7 +264,8 @@ function a.create_laravel_project() {
 function a.create_vue_app() {
 	name=${1:-'my-app'}
 	description=${2:-'my-app description'}
-	npx vue-cli create $name && cd $name
+	mkdir -p $name
+	npx @vue/cli create $name && cd $name
 	init_git
 	init-npm node webstorm
 	init_gitlab $name $description
