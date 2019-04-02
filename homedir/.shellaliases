@@ -264,8 +264,8 @@ function a.create_laravel_project() {
 function a.create_vue_app() {
 	name=${1:-'my-app'}
 	description=${2:-'my-app description'}
-	mkdir -p $name
-	npx @vue/cli create $name && cd $name
+	mkdir -p $name && cd $name
+	npx @vue/cli create $name
 	init_git
 	init-npm node webstorm
 	init_gitlab $name $description
