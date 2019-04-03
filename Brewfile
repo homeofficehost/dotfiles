@@ -79,6 +79,8 @@ brew "reattach-to-user-namespace"
 # better/more recent version of screen
 brew "screen"
 brew "tmux"
+# Cross platform, open source .NET development framework
+brew "mono"
 brew "todo-txt"
 brew "tree"
 brew "ttyrec"
@@ -105,7 +107,8 @@ brew "node"
 # Ruby version manager
 brew "rbenv"
 brew "ruby"
-
+# Huge set of common tools for making games
+brew "godot-mono"
 
 ## Servers
 # Lightweight DNS forwarder and DHCP server
