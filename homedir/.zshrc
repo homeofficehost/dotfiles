@@ -71,6 +71,7 @@ plugins+=(composer)
 plugins+=(laravel5)
 plugins+=(sublime)
 plugins+=(httpie)
+plugins+=(ansible)
 plugins+=(compleat)
 plugins+=(dirpersist)
 plugins+=(dircycle) # cycle your directory stack {left,right} using Ctrl+Shift+Left/Right. 
