@@ -22,7 +22,7 @@ You don't need to install or configure anything upfront! This works with a brand
 ```sh
 MY_DOTFILES=$HOME/.dotfiles
 git init --bare $MY_DOTFILES
-alias dotfiles='git --git-dir=$MY_DOTFILES/ --work-tree=$HOME'
+alias dotfiles="git --git-dir=$MY_DOTFILES/ --work-tree=$HOME $@"
 dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
 ```
 
@@ -55,7 +55,7 @@ dotfiles push
 
 ```sh
 MY_DOTFILES=$HOME/.dotfiles
-alias dotfiles='git --git-dir=$MY_DOTFILES/ --work-tree=$HOME'
+alias dotfiles="git --git-dir=$MY_DOTFILES/ --work-tree=$HOME $@"
 dotfiles checkout
 ```
 
