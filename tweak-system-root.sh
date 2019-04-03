@@ -163,6 +163,12 @@ DAEMONS+=('com.apple.locationmenu')
 # DAEMONS+=('com.apple.awacsd')
 # DAEMONS+=('com.apple.eapolcfg_auth')
 
+# TODO: Fix Calendar
+# com.apple.cloudd
+# com.apple.assistantd
+# sudo mv -vn /System/Library/LaunchAgents/com.apple.cloudd.plist.bkp /System/Library/LaunchAgents/com.apple.cloudd.plist
+# sudo launchctl load -w /System/Library/LaunchAgents/com.apple.cloudd.plist
+
 bot "Agents"
 for agent in "${AGENTS[@]}"; do
     running "disabling agent/${agent}"
@@ -185,7 +191,7 @@ for daemon in "${DAEMONS[@]}"; do
     } &> /dev/null
     ok
     # moves only if dest file does not exist.
-    sudo mv /System/Library/LaunchDaemons/${daemon}.plist /System/Library/LaunchDaemons/${daemon}.plist.bkp
+    sudo mv -vn /System/Library/LaunchDaemons/${daemon}.plist /System/Library/LaunchDaemons/${daemon}.plist.bkp
     ok
 done
 
