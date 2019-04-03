@@ -190,17 +190,31 @@ function defaults_debug() {
 		echo "nothing changed."
 	fi
 }
+# backup without stash files before you switch branches
+function git_backup {
+	mkdir -p .config-backup && \
+	config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+	xargs -I{} mv {} .config-backup/{}
+}
 
+
+# Apps
+alias notify="npx node-notifier-cli notify --title 'Notification' -s --open $@"
+alias typora="open -a typora"
 alias ff="fuck $@"
+alias mtop="glances"
+alias dotfiles='/usr/local/bin/git --git-dir=${MY_DOTFILES}/ --work-tree=$HOME'
+
+# Home
 alias tb="nc termbin.com 9999 | pbcopy"
 alias asd="waitforssh.sh $@"
-alias dot="cd ~/.dotfiles"
+alias dot="cd ~/$MY_DOTFILES"
 alias dev="cd $MY_CODE"
 alias blog="cd $MY_BLOG"
-alias typora="open -a typora"
 alias blog.write="typora $MY_BLOG/src"
-alias not="npx node-notifier-cli notify --title 'Notification' -s --open $@"
-alias mtop="glances"
+alias not="notify $@"
+
+
 function take_my_wifi {
 	SSID="$(sudo npx osx-wifi-cli)"
 	PASS="$(npx wifi-password-cli)"
