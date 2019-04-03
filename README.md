@@ -1,8 +1,8 @@
-# dotfiles - Robot Automated Configuration, Preferences and Software Installation for 🖥️ macOS + :octocat: My Awesome `.` files project
+# dotfiles
 
+Robot Automated Configuration, Preferences and Software Installation for 🖥️ macOS + :octocat: My Awesome `.` files project
 
 [![xkcd: Automation](http://imgs.xkcd.com/comics/automation.png)](http://xkcd.com/1319/)
-
 
 Don't you hate getting a new laptop or joining a new team and then spending a whole day setting up your system preferences and tools? Me too. That's why we automate; we did it once and we don't want to do have to do it again.
 
@@ -17,34 +17,50 @@ I will update your MacOS machine with Better™ system defaults, preferences, so
 
 You don't need to install or configure anything upfront! This works with a brand-new macOS machine.
 
-## 🏠 Setup
+## 🏠 First initial setup
+
 ```sh
-git init --bare $HOME/.dotfiles
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+MY_DOTFILES=$HOME/.dotfiles
+git init --bare $MY_DOTFILES
+alias dotfiles='git --git-dir=$MY_DOTFILES/ --work-tree=$HOME'
 dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
 ```
 
 ## 🚀 Replication
+
 ```sh
-git clone --separate-git-dir=$HOME/.dotfiles https://github.com/thomasgroch/dotfiles.git dotfiles-tmp
+MY_DOTFILES=$HOME/.dotfiles
+git clone --separate-git-dir=$MY_DOTFILES https://github.com/thomasgroch/dotfiles.git dotfiles-tmp
 rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
 rm --recursive dotfiles-tmp
 ```
 
-
 ## 🖥️ Configuration
+
 ```sh
 dotfiles config status.showUntrackedFiles no
 dotfiles remote set-url origin https://github.com/thomasgroch/dotfiles.git
 ```
 
 ## Usage
+
 ```sh
 dotfiles status
 dotfiles add .gitconfig
 dotfiles commit -m 'Add gitconfig'
 dotfiles push
 ```
+
+# Update Replica
+
+```sh
+MY_DOTFILES=$HOME/.dotfiles
+alias dotfiles='git --git-dir=$MY_DOTFILES/ --work-tree=$HOME'
+dotfiles checkout
+```
+
+
+No extra tooling, no symlinks, files are tracked on a version control system, you can use different branches for different computers, you can replicate you configuration easily on new installation.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -376,7 +392,7 @@ Please refer to the [Contributor Covenant](https://github.com/thomasgroch/dotfil
 4. Praise should be directed to [![@antic](https://img.shields.io/twitter/follow/antic.svg?style=social&label=@antic)](https://twitter.com/antic)
 
 
-# ¯\\_(ツ)_/¯ Warning / Liability
+# ⚠️ Warning / Liability
 > Warning:
 The creator of this repo is not responsible if your machine ends up in a state you are not happy with. If you are concerned, look at the code to review everything this will do to your machine :)
 
