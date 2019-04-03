@@ -82,6 +82,13 @@ if [[ $response =~ (yes|y|Y) ]];then
     ok "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
 fi
 
+
+
+
+
+
+## TODO: REFACT
+
 grep 'user = GITHUBUSER' ./homedir/.gitconfig > /dev/null 2>&1
 if [[ $? = 0 ]]; then
     read -r -p "What is your github.com username? " githubuser
@@ -147,6 +154,14 @@ if [[ $? = 0 ]]; then
   fi
 fi
 
+
+
+
+
+
+
+
+
 running "checking if homebrew CLI is already installed"
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
@@ -205,6 +220,13 @@ fi
 #   git clone https://github.com/bhilburn/powerlevel9k.git oh-my-zsh/custom/themes/powerlevel9k
 # fi
 
+
+
+
+
+
+## TODO: REFACT
+
 bot "creating symlinks for project dotfiles..."
 pushd homedir > /dev/null 2>&1
 now=$(date +"%Y.%m.%d.%H.%M.%S")
@@ -230,6 +252,13 @@ for file in *; do
 done
 
 popd > /dev/null 2>&1
+
+
+##
+
+
+
+
 
 bot "Configuring brew global packages"
 response_retry_install=y
@@ -1370,6 +1399,8 @@ fi
 bot "Developer default settings"
 ###############################################################################
 # netlify --telemetry-disable
+# Installation of is.sh. A fancy alternative for old good test command.
+# npm install -g is.sh
 touch /Users/$(whoami)/.hushlogin
 mkdir -p /Users/$(whoami)/.ssh
 

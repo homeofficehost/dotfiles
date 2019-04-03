@@ -1,8 +1,50 @@
-# \\[._.]/ - Hi, I'm the MacOS bot
+# dotfiles - Robot Automated Configuration, Preferences and Software Installation for 🖥️ macOS + :octocat: My Awesome `.` files project
+
+
+[![xkcd: Automation](http://imgs.xkcd.com/comics/automation.png)](http://xkcd.com/1319/)
+
+
+Don't you hate getting a new laptop or joining a new team and then spending a whole day setting up your system preferences and tools? Me too. That's why we automate; we did it once and we don't want to do have to do it again.
+
+
+## Installation
+
+I suppose for those that _just want the dotfiles_ getting set up is as easy as
+
+## \\[._.]/ - Hi, I'm the MacOS robot
 
 I will update your MacOS machine with Better™ system defaults, preferences, software configuration and even auto-install some handy development tools and apps that my developer friends find helpful.
 
-You don't need to install or configure anything upfront! This works with a brand-new machine from the factory as well as an existing machine that you've been working with for years.
+You don't need to install or configure anything upfront! This works with a brand-new macOS machine.
+
+## 🏠 Setup
+```sh
+git init --bare $HOME/.dotfiles
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
+```
+
+## 🚀 Replication
+```sh
+git clone --separate-git-dir=$HOME/.dotfiles https://github.com/thomasgroch/dotfiles.git dotfiles-tmp
+rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
+rm --recursive dotfiles-tmp
+```
+
+
+## 🖥️ Configuration
+```sh
+dotfiles config status.showUntrackedFiles no
+dotfiles remote set-url origin https://github.com/thomasgroch/dotfiles.git
+```
+
+## Usage
+```sh
+dotfiles status
+dotfiles add .gitconfig
+dotfiles commit -m 'Add gitconfig'
+dotfiles push
+```
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -50,35 +92,19 @@ You don't need to install or configure anything upfront! This works with a brand
 
 # Forget About Manual Configuration!
 
-Don't you hate getting a new laptop or joining a new team and then spending a whole day setting up your system preferences and tools? Me too. That's why we automate; we did it once and we don't want to do have to do it again.
-
 \\[^_^]/ - This started as [Thomas Letsch Groch](https://thomasgroch.com)'s MacOS shell configuration dotfiles but has grown to a multi-developer platform for machine configuration.
 
-When I finish with your machine, you will be able to look at your command-line in full-screen mode like this (running iTerm):
+
+# \\[._.]/ - Watch me running
+![Running](http://media.giphy.com/media/5xtDarwenxEoFeIMEM0/giphy.gif)
 
 ![iTerm Screenshot](https://raw.githubusercontent.com/thomasgroch/dotfiles/master/img/term.png)
 
-Check out how your shell prompt includes the full path, node.js version & the working git branch along with a lot of other info!
-We use powerlevel9k for command prompt, so customization of what you want is easily changable in `./.zshrc`
-The top terminal is using vim + NerdTree as a full Atom replacement IDE.
-The bottom left two are git terminals.
-The bottom right is running `vtop`
-
-To launch fullscreen, hit `Command + Enter` in iTerm, then use `Command + d` and `Command + D` to create split panes.
-
-
-\\[._.]/ - I'm so excited I just binaried in my pants!
-
-# Watch me run!
-![Running](http://media.giphy.com/media/5xtDarwenxEoFeIMEM0/giphy.gif)
+launch fullscreen hit `Command + Enter`
+iTerm, then use `Command + d` and `Command + D` to create split panes.
 
 # Installation
 
-> Note: I recommend forking this repo in case you don't like anything I do and want to set your own preferences (and pull request them!)
-
-> REVIEW WHAT THIS SCRIPT DOES PRIOR TO RUNNING: https://github.com/thomasgroch/dotfiles/blob/master/install.sh#L275-L1038
-> It's always a good idea to review arbitrary code from the internet before running it on your machine with sudo power!
-> You are responsible for everything this script does to your machine (see LICENSE)
 
 ```bash
 git clone --recurse-submodules https://github.com/thomasgroch/dotfiles ~/.dotfiles
@@ -327,6 +353,13 @@ The following will only happen if you agree on the prompt
 
 ## Ruby Gems
 
+# References
+
+- [Change macOS user preferences via command line](https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/)
+
+# Credits
+I've rewritten my dotfiles many times, and each time I've been influenced by someone new. These people include:
+- holman
 
 # License
 This project is licensed under ISC. Please fork, contribute and share.
@@ -347,6 +380,24 @@ Please refer to the [Contributor Covenant](https://github.com/thomasgroch/dotfil
 > Warning:
 The creator of this repo is not responsible if your machine ends up in a state you are not happy with. If you are concerned, look at the code to review everything this will do to your machine :)
 
-https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/
-wget raw.githubusercontent.com/qzb/is.sh/latest/is.sh
-$ source ./is.sh
+Unless you're sitting next to me, I wouldn't really recommend a complete
+installation of these dotfiles. They might get to that polished, pristine state
+at some point, but right now they're not there.
+
+They're getting closer though.
+
+If you insist, you can see the steps that I run through when setting up a new
+[macOS laptop](osx-setup.sh) or [server](ubuntu-setup.sh). They read like
+scripts, but __please don't run them like scripts__. I've never needed them to
+be robust enough to be run attended; I always just copy and paste each command
+one at a time in case something has changed between the last time I set up a
+device and now.
+
+__However__, my dotfiles make a heavy-handed assumption that you're using zsh +
+OS X + Homebrew + iTerm2 most of the time, which is agreeable for me but maybe
+unagreeable for you. This is why I wouldn't recommend just cloning the repo and
+running with it. If you're looking for a solution like that, there are plenty of
+excellent resources online at <https://dotfiles.github.io>.
+
+> It's always a good idea to review arbitrary code from the internet before running it on your machine with sudo power!
+> You are responsible for everything this script does to your machine (see [LICENSE](LICENSE))
