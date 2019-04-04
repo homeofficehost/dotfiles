@@ -13,7 +13,7 @@ EMAIL=`git config --global user.email`
 GITHUB_USERNAME=`git config --global github.user`
 EDITOR=`git config --global core.editor`
 
-if [[ -n "$FULL_NAME" ]]; then
+if [[ -z "$FULL_NAME" ]]; then
 	fullname=`osascript -e "long user name of (system info)"`
 	if [[ -n "$fullname" ]];then
 		lastname=$(echo $fullname | awk '{print $2}');
@@ -41,7 +41,7 @@ if [[ -n "$FULL_NAME" ]]; then
 	git config --global user.name "${FULL_NAME}"
 fi
 
-if [[ -n "$EMAIL" ]]; then
+if [[ -z "${EMAIL}" ]]; then
 	email=`dscl . -read /Users/$(whoami)  | grep EMailAddress | sed "s/EMailAddress: //"`
 	bot "The best I can make out, your email address is $COL_YELLOW$email$COL_RESET"
 	read -r -p "Is this correct? (y|N) [default=N] " response
@@ -56,7 +56,7 @@ if [[ -n "$EMAIL" ]]; then
 	git config --global user.email "${EMAIL}"
 fi
 
-if [[ -n "$GITHUB_USERNAME" ]]; then
+if [[ -z "$GITHUB_USERNAME" ]]; then
 	while [ -z "$GITHUB_USERNAME" ]; do
 		read -r -p "What is your GitHub username? " GITHUB_USERNAME
 	done
@@ -103,5 +103,63 @@ elif which kdiff3 &>/dev/null; then
 	git config --global merge.tool kdiff3
 fi
 ok
+
+if [[ ! -e ~/.git-templates/hooks/post-commit ]];then
+	bot "Setting up gitshots"
+	read -r -p "Do you want to install or remove? (y|N|r) [default=N] " response
+	response=${response:-N}
+	if [[ $response =~ (yes|y|Y) ]];then
+		running "Enable git templates for gitshots"
+		git config --global init.templatedir '~/.git-templates';ok
+
+		running "Creating directories global git hooks and gitshots photos"
+		mkdir -p ~/.git-templates/hooks/
+		mkdir -p ~/.gitshots;ok
+
+		running "Installing gitshots"
+		cp ./configs/gitshot-post-commit-template.sh ~/.git-templates/hooks/post-commit;ok
+
+		running "Making sure the hook is executable"
+		chmod a+x ~/.git-templates/hooks/post-commit;ok
+	elif [[ $response =~ (remove|r|R) ]];then
+		if [[ -e ~/.git-templates/hooks/post-commit ]];then
+			running "Removing gitshots"
+			rm ~/.git-templates/hooks/post-commit;ok
+		fi
+	fi
+fi
+
+bot "Configuring npm"
+action "always pin versions (no surprises, consistent dev/build machines)"
+npm config set save-exact true
+
+NPM_FULL_NAME=`npm get init.author.name`
+NPM_EMAIL=`npm get init.author.email`
+NPM_GITHUB_USERNAME=`npm get init.author.url`
+NPM_LICENSE=`npm get init.license`
+NPM_VERSION=`npm get init.version`
+
+if [[ -z "$NPM_FULL_NAME" ]] || [[ -z "$NPM_EMAIL" ]] || [[ -z "$NPM_GITHUB_USERNAME" ]] || [[ -z "$NPM_LICENSE" ]] || [[ -z "$NPM_VERSION" ]]; then
+	read -r -p "Would you like to setup npm with your account? (y|N) [default=Y] " response
+	response=${response:-Y}
+	if [[ $response =~ (yes|y|Y) ]];then
+		running "Configuring npm account"
+
+	    while [ -z "$EMAIL" ]; do
+	        read -r -p "What is your email? " EMAIL
+	    done
+		while [ -z "$FULL_NAME" ]; do
+	        read -r -p "What is your full name? " FULL_NAME
+	    done
+
+		read -r -p "What is your website url? (https://example.com/) " URL
+		npm set init.author.name "${FULL_NAME}"
+		npm set init.author.email "${EMAIL}"
+		npm set init.author.url "${URL}"
+		npm set init.license "MIT"
+		npm set init.version "1.0.0"
+		ok
+	fi
+fi
 
 exit 0

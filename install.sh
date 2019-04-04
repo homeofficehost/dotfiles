@@ -82,12 +82,6 @@ if [[ $response =~ (yes|y|Y) ]];then
     ok "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
 fi
 
-###############################################################################
-bot "Git Settings"
-###############################################################################
-
-exec ./macos/apps/git.sh
-
 running "checking if homebrew CLI is already installed"
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
@@ -225,74 +219,16 @@ if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
   fi
 fi
 
-read -r -p "Do you want to install gitshots? (y|N) [default=N] " response
-response=${response:-N}
-if [[ $response =~ (yes|y|Y) ]];then
-  running "adding post-commit hook for gitshots"
-  action "Enable git templates"
-  git config --global init.templatedir '~/.git-templates'
-
-  action "Creating directory to hold the global hooks"
-  mkdir -p ~/.git-templates/hooks
-
-  action "and to gitshots photos"
-  mkdir -p ~/.gitshots
-
-  action "Installing gitshots"
-  cp ./configs/gitshot-post-commit-template.sh ~/.git-templates/hooks/post-commit
-
-  action "Making sure the hook is executable"
-  chmod a+x ~/.git-templates/hooks/post-commit
-  ok
-else
-  if [[ -e ~/.git-templates/hooks/post-commit ]];then
-    rm ~/.git-templates/hooks/post-commit
-    ok
-  fi
-fi
-
 bot "Configuring npm global packages"
 action "npm config set prefix ~/.local"
 mkdir -p "${HOME}/.local"
 npm config set prefix ~/.local;ok
 
-bot "Configuring git"
-action "always pin versions (no surprises, consistent dev/build machines)"
-npm config set save-exact true
+###############################################################################
+bot "Git and NPM Settings"
+###############################################################################
 
-read -r -p "Would you like to setup npm with your account? (y|N) [default=Y] " response
-response=${response:-Y}
-if [[ $response =~ (yes|y|Y) ]];then
-  running "Configuring npm account"
-  bot "Your email address is $COL_YELLOW$email$COL_RESET ?"
-  read -r -p "Is this correct? (y|N) [default=Y] " response
-  response=${response:-Y}
-  if [[ $response =~ ^(no|n|N) ]];then
-    read -r -p "What is your email? " email
-    if [[ ! $email ]];then
-      error "you must provide an email to configure npm account"
-      exit 1
-    fi
-  fi
-
-  bot "Your is full name} is $COL_YELLOW$fullname$COL_RESET?"
-  read -r -p "Is this correct? (y|N) [default=Y] " response
-  response=${response:-Y}
-  if [[ $response =~ ^(no|n|N) ]];then
-    read -r -p "What is your full name? " fullname
-    if [[ ! $fullname ]];then
-      error "you must provide an fullname to configure npm account"
-      exit 1
-    fi
-  fi
-  read -r -p "What is your website url? (https://example.com/) " url
-  npm set init.author.name "${fullname}"
-  npm set init.author.email "${email}"
-  npm set init.author.url "${url}"
-  npm set init.license "MIT"
-  npm set init.version "1.0.0"
-  ok
-fi
+exec ./macos/apps/git.sh
 
 bot "I will keep installing thinks while you install voices"
 read -r -p "Would you like to change the default TTS (text-to-speech) voices? (y|N) [default=Y] " response
