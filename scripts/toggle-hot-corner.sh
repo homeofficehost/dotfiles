@@ -2,7 +2,6 @@
 
 ###########################
 # This fast script toggle on and off HotCorner in macOS
-# ~/.macos — https://mths.be/macos
 # --------------------------
 # 
 ###########################
