@@ -100,17 +100,6 @@ source /usr/local/share/zsh-history-substring-search/zsh-history-substring-searc
 autoload -U compinit
 compinit
 
-# autoload -U add-zsh-hook
-# load-nvmrc() {
-#   if [[ -f .nvmrc && -r .nvmrc ]]; then
-#     nvm use &> /dev/null
-#   elif [[ $(nvm version) != $(nvm version default)  ]]; then
-#     nvm use default &> /dev/null
-#   fi
-# }
-# add-zsh-hook chpwd load-nvmrc
-# load-nvmrc
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
