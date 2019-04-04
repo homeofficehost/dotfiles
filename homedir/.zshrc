@@ -81,7 +81,7 @@ plugins+=(autojump)
 plugins+=(history)
 plugins+=(cp)
 # plugins+=(zsh-autosuggestions)
-plugins+=(zsh-better-npm-completion)
+# plugins+=(zsh-better-npm-completion)
 plugins+=(zsh-syntax-highlighting)
 plugins+=(zsh-history-substring-search)
 
@@ -95,7 +95,6 @@ source <(npx --shell-auto-fallback zsh)
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-# source /usr/local/opt/nvm/nvm.sh
 
 # Advanced Tab completion
 autoload -U compinit
@@ -118,13 +117,6 @@ compinit
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

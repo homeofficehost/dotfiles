@@ -2,7 +2,6 @@
 
 ###########################
 # This script setups git config on your system with sensitive defaults
-# @author Thomas Letsch Groch
 # --------------------------
 # TODO: configure based on keychain data
 ###########################
