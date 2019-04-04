@@ -416,9 +416,9 @@ sudo chflags uchg /Private/var/vm/sleepimage;ok
 # e.g. defaults write com.microsoft.word NSQuitAlwaysKeepsWindows -bool true
 
 # running "Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)""
-# # Commented out, as this is known to cause problems in various Adobe apps :(
-# # See https://github.com/mathiasbynens/dotfiles/issues/237
-# echo "0x08000100:0" > ~/.CFUserTextEncoding;ok
+# Commented out, as this is known to cause problems in various Adobe apps :(
+# See https://github.com/mathiasbynens/dotfiles/issues/237
+echo "0x08000100:0" > ~/.CFUserTextEncoding;ok
 
 running "Stop iTunes from responding to the keyboard media keys"
 launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null;ok
@@ -799,6 +799,9 @@ defaults write com.apple.dock show-process-indicators -bool true;ok
 
 running "Don’t animate opening applications from the Dock"
 defaults write com.apple.dock launchanim -bool false;ok
+
+running "Disable animations when opening a Quick Look window."
+defaults write -g QLPanelAnimationDuration -float 0;ok
 
 running "Speed up Mission Control animations"
 defaults write com.apple.dock expose-animation-duration -float 0.1;ok
