@@ -82,8 +82,8 @@ plugins+=(history)
 plugins+=(cp)
 # plugins+=(zsh-autosuggestions)
 # plugins+=(zsh-better-npm-completion)
-plugins+=(zsh-syntax-highlighting)
-plugins+=(zsh-history-substring-search)
+# plugins+=(zsh-syntax-highlighting)
+# plugins+=(zsh-history-substring-search)
 
 # Load zsh plugins from Homebrew
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
