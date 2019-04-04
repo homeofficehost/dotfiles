@@ -175,7 +175,7 @@
 	guitool = meld
 
 [init]
-  templatedir = ~/.dotfiles/.git_template
+	templatedir = ~/.git-templates
 
 [mergetool]
   prompt = false
