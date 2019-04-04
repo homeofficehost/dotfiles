@@ -82,85 +82,11 @@ if [[ $response =~ (yes|y|Y) ]];then
     ok "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
 fi
 
+###############################################################################
+bot "Git Settings"
+###############################################################################
 
-
-
-
-
-## TODO: REFACT
-
-grep 'user = GITHUBUSER' ./homedir/.gitconfig > /dev/null 2>&1
-if [[ $? = 0 ]]; then
-    read -r -p "What is your github.com username? " githubuser
-
-  fullname=`osascript -e "long user name of (system info)"`
-
-  if [[ -n "$fullname" ]];then
-    lastname=$(echo $fullname | awk '{print $2}');
-    firstname=$(echo $fullname | awk '{print $1}');
-  fi
-
-  if [[ -z $lastname ]]; then
-    lastname=`dscl . -read /Users/$(whoami) | grep LastName | sed "s/LastName: //"`
-  fi
-  if [[ -z $firstname ]]; then
-    firstname=`dscl . -read /Users/$(whoami) | grep FirstName | sed "s/FirstName: //"`
-  fi
-  email=`dscl . -read /Users/$(whoami)  | grep EMailAddress | sed "s/EMailAddress: //"`
-
-  if [[ ! "$firstname" ]];then
-    response='n'
-  else
-    echo -e "I see that your full name is $COL_YELLOW$firstname $lastname$COL_RESET"
-    read -r -p "Is this correct? (y|N) [default=N] " response
-    response=${response:-N}
-  fi
-
-  if [[ $response =~ ^(no|n|N) ]];then
-    read -r -p "What is your first name? " firstname
-    read -r -p "What is your last name? " lastname
-  fi
-  fullname="$firstname $lastname"
-
-  bot "Great $fullname, "
-
-  if [[ ! $email ]];then
-    response='n'
-  else
-    echo -e "The best I can make out, your email address is $COL_YELLOW$email$COL_RESET"
-    read -r -p "Is this correct? (y|N) [default=N] " response
-    response=${response:-N}
-  fi
-
-  if [[ $response =~ ^(no|n|N) ]];then
-    read -r -p "What is your email? " email
-    if [[ ! $email ]];then
-      error "you must provide an email to configure .gitconfig"
-      exit 1
-    fi
-  fi
-
-  running "replacing items in .gitconfig with your info ($COL_YELLOW$fullname, $email, $githubuser$COL_RESET)"
-  sed -i "s/GITHUBFULLNAME/$firstname $lastname/" ./homedir/.gitconfig > /dev/null 2>&1 | true
-  if [[ ${PIPESTATUS[0]} != 0 ]]; then
-    sed -i '' "s/GITHUBFULLNAME/$firstname $lastname/" ./homedir/.gitconfig;
-    sed -i '' 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig;
-    sed -i '' 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
-    ok "looks like you are using MacOS sed rather than gnu-sed."
-  else
-    sed -i 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig;
-    sed -i 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
-    ok "looks like you are already using gnu-sed."
-  fi
-fi
-
-
-
-
-
-
-
-
+exec ./macos/apps/git.sh
 
 running "checking if homebrew CLI is already installed"
 brew_bin=$(which brew) 2>&1 > /dev/null
@@ -1457,6 +1383,8 @@ EOF
 ok
 
 gem update --system
+
+$ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 mkdir -p $ZSH_CUSTOM/plugins/k
 git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k
 
