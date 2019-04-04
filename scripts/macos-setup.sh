@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: alias
+
 local volumeName=$1
 # Set default: "Untitled"
 if ! [ "$volumeName" != "" ]

@@ -204,6 +204,7 @@ alias typora="open -a typora"
 alias ff="fuck $@"
 alias mtop="glances"
 alias dotfiles='/usr/local/bin/git --git-dir=${MY_DOTFILES}/ --work-tree=$HOME'
+alias toggle-hot-corner="toggle-hot-corner.sh"
 
 # Home
 alias tb="nc termbin.com 9999 | pbcopy"
@@ -355,6 +356,7 @@ alias d.qrcode='npx qrip $@'
 alias d.workin_hard='npx workin-hard $@'
 alias d.image_processing='npx korkut $@'
 alias d.image_mobile-gen='npx mobicon-cli $@'
+alias d.game="toggle-hot-corner"
 
 alias l.prettier="npx prettier $@"
 alias l.eslint="npx eslint $@"

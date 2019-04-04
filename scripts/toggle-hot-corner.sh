@@ -6,7 +6,7 @@
 # --------------------------
 # 
 ###########################
-source ./lib_sh/echos.sh
+source $MY_DOTFILES/lib_sh/echos.sh
 
 # Hot corners
 # Possible values:
@@ -64,5 +64,3 @@ running "Kill affected applications"
 for app in "Dock"; do
 	killall "${app}" &> /dev/null
 done;ok
-
-alias gameon="toggle-hot-corner.sh "
