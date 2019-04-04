@@ -94,6 +94,10 @@ brew "awscli"
 brew "mas"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
+# Zsh port of Fish shell's history search
+brew "zsh-history-substring-search"
+# Fish shell like syntax highlighting for zsh
+brew "zsh-syntax-highlighting"
 
 ## Languages
 # Interpreted, interactive, object-oriented programming language
@@ -325,6 +329,8 @@ cask "fork"
 cask "kap"
 cask "amethyst"
 cask "diffmerge"
+cask "meld"
+cask "diff3"
 cask "balenaetcher"
 cask "brave-browser"
 cask "ccleaner"
