@@ -1,6 +1,12 @@
-# Set vim as default editor (vi is the default otherwise)
-export EDITOR='vi'
-export VISUAL='subl'
+# Preferred default editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vi'
+  export VISUAL=$EDITOR
+else
+  export EDITOR='vi'
+  export VISUAL='subl -n -w'
+fi
+
 export HOMEBREW_EDITOR=$VISUAL
 # bindkey -v # Disabled for crontab be able to load
 
