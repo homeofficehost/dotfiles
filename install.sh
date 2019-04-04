@@ -5,6 +5,11 @@
 # @author Thomas Letsch Groch
 ###########################
 
+if [[ "$(uname -s)" != "Darwin" ]]; then
+  echo "Not running on Mac OS X. Aborting!"
+  exit 1
+fi
+
 # include my library helpers for colorized echo and require_brew, etc
 source ./lib_sh/echos.sh
 source ./lib_sh/requirers.sh
@@ -286,7 +291,8 @@ bot "Developer default settings"
 ###############################################################################
 # netlify --telemetry-disable
 # Installation of is.sh. A fancy alternative for old good test command.
-# npm install -g is.sh
+# yarn global add carbon-now-cli
+# yarn global add is.sh
 touch /Users/$(whoami)/.hushlogin
 mkdir -p /Users/$(whoami)/.ssh
 

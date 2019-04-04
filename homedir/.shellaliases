@@ -205,6 +205,7 @@ alias ff="fuck $@"
 alias mtop="glances"
 alias dotfiles='/usr/local/bin/git --git-dir=${MY_DOTFILES}/ --work-tree=$HOME'
 alias toggle-hot-corner="toggle-hot-corner.sh"
+alias code.photo="carbon-now $@"
 
 # Home
 alias tb="nc termbin.com 9999 | pbcopy"
@@ -215,7 +216,7 @@ alias dot="cd $MY_DOTFILES"
 alias dev="cd $MY_CODE"
 alias blog="cd $MY_BLOG"
 alias blog.write="typora $MY_BLOG/src"
-alias blog.pretty.code="s.carbon_now $@"
+alias blog.pretty.code="code.photo -p blog-master-present $@"
 alias not="notify $@"
 
 
