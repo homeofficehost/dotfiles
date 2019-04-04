@@ -230,12 +230,31 @@ bot "Git and NPM Settings"
 
 exec ./macos/apps/git.sh
 
-bot "I will keep installing thinks while you install voices"
-read -r -p "Would you like to change the default TTS (text-to-speech) voices? (y|N) [default=Y] " response
+bot "TTS (text-to-speech) voices"
+read -r -p "Would you like to install voices? (y|N) [default=Y] " response
 response=${response:-Y}
 if [[ $response =~ (yes|y|Y) ]];then
   npx voices -m
   ok
+fi
+
+###############################################################################
+# Golang                                                                      #
+###############################################################################
+
+if [ -z "$(which go)" ]; then
+  echo "Golang not available. Skipping!"
+else
+  go get -u github.com/ramya-rao-a/go-outline
+  go get -u github.com/nsf/gocode
+  go get -u github.com/uudashr/gopkgs/cmd/gopkgs
+  go get -u github.com/acroca/go-symbols
+  go get -u golang.org/x/tools/cmd/guru
+  go get -u golang.org/x/tools/cmd/gorename
+  go get -u github.com/rogpeppe/godef
+  go get -u sourcegraph.com/sqs/goreturns
+  go get -u github.com/golang/lint/golint
+  go get -u github.com/kardianos/govendor
 fi
 
 running "cleanup homebrew"
