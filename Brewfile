@@ -385,6 +385,8 @@ cask "vlc"
 cask "mpv"
 cask "gisto"
 cask "typora"
+# Command-line utility for uploading Gists
+brew "gist"
 cask "marp"
 cask "vnc-viewer"
 cask "transmit-disk"
@@ -403,4 +405,3 @@ cask "font-hack-nerd-font"
 cask "0-ad"
 mas "Xcode", id: 497799835
 mas "Pages", id: 409201541
-mas "Xcode", id: 497799835
