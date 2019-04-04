@@ -1,16 +1,27 @@
 #########
-# MacOS #
+# macOS #
 #########
+# General
+*~
+.*.swp
 .DS_Store
 .AppleDouble
 .LSOverride
 
+# Icon must end with two \r
+Icon
+
 # Thumbnails
 ._*
 
-# Files that might appear on external disk
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
 .Spotlight-V100
+.TemporaryItems
 .Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -23,6 +34,7 @@ Temporary Items
 # Security #
 ############
 id_rsa
+*id_rsa
 
 ###########
 # Tooling #
