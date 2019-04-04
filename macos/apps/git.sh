@@ -5,11 +5,13 @@
 # --------------------------
 # TODO: configure based on keychain data
 ###########################
+source ./lib_sh/echos.sh
 
-local FULL_NAME=`git config --global user.name`
-local EMAIL=`git config --global user.email`
-local GITHUB_USERNAME=`git config --global github.user`
-local EDITOR=`git config --global core.editor`
+
+FULL_NAME=`git config --global user.name`
+EMAIL=`git config --global user.email`
+GITHUB_USERNAME=`git config --global github.user`
+EDITOR=`git config --global core.editor`
 
 if [[ -n "$FULL_NAME" ]]; then
 	fullname=`osascript -e "long user name of (system info)"`
@@ -49,7 +51,7 @@ if [[ -n "$EMAIL" ]]; then
 	        read -r -p "What is your email? " email
 	    done
 	fi
-	EMAIL=$email
+	EMAIL="${email}"
 
 	git config --global user.email "${EMAIL}"
 fi
@@ -62,11 +64,12 @@ if [[ -n "$GITHUB_USERNAME" ]]; then
 	git config --global github.user "${GITHUB_USERNAME}"
 fi
 
+running "Setting git configurations"
 git config --global color.ui true
 
 git config --global gpg.program $(which gpg)
 git config --global core.filemode true
-git config --global core.editor $VISUAL
+git config --global core.editor "${VISUAL:-'subl -n -w'}"
 git config --global core.excludesfile '~/.gitignore'
 
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
@@ -99,3 +102,6 @@ elif which kdiff3 &>/dev/null; then
 	git config --global diff.guitool kdiff3
 	git config --global merge.tool kdiff3
 fi
+ok
+
+exit 0
