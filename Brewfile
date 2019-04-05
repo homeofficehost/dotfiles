@@ -78,6 +78,7 @@ brew "openconnect"
 brew "reattach-to-user-namespace"
 # better/more recent version of screen
 brew "screen"
+brew "asciinema"
 brew "tmux"
 # Cross platform, open source .NET development framework
 brew "mono"
@@ -111,8 +112,6 @@ brew "node"
 # Ruby version manager
 brew "rbenv"
 brew "ruby"
-# Huge set of common tools for making games
-brew "godot-mono"
 
 ## Servers
 # Lightweight DNS forwarder and DHCP server
@@ -137,9 +136,7 @@ brew "exiftool"
 # need fontconfig to install/build fonts
 brew "fontconfig"
 # Graph visualization software from AT&T and Bell Labs
-brew 'graphviz', args:['with-bindings',
-                       "with-freetype",
-                       "with-librsvg"]
+brew 'graphviz'
 # Play, record, convert, and stream audio and video
 brew "ffmpeg", args: ["with-fdk-aac",  # high-quality audio codec
                       "with-fontconfig",
@@ -330,7 +327,6 @@ cask "kap"
 cask "amethyst"
 cask "diffmerge"
 cask "meld"
-cask "diff3"
 cask "balenaetcher"
 cask "brave-browser"
 cask "ccleaner"
@@ -364,6 +360,8 @@ cask "webstorm"
 cask "phpstorm"
 cask "sublime-text"
 cask "visual-studio-code"
+# Huge set of common tools for making games
+cask "godot-mono"
 cask "postman"
 cask "volt"
 cask "rocket-chat"
