@@ -113,7 +113,7 @@ No extra tooling, no symlinks, files are tracked on a version control system, yo
 
 # \\[._.]/ - Watch me running
 
-[![asciicast](https://asciinema.org/a/BDPYj49TIk8lESQTovjWnsT87.png)](https://asciinema.org/a/BDPYj49TIk8lESQTovjWnsT87)
+[![asciicast](https://asciinema.org/a/Sl5Qsv1EGHaJR6hcUR1No3OiD.png)](https://asciinema.org/a/Sl5Qsv1EGHaJR6hcUR1No3OiD)
 
 ![Running](http://media.giphy.com/media/5xtDarwenxEoFeIMEM0/giphy.gif)
 
