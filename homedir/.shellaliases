@@ -219,6 +219,7 @@ alias dev="cd $MY_CODE"
 alias blog="cd $MY_BLOG"
 alias blog.write="typora $MY_BLOG/src"
 alias blog.pretty.code="code.photo -p blog-master-present $@"
+alias a.diff="$EDITOR_DIFF"
 alias not="notify $@"
 
 
@@ -301,8 +302,9 @@ function a.create_react_app() {
 	init_gitlab $name $description
 	npx okimdone
 }
+alias f.rm_all_node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
+
 alias a.git_gui_here="fork ."
-alias a.rm_all_node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
 alias a.rm_node_modules_reyarn_redev="rm -Rf node_modules && rm yarn.lock && yarn; yarn dev"
 alias a.sort_package_json="npx sort-package-json $@"
 alias a.npm_check="npx npm-check $@"

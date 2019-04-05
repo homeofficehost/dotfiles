@@ -6,6 +6,7 @@ else
   export EDITOR='vi'
   export VISUAL='subl -n -w'
 fi
+EDITOR_DIFF='meld'
 
 export HOMEBREW_EDITOR=$VISUAL
 # bindkey -v # Disabled for crontab be able to load
