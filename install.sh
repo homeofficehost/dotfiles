@@ -284,7 +284,7 @@ fi
 bot "Setting macOS sensitive default settings"
 ###############################################################################
 
-exec ./scripts/mac-init.sh
+exec ./scripts/init-mac.sh
 
 ###############################################################################
 bot "Developer default settings"

@@ -206,7 +206,8 @@ alias mtop="glances"
 alias dotfiles='/usr/local/bin/git --git-dir=${MY_DOTFILES}/ --work-tree=$HOME'
 alias toggle-hot-corner="toggle-hot-corner.sh"
 alias code.photo="carbon-now $@"
-alias f.create_macOS_usb_installer="macos-setup.sh $@"
+alias f.create_usb_macos_installer="create-macos.sh $@"
+alias f.create_usb_udf_format="create-udf.sh $@"
 
 # Home
 alias tb="nc termbin.com 9999 | pbcopy"
