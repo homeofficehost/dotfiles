@@ -221,7 +221,7 @@ alias blog.write="typora $MY_BLOG/src"
 alias blog.pretty.code="code.photo -p blog-master-present $@"
 alias a.diff="$EDITOR_DIFF"
 alias not="notify $@"
-
+alias blog.rec=blog_rec.sh $@
 
 function take_my_wifi {
 	SSID="$(sudo npx osx-wifi-cli)"
@@ -260,7 +260,7 @@ function init_npm {
 
 function a.create_vuepress_project() {
 	name=${1:-'my-app'}
-	description=${1:-'my-app description'}
+	description=${2:-'my-app description'}
 	mkdir -p $name && cd $name
 	init_git
 	init_npm yarn webstorm
@@ -269,7 +269,7 @@ function a.create_vuepress_project() {
 }
 function a.create_node_project() {
 	name=${1:-'my-app'}
-	description=${1:-'my-app description'}
+	description=${2:-'my-app description'}
 	mkdir -p $name && cd $name && mkdir src && touch src/index.js
 	init_git
 	init_npm yarn webstorm
