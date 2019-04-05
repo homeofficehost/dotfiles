@@ -120,7 +120,7 @@ bot "checking if cask CLI is already installed"
 output=$(brew tap | grep cask)
 if [[ $? != 0 ]]; then
   running "installing brew-cask"
-  require_brew caskroom/cask/brew-cask;ok
+  require_brew caskroom/cask/brew-cask
 fi;ok
 
 # skip those GUI clients, git command-line all the way
@@ -220,7 +220,7 @@ if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
     sudo rm -f /Library/Desktop\ Pictures/Sierra.jpg > /dev/null 2>&1
     sudo rm -f /Library/Desktop\ Pictures/Sierra\ 2.jpg > /dev/null 2>&1
     sleep 2; # Wait a bit to make sure the os recreation
-    npx wallpaper-cli img/wallpaper.jpg;ok
+    npx --quiet wallpaper-cli img/wallpaper.jpg;ok
   fi
 fi
 
@@ -233,13 +233,13 @@ npm config set prefix ~/.local;ok
 bot "Git and NPM Settings"
 ###############################################################################
 
-exec ./macos/apps/git.sh
+. ./macos/apps/git.sh
 
 bot "TTS (text-to-speech) voices"
-read -r -p "Would you like to install voices? (y|N) [default=Y] " response
-response=${response:-Y}
+read -r -p "Would you like to install voices? (y|N) [default=N] " response
+response=${response:-N}
 if [[ $response =~ (yes|y|Y) ]];then
-  npx voices -m
+  npx --quiet voices -m
   ok
 fi
 
@@ -284,7 +284,7 @@ fi
 bot "Setting macOS sensitive default settings"
 ###############################################################################
 
-exec ./scripts/init-mac.sh
+. ./scripts/init-macos.sh
 
 ###############################################################################
 bot "Developer default settings"
@@ -370,7 +370,7 @@ defaults read com.stairways.keyboardmaestro.editor DisplayWelcomeWindow -bool fa
 ###############################################################################
 bot "The End"
 ###############################################################################
-npx okimdone
+npx --quiet okimdone
 bot "Woot! All done. Killing this terminal and launch iTerm"
 sleep 2
 

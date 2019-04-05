@@ -161,5 +161,3 @@ if [[ -z "$NPM_FULL_NAME" ]] || [[ -z "$NPM_EMAIL" ]] || [[ -z "$NPM_GITHUB_USER
 		ok
 	fi
 fi
-
-exit 0
