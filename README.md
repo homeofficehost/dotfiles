@@ -115,8 +115,6 @@ No extra tooling, no symlinks, files are tracked on a version control system, yo
 
 [![asciicast](https://asciinema.org/a/Sl5Qsv1EGHaJR6hcUR1No3OiD.png)](https://asciinema.org/a/Sl5Qsv1EGHaJR6hcUR1No3OiD)
 
-![Running](http://media.giphy.com/media/5xtDarwenxEoFeIMEM0/giphy.gif)
-
 ![iTerm Screenshot](https://raw.githubusercontent.com/thomasgroch/dotfiles/master/img/term.png)
 
 launch fullscreen hit `Command + Enter`
