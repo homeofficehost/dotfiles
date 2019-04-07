@@ -208,6 +208,7 @@ alias toggle-hot-corner="toggle-hot-corner.sh"
 alias code.photo="carbon-now $@"
 alias f.create_usb_macos_installer="create-macos.sh $@"
 alias f.create_usb_udf_format="create-udf.sh $@"
+alias inspect="npx -q nodejs-dashboard $@"
 
 # Home
 alias tb="nc termbin.com 9999 | pbcopy"
@@ -220,6 +221,7 @@ alias blog="cd $MY_BLOG"
 alias blog.write="typora $MY_BLOG/src"
 alias blog.pretty.code="code.photo -p blog-master-present $@"
 alias a.diff="$EDITOR_DIFF"
+alias a.inspect="inspect $@"
 alias not="notify $@"
 alias blog.rec=blog_rec.sh $@
 

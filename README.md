@@ -1,5 +1,6 @@
 # dotfiles
 
+Re-create my dev environment if my laptop fails
 Robot Automated Configuration, Preferences and Software Installation for 🖥️ macOS + :octocat: My Awesome `.` files project
 
 [![xkcd: Automation](http://imgs.xkcd.com/comics/automation.png)](http://xkcd.com/1319/)

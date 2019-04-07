@@ -20,7 +20,7 @@ bot "Hi! I'm going to install tooling and tweak your system settings. Here I go.
 bot "I need you to enter your sudo password so I can install some things."
 
 # Ask for the administrator password upfront
-if ! sudo grep -q "%wheel   ALL=(ALL) NOPASSWD: ALL #atomantic/dotfiles" "/etc/sudoers"; then
+if ! sudo grep -q "%wheel   ALL=(ALL) NOPASSWD: ALL # dotfiles" "/etc/sudoers"; then
 
   sudo -v
 
@@ -285,6 +285,8 @@ bot "Setting macOS sensitive default settings"
 ###############################################################################
 
 . ./scripts/init-macos.sh
+
+. ./macos/apps/others.sh
 
 ###############################################################################
 bot "Developer default settings"
