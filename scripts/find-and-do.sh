@@ -1,12 +1,9 @@
 #!/bin/bash
 # find-and-do.sh
-find /home/ -name 'timthumb.php' -type f -printf '%h\n' | while read line
+# find . -name "${1}" -exec echo {} \; -exec echo {} \;
+
+find . -maxdepth 2 -mindepth 2 -name "${1}" -type f | while read line
 do
-#Remove the old thumb
-rm -rf $line/timthumb.php
- 
-#Copy fixed thumb
-cp timthumb-fix.php $line/timthumb.php
- 
-echo $line " done";
+	# eval "${@:2} ${1}"
+	eval "echo "------ ${line} ------"; cat ${line} | jq '.scripts'"
 done

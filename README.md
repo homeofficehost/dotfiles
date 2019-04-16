@@ -1,5 +1,8 @@
 # dotfiles
 
+This repository contains a collection of scripts, tools and configurations that help me to be more productive in my everyday job as a software web developer. The repository will grow over time, as I publish more scripts.
+
+
 Re-create my dev environment if my laptop fails
 Robot Automated Configuration, Preferences and Software Installation for 🖥️ macOS + :octocat: My Awesome `.` files project
 
@@ -374,6 +377,12 @@ The following will only happen if you agree on the prompt
 # References
 
 - [Change macOS user preferences via command line](https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/)
+
+- https://github.com/bvaughn/progress-estimator
+
+- [Git hooks made easy](https://github.com/typicode/husky)
+
+- [setup local dev tampermonkey](https://stackoverflow.com/questions/49509874/how-to-update-tampermonkey-script-to-a-local-file-programatically)
 
 # Credits
 I've rewritten my dotfiles many times, and each time I've been influenced by someone new. These people include:

@@ -1,4 +1,5 @@
 # Preferred default editor for local and remote sessions
+SSH_CONNECTION=false
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
   export VISUAL=$EDITOR

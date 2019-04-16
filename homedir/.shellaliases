@@ -180,25 +180,29 @@ function emails() {
 	results=$(echo "$(curl -Ls $1) $(whois $1)" | node $MY_DOTFILES/scripts/find-emails-tool/src/index.js | jq '.[].address' | sort | uniq -i)
 	echo "${results//\"}" | grep -vF "`cat $MY_DOTFILES/scripts/find-emails-tool/excluded_strings.txt`"
 }
-function defaults_debug() {
-	before=$(defaults read $1)
-	echo "Now set the new config"
-	echo -n "Press any key to continue..." && read
-	after=$(defaults read $1)
-	colordiff <(echo "${before}" ) <(echo "${after}" )
-	if [[ $? = 0 ]]; then
-		echo "nothing changed."
-	fi
-}
+# function defaults_debug() {
+# 	before=$(defaults read $1)
+# 	echo "Now set the new config"
+# 	echo -n "Press any key to continue..." && read
+# 	after=$(defaults read $1)
+# 	colordiff <(echo "${before}" ) <(echo "${after}" )
+# 	if [[ $? = 0 ]]; then
+# 		echo "nothing changed."
+# 	fi
+# }
 # backup without stash files before you switch branches
 function git_backup {
 	mkdir -p .config-backup && \
 	config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
 	xargs -I{} mv {} .config-backup/{}
 }
+function s.cat_npm_scripts {
+	find . -maxdepth 2 -mindepth 2 -name "${1}" -exec cat {} | jq '.scripts' \;
+}
 
 
 # Apps
+alias jumpcutter="exec ${HOME}/dev/jumpcutter/run.sh $@"
 alias notify="npx node-notifier-cli notify --title 'Notification' -s --open $@"
 alias typora="open -a typora"
 alias ff="fuck $@"
@@ -215,12 +219,18 @@ alias tb="nc termbin.com 9999 | pbcopy"
 alias asd="waitforssh.sh $@"
 alias desktop="cd ~/Desktop"
 alias desk="desktop"
+alias olx="cd ~/olx"
 alias dot="cd $MY_DOTFILES"
 alias dev="cd $MY_CODE"
 alias blog="cd $MY_BLOG"
 alias blog.write="typora $MY_BLOG/src"
 alias blog.pretty.code="code.photo -p blog-master-present $@"
+alias d.fix_video="jumpcutter"
 alias a.diff="$EDITOR_DIFF"
+alias a.onchange="npx -q onchange"
+alias a.onerror="npx -q onerror"
+alias a.find_empty_dirs="find . -type d -empty -print"
+alias a.rm_empty_dirs="find . -type d -empty -delete"
 alias a.inspect="inspect $@"
 alias not="notify $@"
 alias blog.rec=blog_rec.sh $@

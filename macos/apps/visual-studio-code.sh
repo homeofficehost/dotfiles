@@ -23,6 +23,9 @@ else
   code --install-extension mitchdenny.ecdc
   code --install-extension msjsdiag.debugger-for-chrome
   code --install-extension wmaurer.change-case
+  code --install-extension wix.vscode-import-cost
+  code --install-extension pnp.polacode
+  code --install-extension vscode-icons-team.vscode-icons
   
   # Languages
   code --install-extension DotJoshJohnson.xml
