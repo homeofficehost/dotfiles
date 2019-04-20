@@ -247,8 +247,6 @@ brew "m4"
 brew "logstalgia"
 # Fast and user friendly build system
 brew "meson"
-# Lightweight text-to-speech engine based on CMU Flite
-brew "mimic"
 # Text to speech, software speech synthesizer
 brew "espeak"
 brew "prettyping"
