@@ -193,6 +193,8 @@ brew "binwalk"
 brew "fcrackzip"
 # Port scanning utility for large networks
 brew "nmap"
+# ARP scanning and fingerprinting tool
+brew "arp-scan"
 # Network logon cracker which supports many services
 brew "hydra"
 # Featureful UNIX password cracker
@@ -319,11 +321,12 @@ brew "cloc"
 brew "fdupes"
 brew "npm"
 brew "yarn"
+# Highest-quality GIF encoder based on pngquant
+brew "gifski"
 #############################
 cask "fork"
 cask "motrix"
 cask "kap"
-cask "gifski"
 cask "amethyst"
 cask "diffmerge"
 cask "meld"
@@ -384,6 +387,7 @@ cask "srware-iron"
 cask "tor-browser"
 cask "transmission"
 cask "vlc"
+cask "audio-hijack"
 cask "mpv"
 cask "typora"
 cask "lepton"

@@ -17,6 +17,18 @@ alias bpc='git add -A . && git cam "$(buzzphrase 2)" && git push'
 # recursive dos2unix in current directory
 alias dos2lf='dos2unix `find ./ -type f`'
 
+# list all IPs in the connected network
+function allaround(){
+	if=$(route -n get 0.0.0.0 2>/dev/null | awk '/interface: / {print $2}')
+
+	if [ -n "$if" ]; then
+	    echo "Default route is through interface $if"
+	    sudo arp-scan --interface="${if}" --localnet
+	else
+	    echo "No default route found"
+	fi
+}
+
 # Flush the DNS on Mac
 alias dnsflush='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
 
@@ -69,6 +81,7 @@ alias l="colorls --long --group-directories-first --almost-all --git-status"
 alias j="lsd -la"
 alias qq="cat ~/.zsh_history | grep "
 alias ww="which "
+alias ee="open https://litewrite.net/"
 alias ping="prettyping $@"
 
 alias nginx.start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
@@ -216,12 +229,13 @@ alias inspect="npx -q nodejs-dashboard $@"
 
 # Home
 alias tb="nc termbin.com 9999 | pbcopy"
-alias asd="waitforssh.sh $@"
+alias a.ssh="waitforssh.sh $@"
 alias desktop="cd ~/Desktop"
 alias desk="desktop"
 alias olx="cd ~/olx"
 alias dot="cd $MY_DOTFILES"
 alias dev="cd $MY_CODE"
+alias pi="cd ~/pi"
 alias blog="cd $MY_BLOG"
 alias blog.write="typora $MY_BLOG/src"
 alias blog.pretty.code="code.photo -p blog-master-present $@"

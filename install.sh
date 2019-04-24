@@ -260,6 +260,7 @@ else
   go get -u sourcegraph.com/sqs/goreturns
   go get -u github.com/golang/lint/golint
   go get -u github.com/kardianos/govendor
+  go get -u go.coder.com/sshcode
 fi
 
 running "cleanup homebrew"

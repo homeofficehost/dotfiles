@@ -1,6 +1,7 @@
 #!/bin/sh
 
 TMUX_CMD="source ~/.profile && tmux -u -CC attach || tmux -u -CC"
+# TODO: Check if remote got tmux instaled
 ssh -t $1 $TMUX_CMD
 while test $? -gt 0
 do
