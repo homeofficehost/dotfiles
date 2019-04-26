@@ -1,218 +1,8 @@
 #!/bin/sh
 
-#################################
-# Simple Program Name Shortening
-alias g=git
-
-#############################
-# Utilities
-
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
-# buzzphrase commit
-# used for my presentation decks when I have nothing to say about the commit
-alias bpc='git add -A . && git cam "$(buzzphrase 2)" && git push'
-
-# recursive dos2unix in current directory
-alias dos2lf='dos2unix `find ./ -type f`'
-
-# list all IPs in the connected network
-function allaround(){
-	if=$(route -n get 0.0.0.0 2>/dev/null | awk '/interface: / {print $2}')
-
-	if [ -n "$if" ]; then
-	    echo "Default route is through interface $if"
-	    sudo arp-scan --interface="${if}" --localnet
-	else
-	    echo "No default route found"
-	fi
-}
-
-# Flush the DNS on Mac
-alias dnsflush='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
-
-# Empty the Trash on all mounted volumes and the main HDD.
-# Also, clear Apple’s System Logs to improve shell startup speed.
-# Finally, clear download history from quarantine. https://mths.be/bum
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
-
-# Files being opened
-alias files.open='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep|grep open'
-# Files used, anywhere on the filesystem
-alias files.usage='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep'
-# Files in use in the Users directory
-alias files.usage.user='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep|grep Users'
-
-alias game.seek='txt="";for i in {1..20};do txt=$txt"$i. ";done;txt=$txt" Ready or not, here I come";say $txt'
-
-# Git Tools
-# assumes git-up is installed (gem install git-up)
-# switches to 'develop' branch, updates all local branches (nicely using git-up), removes all local branches already merged into 'develop'
-alias gitdev='git checkout develop; git-up; git branch --merged develop | grep -v "\* develop" | xargs -n 1 git branch -d; git branch;'
-
-# IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias iplocal="ipconfig getifaddr en0"
-alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
-
-# Show active network interfaces
-alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
-
-# Show network connections
-# Often useful to prefix with SUDO to see more system level network usage
-alias network.connections='lsof -l -i +L -R -V'
-alias network.established='lsof -l -i +L -R -V | grep ESTABLISHED'
-alias network.externalip='curl -s http://checkip.dyndns.org/ | sed "s/[a-zA-Z<>/ :]//g"'
-alias network.internalip="ifconfig en0 | egrep -o '([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)'"
-
-# alias laratail="tail -f $(find /laravel/storage/logs | tail -n 1)"
-
-alias gs="git status"
-alias gl="git log"
-alias gcom="git checkout master"
-alias gaa="git add ."
-alias gc="git commit -m "
-alias gp="git push"
-alias nah="git reset --hard && git clean -df"
-
-
-alias l="colorls --long --group-directories-first --almost-all --git-status"
-alias j="lsd -la"
-alias qq="cat ~/.zsh_history | grep "
-alias ww="which "
-alias ee="open https://litewrite.net/"
-alias ping="prettyping $@"
-
-alias nginx.start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
-alias nginx.stop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
-alias nginx.restart='nginx.stop && nginx.start'
-alias nginx.config='sudo $EDITOR /usr/local/etc/nginx/valet/valet.conf'
-alias nginx.config='$EDITOR /usr/local/etc/nginx/valet/valet.conf'
-alias nginx.configtest='sudo nginx -t'
-
-alias php.start="sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.php71.plist"
-alias php.stop="sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.php71.plist"
-alias php.restart='php-fpm.stop && php-fpm.start'
-
-alias mariadb.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
-alias mariadb.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
-alias mariadb.logs="tail -250f /tmp/mysql.log"
-
-alias mysql.new='mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $1;"'
-alias mysql.rm='mysql -uroot -e "DROP DATABASE IF EXISTS $1;"'
-
-alias mysql.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
-alias mysql.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
-alias mysql.restart='mysql.stop && mysql.start'
-
-# newest log file matching
-alias mariadb.logs='tail -250f /var/log/mysql/all.log'
-alias ci.logs='tail -250f $(ls -t application/logs/log-* | head -1)'
-alias nginx.logs.error='tail -250f /Users/tg/.valet/Log/nginx-error.log'
-alias nginx.logs.access='tail -250f /Users/tg/.valet/Log/nginx-access.log'
-alias nginx.logs.default.access='tail -250f /usr/local/etc/nginx/logs/default.access.log'
-alias nginx.logs.default-ssl.access='tail -250f /usr/local/etc/nginx/logs/default-ssl.access.log'
-alias nginx.logs.phpmyadmin.error='tail -250f /usr/local/etc/nginx/logs/phpmyadmin.error.log'
-alias nginx.logs.phpmyadmin.access='tail -250f /usr/local/etc/nginx/logs/phpmyadmin.access.log'
-
-alias router='dig | grep "SERVER: "'
-
-
-# Print each PATH entry on a separate line
-alias path='echo -e ${PATH//:/\\n}'
-
-# Copy and paste and prune the usless newline
-alias pbcopynn='tr -d "\n" | pbcopy'
-
-# firewall management
-alias port-forward-enable="echo 'rdr pass inet proto tcp from any to any port 2376 -> 127.0.0.1 port 2376' | sudo pfctl -ef -"
-alias port-forward-disable="sudo pfctl -F all -f /etc/pf.conf"
-alias port-forward-list="sudo pfctl -s nat"
-
-# push git repo, but first, use git-up to make sure you are in sync and rebased with the remote
-alias pushup="git-up && git push"
-# Set the extended MacOS attributes on a file such that Quicklook will open it as text
-alias qltext='xattr -wx com.apple.FinderInfo "54 45 58 54 21 52 63 68 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" $1'
-#alias qltext2='osascript -e tell application "Finder" to set file type of ((POSIX file "$1") as alias) to "TEXT"'
-
-# Reload the shell (i.e. invoke as a login shell)
-alias reload="exec $SHELL -l"
-
-# Disable Spotlight
-alias spotoff="sudo mdutil -a -i off"
-# Enable Spotlight
-alias spoton="sudo mdutil -a -i on"
-
-# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
-
-alias vtop="vtop --theme wizard"
-
-alias jsonfix="pbpaste | jq . | pbcopy"
-
-alias td="todo.sh"
-alias tda="todo.sh add"
-alias tdl="todo.sh list"
-alias tdd="todo.sh do"
-
-alias pstorm='open -a PhpStorm'
-alias pstorm='open -a PhpStorm'
-alias ws='open -a Webstorm'
-alias ws='open -a Webstorm'
-
-alias pi.magazine="wget -A pdf -m -p -E -k -K -npc https://www.raspberrypi.org/magpi-issues/"
-alias pi.findit="dns-sd -G v4 raspberrypi.local"
-
-alias down="aria2c --max-connection-per-server=16 --min-split-size=1M "
-
-alias stress="ab -n 10000 -c 10 "
-alias "?"="tldr"
-
-alias curl.download="curl -L -O -C - "
-
-# Reboot my home Linksys WAG160N / WAG54 / WAG320 / WAG120N Router / Gateway from *nix.
-alias rebootlinksys="curl -u 'admin:my-super-password' 'http://192.168.1.2/setup.cgi?todo=reboot'"
-
-# Reboot tomato based Asus NT16 wireless bridge
-alias reboottomato="ssh admin@192.168.1.1 /sbin/reboot"
-
-alias brew.off="sudo brew services stop --all && brew services stop --all"
-alias brew.on="sudo brew services start dnsmasq && \
-	brew services start mariadb && \
-	sudo brew services start nginx && \
-	brew services start redis && \
-	sudo brew services start php;"
-
-findc() {
-	find $1 -type f -exec grep --color=auto -nH $2 /dev/null {} +
-}
-alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
-
-function emails() {
-	results=$(echo "$(curl -Ls $1) $(whois $1)" | node $MY_DOTFILES/scripts/find-emails-tool/src/index.js | jq '.[].address' | sort | uniq -i)
-	echo "${results//\"}" | grep -vF "`cat $MY_DOTFILES/scripts/find-emails-tool/excluded_strings.txt`"
-}
-# function defaults_debug() {
-# 	before=$(defaults read $1)
-# 	echo "Now set the new config"
-# 	echo -n "Press any key to continue..." && read
-# 	after=$(defaults read $1)
-# 	colordiff <(echo "${before}" ) <(echo "${after}" )
-# 	if [[ $? = 0 ]]; then
-# 		echo "nothing changed."
-# 	fi
-# }
-# backup without stash files before you switch branches
-function git_backup {
-	mkdir -p .config-backup && \
-	config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-	xargs -I{} mv {} .config-backup/{}
-}
-function s.cat_npm_scripts {
-	find . -maxdepth 2 -mindepth 2 -name "${1}" -exec cat {} | jq '.scripts' \;
-}
-
+###############################################################################
+# Development section
+###############################################################################
 
 # Apps
 alias jumpcutter="exec ${HOME}/dev/jumpcutter/run.sh $@"
@@ -248,12 +38,237 @@ alias a.rm_empty_dirs="find . -type d -empty -delete"
 alias a.inspect="inspect $@"
 alias not="notify $@"
 alias blog.rec=blog_rec.sh $@
+# Lock the screen (when going AFK)
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# buzzphrase commit
+# used for my presentation decks when I have nothing to say about the commit
+alias bpc='git add -A . && git cam "$(buzzphrase 2)" && git push'
+
+# recursive dos2unix in current directory
+alias dos2lf='dos2unix `find ./ -type f`'
+
+# Empty the Trash on all mounted volumes and the main HDD.
+# Also, clear Apple’s System Logs to improve shell startup speed.
+# Finally, clear download history from quarantine. https://mths.be/bum
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+
+# Files being opened
+alias files.open='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep|grep open'
+# Files used, anywhere on the filesystem
+alias files.usage='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep'
+# Files in use in the Users directory
+alias files.usage.user='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep|grep Users'
+
+# Git Tools
+# assumes git-up is installed (gem install git-up)
+# switches to 'develop' branch, updates all local branches (nicely using git-up), removes all local branches already merged into 'develop'
+alias gitdev='git checkout develop; git-up; git branch --merged develop | grep -v "\* develop" | xargs -n 1 git branch -d; git branch;'
+
+# alias laratail="tail -f $(find /laravel/storage/logs | tail -n 1)"
+alias g=git
+alias gs="git status"
+alias gl="git log"
+alias gcom="git checkout master"
+alias gaa="git add ."
+alias gc="git commit -m "
+alias gp="git push"
+alias nah="git reset --hard && git clean -df"
+
+
+alias l="colorls --long --group-directories-first --almost-all --git-status"
+alias j="lsd -la"
+alias qq="cat ~/.zsh_history | grep "
+alias ww="which "
+alias ee="open https://litewrite.net/"
+alias ping="prettyping $@"
+
+
+###############################################################################
+# Fun section
+###############################################################################
+
+alias game.seek='txt="";for i in {1..20};do txt=$txt"$i. ";done;txt=$txt" Ready or not, here I come";say $txt'
+
+###############################################################################
+# Service section
+###############################################################################
+
+alias nginx.start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
+alias nginx.stop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
+alias nginx.restart='nginx.stop && nginx.start'
+alias nginx.config='sudo $EDITOR /usr/local/etc/nginx/valet/valet.conf'
+alias nginx.config='$EDITOR /usr/local/etc/nginx/valet/valet.conf'
+alias nginx.configtest='sudo nginx -t'
+
+alias php.start="sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.php71.plist"
+alias php.stop="sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.php71.plist"
+alias php.restart='php-fpm.stop && php-fpm.start'
+
+alias mariadb.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
+alias mariadb.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
+alias mariadb.logs="tail -250f /tmp/mysql.log"
+
+alias mysql.new='mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $1;"'
+alias mysql.rm='mysql -uroot -e "DROP DATABASE IF EXISTS $1;"'
+
+alias mysql.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
+alias mysql.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
+alias mysql.restart='mysql.stop && mysql.start'
+
+# newest log file matching
+alias mariadb.logs='tail -250f /var/log/mysql/all.log'
+alias ci.logs='tail -250f $(ls -t application/logs/log-* | head -1)'
+alias nginx.logs.error='tail -250f /Users/tg/.valet/Log/nginx-error.log'
+alias nginx.logs.access='tail -250f /Users/tg/.valet/Log/nginx-access.log'
+alias nginx.logs.default.access='tail -250f /usr/local/etc/nginx/logs/default.access.log'
+alias nginx.logs.default-ssl.access='tail -250f /usr/local/etc/nginx/logs/default-ssl.access.log'
+alias nginx.logs.phpmyadmin.error='tail -250f /usr/local/etc/nginx/logs/phpmyadmin.error.log'
+alias nginx.logs.phpmyadmin.access='tail -250f /usr/local/etc/nginx/logs/phpmyadmin.access.log'
+
+alias brew.off="sudo brew services stop --all && brew services stop --all"
+alias brew.on="sudo brew services start dnsmasq && \
+	brew services start mariadb && \
+	sudo brew services start nginx && \
+	brew services start redis && \
+	sudo brew services start php;"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
+# Copy and paste and prune the usless newline
+alias pbcopynn='tr -d "\n" | pbcopy'
+
+# push git repo, but first, use git-up to make sure you are in sync and rebased with the remote
+alias pushup="git-up && git push"
+# Set the extended MacOS attributes on a file such that Quicklook will open it as text
+alias qltext='xattr -wx com.apple.FinderInfo "54 45 58 54 21 52 63 68 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" $1'
+#alias qltext2='osascript -e tell application "Finder" to set file type of ((POSIX file "$1") as alias) to "TEXT"'
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec $SHELL -l"
+
+# Disable Spotlight
+alias spotoff="sudo mdutil -a -i off"
+# Enable Spotlight
+alias spoton="sudo mdutil -a -i on"
+
+# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+
+alias jsonfix="pbpaste | jq . | pbcopy"
+
+alias curl.download="curl -L -O -C - "
+
+alias down="aria2c --max-connection-per-server=16 --min-split-size=1M "
+
+alias "?"="tldr"
+
+alias td="todo.sh"
+alias tda="todo.sh add"
+alias tdl="todo.sh list"
+alias tdd="todo.sh do"
+
+alias pstorm='open -a PhpStorm'
+alias pstorm='open -a PhpStorm'
+alias ws='open -a Webstorm'
+alias ws='open -a Webstorm'
+
+###############################################################################
+# Audit/Scan section
+###############################################################################
+
+alias stress="ab -n 10000 -c 10 "
+
+###############################################################################
+# RaspberryPi section
+###############################################################################
+
+alias pi.magazine="wget -A pdf -m -p -E -k -K -npc https://www.raspberrypi.org/magpi-issues/"
+alias pi.findit="dns-sd -G v4 raspberrypi.local"
+
+###############################################################################
+# Network section
+###############################################################################
+
+# Reboot my home Linksys WAG160N / WAG54 / WAG320 / WAG120N Router / Gateway from *nix.
+alias rebootlinksys="curl -u 'admin:my-super-password' 'http://192.168.1.2/setup.cgi?todo=reboot'"
+
+# Reboot tomato based Asus NT16 wireless bridge
+alias reboottomato="ssh admin@192.168.1.1 /sbin/reboot"
+
+alias router='dig | grep "SERVER: "'
+
+# firewall management
+alias port-forward-enable="echo 'rdr pass inet proto tcp from any to any port 2376 -> 127.0.0.1 port 2376' | sudo pfctl -ef -"
+alias port-forward-disable="sudo pfctl -F all -f /etc/pf.conf"
+alias port-forward-list="sudo pfctl -s nat"
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias iplocal="ipconfig getifaddr en0"
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# Show active network interfaces
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+
+# Flush the DNS on Mac
+alias dnsflush='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
+
+# Show network connections
+# Often useful to prefix with SUDO to see more system level network usage
+alias network.connections='lsof -l -i +L -R -V'
+alias network.established='lsof -l -i +L -R -V | grep ESTABLISHED'
+alias network.externalip='curl -s http://checkip.dyndns.org/ | sed "s/[a-zA-Z<>/ :]//g"'
+alias network.internalip="ifconfig en0 | egrep -o '([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)'"
+
+# list all IPs in the connected network
+function allaround(){
+	if=$(route -n get 0.0.0.0 2>/dev/null | awk '/interface: / {print $2}')
+
+	if [ -n "$if" ]; then
+	    echo "Default route is through interface $if"
+	    sudo arp-scan --interface="${if}" --localnet
+	else
+	    echo "No default route found"
+	fi
+}
 
 function take_my_wifi {
 	SSID="$(sudo npx osx-wifi-cli)"
 	PASS="$(npx wifi-password-cli)"
 	SSID=${SSID:21:-1}
 	npx qrcode "WIFI:T:WPA;S:${SSID};P:${PASS};;"
+}
+
+
+findc() {
+	find $1 -type f -exec grep --color=auto -nH $2 /dev/null {} +
+}
+alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
+
+function emails() {
+	results=$(echo "$(curl -Ls $1) $(whois $1)" | node $MY_DOTFILES/scripts/find-emails-tool/src/index.js | jq '.[].address' | sort | uniq -i)
+	echo "${results//\"}" | grep -vF "`cat $MY_DOTFILES/scripts/find-emails-tool/excluded_strings.txt`"
+}
+# function defaults_debug() {
+# 	before=$(defaults read $1)
+# 	echo "Now set the new config"
+# 	echo -n "Press any key to continue..." && read
+# 	after=$(defaults read $1)
+# 	colordiff <(echo "${before}" ) <(echo "${after}" )
+# 	if [[ $? = 0 ]]; then
+# 		echo "nothing changed."
+# 	fi
+# }
+# backup without stash files before you switch branches
+function git_backup {
+	mkdir -p .config-backup && \
+	config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+	xargs -I{} mv {} .config-backup/{}
+}
+function s.cat_npm_scripts {
+	find . -maxdepth 2 -mindepth 2 -name "${1}" -exec cat {} | jq '.scripts' \;
 }
 
 if test -z $GITLABCMD; then
