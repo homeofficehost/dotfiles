@@ -38,27 +38,55 @@ alias a.rm_empty_dirs="find . -type d -empty -delete"
 alias a.inspect="inspect $@"
 alias not="notify $@"
 alias blog.rec=blog_rec.sh $@
+
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
-# buzzphrase commit
-# used for my presentation decks when I have nothing to say about the commit
-alias bpc='git add -A . && git cam "$(buzzphrase 2)" && git push'
+alias l="colorls --long --group-directories-first --almost-all --git-status"
+alias j="lsd -la"
+alias qq="cat ~/.zsh_history | grep "
+alias ww="which "
+alias ee="open https://litewrite.net/"
+alias ping="prettyping $@"
 
-# recursive dos2unix in current directory
-alias dos2lf='dos2unix `find ./ -type f`'
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
+# Copy and paste and prune the usless newline
+alias pbcopynn='tr -d "\n" | pbcopy'
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec $SHELL -l"
+
+# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+
+alias jsonfix="pbpaste | jq . | pbcopy"
+
+alias curl.download="curl -L -O -C - "
+
+alias down="aria2c --max-connection-per-server=16 --min-split-size=1M "
+
+alias "?"="tldr"
+
+alias td="todo.sh"
+alias tda="todo.sh add"
+alias tdl="todo.sh list"
+alias tdd="todo.sh do"
+
+alias pstorm='open -a PhpStorm'
+alias pstorm='open -a PhpStorm'
+alias ws='open -a Webstorm'
+alias ws='open -a Webstorm'
 
 # Empty the Trash on all mounted volumes and the main HDD.
 # Also, clear Apple’s System Logs to improve shell startup speed.
 # Finally, clear download history from quarantine. https://mths.be/bum
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
-# Files being opened
-alias files.open='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep|grep open'
-# Files used, anywhere on the filesystem
-alias files.usage='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep'
-# Files in use in the Users directory
-alias files.usage.user='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep|grep Users'
+###############################################################################
+# Git section
+###############################################################################
 
 # Git Tools
 # assumes git-up is installed (gem install git-up)
@@ -75,20 +103,70 @@ alias gc="git commit -m "
 alias gp="git push"
 alias nah="git reset --hard && git clean -df"
 
+# push git repo, but first, use git-up to make sure you are in sync and rebased with the remote
+alias pushup="git-up && git push"
 
-alias l="colorls --long --group-directories-first --almost-all --git-status"
-alias j="lsd -la"
-alias qq="cat ~/.zsh_history | grep "
-alias ww="which "
-alias ee="open https://litewrite.net/"
-alias ping="prettyping $@"
+# buzzphrase commit
+# used for my presentation decks when I have nothing to say about the commit
+alias bpc='git add -A . && git cam "$(buzzphrase 2)" && git push'
 
+# backup without stash files before you switch branches
+function git_backup {
+	mkdir -p .config-backup && \
+	config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+	xargs -I{} mv {} .config-backup/{}
+}
 
 ###############################################################################
-# Fun section
+# Sysadmin section
 ###############################################################################
 
-alias game.seek='txt="";for i in {1..20};do txt=$txt"$i. ";done;txt=$txt" Ready or not, here I come";say $txt'
+alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
+
+# function defaults_debug() {
+# 	before=$(defaults read $1)
+# 	echo "Now set the new config"
+# 	echo -n "Press any key to continue..." && read
+# 	after=$(defaults read $1)
+# 	colordiff <(echo "${before}" ) <(echo "${after}" )
+# 	if [[ $? = 0 ]]; then
+# 		echo "nothing changed."
+# 	fi
+# }
+
+# Disable Spotlight
+alias spotoff="sudo mdutil -a -i off"
+# Enable Spotlight
+alias spoton="sudo mdutil -a -i on"
+
+# recursive dos2unix in current directory
+alias dos2lf='dos2unix `find ./ -type f`'
+
+# Files being opened
+alias files.open='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep|grep open'
+# Files used, anywhere on the filesystem
+alias files.usage='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep'
+# Files in use in the Users directory
+alias files.usage.user='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v grep|grep Users'
+
+# Set the extended MacOS attributes on a file such that Quicklook will open it as text
+alias qltext='xattr -wx com.apple.FinderInfo "54 45 58 54 21 52 63 68 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" $1'
+#alias qltext2='osascript -e tell application "Finder" to set file type of ((POSIX file "$1") as alias) to "TEXT"'
+
+# Crontab auto reload
+if test -z $CRONTABCMD; then
+    # allows to source zshrc twice
+    export CRONTABCMD=$(which crontab)
+    crontab()
+    {
+        if [[ $@ == "-e" ]]; then
+            $EDITOR ~/.crontab && $CRONTABCMD ~/.crontab
+        else
+            $CRONTABCMD $@
+        fi
+    }
+    $CRONTABCMD ~/.crontab
+fi
 
 ###############################################################################
 # Service section
@@ -132,47 +210,6 @@ alias brew.on="sudo brew services start dnsmasq && \
 	sudo brew services start nginx && \
 	brew services start redis && \
 	sudo brew services start php;"
-
-# Print each PATH entry on a separate line
-alias path='echo -e ${PATH//:/\\n}'
-
-# Copy and paste and prune the usless newline
-alias pbcopynn='tr -d "\n" | pbcopy'
-
-# push git repo, but first, use git-up to make sure you are in sync and rebased with the remote
-alias pushup="git-up && git push"
-# Set the extended MacOS attributes on a file such that Quicklook will open it as text
-alias qltext='xattr -wx com.apple.FinderInfo "54 45 58 54 21 52 63 68 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" $1'
-#alias qltext2='osascript -e tell application "Finder" to set file type of ((POSIX file "$1") as alias) to "TEXT"'
-
-# Reload the shell (i.e. invoke as a login shell)
-alias reload="exec $SHELL -l"
-
-# Disable Spotlight
-alias spotoff="sudo mdutil -a -i off"
-# Enable Spotlight
-alias spoton="sudo mdutil -a -i on"
-
-# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
-
-alias jsonfix="pbpaste | jq . | pbcopy"
-
-alias curl.download="curl -L -O -C - "
-
-alias down="aria2c --max-connection-per-server=16 --min-split-size=1M "
-
-alias "?"="tldr"
-
-alias td="todo.sh"
-alias tda="todo.sh add"
-alias tdl="todo.sh list"
-alias tdd="todo.sh do"
-
-alias pstorm='open -a PhpStorm'
-alias pstorm='open -a PhpStorm'
-alias ws='open -a Webstorm'
-alias ws='open -a Webstorm'
 
 ###############################################################################
 # Audit/Scan section
@@ -245,28 +282,12 @@ function take_my_wifi {
 findc() {
 	find $1 -type f -exec grep --color=auto -nH $2 /dev/null {} +
 }
-alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
 
 function emails() {
 	results=$(echo "$(curl -Ls $1) $(whois $1)" | node $MY_DOTFILES/scripts/find-emails-tool/src/index.js | jq '.[].address' | sort | uniq -i)
 	echo "${results//\"}" | grep -vF "`cat $MY_DOTFILES/scripts/find-emails-tool/excluded_strings.txt`"
 }
-# function defaults_debug() {
-# 	before=$(defaults read $1)
-# 	echo "Now set the new config"
-# 	echo -n "Press any key to continue..." && read
-# 	after=$(defaults read $1)
-# 	colordiff <(echo "${before}" ) <(echo "${after}" )
-# 	if [[ $? = 0 ]]; then
-# 		echo "nothing changed."
-# 	fi
-# }
-# backup without stash files before you switch branches
-function git_backup {
-	mkdir -p .config-backup && \
-	config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-	xargs -I{} mv {} .config-backup/{}
-}
+
 function s.cat_npm_scripts {
 	find . -maxdepth 2 -mindepth 2 -name "${1}" -exec cat {} | jq '.scripts' \;
 }
@@ -362,7 +383,6 @@ alias s.whereami="npx github:@rafaelrinaldi/whereami $@"
 alias s.buzzphrase="npx buzzphrase $@"
 alias s.carbon_now="npx carbon-now-cli $@"
 alias s.codeceptjs="npx codeceptjs $@"
-alias s.empty_trash="npx empty-trash-cli $@"
 alias s.filepizza="npx filepizza $@"
 alias s.fkill="npx fkill-cli $@"
 alias s.get-urls="npx get-urls-cli $@"
@@ -388,7 +408,7 @@ alias s.siteaudit="npx siteaudit $@"
 alias s.spoof="npx spoof $@"
 alias s.surge="npx surge $@"
 alias s.torrent="npx torrent $@"
-alias s.trash="npx trash-cli $@"
+alias s.empty_trash="npx empty-trash-cli $@"
 alias s.ungit="npx ungit $@"
 alias s.vtop="npx vtop $@"
 alias s.vuepress="npx vuepress $@"
@@ -414,6 +434,12 @@ alias l.eslint_plugin_react="npx eslint-plugin-react $@"
 alias l.eslint_config_prettier="npx eslint-config-prettier $@"
 alias l.eslint_plugin_prettier="npx eslint-plugin-prettier $@"
 
+
+###############################################################################
+# Fun section
+###############################################################################
+
+alias game.seek='txt="";for i in {1..20};do txt=$txt"$i. ";done;txt=$txt" Ready or not, here I come";say $txt'
 
 # A full set of cowsay aliases (includes all default cowsay options)
 alias pet.cow='npx cowsay $@'
@@ -469,18 +495,3 @@ alias pet.whale='npx cowsay $@ -f whale'
 alias pet.www='npx cowsay $@ -f www'
 
 alias lookbusy="cat /dev/urandom | hexdump -C | grep \"34 32\""
-
-# Crontab auto reload
-if test -z $CRONTABCMD; then
-    # allows to source zshrc twice
-    export CRONTABCMD=$(which crontab)
-    crontab()
-    {
-        if [[ $@ == "-e" ]]; then
-            $EDITOR ~/.crontab && $CRONTABCMD ~/.crontab
-        else
-            $CRONTABCMD $@
-        fi
-    }
-    $CRONTABCMD ~/.crontab
-fi
