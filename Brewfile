@@ -9,6 +9,8 @@ tap "homebrew/services"
 tap "puma/puma"
 tap "mas-cli/tap", pin: true
 ## Shell
+# Encrypted pass-through FUSE file system
+brew "encfs"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Program that can automate interactive applications
@@ -177,7 +179,9 @@ brew "gitlab-gem"
 # Add GitHub support to git on the command-line
 brew "hub"
 
-## Security
+## Security and penetration testing tool
+# Spoof your MAC address in macOS
+brew "spoof-mac"
 # Rootkit detector
 brew "chkrootkit"
 brew "pass"
@@ -203,6 +207,15 @@ brew "john"
 brew "mitmproxy"
 # Swiss army knife for network attacks and monitoring
 brew "bettercap"
+# SSL manipulation tools, \`mitmproxy --host\` runs on 8080
+# Man-in-the-middle attacks against SSL encrypted network connections
+brew "sslsplit"
+# Intercept, modify, replay, save HTTP/S traffic
+brew "mitmproxy"
+# DNS benchmark utility
+brew "namebench"
+# Graphical network analyzer and capture tool
+brew "wireshark"
 
 
 
@@ -319,6 +332,10 @@ brew "howdoi"
 brew "cloc"
 # Identify or delete duplicate files
 brew "fdupes"
+# Text-based window manager and terminal multiplexer
+brew "byobu"
+# Remote terminal application
+brew "mosh"
 brew "npm"
 brew "yarn"
 # Highest-quality GIF encoder based on pngquant
@@ -382,6 +399,11 @@ cask "nosqlbooster-for-mongodb"
 cask "winds"
 cask "postico"
 cask "spectacle"
+cask "ngrok"
+cask "charles"
+cask "knockknock"
+cask "icefloor"
+cask "metasploit"
 cask "db-browser-for-sqlite"
 cask "srware-iron"
 cask "tor-browser"
@@ -391,6 +413,8 @@ cask "audio-hijack"
 cask "mpv"
 cask "typora"
 cask "lepton"
+cask "xquartz"
+cask "dia"
 cask "marp"
 cask "vnc-viewer"
 cask "transmit-disk"
