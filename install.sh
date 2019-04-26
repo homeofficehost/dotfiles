@@ -29,7 +29,7 @@ if ! sudo grep -q "%wheel   ALL=(ALL) NOPASSWD: ALL # dotfiles" "/etc/sudoers"; 
 
   bot "Do you want me to setup this machine to allow you to run sudo without a password?\nPlease read here to see what I am doing:\nhttp://wiki.summercode.com/sudo_without_a_password_in_mac_os_x \n"
 
-  read -r -p "Make sudo passwordless? (y|N) [default=N] " response
+  read -t 7 -r -p "Make sudo passwordless? (y|N) [or wait 7 seconds for default=N] " response; echo ;
   response=${response:-N}
 
   if [[ $response =~ (yes|y|Y) ]];then
@@ -41,7 +41,7 @@ if ! sudo grep -q "%wheel   ALL=(ALL) NOPASSWD: ALL # dotfiles" "/etc/sudoers"; 
 fi
 
 # Changing the System Language
-read -r -p "Change OS language? (y|N) [default=N] " response
+read -t 7 -r -p "Change OS language? (y|N) [or wait 7 seconds for default=N] " response; echo ;
 response=${response:-N}
 if [[ $response =~ (yes|y|Y) ]];then
     sudo languagesetup
@@ -62,10 +62,10 @@ sudo systemsetup -setcomputersleep Off > /dev/null;ok
 running "Disabling Screen Saver (System Preferences > Desktop & Screen Saver > Start after: Never)"
 defaults -currentHost write com.apple.screensaver idleTime -int 0;ok
 
-read -r -p "Would you like to add/change the message on login window? (y|N) [default=N] " response
+read -t 7 -r -p "Would you like to add/change the message on login window? (y|N) [or wait 7 seconds for default=N] " response; echo ;
 response=${response:-N}
 if [[ $response =~ (yes|y|Y) ]];then
-  read -r -p "What message to use? " LOGIN_MESSAGE
+  read -t 7 -r -p "What message or wait 7 seconds for to use? " LOGIN_MESSAGE
   # Add a message to the login window
   sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "${LOGIN_MESSAGE}";ok
 fi
@@ -75,7 +75,7 @@ sudo spctl --master-disable
 sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
 defaults write com.apple.LaunchServices LSQuarantine -bool false;ok
 
-read -r -p "(Re)install ad-blocking /etc/hosts file from someonewhocares.org? (y|N) [default=Y] " response
+read -t 7 -r -p "(Re)install ad-blocking /etc/hosts file from someonewhocares.org? (y|N) [or wait 7 seconds for default=Y] " response; echo ;
 response=${response:-Y}
 if [[ $response =~ (yes|y|Y) ]];then
     running "Installing hosts file"
@@ -100,7 +100,7 @@ else
   action "Prevent Homebrew from gathering analytics"
   brew analytics off;ok
 
-  read -r -p "Do you like to upgrade any outdated packages? (y|N) [default=Y] " response
+  read -t 7 -r -p "Do you like to upgrade any outdated packages? (y|N) [or wait 7 seconds for default=Y] " response; echo ;
   response=${response:-Y}
 
   running "updating homebrew"
@@ -202,7 +202,7 @@ while [[ $response_retry_install =~ (yes|y|Y) ]]; do
     else
       error "brew bundle check exited with error code"
       bot "Often some programs are not installed."
-      read -r -p "Would you like to try again brew bundle? (y|N) [default=y]" response_retry_install
+      read -t 7 -r -p "Would you like to try again brew bundle? (y|N) [or wait 7 seconds for default=y]" response_retry_install; echo ;
       response_retry_install=${response_retry_install:-Y}
     fi
 done
@@ -210,7 +210,7 @@ done
 MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
 MD5_OLDWP=$(md5 $(npx wallpaper-cli) | awk '{print $4}')
 if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
-  read -r -p "Do you want to update desktop wallpaper? (y|N) [default=Y] " response
+  read -t 7 -r -p "Do you want to update desktop wallpaper? (y|N) [or wait 7 seconds for default=Y] " response; echo ;
   response=${response:-Y}
   if [[ $response =~ (yes|y|Y) ]]; then
     running "updating wallpaper image"
@@ -236,7 +236,7 @@ bot "Git and NPM Settings"
 . ./macos/apps/git.sh
 
 bot "TTS (text-to-speech) voices"
-read -r -p "Would you like to install voices? (y|N) [default=N] " response
+read -t 7 -r -p "Would you like to install voices? (y|N) [or wait 7 seconds for default=N] " response; echo ;
 response=${response:-N}
 if [[ $response =~ (yes|y|Y) ]];then
   npx --quiet voices -m
