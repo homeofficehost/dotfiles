@@ -1,4 +1,6 @@
 #!/bin/bash
+# https://vilimpoc.org/blog/2014/01/15/provisioning-os-x-and-disabling-unnecessary-services/
+# https://github.com/JayBrown/Disable-and-toggle-WebRTC-in-macOS-Safari
 
 # Ask for the administrator password upfront
 sudo -v

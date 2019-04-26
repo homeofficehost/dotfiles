@@ -16,6 +16,10 @@ function finish {
     brew link --overwrite --dry-run python@2
 }
 trap finish EXIT
+
+# Automatically randomize MAC address on update
+sudo npx spoof randomize wi-fi; sudo npx spoof randomize en4
+
 # Use python3 by default
 rm -f /usr/local/bin/python 2>&1 >/dev/null; ln -s $(which python3) /usr/local/bin/python
 
