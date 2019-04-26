@@ -18,6 +18,106 @@ osascript -e 'tell application "System Preferences" to quit'
 ok
 
 ##############################################################################
+bot "Privacy"
+##############################################################################
+
+running "permanently disable quarantine hidden download logs"
+:>~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2
+sudo chflags schg ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2;ok
+
+running "clear Bluetooth metadata."
+sudo defaults delete /Library/Preferences/com.apple.Bluetooth.plist DeviceCache
+sudo defaults delete /Library/Preferences/com.apple.Bluetooth.plist IDSPairedDevices
+sudo defaults delete /Library/Preferences/com.apple.Bluetooth.plist PANDevices
+sudo defaults delete /Library/Preferences/com.apple.Bluetooth.plist PANInterfaces
+sudo defaults delete /Library/Preferences/com.apple.Bluetooth.plist SCOAudioDevices
+ok
+
+running "clear printer job cache"
+sudo rm -rfv /var/spool/cups/c0*
+sudo rm -rfv /var/spool/cups/tmp/*
+sudo rm -rfv /var/spool/cups/cache/job.cache*
+ok
+
+running "clear iOS devices connected"
+sudo defaults read /Users/$USER/Library/Preferences/com.apple.iPod.plist "conn:128:Last Connect"
+sudo defaults read /Users/$USER/Library/Preferences/com.apple.iPod.plist Devices
+sudo defaults read /Library/Preferences/com.apple.iPod.plist "conn:128:Last Connect"
+sudo defaults read /Library/Preferences/com.apple.iPod.plist Devices
+sudo rm -rfv /var/db/lockdown/*
+ok
+
+running "clear and disable QuickLook thumbnail cache"
+qlmanage -r disablecache
+
+rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/exclusive
+rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/index.sqlite
+rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/index.sqlite-shm
+rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/index.sqlite-wal
+rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/resetreason
+rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/thumbnails.data
+
+sudo rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/thumbnails.fraghandler
+sudo rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/exclusive
+sudo rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/index.sqlite
+sudo rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/index.sqlite-shm
+sudo rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/index.sqlite-wal
+sudo rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/resetreason
+sudo rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/thumbnails.data
+sudo rm -rfv $(getconf DARWIN_USER_CACHE_DIR)/com.apple.QuickLook.thumbnailcache/thumbnails.fraghandler
+ok
+
+# running "clear preferred Wi-Fi data (including credentials)"
+# sudo nvram -d 36C28AB5-6566-4C50-9EBD-CBB920F83843:current-network
+# sudo nvram -d 36C28AB5-6566-4C50-9EBD-CBB920F83843:preferred-networks
+# sudo nvram -d 36C28AB5-6566-4C50-9EBD-CBB920F83843:preferred-count
+# ok
+
+# running "clear Wi-Fi information (SSID, last connection, etc)"
+# /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist
+# ok
+
+running "disable macos from collecting type sensitive information"
+sudo rm -rfv "~/Library/LanguageModeling/*" "~/Library/Spelling/*" "~/Library/Suggestions/*"
+sudo chmod -R 000 ~/Library/LanguageModeling ~/Library/Spelling ~/Library/Suggestions
+sudo chflags -R uchg ~/Library/LanguageModeling ~/Library/Spelling ~/Library/Suggestions
+ok
+
+running "QuickLook metadata clear and lock"
+sudo rm -rfv "~/Library/Application Support/Quick Look/*"
+sudo chmod -R 000 "~/Library/Application Support/Quick Look"
+sudo chflags -R uchg "~/Library/Application Support/Quick Look"
+ok
+
+running "Siri analytics database metadata clear and lock"
+sudo rm -rfv ~/Library/Assistant/SiriAnalytics.db
+sudo chmod -R 000 ~/Library/Assistant/SiriAnalytics.db
+sudo chflags -R uchg ~/Library/Assistant/SiriAnalytics.db
+ok
+
+running "cleaning iTunes metadata"
+defaults delete ~/Library/Preferences/com.apple.iTunes.plist recentSearches
+ok
+
+running "cleaning QuickTimePlayer cache"
+rm ~/Library/Containers/com.apple.QuickTimePlayerX/Data/Library/Preferences/com.apple.QuickTimePlayerX.plist
+rm ~/Library/Containers/com.apple.appstore/Data/Library/Preferences/com.apple.commerce.knownclients.plist
+rm ~/Library/Preferences/com.apple.commerce.plist
+rm ~/Library/Preferences/com.apple.QuickTimePlayerX.plist
+ok
+
+# Disable IR remote control
+#sudo defaults write /Library/Preferences/com.apple.driver.AppleIRController DeviceEnabled -bool false
+
+# Turn Bluetooth off completely
+#sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 0
+#sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist
+#sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
+
+# Disable wifi captive portal
+#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
+
+##############################################################################
 bot "Security"
 ##############################################################################
 # Based on:
@@ -52,17 +152,6 @@ sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1;ok
 #sudo launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
 #sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
 #launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
-
-# Disable IR remote control
-#sudo defaults write /Library/Preferences/com.apple.driver.AppleIRController DeviceEnabled -bool false
-
-# Turn Bluetooth off completely
-#sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 0
-#sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist
-#sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
-
-# Disable wifi captive portal
-#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
 
 running "Disable remote apple events"
 sudo systemsetup -setremoteappleevents off;ok
@@ -153,11 +242,11 @@ sudo chflags uchg /Private/var/vm/sleepimage;ok
 # Optional / Experimental                      #
 ################################################
 
-#gamemode
 # running "Set computer name (as done via System Preferences → Sharing)"
-# sudo scutil --set ComputerName "antic"
-# sudo scutil --set HostName "antic"
-# sudo scutil --set LocalHostName "antic"
+# sudo scutil --set ComputerName "MacBook"
+# sudo scutil --set HostName "MacBook"
+# sudo scutil --set LocalHostName "MacBook"
+
 # sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "antic"
 
 # running "Disable smooth scrolling"
