@@ -18,6 +18,7 @@ apps:
         - Docker
         - Fork
         - DevDocs
+        - Godot_mono
     - folder: "\U0001F3B2 db"
       pages:
       - number: 1
@@ -85,9 +86,9 @@ apps:
         - MacPass
     - Preferências do Sistema
     - Typora
+    - Winds
     - Lepton
     - Motrix
-    - Winds
   - number: 2
     items:
     - folder: "\U0001F517 web"
@@ -112,6 +113,8 @@ apps:
         - IINA
         - mpv
         - Stremio
+        - Audio Hijack
+        - Logic Pro X
     - folder: 
       pages:
       - number: 1
@@ -180,10 +183,6 @@ apps:
     - JDownloader2
     - VNC Viewer
     - Calculadora
-    - Dozer
-    - Godot_mono
-    - Audio Hijack
-    - Logic Pro X
 widgets:
   pages:
   - number: 1
