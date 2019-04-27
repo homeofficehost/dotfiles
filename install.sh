@@ -200,7 +200,7 @@ while [[ $response_retry_install =~ (yes|y|Y) ]]; do
       response_retry_install=N
       ok "Full brew bundle successfully installed."
     else
-      error "brew bundle check exited with error code"
+      warn "brew bundle check exited with error code"
       bot "Often some programs are not installed."
       read -t 7 -r -p "Would you like to try again brew bundle? (y|N) [or wait 7 seconds for default=y]" response_retry_install; echo ;
       response_retry_install=${response_retry_install:-Y}
