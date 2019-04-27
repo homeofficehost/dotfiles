@@ -16,7 +16,8 @@ apps:
         - Kitematic
         - Xcode
         - Docker
-        - Tower
+        - Fork
+        - DevDocs
     - folder: "\U0001F3B2 db"
       pages:
       - number: 1
@@ -38,7 +39,7 @@ apps:
         - Marp
         - Kap
         - Numi
-        - Gisto
+        - Dia
     - folder: "\U0001F4AC social"
       pages:
       - number: 1
@@ -58,7 +59,7 @@ apps:
         - SD Card Formatter
         - balenaEtcher
         - Disk Inventory X
-    - folder: ☠ system
+    - folder: "\U0001F6E0 security"
       pages:
       - number: 1
         items:
@@ -69,7 +70,10 @@ apps:
         - Utilitário AirPort
         - iStumbler
         - dupeGuru
-    - folder: "\U0001F511 security"
+        - IceFloor
+        - KnockKnock
+        - Charles
+    - folder: "\U0001F511 privacy"
       pages:
       - number: 1
         items:
@@ -81,6 +85,9 @@ apps:
         - MacPass
     - Preferências do Sistema
     - Typora
+    - Lepton
+    - Motrix
+    - Winds
   - number: 2
     items:
     - folder: "\U0001F517 web"
@@ -94,6 +101,8 @@ apps:
         - Opera
         - Tor Browser
         - SRWare Iron
+        - Beaker Browser
+        - qutebrowser
     - folder: "\U0001F3AC media"
       pages:
       - number: 1
@@ -103,12 +112,12 @@ apps:
         - IINA
         - mpv
         - Stremio
-    - Fotos
-    - GreenAddress Wallet
     - folder: 
       pages:
       - number: 1
         items:
+        - Fotos
+        - Notas
         - Automator
         - Terminal
         - Monitor de Atividade
@@ -116,7 +125,6 @@ apps:
         - Informações do Sistema
         - Editor de Scripts
         - Catálogo de Fontes
-        - Notas
         - Calendário
         - iTunes
         - Contatos
@@ -139,6 +147,8 @@ apps:
       pages:
       - number: 1
         items:
+        - Little Snitch Configuration
+        - Loading
         - Amethyst
         - Spectacle
         - Keka
@@ -148,12 +158,32 @@ apps:
         - Karabiner-EventViewer
         - Turbo Download Manager
         - Flux
+        - Meld
         - DiffMerge
+        - XQuartz
+    - folder: "\U0001F587 cryptochain"
+      pages:
+      - number: 1
+        items:
+        - GreenAddress Wallet
+        - Aether
+    - folder: fun
+      pages:
+      - number: 1
+        items:
+        - 0 A.D
+        - Heroes
+        - Battle.net
+        - Heroes of the Storm
+        - Stellarium
     - Transmission
     - JDownloader2
     - VNC Viewer
-    - 0 A.D
     - Calculadora
+    - Dozer
+    - Godot_mono
+    - Audio Hijack
+    - Logic Pro X
 widgets:
   pages:
   - number: 1
@@ -171,7 +201,5 @@ widgets:
     - Relógio
     - Web Clip
 dock_items:
-- SRWare Iron
 - ============
-- Transferências
 desktop: {}
