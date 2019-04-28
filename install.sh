@@ -65,7 +65,8 @@ defaults -currentHost write com.apple.screensaver idleTime -int 0;ok
 read -t 7 -r -p "Would you like to add/change the message on login window? (y|N) [or wait 7 seconds for default=N] " response; echo ;
 response=${response:-N}
 if [[ $response =~ (yes|y|Y) ]];then
-  read -t 7 -r -p "What message or wait 7 seconds for to use? " LOGIN_MESSAGE
+  read -t 7 -r -p "What message to use? [or wait 7 seconds for default=''] " LOGIN_MESSAGE
+  LOGIN_MESSAGE=${LOGIN_MESSAGE:-''}
   # Add a message to the login window
   sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "${LOGIN_MESSAGE}";ok
 fi
