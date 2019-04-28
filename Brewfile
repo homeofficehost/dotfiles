@@ -15,6 +15,8 @@ brew "encfs"
 brew "bash"
 # Program that can automate interactive applications
 brew "expect"
+# Monitor data's progress through a pipe
+brew "pv"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
 # Classic UNIX line editor
