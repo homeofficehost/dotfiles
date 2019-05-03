@@ -302,6 +302,8 @@ brew "speedtest-cli"
 brew "stormssh"
 # Automatically restart SSH sessions and tunnels
 brew "autossh"
+# Shell extension to jump to frequently used directories
+brew "autojump"
 # Bring your .bashrc, .vimrc, etc. with you when you SSH
 brew "sshrc"
 # Simplified and community-driven man pages
