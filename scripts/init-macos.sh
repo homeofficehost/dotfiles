@@ -924,7 +924,7 @@ bot "Mac App Store"
 # running "Enable Debug Menu in the Mac App Store"
 # defaults write com.apple.appstore ShowDebugMenu -bool true;ok
 
-read -r -p "Do you want updates from App store? (y|N) [default=N] " response
+read -t 7 -r -p "Do you want updates from App store? (y|N) [or wait 7 seconds for default=N] " response
 response=${response:-N}
 if [[ $response =~ (yes|y|Y) ]];then
   running "Check for software updates daily, not just once per week"

@@ -16,7 +16,7 @@ COL_MAGENTA=$ESC_SEQ"35;01m"
 COL_CYAN=$ESC_SEQ"36;01m"
 
 function ok() {
-    echo -e "$COL_GREEN[ok] $1 $COL_RESET "
+    echo -e " $COL_GREEN[ok] $1 $COL_RESET "
 }
 
 function bot() {

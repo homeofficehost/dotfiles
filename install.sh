@@ -373,11 +373,16 @@ expect << EOF
 EOF
 ok
 
+running "Updating gem packages"
 gem update --system
+ok
 
+running "Installing zsh custom plugins"
 $ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+warn $ZSH_CUSTOM
 mkdir -p $ZSH_CUSTOM/plugins/k
 git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k
+ok
 
 running "Restore Launchpad apps Organization"
 expect << EOF
