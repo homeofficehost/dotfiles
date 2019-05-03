@@ -300,7 +300,7 @@ bot "iTerm2"
 if [[ "${TERM_PROGRAM}" == "Apple_Terminal" ]]; then
   exec ./macos/apps/iterm2.sh
 else
-  warning "You are using iTerm, so I will not configure it."
+  warn "You are using iTerm, so I will not configure it."
 fi
 
 ###############################################################################
