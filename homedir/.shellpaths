@@ -15,3 +15,6 @@ export PATH=$PATH:$MY_DOTFILES/node_modules/.bin
 
 # My Scripts
 export PATH=$PATH:$MY_DOTFILES/scripts
+
+# Rpi
+export PATH=$PATH:$HOME/pi/.bin

@@ -61,7 +61,7 @@ plugins+=(ssh-agent)
 plugins+=(gnu-utils)
 plugins+=(pass)
 plugins+=(k)
-plugins+=(npx)
+# plugins+=(npx)
 plugins+=(yarn)
 plugins+=(gitfast)
 plugins+=(fasd)
@@ -93,7 +93,7 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/oh-my-zsh.sh
 
 # npx as default fallback command
-source <(npx --shell-auto-fallback zsh)
+# source <(npx --shell-auto-fallback zsh)
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh

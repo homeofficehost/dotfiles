@@ -300,6 +300,8 @@ bot "Developer default settings"
 touch /Users/$(whoami)/.hushlogin
 mkdir -p /Users/$(whoami)/.ssh
 
+mkdir -p $(whoami)/pi/.bin/
+
 ###############################################################################
 bot "Developer workspace"
 ###############################################################################
