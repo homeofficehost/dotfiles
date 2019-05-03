@@ -16,7 +16,7 @@ COL_MAGENTA=$ESC_SEQ"35;01m"
 COL_CYAN=$ESC_SEQ"36;01m"
 
 function ok() {
-    echo -e "$COL_GREEN[ok]$COL_RESET "$1
+    echo -e "$COL_GREEN[ok] $1 $COL_RESET "
 }
 
 function bot() {
@@ -24,17 +24,17 @@ function bot() {
 }
 
 function running() {
-    echo -en "$COL_YELLOW ⇒ $COL_RESET"$1": "
+    echo -en "$COL_CYAN ⇒ $1$COL_RESET"
 }
 
 function action() {
-    echo -e "\n$COL_YELLOW[action]:$COL_RESET\n ⇒ $1..."
+    echo -e "\n$COL_CYAN ⇒ $1$COL_RESET"
 }
 
 function warn() {
-    echo -e "$COL_YELLOW[warning]$COL_RESET "$1
+    echo -e "$COL_YELLOW[warning] $1 $COL_RESET"
 }
 
 function error() {
-    echo -e "$COL_RED[error]$COL_RESET "$1
+    echo -e "$COL_RED[error]\n ⇒ $1 $COL_RESET"
 }

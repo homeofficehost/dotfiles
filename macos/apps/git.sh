@@ -106,7 +106,7 @@ ok
 
 if [[ ! -e ~/.git-templates/hooks/post-commit ]];then
 	bot "Setting up gitshots"
-	read -r -p "Do you want to install or remove? (y|N|r) [default=N] " response
+	read -t 7 -r -p "Do you want to install or remove? (y|N|r) [or wait 7 seconds for default=N] " response
 	response=${response:-N}
 	if [[ $response =~ (yes|y|Y) ]];then
 		running "Enable git templates for gitshots"
@@ -140,8 +140,8 @@ NPM_LICENSE=`npm get init.license`
 NPM_VERSION=`npm get init.version`
 
 if [[ -z "$NPM_FULL_NAME" ]] || [[ -z "$NPM_EMAIL" ]] || [[ -z "$NPM_GITHUB_USERNAME" ]] || [[ -z "$NPM_LICENSE" ]] || [[ -z "$NPM_VERSION" ]]; then
-	read -r -p "Would you like to setup npm with your account? (y|N) [default=Y] " response
-	response=${response:-Y}
+	read -t 7 -r -p "Would you like to setup npm with your account? (y|N) [or wait 7 seconds for default=N] " response
+	response=${response:-N}
 	if [[ $response =~ (yes|y|Y) ]];then
 		running "Configuring npm account"
 

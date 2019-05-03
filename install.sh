@@ -288,6 +288,43 @@ bot "Setting macOS sensitive default settings"
 
 . ./scripts/init-macos.sh
 
+
+###############################################################################
+bot "iTerm2"
+###############################################################################
+
+# running "Installing the Solarized Light theme for iTerm (opening file)"
+# open "./configs/Solarized Light.itermcolors";ok
+# running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
+# open "./configs/Solarized Dark Patch.itermcolors";ok
+if [[ "${TERM_PROGRAM}" == "Apple_Terminal" ]]; then
+  exec ./macos/apps/iterm2.sh
+else
+  warning "You are using iTerm, so I will not configure it."
+fi
+
+###############################################################################
+bot "CCleaner"
+###############################################################################
+
+. ./macos/apps/ccleaner.sh
+
+###############################################################################
+bot "Fork"
+###############################################################################
+
+. ./macos/apps/fork.sh
+
+###############################################################################
+bot "VLC"
+###############################################################################
+
+. ./macos/apps/vlc.sh
+
+###############################################################################
+bot "Others"
+###############################################################################
+
 . ./macos/apps/others.sh
 
 ###############################################################################

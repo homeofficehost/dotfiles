@@ -852,38 +852,6 @@ defaults write com.apple.terminal FocusFollowsMouse -bool true
 #defaults write org.x.X11 wm_ffm -bool true;ok
 
 ###############################################################################
-bot "iTerm2"
-###############################################################################
-
-# running "Installing the Solarized Light theme for iTerm (opening file)"
-# open "./configs/Solarized Light.itermcolors";ok
-# running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
-# open "./configs/Solarized Dark Patch.itermcolors";ok
-if [[ "${TERM_PROGRAM}" == "Apple_Terminal" ]]; then
-  exec ./macos/apps/iterm2.sh
-else
-  warning "You are using iTerm, so I will not configure it."
-fi
-
-###############################################################################
-bot "CCleaner"
-###############################################################################
-
-exec ./macos/apps/ccleaner.sh
-
-###############################################################################
-bot "Fork"
-###############################################################################
-
-exec ./macos/apps/fork.sh
-
-###############################################################################
-bot "VLC"
-###############################################################################
-
-exec ./macos/apps/vlc.sh
-
-###############################################################################
 bot "Time Machine"
 ###############################################################################
 
