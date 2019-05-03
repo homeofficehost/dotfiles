@@ -298,7 +298,7 @@ bot "iTerm2"
 # running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
 # open "./configs/Solarized Dark Patch.itermcolors";ok
 if [[ "${TERM_PROGRAM}" == "Apple_Terminal" ]]; then
-  exec ./macos/apps/iterm2.sh
+  . ./macos/apps/iterm2.sh
 else
   warn "You are using iTerm, so I will not configure it."
 fi
