@@ -388,6 +388,7 @@ cask "sublime-text"
 cask "visual-studio-code"
 # Huge set of common tools for making games
 cask "godot-mono"
+cask "podcastmenu"
 cask "postman"
 cask "volt"
 cask "spectrum"
