@@ -26,6 +26,7 @@ else
   code --install-extension wix.vscode-import-cost
   code --install-extension pnp.polacode
   code --install-extension vscode-icons-team.vscode-icons
+  code --install-extension Shan.code-settings-sync
   
   # Languages
   code --install-extension DotJoshJohnson.xml
@@ -34,5 +35,6 @@ else
   
   # Themes
   code --install-extension akamud.vscode-theme-onedark
+  code --install-extension mariorodeghiero.vue-theme
   code --install-extension file-icons.file-icons
 fi
