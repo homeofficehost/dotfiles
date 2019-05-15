@@ -7,6 +7,8 @@ set -o pipefail
 # fail no variables
 set -u
 IFS=$'\n\t'
+CURRENT_LOG_FILE=$(ls -rt ~/logs/ | tail -n1)
+BEAUTIFUL_LOG_FILE="${CURRENT_LOG_FILE}.png"
 
 source ~/.shellvars
 source ~/.shellpaths
@@ -45,9 +47,6 @@ brew cleanup 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew cleanup;
 # checks for configuration issues
 brew doctor 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew doctor; exit code was ${code}"
 
-# Local Notification
-osascript -e 'display notification "" with title "System Updated"'
-
 # Remote Notification
 TEXT=$(printf "\
 ==============\n \
@@ -55,7 +54,7 @@ HOSTNAME: "`hostname`"\n\
 WAN IP: "`dig +short myip.opendns.com @resolver1.opendns.com`"\n\
 \n\n\
 Update History Log:\n\
-`cat ~/logs/"$(ls -rt ~/logs/ | tail -n1)"`\
+`cat ~/logs/$CURRENT_LOG_FILE`\
 ")
 # npx --quiet telemify "${TEXT}"
 
@@ -65,6 +64,11 @@ Update History Log:\n\
 
 # TELEGRAM_BOT_TOKEN="$(echo $JSON_CONFIG | jq --raw-output .token)" \
 # npx --quiet tgb --method sendMessage --d.chat_id ${CHAT_ID} --d.text "${TEXT}"
+
+npx -q carbon-now-cli --target $BEAUTIFUL_LOG_FILE --headless --preset blog-master-present $CURRENT_LOG_FILE
+
+# Local Notification
+osascript -e 'display notification "" with title "System Updated"'
 
 
 exit 0
