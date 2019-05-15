@@ -88,7 +88,7 @@ if [[ $response =~ (yes|y|Y) ]];then
     ok "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
 fi
 
-running "checking if homebrew CLI is already installed"
+running "Checking if homebrew CLI is already installed"
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
  action "installing homebrew"
@@ -104,20 +104,17 @@ else
   read -t 7 -r -p "Do you like to upgrade any outdated packages? (y|N) [or wait 7 seconds for default=Y] " response; echo ;
   response=${response:-Y}
 
-  running "updating homebrew"
-  brew update;ok
-
   if [[ $response =~ ^(y|yes|Y) ]];then
     # Upgrade any already-installed formulae
-    running "upgrade brew packages..."
-    brew upgrade
-    ok "brews updated..."
+    running "upgrade custom system packages update..."
+    ./update.sh
+    ok "system updated..."
   else
-    ok "skipped brew package upgrades.";
+    ok "skipped system packages upgrades.";
   fi
 fi
 
-bot "checking if cask CLI is already installed"
+bot "Checking if cask CLI is already installed"
 output=$(brew tap | grep cask)
 if [[ $? != 0 ]]; then
   running "installing brew-cask"
@@ -153,7 +150,7 @@ fi
 
 ## TODO: REFACT
 
-bot "creating symlinks for project dotfiles..."
+bot "Creating symlinks for project dotfiles..."
 pushd homedir > /dev/null 2>&1
 now=$(date +"%Y.%m.%d.%H.%M.%S")
 
@@ -264,10 +261,6 @@ else
   go get -u go.coder.com/sshcode
 fi
 
-running "cleanup homebrew"
-brew cleanup > /dev/null 2>&1
-ok
-
 bot "Installing vim plugins"
 vim +PluginInstall +qall > /dev/null 2>&1
 
@@ -343,6 +336,17 @@ mkdir -p $(whoami)/pi/.bin/
 bot "Developer workspace"
 ###############################################################################
 
+if [[ -d $HOME/.password-store ]]; then
+bot "Tip: Use gpg-suite to {manage,generate,import} GPG easy there."
+
+  read -t 7 -r -p "Would you like to setup gpg keys? (y|N) [or wait 7 seconds for default=N] " response; echo ;
+  response=${response:-N}
+  if [[ $response =~ (yes|y|Y) ]];then
+    # Setup create/restore keys
+    password-store-installer
+  fi
+fi
+
 git config --global credential.helper osxkeychain
 
 running "Adding nightly cron software updates"
@@ -371,10 +375,6 @@ expect << EOF
   send "\r"
   expect eof
 EOF
-ok
-
-running "Updating gem packages"
-gem update --system
 ok
 
 running "Installing zsh custom plugins"

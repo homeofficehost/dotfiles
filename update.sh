@@ -26,10 +26,9 @@ rm -f /usr/local/bin/python 2>&1 >/dev/null; ln -s $(which python3) /usr/local/b
 # stdout to null, stderr to stdout
 pip3 install --upgrade setuptools 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "pip setuptools update; exit code was ${code}"
 pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "pip3 update; exit code was ${code}"
-gem update --verbose 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "gem update; exit code was ${code}"
+gem update  --system --verbose 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "gem update; exit code was ${code}"
 brew update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew update; exit code was ${code}"
 brew upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew upgrade; exit code was ${code}"
-brew cask upgrade 2>&1 >/dev/null;		code=$?; [[ code -ne 0 ]] && echo "cask upgrade; exit code was ${code}"
 mas upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "mas upgrade; exit code was ${code}"
 tldr --update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "tldr update; exit code was ${code}"
 
@@ -39,7 +38,7 @@ for del in ${delete[@]}
 do
    casks_outdated=("${casks_outdated[@]/$del}")
 done
-brew cask upgrade `echo $casks_outdated` 2>&1 >/dev/null;		code=$?; [[ code -ne 0 ]] && echo "custom cask upgrade; exit code was ${code}"
+brew cask upgrade `echo $casks_outdated` 2>&1 >/dev/null;		code=$?; [[ code -ne 0 ]] && echo "custom brew cask upgrade; exit code was ${code}"
 
 # cleans up cached downloads (with --outdated, only cleans old downloads)
 brew cleanup 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew cleanup; exit code was ${code}"
