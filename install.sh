@@ -107,7 +107,7 @@ else
   if [[ $response =~ ^(y|yes|Y) ]];then
     # Upgrade any already-installed formulae
     running "upgrade custom system packages update..."
-    ./update.sh
+    . ./update.sh
     ok "system updated..."
   else
     ok "skipped system packages upgrades.";
