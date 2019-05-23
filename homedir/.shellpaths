@@ -3,6 +3,9 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 
+# PHP
+export PATH=$PATH:$HOME/.composer/vendor/bin
+
 # GO
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
@@ -12,6 +15,7 @@ export PATH=/usr/local/opt/ruby/bin:$PATH
 # Node
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$MY_DOTFILES/node_modules/.bin
+export PATH=$PATH:./node_modules/.bin
 
 # My Scripts
 export PATH=$PATH:$MY_DOTFILES/scripts
