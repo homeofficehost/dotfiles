@@ -107,7 +107,7 @@ else
   if [[ $response =~ ^(y|yes|Y) ]];then
     # Upgrade any already-installed formulae
     running "upgrade custom system packages update..."
-    . ./update.sh
+    exec $HOME/.dotfiles/update.sh >$HOME/logs/job.system-update.`date +\%Y-\%m-\%d-\%H:\%M:\%S-cron.log` 2>&1
     ok "system updated..."
   else
     ok "skipped system packages upgrades.";
@@ -222,6 +222,8 @@ if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
   fi
 fi
 
+# composer global require laravel/valet
+
 bot "Configuring npm global packages"
 action "npm config set prefix ~/.local"
 mkdir -p "${HOME}/.local"
@@ -331,6 +333,9 @@ touch /Users/$(whoami)/.hushlogin
 mkdir -p /Users/$(whoami)/.ssh
 
 mkdir -p $(whoami)/pi/.bin/
+
+# Fix mariadb start bug
+mkdir -p /usr/local/etc/my.cnf.d
 
 ###############################################################################
 bot "Developer workspace"
