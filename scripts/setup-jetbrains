@@ -14,7 +14,7 @@ function setup.jetbrains () {
 		if [ ${alreadythere} -eq 0 ]; then
 			echo 'Installing'
 
-			if [[ ! -e "${JETBRAINS_AGENT_DIR}/jetbrains-agent.jar" ]]; then
+			if [[ ! -d "${JETBRAINS_AGENT_DIR}" ]]; then
 				mkdir -p $JETBRAINS_AGENT_DIR && git clone https://gitee.com/pengzhile/jetbrains-agent.git $JETBRAINS_AGENT_DIR
 			fi
 			
@@ -33,13 +33,13 @@ function setup.jetbrains () {
 }
 
 
-if setup.jetbrains /Applications/WebStorm.app/Contents/bin/webstorm.vmoptions ~/Library/Preferences/WebStorm2018.3/webstorm.vmoptions; then
+if setup.jetbrains /Applications/WebStorm.app/Contents/bin/webstorm.vmoptions ~/Library/Preferences/WebStorm2019.1/webstorm.vmoptions; then
 	open -a WebStorm
 fi
 
-if setup.jetbrains /Applications/PhpStorm.app/Contents/bin/phpstorm.vmoptions ~/Library/Preferences/PhpStorm2018.3/phpstorm.vmoptions; then
-	open -a PhpStorm
-fi
+# if setup.jetbrains /Applications/PhpStorm.app/Contents/bin/phpstorm.vmoptions ~/Library/Preferences/PhpStorm2018.3/phpstorm.vmoptions; then
+# 	open -a PhpStorm
+# fi
 
 echo "License server: http://jetbrains-license-server"
 cat "${JETBRAINS_AGENT_DIR}/ACTIVATION_CODE.txt" | pbcopy
