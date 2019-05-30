@@ -337,6 +337,9 @@ mkdir -p $(whoami)/pi/.bin/
 # Fix mariadb start bug
 mkdir -p /usr/local/etc/my.cnf.d
 
+# Disable docker Crash Reporting
+touch ~/.docker/machine/no-error-report
+
 ###############################################################################
 bot "Developer workspace"
 ###############################################################################

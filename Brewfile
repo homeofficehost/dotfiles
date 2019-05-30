@@ -8,11 +8,18 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "puma/puma"
 tap "mas-cli/tap", pin: true
+tap "moncho/dry"
 ## Shell
 # Encrypted pass-through FUSE file system
 brew "encfs"
+# Update of iperf: measures TCP, UDP, and SCTP bandwidth
+brew "iperf3"
+# Monitor a directory for changes and run a shell command. Req by gitwatch
+brew "fswatch"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# SSL/TLS cryptography library
+brew "openssl"
 # Program that can automate interactive applications
 brew "expect"
 # Monitor data's progress through a pipe
@@ -84,6 +91,8 @@ brew "reattach-to-user-namespace"
 brew "screen"
 brew "asciinema"
 brew "tmux"
+# a Docker manager for the terminal
+brew "dry"
 # Cross platform, open source .NET development framework
 brew "mono"
 brew "todo-txt"

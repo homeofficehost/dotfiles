@@ -41,4 +41,8 @@ export CPPFLAGS="-I/usr/local/opt/ruby/include"
 export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
 
 export GITLAB_API_ENDPOINT="https://gitlab.com/api/v4"
+# your private token from:
+# gitlab.com/profile/personal_access_tokens in (newer version)
+# or
+# gitlab.com//profile/account older version.
 export GITLAB_API_PRIVATE_TOKEN="YVvQgU1aThXL6YcV5-qv"

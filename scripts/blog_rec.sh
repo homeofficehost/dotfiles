@@ -18,7 +18,7 @@ source $MY_DOTFILES/lib_sh/echos.sh
 DATE=`date +\%Y_\%m_\%d_\%H_\%M_\%S`
 RECORD_NAME=$1
 # RECORD_NAME="${1:-"${DATE}"}"
-FILE_PATH="~/casts/"
+FILE_PATH="${HOME}/casts/"
 FILE_NAME="asciinema_${RECORD_NAME}"
 _NAME="${FILE_PATH}${FILE_NAME}"
 _FILE="${_NAME}.cast"

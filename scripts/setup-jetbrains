@@ -41,5 +41,9 @@ fi
 # 	open -a PhpStorm
 # fi
 
+if setup.jetbrains /Applications/IntelliJ\ IDEA.app/Contents/bin/idea.vmoptions ~/Library/Preferences/IntelliJIdea2019.1/idea.vmoptions; then
+	open -a IntelliJ\ IDEA
+fi
+
 echo "License server: http://jetbrains-license-server"
 cat "${JETBRAINS_AGENT_DIR}/ACTIVATION_CODE.txt" | pbcopy
