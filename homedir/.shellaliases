@@ -5,6 +5,7 @@
 ###############################################################################
 
 # Apps
+alias ggs="${MY_DOTFILES}/scripts/git-summary $@"
 alias jumpcutter="exec ${HOME}/dev/jumpcutter/run.sh $@"
 alias notify="npx node-notifier-cli notify --title 'Notification' -s --open $@"
 alias typora="open -a typora"
