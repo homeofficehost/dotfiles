@@ -19,9 +19,6 @@ function finish {
 }
 trap finish EXIT
 
-# Automatically randomize MAC address on update
-sudo npx spoof randomize wi-fi; sudo npx spoof randomize en4
-
 # Use python3 by default
 rm -f /usr/local/bin/python 2>&1 >/dev/null; ln -s $(which python3) /usr/local/bin/python
 
@@ -65,7 +62,7 @@ Update History Log:\n\
 # TELEGRAM_BOT_TOKEN="$(echo $JSON_CONFIG | jq --raw-output .token)" \
 # npx --quiet tgb --method sendMessage --d.chat_id ${CHAT_ID} --d.text "${TEXT}"
 
-npx -q carbon-now-cli --target $BEAUTIFUL_LOG_FILE --headless --preset blog-master-present $CURRENT_LOG_FILE
+npx -q carbon-now-cli --target "~/logs/${BEAUTIFUL_LOG_FILE}" --headless --preset blog-master-present "~/logs/${CURRENT_LOG_FILE}"
 
 # Local Notification
 osascript -e 'display notification "" with title "System Updated"'
