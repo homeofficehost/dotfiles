@@ -6,11 +6,13 @@
 source $MY_DOTFILES/lib_sh/echos.sh
 
 function connect(){
-	pass="pipi"
+	password="pipi"
 	expect << EOF
 spawn /usr/bin/$@
-expect "password"
-send "${pass}\r"
+expect {
+    ".*key fingerprint" {send "yes\r"; exp_continue}
+    "assword:" {send "$password\r"}
+}
 expect eof
 EOF
 }
@@ -19,7 +21,7 @@ TMUX_CMD="source ~/.profile && tmux -u -CC attach || tmux -u -CC; ${ARGUMENTS}"
 INPUT_ARGUMENTS=${@:2}
 
 if [ -n "${INPUT_ARGUMENTS}" ]; then
-	# Dont need tmux on remote code execution
+	# No args passed so dont need tmux on remote code execution
 	ARGUMENTS="${INPUT_ARGUMENTS}"
 else
 	running "Checking if remote got tmux instaled"
