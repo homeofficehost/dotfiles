@@ -331,6 +331,7 @@ bot "Developer default settings"
 # yarn global add is.sh
 touch /Users/$(whoami)/.hushlogin
 mkdir -p /Users/$(whoami)/.ssh
+mkdir -p $MY_TEMP
 
 mkdir -p $(whoami)/pi/.bin/
 

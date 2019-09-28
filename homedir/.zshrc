@@ -57,18 +57,17 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.dotfiles/oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
-# plugins+=(ssh-agent)
+plugins+=(ssh-agent)
 plugins+=(gnu-utils)
 plugins+=(pass)
 plugins+=(k)
-# plugins+=(npx)
 plugins+=(yarn)
 plugins+=(gitfast)
 plugins+=(fasd)
 plugins+=(git-extras)
 plugins+=(brew)
 plugins+=(sudo)
-plugins+=(composer)
+# plugins+=(composer)
 plugins+=(docker)
 plugins+=(docker-machine)
 plugins+=(laravel5)
@@ -80,7 +79,6 @@ plugins+=(dirpersist)
 plugins+=(dircycle) # cycle your directory stack {left,right} using Ctrl+Shift+Left/Right. 
 plugins+=(copyfile)
 plugins+=(colorize)
-plugins+=(autojump)
 plugins+=(history)
 plugins+=(osx)
 plugins+=(cp)
@@ -100,11 +98,12 @@ source $ZSH/oh-my-zsh.sh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-# Advanced Tab completion
-autoload -U compinit
-compinit
-
 # User configuration
+fastolx autocomplete:script zsh > $MY_TEMP/temp && chmod +x $MY_TEMP/temp && source $MY_TEMP/temp && rm $MY_TEMP/temp
+
+# Advanced Tab completion
+# autoload -U compinit
+# compinit
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -113,6 +112,15 @@ export LANG=en_US.UTF-8
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+# if (command which -s yarn) npm () {
+#   case $@ in
+#     *-g*|root*) command npm $@;;
+#     install*) (($# > 1)) && yarn add ${@[2,#]} || yarn install;;
+#     *) yarn $@;;
+#   esac
+# }
+# [ $ZSH_EVAL_CONTEXT = toplevel ] && npm $@
 
 # https://github.com/nvbn/thefuck#manual-installation
 eval $(thefuck --alias)
