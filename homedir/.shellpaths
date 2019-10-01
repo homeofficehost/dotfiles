@@ -13,16 +13,22 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 # homebrews should always take precedence
 # export PATH=/usr/local/bin:$PATH
 # or use specific version
+export PATH=/usr/local/opt/ruby/bin:$PATH
 export PATH=/usr/local/opt/ruby@2.5/bin:$PATH
+export PATH=/usr/local/.rbenv/bin:$PATH
 
 # Node
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.config/yarn/link/
 export PATH=$PATH:$MY_DOTFILES/node_modules/.bin
 export PATH=$PATH:./node_modules/.bin
+export PATH=/usr/local/share/npm/bin:$PATH
 
 # My Scripts
 export PATH=$PATH:$MY_DOTFILES/scripts
 
 # Rpi
 export PATH=$PATH:$HOME/pi/.bin
+
+# OPENSSL
+export PATH=/usr/local/opt/openssl@1.1/bin:$PATH
