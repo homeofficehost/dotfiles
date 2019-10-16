@@ -56,13 +56,13 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Which plugins would you like to load? (plugins can be found in ~/.dotfiles/oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+# plugins=(git)
 plugins+=(ssh-agent)
 plugins+=(gnu-utils)
 plugins+=(pass)
 plugins+=(k)
 plugins+=(yarn)
-plugins+=(gitfast)
+# plugins+=(gitfast) # heavy load
 plugins+=(fasd)
 plugins+=(git-extras)
 plugins+=(brew)
