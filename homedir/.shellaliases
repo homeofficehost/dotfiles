@@ -3,10 +3,30 @@
 ###############################################################################
 # Development section
 ###############################################################################
-
+alias s="sublimetext"
+alias weather="curl -s 'http://wttr.in/Curitiba?lang=pt'"
+alias weather2="curl -s 'http://v2.wttr.in/Curitiba?lang=pt'"
+alias tempo="weather"
+alias tempo2="weather2"
 
 # For HTTP connection set the following alias:
 alias dockerx="docker -H=174.138.49.215:2375"
+
+
+# Cheat sheets
+alias dterm="curl -s -X GET https://raw.githubusercontent.com/LeCoupa/awesome-cheatsheets/master/languages/bash.sh | less"
+alias dtmux="curl -s -X GET https://gist.githubusercontent.com/MohamedAlaa/2961058/raw/ddf157a0d7b1674a2190a80e126f2e6aec54f369/tmux-cheatsheet.markdown | less"
+alias ddocker="curl -s -X GET https://raw.githubusercontent.com/LeCoupa/awesome-cheatsheets/master/tools/docker.sh | less"
+alias dvim="curl -s -X GET https://raw.githubusercontent.com/LeCoupa/awesome-cheatsheets/master/tools/vim.txt | less"
+alias djavascript="curl -s -X GET https://raw.githubusercontent.com/LeCoupa/awesome-cheatsheets/master/languages/javascript.js | less"
+alias dnode="curl -s -X GET https://raw.githubusercontent.com/LeCoupa/awesome-cheatsheets/master/backend/node.js | less"
+
+alias kb="kubectl"
+alias mk="minikube"
+
+# PHP
+# alias phptags="sh ~/.scripts/phpctags"
+# alias phptags_vendor="sh ~/.scripts/phpctags_vendor"
 
 # Ping scan only: -sP
 # Don't ping:     -PN
@@ -37,6 +57,7 @@ alias inspect="npx -q nodejs-dashboard $@"
 alias ffind="afind --ignore-dir={vendor,node_modules} $@"
 
 # Home
+alias snap="imagesnap -q -w 3 .jpg"
 alias tb="nc termbin.com 9999 | pbcopy"
 alias a.ssh="waitforssh.sh $@"
 alias desktop="cd ~/Desktop"
@@ -57,6 +78,9 @@ alias a.rm_empty_dirs="find . -type d -empty -delete"
 alias a.inspect="inspect $@"
 alias not="notify $@"
 alias blog.rec=blog_rec.sh $@
+
+# Dev
+alias "mynexts"='echo "Finding issues available for contributing, based on my ⭐️ repositories...\n"; docker run -e TOKEN=$MIGHTY_WATCHER_GITHUB_TOKEN --rm igorperikov/mighty-watcher:latest'
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -89,6 +113,7 @@ alias curl.download="curl -L -O -C - "
 alias down="aria2c --max-connection-per-server=16 --min-split-size=1M "
 
 alias "?"="tldr"
+alias "??"="curl cheat.sh/$1"
 
 alias td="todo.sh"
 alias tda="todo.sh add"
@@ -114,15 +139,27 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 # switches to 'develop' branch, updates all local branches (nicely using git-up), removes all local branches already merged into 'develop'
 alias gitdev='git checkout develop; git-up; git branch --merged develop | grep -v "\* develop" | xargs -n 1 git branch -d; git branch;'
 
-# alias laratail="tail -f $(find /laravel/storage/logs | tail -n 1)"
+# GIT
 alias g=git
 alias gs="git status"
-alias gl="git log"
 alias gcom="git checkout master"
 alias gaa="git add ."
 alias gc="git commit -m "
 alias gp="git push"
+alias gacp="git add . && git commit --allow-empty-message && git push origin"
+alias gac="git add . && git commit --allow-empty-message"
+alias gpull="git pull origin"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias nah="git reset --hard && git clean -df"
+
+# LARAVEL
+# alias laratail="tail -f $(find /laravel/storage/logs | tail -n 1)"
+alias laratest="php artisan config:clear && phpunit"
+alias laratestrand="php artisan config:clear && $HOME/.composer/vendor/fiunchinho/phpunit-randomizer/bin/phpunit-randomizer --colors --order rand"
+alias pacc="php artisan config:cache"
+alias pacl="php artisan config:clear"
+alias pas="php artisan serve"
+# alias composer="docker run -v $(pwd):/app -w /app composer"
 
 # push git repo, but first, use git-up to make sure you are in sync and rebased with the remote
 alias pushup="git-up && git push"

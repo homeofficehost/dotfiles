@@ -362,20 +362,17 @@ The following will only happen if you agree on the prompt
 
 # Software Installation
 
-
 ## Utilities
-
 
 ## Apps
 
-
 ## NPM Global Modules
-
 
 ## Ruby Gems
 
-# References
+## Go Packages
 
+# References
 - [Change macOS user preferences via command line](https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/)
 
 - https://github.com/bvaughn/progress-estimator
@@ -386,7 +383,14 @@ The following will only happen if you agree on the prompt
 
 # Credits
 I've rewritten my dotfiles many times, and each time I've been influenced by someone new. These people include:
-- holman
+
+- Adam Eivy
+- Alan Yee
+- Maki Tolentino
+- Henson, Garth
+- Michael Chambers
+- JBallin
+- KyuWoo Choi
 
 # License
 This project is licensed under ISC. Please fork, contribute and share.

@@ -1,0 +1,1 @@
+while read LINE; do curl -o /dev/null --head --silent --write-out "$LINE\t %{http_code}\n" "$LINE"; done < `echo $1` 2>&1 | tee $2

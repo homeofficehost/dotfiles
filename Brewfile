@@ -452,7 +452,7 @@ cask "font-roboto-mono"
 cask "font-roboto-mono-for-powerline"
 cask "font-source-code-pro"
 cask "font-hack-nerd-font"
-cask "0-ad"
+# cask "0-ad"
 cask "thii/swift-runtime/swift-runtime"
 mas "Xcode", id: 497799835
 mas "Pages", id: 409201541
