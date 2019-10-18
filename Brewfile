@@ -289,6 +289,8 @@ brew "mtr"
 brew "nikto"
 # Password generator
 brew "pwgen"
+# File system client based on SSH File Transfer Protocol
+brew "sshfs"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Shell command parallelization utility

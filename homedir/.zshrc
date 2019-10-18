@@ -1,3 +1,6 @@
+# https://blog.jonlu.ca/posts/speeding-up-zsh
+# Uncomment for speed debug
+# zmodload zsh/zprof
 # Is this needed?
 if [[ -n $TMUX ]]; then
 	[ -r ~/.profile ] && source ~/.profile
@@ -99,7 +102,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # User configuration
-fastolx autocomplete:script zsh > $MY_TEMP/temp && chmod +x $MY_TEMP/temp && source $MY_TEMP/temp && rm $MY_TEMP/temp
+# fastolx autocomplete:script zsh > $MY_TEMP/temp && chmod +x $MY_TEMP/temp && source $MY_TEMP/temp && rm $MY_TEMP/temp
 
 # Advanced Tab completion
 # autoload -U compinit
@@ -124,3 +127,5 @@ export LANG=en_US.UTF-8
 
 # https://github.com/nvbn/thefuck#manual-installation
 eval $(thefuck --alias)
+# Uncomment for speed debug
+# zprof
