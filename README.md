@@ -432,5 +432,7 @@ excellent resources online at <https://dotfiles.github.io>.
 
 Commands are first read from /etc/zshenv; this cannot be overridden. … Commands are then read from $ZDOTDIR/.zshenv. If the shell is a login shell, commands are read from /etc/zprofile and then $ZDOTDIR/.zprofile. Then, if the shell is interactive, commands are read from /etc/zshrc and then $ZDOT-DIR/.zshrc. Finally, if the shell is a login shell, /etc/zlogin and $ZDOTDIR/.zlogin are read.
 
+When a login shell exits, the files $ZDOTDIR/.zlogout and then /etc/zlogout are read.
+
 > It's always a good idea to review arbitrary code from the internet before running it on your machine with sudo power!
 > You are responsible for everything this script does to your machine (see [LICENSE](LICENSE))
