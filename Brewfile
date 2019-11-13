@@ -289,6 +289,12 @@ brew "mtr"
 brew "nikto"
 # Password generator
 brew "pwgen"
+# Modular IRC client
+brew "irssi"
+# IRC to other chat networks gateway
+brew "bitlbee"
+# E-mail reader with support for Notmuch, NNTP and much more
+brew "neomutt"
 # File system client based on SSH File Transfer Protocol
 brew "sshfs"
 # OpenBSD freely-licensed SSH connectivity tools
