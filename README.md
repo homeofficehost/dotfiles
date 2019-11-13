@@ -63,6 +63,28 @@ alias dotfiles="git --git-dir=$MY_DOTFILES/ --work-tree=$HOME $@"
 dotfiles checkout
 ```
 
+If you plan on working on this project for anything more than a very quick fix. Use the following commands to add the 'upsteam' (original project location) as a remote branch so that you can get my updates into your branch.
+
+```sh
+git remote add --track master upstream https://github.com/thomasgroch/dotfiles.git
+```
+
+This will add the original project as a remote named 'upstream'.
+
+To get the code, type:
+
+```sh
+git fetch upstream
+git checkout master ## Make sure that you're on your master branch
+```
+
+Then, to merge it into your own project, type:
+
+```sh
+git merge upstream/master
+```
+
+Now you'll have an up-to-date version of the upstream code in your current branch.
 
 No extra tooling, no symlinks, files are tracked on a version control system, you can use different branches for different computers, you can replicate you configuration easily on new installation.
 
