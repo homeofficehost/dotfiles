@@ -8,10 +8,18 @@ alias weather="curl -s 'http://wttr.in/Curitiba?lang=pt'"
 alias weather2="curl -s 'http://v2.wttr.in/Curitiba?lang=pt'"
 alias tempo="weather"
 alias tempo2="weather2"
+alias qrcode="curl qrenco.de/$@"
+alias browser='docker run --rm -it browsh/browsh:latest'
 alias nogiveup="curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash"
+alias starwars="telnet towel.blinkenlights.nl"
+alias world="telnet mapscii.me"
 alias parrotdance="curl parrot.live"
 alias criptorates="curl rate.sx"
 alias zsh.debug="zsh -xv"
+
+# https://quadpoint.org/articles/irssi/
+# alias irc="screen -r $(screen -ls | sed -ne 's/[[:space:]]//' -ne 's/\((Detached)\|(Multi, detached)\|(Multi, attached)\)// p') || ! test -z $(screen -ls | sed -ne 's/[[:space:]]//' -ne 's/\((Attached)\)// p') || screen -S irc irssi"
+alias irc="screen irssi"
 
 # For HTTP connection set the following alias:
 alias dockerx="docker -H=174.138.49.215:2375"
@@ -66,6 +74,18 @@ alias f.create_usb_udf_format="create-udf.sh $@"
 alias inspect="npx -q nodejs-dashboard $@"
 alias ffind="afind --ignore-dir={vendor,node_modules} $@"
 
+function take_my_wifi {
+	SSID="$(sudo npx osx-wifi-cli)"
+	PASS="$(npx wifi-password-cli)"
+	SSID=${SSID:21:-1}
+	npx qrcode "WIFI:T:WPA;S:${SSID};P:${PASS};;"
+}
+
+alias heroku.temp="temp && heroku create $1 && heroku ps:exec --status --app $1 && heroku ps:exec "
+
+alias temp="dev && mkdir -p temp && cd temp"
+alias temp.rm="dev && rm -Rf temp"
+
 # Home
 alias snap="imagesnap -q -w 3 .jpg"
 alias tb="nc termbin.com 9999 | pbcopy"
@@ -88,6 +108,29 @@ alias a.rm_empty_dirs="find . -type d -empty -delete"
 alias a.inspect="inspect $@"
 alias not="notify $@"
 alias blog.rec=blog_rec.sh $@
+
+function docker_reset {
+	docker stop $(docker ps -a -q)
+	docker rm $(docker ps -a -q)
+	docker network rm $(docker network ls -q)
+	docker volume rm $(docker volume ls -q)
+	docker system prune --all --force
+}
+function exploit_this_cms {
+	temp && $(ls vulnx || git clone https://github.com/anouarbensaad/VulnX.git vulnx)
+	cd vulnx
+	docker build -t vulnx ./docker/
+	docker run --rm -it vulnx:latest -u $1
+}
+
+## run_this_container [git_repo] [image] [path_to_Dockerfile] vulnx:latest [params]
+## run_this_container https://github.com/anouarbensaad/VulnX.git vulnx ./docker/ "-u https://herospark.com/blog/"
+# function run_this_container {
+# 	temp && $(ls asd > /dev/null || git clone $1 asd)
+# 	cd asd
+# 	docker build -t $2 $3
+# 	docker run --rm -it $2 $4
+# }
 
 # Dev
 alias "mynexts"='echo "Finding issues available for contributing, based on my ⭐️ repositories...\n"; docker run -e TOKEN=$MIGHTY_WATCHER_GITHUB_TOKEN --rm igorperikov/mighty-watcher:latest'
@@ -675,11 +718,6 @@ fi;
 
 # find . -type f -iname '*.CR2' -print0 | xargs -0 -n 1 -P 8 -I {} convert -verbose -units PixelsPerInch {} -colorspace sRGB -resize 2560x2650 -set filename:new '%t-%wx%h' -density 72 -format JPG -quality 80 '%[filename:new].jpg'
 
-alias temp="dev && mkdir -p temp && cd temp"
-alias temp.rm="dev && rm -Rf temp"
-
-
-alias heroku.temp="temp && heroku create $1 && heroku ps:exec --status --app $1 && heroku ps:exec "
 
 
 
