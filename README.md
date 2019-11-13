@@ -57,12 +57,6 @@ dotfiles push
 
 # Update Replica
 
-```sh
-MY_DOTFILES=$HOME/.dotfiles
-alias dotfiles="git --git-dir=$MY_DOTFILES/ --work-tree=$HOME $@"
-dotfiles checkout
-```
-
 If you plan on working on this project for anything more than a very quick fix. Use the following commands to add the 'upsteam' (original project location) as a remote branch so that you can get my updates into your branch.
 
 ```sh
