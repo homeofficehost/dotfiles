@@ -36,7 +36,7 @@ echo "License server: http://jetbrains-license-server"
 # echo "http://jetbrains-license-server" | pbcopy
 cat "${JETBRAINS_AGENT_DIR}/ACTIVATION_CODE.txt" | pbcopy
 
-if setup.jetbrains /Applications/WebStorm.app/Contents/bin/webstorm.vmoptions ~/Library/Preferences/WebStorm2018.3/webstorm.vmoptions; then
+if setup.jetbrains /Applications/WebStorm.app/Contents/bin/webstorm.vmoptions ~/Library/Preferences/WebStorm2019.1/webstorm.vmoptions; then
 	open -a WebStorm
 fi
 
