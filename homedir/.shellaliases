@@ -93,10 +93,10 @@ alias a.ssh="waitforssh.sh $@"
 alias desktop="cd ~/Desktop"
 alias desk="desktop"
 alias olx="cd ~/olx"
-alias dot="cd $MY_DOTFILES"
-alias dev="cd $MY_CODE"
+alias dot="cd ${MY_DOTFILES}"
+alias dev="cd ${MY_CODE}"
 alias pi="cd ~/pi"
-alias blog="cd $MY_BLOG"
+alias blog="cd ${MY_BLOG}"
 alias blog.write="zettlr $MY_BLOG/portfolio"
 alias blog.pretty.code="code.photo -p blog-master-present $@"
 alias d.fix_video="jumpcutter"
@@ -108,6 +108,8 @@ alias a.rm_empty_dirs="find . -type d -empty -delete"
 alias a.inspect="inspect $@"
 alias not="notify $@"
 alias blog.rec=blog_rec.sh $@
+
+alias dot_update="dot && git fetch upstream && git checkout master && git merge upstream/master"
 
 function docker_reset {
 	docker stop $(docker ps -a -q)
