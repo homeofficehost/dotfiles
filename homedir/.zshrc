@@ -85,21 +85,14 @@ plugins+=(colorize)
 plugins+=(history)
 plugins+=(osx)
 plugins+=(cp)
-# plugins+=(zsh-autosuggestions)
-# plugins+=(zsh-better-npm-completion)
-# plugins+=(zsh-syntax-highlighting)
-# plugins+=(zsh-history-substring-search)
-
-# Load zsh plugins from Homebrew
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+plugins+=(zsh-autosuggestions)
+plugins+=(zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # npx as default fallback command
 # source <(npx --shell-auto-fallback zsh)
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # User configuration
 # fastolx autocomplete:script zsh > $MY_TEMP/temp && chmod +x $MY_TEMP/temp && source $MY_TEMP/temp && rm $MY_TEMP/temp

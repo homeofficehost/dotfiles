@@ -106,12 +106,6 @@ brew "watch"
 brew "awscli"
 # Mac App Store CLI: https://github.com/mas-cli/mas
 brew "mas"
-# Fish-like fast/unobtrusive autosuggestions for zsh
-brew "zsh-autosuggestions"
-# Zsh port of Fish shell's history search
-brew "zsh-history-substring-search"
-# Fish shell like syntax highlighting for zsh
-brew "zsh-syntax-highlighting"
 
 ## Languages
 # Interpreted, interactive, object-oriented programming language

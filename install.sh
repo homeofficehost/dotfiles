@@ -391,6 +391,8 @@ ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 warn $ZSH_CUSTOM
 mkdir -p $ZSH_CUSTOM/plugins/k
 git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\
 ok
 
 running "Restore Launchpad apps Organization"
