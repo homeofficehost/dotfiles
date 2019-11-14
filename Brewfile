@@ -1,4 +1,4 @@
-tap "AdoptOpenJDK/openjdk"
+# tap "AdoptOpenJDK/openjdk"
 tap "dart-lang/dart"
 tap "heroku/brew"
 tap "homebrew/bundle"
