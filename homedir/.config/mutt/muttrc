@@ -3,6 +3,7 @@
 ##############################################
 ###   http://www.mutt.org/doc/manual.txt   ###
 ##############################################
+# https://codesorcery.net/old/mutt/mutt-gnupg-howto
 
 # This is the general mutt config which has the settings that all accounts use.
 # -----------------------------------------------------------------------------
