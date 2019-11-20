@@ -5,12 +5,12 @@
   # https://github.com/blog/180-local-github-config
 	user = thomasgroch
 [color]
-# ui = true is a superset of all the more specific color options
-#  as documented at http://book.git-scm.com/5_customizing_git.html
-# When set to always, always use colors in all git commands which are capable of colored output.
-# When false, never. When set to true or auto, use colors only when the output is to the terminal.
-# When more specific variables of color.* are set, they always take precedence over this setting.
-# Defaults to false.
+  # ui = true is a superset of all the more specific color options
+  #  as documented at http://book.git-scm.com/5_customizing_git.html
+  # When set to always, always use colors in all git commands which are capable of colored output.
+  # When false, never. When set to true or auto, use colors only when the output is to the terminal.
+  # When more specific variables of color.* are set, they always take precedence over this setting.
+  # Defaults to false.
 	ui = true
 	diff = auto
 	status = auto
@@ -39,7 +39,7 @@
   statusHints = false
 
 [gui]
-  fontdiff = -family Monaco -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+  fontdiff = -family Monaco -size 16 -weight normal -slant roman -underline 0 -overstrike 0
 
 [core]
 	excludesfile = ~/.gitignore
