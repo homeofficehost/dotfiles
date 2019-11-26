@@ -1,3 +1,11 @@
+# gpg
+# .gnupg
+*.kbx
+*.kbx~
+openpgp-revocs.d/*
+openpgp-revocs.d
+private-keys-v1.d/*
+private-keys-v1.d
 #########
 # macOS #
 #########
