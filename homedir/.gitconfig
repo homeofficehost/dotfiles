@@ -55,6 +55,7 @@
 	editor = subl -n -w
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	filemode = true
+	hooksPath = ~/.githooks
   #editor = subl -w
 
 [alias]
@@ -212,7 +213,7 @@
 	newNormal = green bold
 	newHighlight = green bold 22
 [gpg]
-	program = /usr/local/MacGPG2/bin/gpg
+	program = /usr/local/bin/gpg
 [format]
 	signoff = true
 [filter "lfs"]
@@ -220,3 +221,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[commit]
+	gpgsign = true

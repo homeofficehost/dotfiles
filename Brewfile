@@ -49,6 +49,8 @@ brew "fortune"
 brew "fzf"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
+# Pinentry for GPG on Mac
+brew "pinentry-mac"
 # C code prettifier
 brew "gnu-indent"
 # Install GNU `sed`, overwriting the built-in `sed`
@@ -358,6 +360,7 @@ brew "yarn"
 # Highest-quality GIF encoder based on pngquant
 brew "gifski"
 #############################
+cask "keyboard-maestro"
 cask "fork"
 cask "ubersicht"
 cask "motrix"
