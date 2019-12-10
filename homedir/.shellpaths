@@ -1,7 +1,6 @@
 # Brew
-export PATH=/usr/local/sbin:$PATH
-export PATH=$HOME/bin:$PATH
-export PATH=/usr/local/bin:$PATH
+# homebrews (/usr/local/bin) should always take precedence
+export PATH=/bin:/usr/bin:/usr/local/sbin:$HOME/bin:/usr/local/bin:${PATH}
 
 # PHP
 export PATH=$PATH:$HOME/.composer/vendor/bin
@@ -14,19 +13,17 @@ export PATH=$PATH:$HOME/.composer/vendor/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 # Ruby
-# homebrews should always take precedence
-# export PATH=/usr/local/bin:$PATH
 # or use specific version
-export PATH=/usr/local/opt/ruby/bin:$PATH
-export PATH=/usr/local/opt/ruby@2.5/bin:$PATH
-export PATH=/usr/local/.rbenv/bin:$PATH
+export PATH=$PATH:/usr/local/opt/ruby/bin
+export PATH=$PATH:/usr/local/opt/ruby@2.5/bin
+export PATH=$PATH:/usr/local/.rbenv/bin
 
 # Node
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.config/yarn/link/
 export PATH=$PATH:$MY_DOTFILES/node_modules/.bin
 export PATH=$PATH:./node_modules/.bin
-export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=$PATH:/usr/local/share/npm/bin
 
 # My Scripts
 export PATH=$PATH:$MY_DOTFILES/scripts
@@ -35,7 +32,10 @@ export PATH=$PATH:$MY_DOTFILES/scripts
 export PATH=$PATH:$HOME/pi/.bin
 
 # OPENSSL
-export PATH=/usr/local/opt/openssl@1.1/bin:$PATH
+export PATH=$PATH:/usr/local/opt/openssl@1.1/bin
+
+# qt5
+export PATH=$PATH:/usr/local/opt/qt/bin
 
 # fastolx autocomplete setup
 FASTOLX_AC_ZSH_SETUP_PATH=/Users/tg/Library/Caches/fast-olx-cli/autocomplete/zsh_setup && test -f $FASTOLX_AC_ZSH_SETUP_PATH && source $FASTOLX_AC_ZSH_SETUP_PATH;

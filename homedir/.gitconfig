@@ -1,9 +1,9 @@
-[user]
-	name = Thomas Groch
-	email = thomas.groch@gmail.com
-[github]
-  # https://github.com/blog/180-local-github-config
-	user = thomasgroch
+[includeIf "gitdir:~/company/"]
+  path = ~/.config/git/.gitconfig-company
+[includeIf "gitdir:~/dev/"]
+  path = ~/.config/git/.gitconfig-personal
+[includeIf "gitdir:~/blog/"]
+  path = ~/.config/git/.gitconfig-personal
 [color]
   # ui = true is a superset of all the more specific color options
   #  as documented at http://book.git-scm.com/5_customizing_git.html
@@ -133,6 +133,7 @@
   fetchnotes = !sh -c 'git fetch $1 refs/notes/*:refs/notes/*' -
   showignored = clean -ndX
   showignored2 = ls-files --others --ignored --exclude-standard
+  showignored3 = !git ls-files -v | grep "^[[:lower:]]"
   showuntracked = ls-files --others --exclude-standard
   rmmissing = !git rm $(git ls-files --deleted)
   mergekeepoursonly = merge -s ours
@@ -193,7 +194,8 @@
     # autosetuprebase = always
 
 [credential]
-	helper = osxkeychain
+	# helper = osxkeychain
+	useHttpPath = true
 
 [filter "tabspace"]
   clean = expand -t 4

@@ -9,6 +9,8 @@ tap "homebrew/services"
 tap "puma/puma"
 tap "mas-cli/tap", pin: true
 tap "moncho/dry"
+tap "simplydanny/pass-extensions"
+tap "amar1729/formulae"
 ## Shell
 # Encrypted pass-through FUSE file system
 brew "encfs"
@@ -110,6 +112,8 @@ brew "awscli"
 brew "mas"
 
 ## Languages
+# Safe, concurrent, practical language
+brew "rust"
 # Interpreted, interactive, object-oriented programming language
 brew "python3"
 # Open source programming language to build simple/reliable/efficient software
@@ -172,6 +176,10 @@ brew "ffmpeg", args: ["with-fdk-aac",  # high-quality audio codec
                       "without-xvid"]
 # Utility to determine file types
 brew "file-formula"
+# # Cross-platform application and UI framework
+# brew "qt5"
+# # Toolkit for creating graphical user interfaces
+# brew "gtk+3"
 
 ## Git addons
 # Distributed revision control system
@@ -192,6 +200,8 @@ brew "spoof-mac"
 # Rootkit detector
 brew "chkrootkit"
 brew "pass"
+# This is a host application for browserpass browser extension providing it access to your password store.
+brew "browserpass"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
 # World's fastest and most advanced password recovery utility
@@ -259,6 +269,8 @@ brew "imagesnap" # needed to support gitshots
 brew "jp2a"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Terminal file manager
+brew "lf"
 # Pager program similar to more
 brew "less"
 # List USB devices, just like the Linux lsusb command
@@ -446,7 +458,7 @@ cask "typora"
 cask "vnc-viewer"
 cask "transmit-disk"
 cask "karabiner-elements"
-cask "gpg-suite"
+# cask "gpg-suite"
 cask "font-fontawesome"
 cask "font-awesome-terminal-fonts"
 cask "font-hack"
