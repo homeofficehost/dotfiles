@@ -1,9 +1,24 @@
+[includeIf "gitdir:~/.dotfiles/"]
+  path = ~/.config/git/.gitconfig-personal
+
 [includeIf "gitdir:~/company/"]
   path = ~/.config/git/.gitconfig-company
+
 [includeIf "gitdir:~/dev/"]
   path = ~/.config/git/.gitconfig-personal
+
 [includeIf "gitdir:~/blog/"]
   path = ~/.config/git/.gitconfig-personal
+
+[includeIf "gitdir:~/hero/"]
+  path = ~/.config/git/.gitconfig-personal
+
+[includeIf "gitdir:~/pi/"]
+  path = ~/.config/git/.gitconfig-personal
+
+[includeIf "gitdir:~/arduino/"]
+  path = ~/.config/git/.gitconfig-personal
+
 [color]
   # ui = true is a superset of all the more specific color options
   #  as documented at http://book.git-scm.com/5_customizing_git.html
