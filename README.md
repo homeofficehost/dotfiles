@@ -11,6 +11,14 @@ Robot Automated Configuration, Preferences and Software Installation for 🖥️
 Don't you hate getting a new laptop or joining a new team and then spending a whole day setting up your system preferences and tools? Me too. That's why we automate; we did it once and we don't want to do have to do it again.
 
 
+# Compatibility
+
+|               | **AMD** | **NVIDIA** | **Intel** | 
+| :-----------: | :-----: | :--------: | :-------: |
+| **Windows**   | :x: | :x: | :x: |
+| **GNU/Linux** | Soon:tm: | Soon:tm: | Soon:tm: |
+| **OSX**       | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+
 ## Installation
 
 I suppose for those that _just want the dotfiles_ getting set up is as easy as
