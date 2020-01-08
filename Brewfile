@@ -38,6 +38,10 @@ brew "ack"
 brew "ag"
 # alternative to `cat`: https://github.com/sharkdp/bat
 brew "bat"
+# Fast, highly customisable system info script
+brew "neofetch"
+# Console Matrix
+brew "cmatrix"
 # Install GNU core utilities (those that come with macOS are outdated)
 brew "coreutils"
 brew "dos2unix"
@@ -459,6 +463,7 @@ cask "vnc-viewer"
 cask "transmit-disk"
 cask "karabiner-elements"
 # cask "gpg-suite"
+cask "homebrew/cask-versions/adoptopenjdk8"
 cask "font-fontawesome"
 cask "font-awesome-terminal-fonts"
 cask "font-hack"
