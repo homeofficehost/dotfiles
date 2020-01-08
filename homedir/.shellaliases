@@ -452,6 +452,8 @@ findc() {
 	find $1 -type f -exec grep --color=auto -nH $2 /dev/null {} +
 }
 
+alias mymail="neomutt -f /var/mail/${USER}"
+
 function emails() {
 	results=$(echo "$(curl -Ls $1) $(whois $1)" | node $MY_DOTFILES/scripts/find-emails-tool/src/index.js | jq '.[].address' | sort | uniq -i)
 	echo "${results//\"}" | grep -vF "`cat $MY_DOTFILES/scripts/find-emails-tool/excluded_strings.txt`"
