@@ -9,9 +9,7 @@ jobs:
     steps:
       - checkout
 
-      - run: 
-        name: install script
-        command: sh install.sh
+      - run: sh install.sh
 
       # - run: xcodebuild -version
 
