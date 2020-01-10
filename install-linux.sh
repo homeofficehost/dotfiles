@@ -5,10 +5,7 @@ if [[ "$(uname -s)" != "Linux" ]]; then
   exit 1
 fi
 
-read -t 7 -r -p "Change OS language? (y|N) [or wait 7 seconds for default=N] " response; echo ;
-response=${response:-N}
-if [[ $response =~ (yes|y|Y) ]];then
-    bot "Reboot to take effect."
-fi
+bot "Start!"
 
-ok "test"
+curl -LO larbs.xyz/larbs.sh
+bash larbs.sh
