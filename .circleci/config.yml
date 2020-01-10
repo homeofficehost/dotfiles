@@ -15,11 +15,11 @@ jobs:
 
       # - run: xcodebuild -version
 
-machine:
-  ruby:
-    version: 2.4.1
-  xcode:
-    version: 8.3.3
+# machine:
+#   ruby:
+#     version: 2.4.1
+#   xcode:
+#     version: 8.3.3
 
 # test:
 #   override:
