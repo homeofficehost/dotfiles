@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
   build:
-    machine:
+    docker:
       - image: ubuntu-1604:201903-01
     # macos:
     #   xcode: "9.4.0"
