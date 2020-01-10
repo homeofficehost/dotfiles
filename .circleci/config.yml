@@ -6,6 +6,6 @@ jobs:
     # macos:
     #   xcode: "9.4.0"
     steps:
-      # - checkout
+      - checkout
       - run: sh install.sh
       # - run: xcodebuild -version
