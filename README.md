@@ -417,7 +417,9 @@ I've rewritten my dotfiles many times, and each time I've been influenced by som
 - KyuWoo Choi
 
 # License
-This project is licensed under ISC. Please fork, contribute and share.
+
+Os arquivos e scripts neste repositório são licenciados sob a Licença MIT, que é uma licença muito permissiva que permite usar, modificar, copiar, distribuir, vender, doar, etc. o software. Em outras palavras, faça o que quiser com ele. O único requisito da licença MIT é que a licença e o aviso de direitos autorais sejam fornecidos com o software.
+
 
 # Contributions
 Contributions are always welcome in the form of pull requests with explanatory comments.

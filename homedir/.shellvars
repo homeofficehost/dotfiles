@@ -64,4 +64,4 @@ export CPPFLAGS="-I/usr/local/opt/qt/include"
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export PASSWORD_STORE_EXTENSIONS_DIR=/usr/local/lib/password-store/extensions
 
-source <(pass Shell/vars)
+source <(gopass Shell/vars)

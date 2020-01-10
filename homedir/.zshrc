@@ -118,6 +118,9 @@ export LANG=en_US.UTF-8
 # }
 # [ $ZSH_EVAL_CONTEXT = toplevel ] && npm $@
 
+source <(gopass completion zsh | head -n -1 | tail -n +2)
+compdef _gopass gopass
+
 # https://github.com/nvbn/thefuck#manual-installation
 eval $(thefuck --alias)
 # Uncomment for speed debug

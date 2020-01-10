@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/thomasgroch/dotfiles.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "author": "Thomas Letsch Groch <thomas.groch@gmail.com>",
   "main": "index.js",
   "scripts": {

@@ -25,6 +25,7 @@ alias world="telnet mapscii.me"
 alias parrotdance="curl parrot.live"
 alias criptorates="curl rate.sx"
 alias zsh.debug="zsh -xv"
+alias neofetch="neofetch --config none"
 
 # https://quadpoint.org/articles/irssi/
 # alias irc="screen -r $(screen -ls | sed -ne 's/[[:space:]]//' -ne 's/\((Detached)\|(Multi, detached)\|(Multi, attached)\)// p') || ! test -z $(screen -ls | sed -ne 's/[[:space:]]//' -ne 's/\((Attached)\)// p') || screen -S irc irssi"
@@ -56,8 +57,9 @@ alias dnode="curl -s -X GET https://raw.githubusercontent.com/LeCoupa/awesome-ch
 alias kb="kubectl"
 alias mk="minikube"
 
-alias pass_generate="pass generate --no-symbols --clip $@"
-alias pass_update="pass update --no-symbols --clip $@"
+alias p="gopass $@"
+alias pass_generate="gopass generate --no-symbols --clip $@"
+alias pass_update="gopass update --no-symbols --clip $@"
 # PHP
 # alias phptags="sh ~/.scripts/phpctags"
 # alias phptags_vendor="sh ~/.scripts/phpctags_vendor"

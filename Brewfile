@@ -14,6 +14,8 @@ tap "amar1729/formulae"
 ## Shell
 # Encrypted pass-through FUSE file system
 brew "encfs"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
 # Update of iperf: measures TCP, UDP, and SCTP bandwidth
 brew "iperf3"
 # Monitor a directory for changes and run a shell command. Req by gitwatch
@@ -204,6 +206,7 @@ brew "spoof-mac"
 # Rootkit detector
 brew "chkrootkit"
 brew "pass"
+brew "gopass"
 # This is a host application for browserpass browser extension providing it access to your password store.
 brew "browserpass"
 # GNU Transport Layer Security (TLS) Library
