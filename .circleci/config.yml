@@ -1,11 +1,38 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
       - image: docker:stable-git
     # macos:
     #   xcode: "9.4.0"
+
     steps:
       - checkout
-      - run: sh install.sh
+
+      - run: 
+        name: install script
+        command: sh install.sh
+
       # - run: xcodebuild -version
+
+machine:
+  ruby:
+    version: 2.4.1
+  xcode:
+    version: 8.3.3
+
+# test:
+#   override:
+#     - shellcheck mac -e SC2039
+#     - sh install.sh
+
+workflows:
+  version: 2.1
+  build-and-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+                - develop

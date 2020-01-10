@@ -6,8 +6,9 @@
 ###########################
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
+  uname -s
   echo "Not running on Mac OS X. Aborting!"
-  exit 1
+  # exit 1
 fi
 
 # include my library helpers for colorized echo and require_brew, etc
@@ -27,17 +28,6 @@ if ! sudo grep -q "%wheel   ALL=(ALL) NOPASSWD: ALL # dotfiles" "/etc/sudoers"; 
   # Keep-alive: update existing sudo time stamp until the script has finished
   while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-  bot "Do you want me to setup this machine to allow you to run sudo without a password?\nPlease read here to see what I am doing:\nhttp://wiki.summercode.com/sudo_without_a_password_in_mac_os_x \n"
-
-  read -t 7 -r -p "Make sudo passwordless? (y|N) [or wait 7 seconds for default=N] " response; echo ;
-  response=${response:-N}
-
-  if [[ $response =~ (yes|y|Y) ]];then
-      sudo cp /etc/sudoers /etc/sudoers.back
-      echo '%wheel    ALL=(ALL) NOPASSWD: ALL #atomantic/dotfiles' | sudo tee -a /etc/sudoers > /dev/null
-      sudo dscl . append /Groups/wheel GroupMembership $(whoami)
-      bot "You can now run sudo commands without password!"
-  fi
 fi
 
 # Changing the System Language
