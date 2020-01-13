@@ -38,9 +38,9 @@ cd ~/.dotfiles;
 # run this using terminal (not iTerm, lest iTerm settings get discarded on exit)
 ./install.sh
 ```
-
 # New way
 ```sh
+# where $MY_DOTFILES directory is a git bare repository.
 MY_DOTFILES=$HOME/.dotfiles
 git init --bare $MY_DOTFILES
 alias dotfiles="git --git-dir=$MY_DOTFILES/ --work-tree=$HOME"
@@ -48,7 +48,12 @@ alias dotfiles="git --git-dir=$MY_DOTFILES/ --work-tree=$HOME"
 dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
 dotfiles config status.showUntrackedFiles no
 # dotfiles remote set-url origin 
+caffeinate -i ./install.sh
+password-store-installer
 ```
+
+No extra tooling, no symlinks, files are tracked on a version control system, you can use different branches for different computers, you can replicate you configuration easily on new installation.
+
 * When it finishes, open iTerm and press `Command + ,` to open preferences. Under Profiles > Colors, select "Load Presets" and choose the `Solarized Dark Patch` scheme. If it isn't there for some reason, import it from `~/.dotfiles/configs` -- you may also need to select the `Hack` font and check the box for non-ascii font and set to `Roboto Mono For Powerline` (I've had mixed results for automating these settings--love a pull request that improves this)
 * I've also found that you need to reboot before fast key repeat will be enabled
 
@@ -64,6 +69,8 @@ rm --recursive dotfiles-tmp
 ```
 
 ## Usage
+
+Any file within the home folder can be versioned with commands like:
 
 ```sh
 dotfiles status
@@ -96,8 +103,6 @@ git merge upstream/master
 ```
 
 Now you'll have an up-to-date version of the upstream code in your current branch.
-
-No extra tooling, no symlinks, files are tracked on a version control system, you can use different branches for different computers, you can replicate you configuration easily on new installation.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -153,13 +158,6 @@ This started as MacOS shell configuration dotfiles but has grown to a multi-deve
 
 launch fullscreen hit `Command + Enter`
 iTerm, then use `Command + d` and `Command + D` to create split panes.
-
-
-## Restoring Dotfiles
-
-If you have existing dotfiles for configuring git, zsh, vim, etc, these will be backed-up into `~/.dotfiles_backup/$(date +"%Y.%m.%d.%H.%M.%S")` and replaced with the files from this project. You can restore your original dotfiles by using `./restore.sh $RESTOREDATE` where `$RESTOREDATE` is the date folder name you want to restore.
-
-> The restore script does not currently restore system settings--only your original dotfiles. To restore system settings, you'll need to manually undo what you don't like (so don't forget to fork, review, tweak)
 
 
 # 3.x.x+ Upgrade Instructions!
