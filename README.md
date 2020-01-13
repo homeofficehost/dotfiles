@@ -29,14 +29,30 @@ I will update your MacOS machine with Better™ system defaults, preferences, so
 
 You don't need to install or configure anything upfront! This works with a brand-new macOS machine.
 
-## 🏠 First initial setup
+## 🏠 Install setup
 
+# Old way
+```bash
+git clone --recurse-submodules https://github.com/thomasgroch/dotfiles ~/.dotfiles
+cd ~/.dotfiles;
+# run this using terminal (not iTerm, lest iTerm settings get discarded on exit)
+./install.sh
+```
+
+# New way
 ```sh
 MY_DOTFILES=$HOME/.dotfiles
 git init --bare $MY_DOTFILES
-alias dotfiles="git --git-dir=$MY_DOTFILES/ --work-tree=$HOME $@"
+alias dotfiles="git --git-dir=$MY_DOTFILES/ --work-tree=$HOME"
+# 🖥️ Configuration
 dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
+dotfiles config status.showUntrackedFiles no
+# dotfiles remote set-url origin 
 ```
+* When it finishes, open iTerm and press `Command + ,` to open preferences. Under Profiles > Colors, select "Load Presets" and choose the `Solarized Dark Patch` scheme. If it isn't there for some reason, import it from `~/.dotfiles/configs` -- you may also need to select the `Hack` font and check the box for non-ascii font and set to `Roboto Mono For Powerline` (I've had mixed results for automating these settings--love a pull request that improves this)
+* I've also found that you need to reboot before fast key repeat will be enabled
+
+> Note: running install.sh is idempotent. You can run it again and again as you add new features or software to the scripts! I'll regularly add new configurations so keep an eye on this repo as it grows and optimizes.
 
 ## 🚀 Replication
 
@@ -45,13 +61,6 @@ MY_DOTFILES=$HOME/.dotfiles
 git clone --separate-git-dir=$MY_DOTFILES https://github.com/thomasgroch/dotfiles.git dotfiles-tmp
 rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
 rm --recursive dotfiles-tmp
-```
-
-## 🖥️ Configuration
-
-```sh
-dotfiles config status.showUntrackedFiles no
-dotfiles remote set-url origin https://github.com/thomasgroch/dotfiles.git
 ```
 
 ## Usage
@@ -121,7 +130,7 @@ No extra tooling, no symlinks, files are tracked on a version control system, yo
   - [Address Book, Dashboard, iCal, TextEdit, and Disk Utility](#address-book-dashboard-ical-textedit-and-disk-utility)
   - [Mac App Store](#mac-app-store)
   - [Messages](#messages)
-  - [SizeUp.app](#sizeupapp)
+  - [Spectacle.app](#spectacle)
 - [Software Installation](#software-installation)
   - [Utilities](#utilities)
   - [Apps](#apps)
@@ -134,10 +143,7 @@ No extra tooling, no symlinks, files are tracked on a version control system, yo
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Forget About Manual Configuration!
-
-\\[^_^]/ - This started as [Thomas Letsch Groch](https://thomasgroch.com)'s MacOS shell configuration dotfiles but has grown to a multi-developer platform for machine configuration.
-
+This started as MacOS shell configuration dotfiles but has grown to a multi-developer platform for machine configuration.
 
 # \\[._.]/ - Watch me running
 
@@ -148,19 +154,6 @@ No extra tooling, no symlinks, files are tracked on a version control system, yo
 launch fullscreen hit `Command + Enter`
 iTerm, then use `Command + d` and `Command + D` to create split panes.
 
-# Installation
-
-
-```bash
-git clone --recurse-submodules https://github.com/thomasgroch/dotfiles ~/.dotfiles
-cd ~/.dotfiles;
-# run this using terminal (not iTerm, lest iTerm settings get discarded on exit)
-./install.sh
-```
-* When it finishes, open iTerm and press `Command + ,` to open preferences. Under Profiles > Colors, select "Load Presets" and choose the `Solarized Dark Patch` scheme. If it isn't there for some reason, import it from `~/.dotfiles/configs` -- you may also need to select the `Hack` font and check the box for non-ascii font and set to `Roboto Mono For Powerline` (I've had mixed results for automating these settings--love a pull request that improves this)
-* I've also found that you need to reboot before fast key repeat will be enabled
-
-> Note: running install.sh is idempotent. You can run it again and again as you add new features or software to the scripts! I'll regularly add new configurations so keep an eye on this repo as it grows and optimizes.
 
 ## Restoring Dotfiles
 
@@ -380,8 +373,8 @@ The following will only happen if you agree on the prompt
 - Disable smart quotes as it’s annoying for messages that contain code
 - Disable continuous spell checking
 
-## SizeUp.app
-- Start SizeUp at login
+## Spectacle.app
+- Start Spectacle at login
 - Don’t show the preferences window on next start
 
 # Software Installation
@@ -397,6 +390,7 @@ The following will only happen if you agree on the prompt
 ## Go Packages
 
 # References
+
 - [Change macOS user preferences via command line](https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/)
 
 - https://github.com/bvaughn/progress-estimator
@@ -406,6 +400,7 @@ The following will only happen if you agree on the prompt
 - [setup local dev tampermonkey](https://stackoverflow.com/questions/49509874/how-to-update-tampermonkey-script-to-a-local-file-programatically)
 
 # Credits
+
 I've rewritten my dotfiles many times, and each time I've been influenced by someone new. These people include:
 
 - Adam Eivy
