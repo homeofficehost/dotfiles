@@ -40,10 +40,10 @@ cd ~/.dotfiles;
 ```
 # New way
 ```sh
-# where $MY_DOTFILES directory is a git bare repository.
-MY_DOTFILES=$HOME/.dotfiles
-git init --bare $MY_DOTFILES
-alias dotfiles="git --git-dir=$MY_DOTFILES/ --work-tree=$HOME"
+# where $BARE_DOTFILES directory is a git bare repository.
+BARE_DOTFILES=$HOME/.bare-dotfiles
+git init --bare $BARE_DOTFILES
+alias dotfiles="git --git-dir=$BARE_DOTFILES/ --work-tree=$HOME"
 # 🖥️ Configuration
 dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
 dotfiles config status.showUntrackedFiles no
