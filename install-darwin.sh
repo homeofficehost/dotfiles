@@ -93,13 +93,6 @@ else
   fi
 fi
 
-bot "Checking if cask CLI is already installed"
-output=$(brew tap | grep cask)
-if [[ $? != 0 ]]; then
-  running "installing brew-cask"
-  require_brew caskroom/cask/brew-cask
-fi;ok
-
 # skip those GUI clients, git command-line all the way
 require_brew git
 # update zsh to latest
