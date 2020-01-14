@@ -29,19 +29,22 @@ I will update your MacOS machine with Better™ system defaults, preferences, so
 
 You don't need to install or configure anything upfront! This works with a brand-new macOS machine.
 
-## 🏠 Install setup
+## 🚀 Install setup and Replication
 
 ```sh
 # where $BARE_DOTFILES directory is a git bare repository.
 BARE_DOTFILES=$HOME/.bare-dotfiles
-git init --bare $BARE_DOTFILES
+ln -s $BARE_DOTFILES .git
+# git init --bare $BARE_DOTFILES
+git clone --separate-git-dir=$BARE_DOTFILES https://github.com/thomasgroch/dotfiles.git $HOME
 alias dotfiles="git --git-dir=$BARE_DOTFILES --work-tree=$HOME"
-# 🖥️ Configuration
 dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
 dotfiles config status.showUntrackedFiles no
+bash ./install.sh
 # dotfiles remote set-url origin 
-caffeinate -i ./install.sh
-password-store-installer
+# password-store-installer
+# rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
+# rm --recursive dotfiles-tmp
 ```
 
 No extra tooling, no symlinks, files are tracked on a version control system, you can use different branches for different computers, you can replicate you configuration easily on new installation.
@@ -51,20 +54,8 @@ No extra tooling, no symlinks, files are tracked on a version control system, yo
 
 > Note: running install.sh is idempotent. You can run it again and again as you add new features or software to the scripts! I'll regularly add new configurations so keep an eye on this repo as it grows and optimizes.
 
-## 🚀 Replication
 
-```sh
-BARE_DOTFILES=$HOME/.bare-dotfiles
-git clone --separate-git-dir=$BARE_DOTFILES https://github.com/thomasgroch/dotfiles.git $HOME
-dotfiles config status.showUntrackedFiles no
-caffeinate -i ./install.sh
-password-store-installer
-
-# rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
-# rm --recursive dotfiles-tmp
-```
-
-## Usage
+## 🏠 Usage
 
 Any file within the home folder can be versioned with commands like:
 
@@ -75,7 +66,7 @@ dotfiles commit -m 'Add gitconfig'
 dotfiles push
 ```
 
-# Update Replica
+# Update your forked repository
 
 If you plan on working on this project for anything more than a very quick fix. Use the following commands to add the 'upsteam' (original project location) as a remote branch so that you can get my updates into your branch.
 

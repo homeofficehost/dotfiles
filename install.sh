@@ -5,7 +5,7 @@ source ./lib_sh/echos.sh
 source ./lib_sh/requirers.sh
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  . ./install-darwin.sh
+  caffeinate -i ./install-darwin.sh
 elif [[ "$(uname -s)" == "Linux" ]]; then
   . ./install-linux.sh
 fi
