@@ -139,7 +139,7 @@ brew "dnsmasq"
 # Drop-in replacement for MySQL
 brew "mariadb"
 # High-performance, schema-free, document-oriented database
-brew "mongodb"
+# brew "mongodb"
 # Object-relational database system
 brew "postgresql"
 # Persistent key-value database, with built-in net interface
@@ -158,29 +158,30 @@ brew "fontconfig"
 # Graph visualization software from AT&T and Bell Labs
 brew 'graphviz'
 # Play, record, convert, and stream audio and video
-brew "ffmpeg", args: ["with-fdk-aac",  # high-quality audio codec
-                      "with-fontconfig",
-                      "with-freetype",
-                      "with-game-music-emu",  # game music emulation
-                      "with-libass",
-                      "with-libcaca",   # video to text!
-                      "with-librsvg",
-                      "with-libsoxr",
-                      "with-libvidstab",  # video stabilization
-                      "with-libvorbis",
-                      "with-libvpx",
-                      "with-opus",  # high compression audio
-                      "with-rubberband",  # time-stretching and pitch shifting
-                      "with-sdl2",  # ffplay
-                      "with-srt",  # srt subtitle support
-                      "with-tesseract",  # allows OCR
-                      "with-tools",
-                      "with-wavpack",  # lossless audio compression
-                      "with-webp",  # google image format
-                      "with-x265",  # high compression video
-                      "with-zeromq",
-                      "without-qtkit",
-                      "without-xvid"]
+brew "ffmpeg"
+# brew "ffmpeg", args: ["with-fdk-aac",  # high-quality audio codec
+#                       "with-fontconfig",
+#                       "with-freetype",
+#                       "with-game-music-emu",  # game music emulation
+#                       "with-libass",
+#                       "with-libcaca",   # video to text!
+#                       "with-librsvg",
+#                       "with-libsoxr",
+#                       "with-libvidstab",  # video stabilization
+#                       "with-libvorbis",
+#                       "with-libvpx",
+#                       "with-opus",  # high compression audio
+#                       "with-rubberband",  # time-stretching and pitch shifting
+#                       "with-sdl2",  # ffplay
+#                       "with-srt",  # srt subtitle support
+#                       "with-tesseract",  # allows OCR
+#                       "with-tools",
+#                       "with-wavpack",  # lossless audio compression
+#                       "with-webp",  # google image format
+#                       "with-x265",  # high compression video
+#                       "with-zeromq",
+#                       "without-qtkit",
+#                       "without-xvid"]
 # Utility to determine file types
 brew "file-formula"
 # # Cross-platform application and UI framework
@@ -460,7 +461,7 @@ cask "lepton"
 cask "xquartz"
 cask "dia"
 cask "bitbar"
-cask "marp"
+# cask "marp"
 cask "zettlr"
 cask "typora"
 cask "vnc-viewer"
