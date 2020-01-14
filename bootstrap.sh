@@ -4,11 +4,11 @@ BARE_DOTFILES_BACKUP=$HOME/.bare-dotfiles-bkp
 BARE_DOTFILES_TMP=$HOME/.bare-dotfiles-tmp
 
 
-[[ ! -e .gitmodules ]] && git clone --separate-git-dir=$BARE_DOTFILES https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES_TMP && \
+[[ ! -e .gitmodules ]] && git clone --branch bare --separate-git-dir=$BARE_DOTFILES https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES_TMP && \
 	cp $BARE_DOTFILES_TMP/.gitmodules $HOME
 rm -rf $BARE_DOTFILES_TMP
 
-[[ ! -e $BARE_DOTFILES ]] && git clone --bare https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES
+[[ ! -e $BARE_DOTFILES ]] && git clone --branch bare --bare https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES
 # alias dotfiles="git --git-dir=$BARE_DOTFILES --work-tree=$HOME"
 function dotfiles {
    /usr/bin/git --git-dir=$BARE_DOTFILES --work-tree=$HOME $@
