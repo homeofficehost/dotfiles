@@ -32,19 +32,7 @@ You don't need to install or configure anything upfront! This works with a brand
 ## 🚀 Install setup and Replication
 
 ```sh
-# where $BARE_DOTFILES directory is a git bare repository.
-BARE_DOTFILES=$HOME/.bare-dotfiles
-ln -s $BARE_DOTFILES .git
-# git init --bare $BARE_DOTFILES
-git clone --separate-git-dir=$BARE_DOTFILES https://github.com/thomasgroch/dotfiles.git $HOME
-alias dotfiles="git --git-dir=$BARE_DOTFILES --work-tree=$HOME"
-dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
-dotfiles config status.showUntrackedFiles no
-bash ./install.sh
-# dotfiles remote set-url origin 
-# password-store-installer
-# rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
-# rm --recursive dotfiles-tmp
+curl -LO https://raw.githubusercontent.com/thomasgroch/dotfiles/bare/bootstrap.sh && bash bootstrap.sh
 ```
 
 No extra tooling, no symlinks, files are tracked on a version control system, you can use different branches for different computers, you can replicate you configuration easily on new installation.
