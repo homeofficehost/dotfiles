@@ -14,7 +14,6 @@ function dotfiles {
    /usr/bin/git --git-dir=$BARE_DOTFILES --work-tree=$HOME $@
 }
 
-[[ ! -h .git ]] && ln -s $BARE_DOTFILES .git
 mkdir -p $BARE_DOTFILES_BACKUP
 
 # dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
@@ -32,6 +31,8 @@ fi;
 dotfiles checkout
 
 dotfiles config --local status.showUntrackedFiles no
+[[ ! -h .git ]] && ln -s $BARE_DOTFILES .git
+
 bash ./install.sh
 
 # dotfiles remote set-url origin 
