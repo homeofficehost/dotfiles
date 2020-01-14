@@ -5,14 +5,17 @@ BARE_DOTFILES_TMP=$HOME/.bare-dotfiles-tmp
 
 
 [[ ! -e .gitmodules ]] && git clone --separate-git-dir=$BARE_DOTFILES https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES_TMP && \
-	cp $BARE_DOTFILES_TMP/.gitmodules $HOME && \
-	rm -rf $BARE_DOTFILES_TMP
+	cp $BARE_DOTFILES_TMP/.gitmodules $HOME
+rm -rf $BARE_DOTFILES_TMP
 
 [[ ! -e $BARE_DOTFILES ]] && git clone --bare https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES
-alias dotfiles="git --git-dir=$BARE_DOTFILES --work-tree=$HOME"
+# alias dotfiles="git --git-dir=$BARE_DOTFILES --work-tree=$HOME"
+function dotfiles {
+   /usr/bin/git --git-dir=$BARE_DOTFILES --work-tree=$HOME $@
+}
 
-[[ ! -h .git ]] && ln -s $BARE_DOTFILES .git && \
-	mkdir -p $BARE_DOTFILES_BACKUP
+[[ ! -h .git ]] && ln -s $BARE_DOTFILES .git
+mkdir -p $BARE_DOTFILES_BACKUP
 
 # dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
 # dotfiles checkout --track bare/bare
