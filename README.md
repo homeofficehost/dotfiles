@@ -31,14 +31,6 @@ You don't need to install or configure anything upfront! This works with a brand
 
 ## 🏠 Install setup
 
-# Old way
-```bash
-git clone --recurse-submodules https://github.com/thomasgroch/dotfiles ~/.dotfiles
-cd ~/.dotfiles;
-# run this using terminal (not iTerm, lest iTerm settings get discarded on exit)
-./install.sh
-```
-# New way
 ```sh
 # where $BARE_DOTFILES directory is a git bare repository.
 BARE_DOTFILES=$HOME/.bare-dotfiles
@@ -69,7 +61,8 @@ caffeinate -i ./install.sh
 password-store-installer
 
 # rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
-# rm --recursive dotfiles-tmp```
+# rm --recursive dotfiles-tmp
+```
 
 ## Usage
 

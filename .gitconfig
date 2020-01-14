@@ -10,6 +10,12 @@
 [includeIf "gitdir:~/.password-store/"]
   path = ~/.config/git/.gitconfig-personal
 
+[includeIf "gitdir:~"]
+  path = ~/.config/git/.gitconfig-personal
+
+[includeIf "gitdir:~/.bare-dotfiles/"]
+  path = ~/.config/git/.gitconfig-personal
+
 [includeIf "gitdir:~/.dotfiles/"]
   path = ~/.config/git/.gitconfig-personal
 
