@@ -32,6 +32,8 @@ You don't need to install or configure anything upfront! This works with a brand
 ## 🚀 Install setup and Replication
 
 ```sh
+curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/bare/bootstrap.sh | /bin/bash
+# OR
 curl -LO https://raw.githubusercontent.com/thomasgroch/dotfiles/bare/bootstrap.sh && bash bootstrap.sh
 ```
 
