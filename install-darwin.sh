@@ -5,6 +5,9 @@ if [[ "$(uname -s)" != "Darwin" ]]; then
   exit 1
 fi
 
+source ./lib_sh/echos.sh
+source ./lib_sh/requirers.sh
+
 bot "Hi! I'm going to install tooling and tweak your system settings. Here I go..."
 
 # Ask for the administrator password upfront
