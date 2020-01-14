@@ -6,6 +6,7 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "homebrew/cask-versions"
 tap "puma/puma"
 tap "mas-cli/tap", pin: true
 tap "moncho/dry"

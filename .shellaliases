@@ -45,6 +45,8 @@ dot_link() {
 	mv $1 $MY_DOTFILES/homedir/
 	ln -s "$MY_DOTFILES/homedir/$1" $1
 }
+alias dotfiles='/usr/local/bin/git --git-dir=${BARE_DOTFILES}/ --work-tree=$HOME'
+alias dot="cd ${MY_DOTFILES}"
 
 # Cheat sheets
 alias dterm="curl -s -X GET https://raw.githubusercontent.com/LeCoupa/awesome-cheatsheets/master/languages/bash.sh | less"
@@ -84,7 +86,6 @@ alias typora="open -a typora"
 alias zettlr="open -a zettlr"
 alias ff="fuck $@"
 alias mtop="glances"
-alias dotfiles='/usr/local/bin/git --git-dir=${MY_DOTFILES}/ --work-tree=$HOME'
 alias toggle-hot-corner="toggle-hot-corner.sh"
 alias code.photo="carbon-now $@"
 alias f.create_usb_macos_installer="create-macos.sh $@"
@@ -111,7 +112,6 @@ alias a.ssh="waitforssh.sh $@"
 alias desktop="cd ~/Desktop"
 alias desk="desktop"
 alias olx="cd ~/olx"
-alias dot="cd ${MY_DOTFILES}"
 alias dev="cd ${MY_CODE}"
 alias pi="cd ~/pi"
 alias blog="cd ${MY_BLOG}"

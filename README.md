@@ -43,7 +43,7 @@ cd ~/.dotfiles;
 # where $BARE_DOTFILES directory is a git bare repository.
 BARE_DOTFILES=$HOME/.bare-dotfiles
 git init --bare $BARE_DOTFILES
-alias dotfiles="git --git-dir=$BARE_DOTFILES/ --work-tree=$HOME"
+alias dotfiles="git --git-dir=$BARE_DOTFILES --work-tree=$HOME"
 # 🖥️ Configuration
 dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
 dotfiles config status.showUntrackedFiles no
@@ -62,11 +62,14 @@ No extra tooling, no symlinks, files are tracked on a version control system, yo
 ## 🚀 Replication
 
 ```sh
-MY_DOTFILES=$HOME/.dotfiles
-git clone --separate-git-dir=$MY_DOTFILES https://github.com/thomasgroch/dotfiles.git dotfiles-tmp
-rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
-rm --recursive dotfiles-tmp
-```
+BARE_DOTFILES=$HOME/.bare-dotfiles
+git clone --separate-git-dir=$BARE_DOTFILES https://github.com/thomasgroch/dotfiles.git $HOME
+dotfiles config status.showUntrackedFiles no
+caffeinate -i ./install.sh
+password-store-installer
+
+# rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
+# rm --recursive dotfiles-tmp```
 
 ## Usage
 
