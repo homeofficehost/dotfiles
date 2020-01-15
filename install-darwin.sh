@@ -114,9 +114,26 @@ if [[ "$CURRENTSHELL" != "/usr/local/bin/zsh" ]]; then
   ok
 fi
 
-# if [[ ! -d "./oh-my-zsh/custom/themes/powerlevel9k" ]]; then
-#   git clone https://github.com/bhilburn/powerlevel9k.git oh-my-zsh/custom/themes/powerlevel9k
-# fi
+running "Installing zsh custom plugins"
+warn $ZSH_CUSTOM
+mkdir -p $ZSH_CUSTOM/plugins/
+
+if [[ ! -d "${ZSH_CUSTOM}/plugins/zsh-autosuggestions" ]]; then
+  git clone https://github.com/supercrabtree/k.git "${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
+fi
+
+if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+fi
+
+if [[ ! -d "${ZSH_CUSTOM}/plugins/zsh-autosuggestions" ]]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
+fi
+
+if [[ ! -d "${ZSH_CUSTOM}/themes/powerlevel9k" ]]; then
+  git clone https://github.com/bhilburn/powerlevel9k.git "${ZSH_CUSTOM}/themes/powerlevel9k"
+fi
+ok
 
 ## TODO: REFACT
 
@@ -351,15 +368,6 @@ expect << EOF
   send "\r"
   expect eof
 EOF
-ok
-
-running "Installing zsh custom plugins"
-ZSH_CUSTOM=${ZSH_CUSTOM:-~/oh-my-zsh/custom}
-warn $ZSH_CUSTOM
-mkdir -p $ZSH_CUSTOM/plugins/k
-git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/oh-my-zsh/custom}/plugins/zsh-autosuggestions\
 ok
 
 running "Restore Launchpad apps Organization"

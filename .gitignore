@@ -1,3 +1,17 @@
+Library/
+.password-store/
+.bare-dotfiles/
+.dotfiles/
+company/
+dev/
+pro/
+olx/
+blog/
+hero/
+pi/
+arduino/
+.ssh/
+.Trash/
 logs/
 *.log
 .DS_Store

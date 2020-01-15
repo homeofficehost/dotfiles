@@ -38,6 +38,8 @@ dotfiles checkout
 dotfiles config --local status.showUntrackedFiles no
 [[ ! -h .git ]] && ln -s $BARE_DOTFILES .git
 
+source ~/.profile
+
 bash ./install.sh
 
 # dotfiles remote set-url origin 
