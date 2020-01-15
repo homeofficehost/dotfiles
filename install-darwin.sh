@@ -313,7 +313,6 @@ bot "Developer default settings"
 # yarn global add carbon-now-cli
 # yarn global add is.sh
 touch $HOME/.hushlogin
-mkdir -p ~/.git-templates
 mkdir -p $HOME/.ssh
 mkdir -p $MY_TEMP
 
