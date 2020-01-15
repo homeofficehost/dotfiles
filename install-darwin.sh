@@ -181,7 +181,7 @@ if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
     sudo rm -f /Library/Desktop\ Pictures/El\ Capitan.jpg > /dev/null 2>&1
     sudo rm -f /Library/Desktop\ Pictures/Sierra.jpg > /dev/null 2>&1
     sudo rm -f /Library/Desktop\ Pictures/Sierra\ 2.jpg > /dev/null 2>&1
-    sleep 2; # Wait a bit to make sure the os recreation
+    sleep 7 # Wait a bit to make sure the os recreation
     npx --quiet wallpaper-cli img/wallpaper.jpg;ok
   fi
 fi
@@ -354,12 +354,12 @@ EOF
 ok
 
 running "Installing zsh custom plugins"
-ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+ZSH_CUSTOM=${ZSH_CUSTOM:-~/oh-my-zsh/custom}
 warn $ZSH_CUSTOM
 mkdir -p $ZSH_CUSTOM/plugins/k
 git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/oh-my-zsh/custom}/plugins/zsh-autosuggestions\
 ok
 
 running "Restore Launchpad apps Organization"
