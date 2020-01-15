@@ -13,3 +13,6 @@
 [submodule "macos/apps/chromium-extensions/AllSeeingEye"]
 	path = macos/apps/chromium-extensions/AllSeeingEye
 	url = https://github.com/idibidiart/AllSeeingEye.git
+[submodule ".vim"]
+	path = .vim
+	url = https://github.com/thomasgroch/.vim.git
