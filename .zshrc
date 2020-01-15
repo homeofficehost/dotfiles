@@ -124,7 +124,7 @@ if test -z $GOPASSCMD; then
     # allows to source zshrc twice
     export GOPASSCMD=$(which gopass)
 
-	source <($GOPASSCMD completion zsh | head -n -1 | tail -n +2)
+	[ -n $GOPASSCMD ] && [ -d PASSWORD_STORE_DIR ] && source <($GOPASSCMD completion zsh | head -n -1 | tail -n +2)
 	compdef _gopass gopass
 fi
 
