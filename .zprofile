@@ -19,7 +19,7 @@ HISTDUP=erase               #Erase duplicates in the history file
 ##############################################################################
 # z-zsh setup
 ##############################################################################
-. ~/.dotfiles/z-zsh/z.sh
+. $HOME/z-zsh/z.sh
 function precmd () {
   z --add "$(pwd -P)"
 }

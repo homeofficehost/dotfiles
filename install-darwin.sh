@@ -212,10 +212,10 @@ fi
 ###############################################################################
 # Golang                                                                      #
 ###############################################################################
-
 if [ -z "$(which go)" ]; then
   echo "Golang not available. Skipping!"
 else
+  bot "Install Golang packages"
   go get -u github.com/ramya-rao-a/go-outline
   go get -u github.com/nsf/gocode
   go get -u github.com/uudashr/gopkgs/cmd/gopkgs
@@ -227,14 +227,17 @@ else
   go get -u github.com/golang/lint/golint
   go get -u github.com/kardianos/govendor
   go get -u go.coder.com/sshcode
+  ok
 fi
 
 bot "Installing vim plugins"
 vim +PluginInstall +qall > /dev/null 2>&1
+ok
 
-bot "installing fonts"
+bot "Installing fonts"
 ./fonts/install.sh;ok
 
+# Ensure some directories permissions
 if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
   running "Fixing Ruby Gems Directory Permissions"
   sudo chown -R $(whoami) /Library/Ruby/Gems/2.0.0

@@ -24,11 +24,11 @@ function bot() {
 }
 
 function running() {
-    echo -en "$COL_BLUE ⇒ $1$COL_RESET"
+    echo -en "\n$COL_BLUE ⇒ $1$COL_RESET"
 }
 
 function action() {
-    echo -e "\n$COL_CYAN ⇒ $1$COL_RESET"
+    echo -en "\n$COL_CYAN ⇒ $1$COL_RESET"
 }
 
 function warn() {
