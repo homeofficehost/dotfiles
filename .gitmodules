@@ -1,15 +1,15 @@
 [submodule "oh-my-zsh"]
-  path = oh-my-zsh
+  path = .oh-my-zsh
   url = git://github.com/robbyrussell/oh-my-zsh.git
 [submodule "z-zsh"]
   path = z-zsh
-  url = git://github.com/sjl/z-zsh.git
+  url = https://github.com/sjl/z-zsh.git
 [submodule "homedir/.vim/bundle/Vundle.vim"]
 	path = homedir/.vim/bundle/Vundle.vim
 	url = git://github.com/VundleVim/Vundle.vim.git
 [submodule "setup-keys"]
 	path = setup-keys
-	url = https://github.com/thomasgroch/setup-keys
+	url = https://github.com/thomasgroch/setup-keys.git
 [submodule "macos/apps/chromium-extensions/AllSeeingEye"]
 	path = macos/apps/chromium-extensions/AllSeeingEye
 	url = https://github.com/idibidiart/AllSeeingEye.git
