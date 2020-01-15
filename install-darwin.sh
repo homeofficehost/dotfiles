@@ -215,8 +215,8 @@ bot "Git and NPM Settings"
 ###############################################################################
 
 # . ./macos/apps/git.sh
-action "Remove keychain from storing your password from git credentials"
-git config --system --unset credential.helper;ok
+# action "Remove keychain from storing your password from git credentials"
+# git config --system --unset credential.helper;ok
 
 bot "TTS (text-to-speech) voices"
 read -t 7 -r -p "Would you like to install voices? (y|N) [or wait 7 seconds for default=N] " response; echo ;
