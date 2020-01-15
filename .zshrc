@@ -98,8 +98,9 @@ plugins+=(zsh-syntax-highlighting)
 # fastolx autocomplete:script zsh > $MY_TEMP/temp && chmod +x $MY_TEMP/temp && source $MY_TEMP/temp && rm $MY_TEMP/temp
 
 # Advanced Tab completion
-# autoload -U compinit
-# compinit
+autoload -U compinit
+compinit
+# Now can be use code that calls compdef
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
