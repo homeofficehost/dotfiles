@@ -482,5 +482,5 @@ cask "font-hack-nerd-font"
 # cask "0-ad"
 # cask "thii/swift-runtime/swift-runtime"
 # mas "Xcode", id: 497799835 # req Mac OS X > 10.14.4
-mas "Pages", id: 409201541
+# mas "Pages", id: 409201541
 # mas "", id:1451177988
