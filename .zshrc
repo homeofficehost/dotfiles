@@ -7,7 +7,7 @@ if [[ -n $TMUX ]]; then
 fi
 
 # Path to your oh-my-zsh configuration.
-export ZSH=$HOME/oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # export ZSH_THEME="powerlevel9k/powerlevel9k"
 export ZSH_THEME="robbyrussell"
