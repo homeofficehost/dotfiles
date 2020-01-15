@@ -18,12 +18,12 @@ export GOROOT=/usr/local/opt/go/libexec
 #########################################################################
 # Temporary aliases useful for demos, other current projects
 #########################################################################
-export MY_TEMP=~/dev/temp
-export MY_DOTFILES=~/.dotfiles
-export MY_CODE=~/dev
-export MY_BLOG=~/blog
-export MY_DOWNLOADS=~/Downloads
-export MY_DOCUMENTS=~/Documents
+export MY_TEMP=$HOME/dev/temp
+export MY_DOTFILES=$HOME
+export MY_CODE=$HOME/dev
+export MY_BLOG=$HOME/blog
+export MY_DOWNLOADS=$HOME/Downloads
+export MY_DOCUMENTS=$HOME/Documents
 export BARE_DOTFILES=$HOME/.bare-dotfiles
 
 #########################################################################
