@@ -11,17 +11,17 @@ source ./lib_sh/requirers.sh
 bot "Hi! I'm going to install tooling and tweak your system settings. Here I go..."
 
 # Ask for the administrator password upfront
-bot "I need you to enter your sudo password so I can install some things."
+# bot "I need you to enter your sudo password so I can install some things."
 
 # Ask for the administrator password upfront
-if ! sudo grep -q "%wheel   ALL=(ALL) NOPASSWD: ALL # dotfiles" "/etc/sudoers"; then
+# if ! sudo grep -q "%wheel   ALL=(ALL) NOPASSWD: ALL # dotfiles" "/etc/sudoers"; then
 
-  sudo -v
+#   sudo -v
 
-  # Keep-alive: update existing sudo time stamp until the script has finished
-  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+#   # Keep-alive: update existing sudo time stamp until the script has finished
+#   while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-fi
+# fi
 
 # Changing the System Language
 read -t 7 -r -p "Change OS language? (y|N) [or wait 7 seconds for default=N] " response; echo ;
@@ -73,28 +73,27 @@ fi
 running "Checking if homebrew CLI is already installed"
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
- action "installing homebrew"
- ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
- if [[ $? != 0 ]]; then
-   error "unable to install homebrew, script $0 abort!"
-   exit 2
- fi
-else
-  action "Prevent Homebrew from gathering analytics"
-  brew analytics off;ok
-
-  read -t 7 -r -p "Do you like to upgrade any outdated packages? (y|N) [or wait 7 seconds for default=Y] " response; echo ;
-  response=${response:-Y}
-
-  if [[ $response =~ ^(y|yes|Y) ]];then
-    # Upgrade any already-installed formulae
-    running "upgrade custom system packages update..."
-    exec $HOME/.dotfiles/update.sh >$HOME/logs/job.system-update.`date +\%Y-\%m-\%d-\%H:\%M:\%S-cron.log` 2>&1
-    ok "system updated..."
-  else
-    ok "skipped system packages upgrades.";
+  action "installing homebrew"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  if [[ $? != 0 ]]; then
+    error "unable to install homebrew, script $0 abort!"
+    exit 2
   fi
 fi
+
+read -t 7 -r -p "Do you like to upgrade any outdated packages? (y|N) [or wait 7 seconds for default=N] " response; echo ;
+response=${response:-N}
+if [[ $response =~ ^(y|yes|Y) ]];then
+  # Upgrade any already-installed formulae
+  running "update system packages script..."
+  . ./update.sh
+  ok "system updated..."
+else
+  ok "skipped system's packages update.";
+fi
+
+action "Prevent Homebrew from gathering analytics"
+brew analytics off;ok
 
 # skip those GUI clients, git command-line all the way
 require_brew git
