@@ -88,7 +88,7 @@ plugins+=(cp)
 plugins+=(zsh-autosuggestions)
 plugins+=(zsh-syntax-highlighting)
 
-source $ZSH/oh-my-zsh.sh
+[ -r $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 
 # npx as default fallback command
 # source <(npx --shell-auto-fallback zsh)
@@ -118,8 +118,15 @@ export LANG=en_US.UTF-8
 # }
 # [ $ZSH_EVAL_CONTEXT = toplevel ] && npm $@
 
-source <(gopass completion zsh | head -n -1 | tail -n +2)
-compdef _gopass gopass
+
+if test -z $GOPASSCMD; then
+    # allows to source zshrc twice
+    export GOPASSCMD=$(which gopass)
+
+	source <($GOPASSCMD completion zsh | head -n -1 | tail -n +2)
+	compdef _gopass gopass
+fi
+
 
 # https://github.com/nvbn/thefuck#manual-installation
 eval $(thefuck --alias)

@@ -7,7 +7,7 @@ BARE_DOTFILES_TMP=$HOME/.bare-dotfiles-tmp
 	cp $BARE_DOTFILES_TMP/.gitmodules $HOME
 rm -rf $BARE_DOTFILES_TMP
 
-[[ ! -e $BARE_DOTFILES ]] && git clone --branch bare --bare https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES
+[[ ! -e $BARE_DOTFILES ]] && git clone --recurse-submodules --branch bare --bare https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES
 function dotfiles {
    /usr/bin/git --git-dir=$BARE_DOTFILES --work-tree=$HOME $@
 }

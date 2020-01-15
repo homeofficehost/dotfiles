@@ -62,7 +62,8 @@ export CPPFLAGS="-I/usr/local/opt/qt/include"
 #########################################################################
 # Dev settings
 #########################################################################
+export PASSWORD_STORE_DIR=$HOME/.password-store
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export PASSWORD_STORE_EXTENSIONS_DIR=/usr/local/lib/password-store/extensions
 
-source <(gopass Shell/vars)
+[ -d $PASSWORD_STORE_DIR ] && source <(gopass Shell/vars)
