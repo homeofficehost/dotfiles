@@ -79,8 +79,6 @@ brew "cmake"
 brew "emacs"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
-# Install some other useful utilities like `sponge`
-brew "moreutils"
 brew "binutils"
 brew "diffutils"
 # Color-highlighted diff(1) output
@@ -318,6 +316,8 @@ brew "sshfs"
 brew "openssh"
 # Shell command parallelization utility
 brew "parallel"
+# Install some other useful utilities like `sponge`
+# brew "moreutils" # Disable because conflicts with parallel
 # Tool to automatically fix PHP coding standards issues
 brew "php-cs-fixer"
 # Programmer-oriented testing framework for PHP
@@ -480,7 +480,7 @@ cask "font-roboto-mono-for-powerline"
 cask "font-source-code-pro"
 cask "font-hack-nerd-font"
 # cask "0-ad"
-cask "thii/swift-runtime/swift-runtime"
+# cask "thii/swift-runtime/swift-runtime"
 mas "Xcode", id: 497799835
 mas "Pages", id: 409201541
 # mas "", id:1451177988
