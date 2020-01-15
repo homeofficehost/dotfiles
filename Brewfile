@@ -341,7 +341,7 @@ brew "autossh"
 # Shell extension to jump to frequently used directories
 brew "autojump"
 # Bring your .bashrc, .vimrc, etc. with you when you SSH
-brew "sshrc"
+# brew "sshrc" # temp offline
 # Simplified and community-driven man pages
 brew "tldr"
 # Display directories as trees (with optional color/HTML output)
