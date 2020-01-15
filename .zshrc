@@ -3,11 +3,11 @@
 # zmodload zsh/zprof
 # Is this needed?
 if [[ -n $TMUX ]]; then
-	[ -r ~/.profile ] && source ~/.profile
+	[ -r $HOME/.profile ] && source $HOME/.profile
 fi
 
 # Path to your oh-my-zsh configuration.
-export ZSH=$HOME/.dotfiles/oh-my-zsh
+export ZSH=$HOME/oh-my-zsh
 
 # export ZSH_THEME="powerlevel9k/powerlevel9k"
 export ZSH_THEME="robbyrussell"
@@ -57,7 +57,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.dotfiles/oh-my-zsh/plugins/*)
+# Which plugins would you like to load? (plugins can be found in ~/oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # plugins=(git)
 plugins+=(ssh-agent)
