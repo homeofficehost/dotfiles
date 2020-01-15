@@ -312,11 +312,12 @@ bot "Developer default settings"
 # Installation of is.sh. A fancy alternative for old good test command.
 # yarn global add carbon-now-cli
 # yarn global add is.sh
-touch /Users/$(whoami)/.hushlogin
-mkdir -p /Users/$(whoami)/.ssh
+touch $HOME/.hushlogin
+mkdir -p ~/.git-templates
+mkdir -p $HOME/.ssh
 mkdir -p $MY_TEMP
 
-mkdir -p $(whoami)/pi/.bin/
+mkdir -p $HOME/pi/.bin/
 
 # Fix mariadb start bug
 mkdir -p /usr/local/etc/my.cnf.d
