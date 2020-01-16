@@ -7,7 +7,7 @@ BARE_DOTFILES_TMP=$HOME/.bare-dotfiles-tmp
 	cp $BARE_DOTFILES_TMP/.gitmodules $HOME
 rm -rf $BARE_DOTFILES_TMP
 
-[[ ! -e $BARE_DOTFILES ]] && git clone --jobs 10 --recurse-submodules --branch bare --bare https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES
+[[ ! -e $BARE_DOTFILES ]] && git clone --jobs 10 --branch bare --bare https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES
 function dotfiles {
    /usr/bin/git --git-dir=$BARE_DOTFILES --work-tree=$HOME $@
 }
@@ -20,6 +20,9 @@ function dotfiles {
 
 # Reset current HEAD to the specified state
 dotfiles reset --hard
+
+# Init submodules
+dotfiles submodule update --init --recursive
 
 # Remove untracked files from the working tree
 # dotfiles clean -df # Caution
