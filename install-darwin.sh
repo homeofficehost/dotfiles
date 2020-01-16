@@ -8,20 +8,15 @@ fi
 source ./lib_sh/echos.sh
 source ./lib_sh/requirers.sh
 
-bot "Hi! I'm going to install tooling and tweak your system settings. Here I go..."
+bot "Hi! I'm going to install tooling and tweak your system settings."
 
 # Ask for the administrator password upfront
-# bot "I need you to enter your sudo password so I can install some things."
-
-# Ask for the administrator password upfront
-# if ! sudo grep -q "%wheel   ALL=(ALL) NOPASSWD: ALL # dotfiles" "/etc/sudoers"; then
-
-#   sudo -v
-
-#   # Keep-alive: update existing sudo time stamp until the script has finished
-#   while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
-# fi
+bot "I need you to enter your sudo password. so I can install some things."
+if ! sudo grep -q "%wheel   ALL=(ALL) NOPASSWD: ALL # dotfiles" "/etc/sudoers"; then
+  sudo -v
+  # Keep-alive: update existing sudo time stamp until the script has finished
+  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+fi
 
 # Changing the System Language
 read -t 7 -r -p "Change OS language? (y|N) [or wait 7 seconds for default=N] " response; echo ;
