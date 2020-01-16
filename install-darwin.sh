@@ -241,7 +241,7 @@ else
 fi
 
 bot "Installing vim plugins"
-vim +PluginInstall +qall > /dev/null 2>&1
+vim +PluginInstall +qall ## > /dev/null 2>&1
 ok
 
 bot "Installing fonts"
@@ -372,10 +372,10 @@ expect << EOF
 EOF
 ok
 
-running "Downloading anticaptcha chromium extension"
-pushd macos/apps/chromium-extensions > /dev/null 2>&1
-curl -O https://antcpt.com/downloads/anticaptcha/chrome/anticaptcha-plugin_v0.3008.crx && open anticaptcha-plugin_v0.3008.crx;ok
-popd > /dev/null 2>&1
+# running "Downloading anticaptcha chromium extension"
+# pushd macos/apps/chromium-extensions > /dev/null 2>&1
+# curl -O https://antcpt.com/downloads/anticaptcha/chrome/anticaptcha-plugin_v0.3008.crx && open anticaptcha-plugin_v0.3008.crx;ok
+# popd > /dev/null 2>&1
 
 running "Create dev folder in home directory"
 mkdir -p ~/dev;ok
