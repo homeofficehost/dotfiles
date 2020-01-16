@@ -8,4 +8,4 @@ fi
 bot "Start!"
 
 curl -LO larbs.xyz/larbs.sh
-bash larbs.sh
+sudo bash larbs.sh

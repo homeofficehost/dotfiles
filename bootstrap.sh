@@ -3,7 +3,7 @@ BARE_DOTFILES=$HOME/.bare-dotfiles
 BARE_DOTFILES_BACKUP=$HOME/.bare-dotfiles-bkp
 BARE_DOTFILES_TMP=$HOME/.bare-dotfiles-tmp
 
-[[ ! -e .gitmodules ]] && git clone --branch bare --separate-git-dir=$BARE_DOTFILES https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES_TMP && \
+[[ ! -e .gitmodules ]] && git clone --depth 1 --branch bare --separate-git-dir=$BARE_DOTFILES https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES_TMP && \
 	cp $BARE_DOTFILES_TMP/.gitmodules $HOME
 rm -rf $BARE_DOTFILES_TMP
 
