@@ -302,6 +302,7 @@ bot "Others"
 ###############################################################################
 bot "Developer default settings"
 ###############################################################################
+git clone "${PASSWORD_STORE_REMOTE_URL}.git" $HOME/.password-store
 # netlify --telemetry-disable
 # Installation of is.sh. A fancy alternative for old good test command.
 # yarn global add carbon-now-cli
