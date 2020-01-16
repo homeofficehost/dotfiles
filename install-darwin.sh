@@ -70,10 +70,9 @@ if [[ $response =~ (yes|y|Y) ]];then
     ok "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
 fi
 
-running "Checking if homebrew CLI is already installed"
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
-  action "installing homebrew"
+  running "Installing homebrew CLI"
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   if [[ $? != 0 ]]; then
     error "unable to install homebrew, script $0 abort!"
