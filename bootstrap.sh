@@ -11,7 +11,6 @@ rm -rf $BARE_DOTFILES_TMP
 function dotfiles {
    /usr/bin/git --git-dir=$BARE_DOTFILES --work-tree=$HOME $@
 }
-# alias dotfiles="git --git-dir=$BARE_DOTFILES --work-tree=$HOME"
 
 # dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
 # dotfiles checkout --track bare/bare
@@ -29,11 +28,11 @@ dotfiles submodule update --init --recursive
 
 dotfiles checkout
 if [ $? = 0 ]; then
-  echo "Checked out dotfiles.";
-  else
-    echo "Backing up pre-existing dot files.";
-    mkdir -p $BARE_DOTFILES_BACKUP
-    dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} $BARE_DOTFILES_BACKUP/{}
+	echo "Checked out dotfiles.";
+else
+	echo "Backing up pre-existing dot files.";
+	mkdir -p $BARE_DOTFILES_BACKUP
+	dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} $BARE_DOTFILES_BACKUP/{}
 fi;
 dotfiles checkout
 
@@ -45,7 +44,6 @@ source ~/.profile
 
 bash ./install.sh
 
-# dotfiles remote set-url origin 
 # password-store-installer
 # rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
 # rm --recursive dotfiles-tmp
