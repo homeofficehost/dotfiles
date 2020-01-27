@@ -60,7 +60,22 @@ alias kb="kubectl"
 alias mk="minikube"
 
 alias p="gopass $@"
-alias pass_generate="gopass generate --no-symbols --clip $@"
+
+function genpass {
+	pass generate --no-symbols --clip $1 ${2:-16}
+	read -n 1 -r -p "Press any key to continue"
+	echo "user:${GIT_COMMITTER_EMAIL}\nurl:${1}" | pbcopy
+	gopass edit $1
+}
+
+function gensite {
+	pass generate --no-symbols --clip "sites/${1}" ${2:-16}
+	read -n 1 -r -p "Press any key to continue"
+	echo "user:${GIT_COMMITTER_EMAIL}\nurl:${1}" | pbcopy
+	gopass edit "sites/${1}"
+}
+
+
 alias pass_update="gopass update --no-symbols --clip $@"
 # PHP
 # alias phptags="sh ~/.scripts/phpctags"

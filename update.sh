@@ -22,13 +22,27 @@ source ~/.shellpaths
 # # Use python3 by default
 # rm -f /usr/local/bin/python 2>&1 >/dev/null; ln -s $(which python3) /usr/local/bin/python
 
-# stdout to null, stderr to stdout
+# Update App Store apps
+# sudo softwareupdate -i -a
+# mas upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "mas upgrade; exit code was ${code}\n"
+
+# Update Homebrew (Cask) & packages
+brew update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew update; exit code was ${code}\n"
+# brew upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew upgrade; exit code was ${code}\n"
+
+# Update npm & packages
+# yarn update -g
+# npm update -g
+
+# Update Ruby & gems
+# sudo gem update --system --verbose 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "gem update; exit code was ${code}\n"
+# sudo gem update
+
+# Update Python
 # pip3 install --upgrade setuptools 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "pip setuptools update; exit code was ${code}\n"
 # pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "pip3 update; exit code was ${code}\n"
-# gem update --system --verbose 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "gem update; exit code was ${code}\n"
-brew update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew update; exit code was ${code}\n"
-brew upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew upgrade; exit code was ${code}\n"
-mas upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "mas upgrade; exit code was ${code}\n"
+
+# Update Others packages
 tldr --update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "tldr update; exit code was ${code}\n"
 
 casks_outdated=`brew cask outdated --greedy --verbose | grep -v '(latest)' | cut -d' ' -f1`

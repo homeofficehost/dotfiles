@@ -38,6 +38,8 @@ brew "readline" # ensure gawk gets good readline
 brew "xz"
 # Search tool like grep, but optimized for programmers - http://conqueringthecommandline.com/book/ack_ag
 brew "ack"
+# Wrapper around ripgrep that adds multiple rich file types
+brew "ripgrep-all"
 brew "ag"
 # alternative to `cat`: https://github.com/sharkdp/bat
 brew "bat"
@@ -278,6 +280,8 @@ brew "jp2a"
 brew "jq"
 # Terminal file manager
 brew "lf"
+# File browser
+brew "ranger"
 # Pager program similar to more
 brew "less"
 # List USB devices, just like the Linux lsusb command
