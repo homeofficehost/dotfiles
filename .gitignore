@@ -1,3 +1,18 @@
+# Certificates
+*.crt
+# Privacy Enhanced Mail
+*.pem
+# Certificate Bundles
+*.p7b
+# Personal Information Exchange
+*.p12
+# GNU Privacy Guard
+*.gpg
+# Private Keys
+*.key
+# ASCII Armored Text
+*.asc
+
 Library/
 .password-store/
 .bare-dotfiles/
