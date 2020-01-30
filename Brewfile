@@ -157,6 +157,12 @@ brew "exiftool"
 brew "fontconfig"
 # Graph visualization software from AT&T and Bell Labs
 brew 'graphviz'
+# Terminal based YouTube player and downloader
+brew "mps-youtube"
+# Media player based on MPlayer and mplayer2
+brew "mpv"
+# UNIX movie player
+brew "mplayer"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # brew "ffmpeg", args: ["with-fdk-aac",  # high-quality audio codec
@@ -459,7 +465,6 @@ cask "tor-browser"
 cask "transmission"
 cask "vlc"
 cask "audio-hijack"
-cask "mpv"
 cask "lepton"
 # cask "do-not-disturb"
 cask "xquartz"

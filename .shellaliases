@@ -11,6 +11,7 @@ EOF
 ###############################################################################
 # Development section
 ###############################################################################
+alias youtube="mpsyt"
 alias s="sublimetext"
 alias weather="curl -s 'http://wttr.in/Curitiba?lang=pt'"
 alias weather2="curl -s 'http://v2.wttr.in/Curitiba?lang=pt'"

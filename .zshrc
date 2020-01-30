@@ -130,6 +130,6 @@ fi
 
 
 # https://github.com/nvbn/thefuck#manual-installation
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 # Uncomment for speed debug
 # zprof
