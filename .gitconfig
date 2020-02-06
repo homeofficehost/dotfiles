@@ -1,3 +1,6 @@
+[includeIf "gitdir:~/.oh-my-zsh/custom/"]
+  path = ~/.config/git/.gitconfig-personal
+
 [includeIf "gitdir:~/Library/Preferences/WebStorm2019.1/settingsRepository/repository/"]
   path = ~/.config/git/.gitconfig-personal
 
