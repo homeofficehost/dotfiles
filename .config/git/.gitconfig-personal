@@ -1,0 +1,14 @@
+[user]
+	name = Thomas Letsch Groch
+	email = thomas.groch@gmail.com
+	signingkey = B95BD2A35F4D586F
+	# Is it safe to share your gitconfig's user.signingkey value with the world?
+	# https://security.stackexchange.com/a/153582
+
+[github]
+	# https://github.com/blog/180-local-github-config
+	user = thomasgroch
+
+[credential]
+    # helper = /usr/local/bin/pass-git-helper -l -m ~/.config/pass-git-helper/git-pass-mapping.ini
+    helper = /usr/local/bin/python3 $MY_CODE/pass-git-helper/passgithelper.py -m ~/.config/pass-git-helper/git-pass-mapping.ini

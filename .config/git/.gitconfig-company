@@ -1,0 +1,8 @@
+[user]
+	name = 
+	email = 
+	signingkey = 
+[github]
+	user = 
+[credential]
+	helper = osxkeychain
