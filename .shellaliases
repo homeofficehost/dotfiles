@@ -47,7 +47,7 @@ dot_link() {
 	mv $1 $MY_DOTFILES/homedir/
 	ln -s "$MY_DOTFILES/homedir/$1" $1
 }
-alias dotfiles='/usr/local/bin/git --git-dir=${BARE_DOTFILES}/ --work-tree=$HOME'
+alias dotfiles='git --git-dir=${BARE_DOTFILES}/ --work-tree=$HOME'
 alias dot="cd ${MY_DOTFILES}"
 
 # Cheat sheets
@@ -432,11 +432,11 @@ alias port-forward-list="sudo pfctl -s nat"
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias iplocal="ipconfig getifaddr en0"
-alias iplan="$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')"
+#alias iplan="$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # Show active network interfaces
-alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+#alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
 
 # Flush the DNS on Mac
 alias dnsflush='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
@@ -468,7 +468,7 @@ function take_my_wifi {
 }
 
 
-findc() {
+function findc() {
 	find $1 -type f -exec grep --color=auto -nH $2 /dev/null {} +
 }
 
@@ -479,13 +479,13 @@ function emails() {
 	echo "${results//\"}" | grep -vF "`cat $MY_DOTFILES/scripts/find-emails-tool/excluded_strings.txt`"
 }
 
-function s.cat_npm_scripts {
+function cat_npm_scripts {
 	find . -maxdepth 2 -mindepth 2 -name "${1}" -exec cat {} | jq '.scripts' \;
 }
 
 if test -z $GITLABCMD; then
     # allows to source zshrc twice
-    export GITLABCMD=$(which gitlab)
+    export GITLABCMD=$(which gitlab 2> /dev/null)
 
 	init_gitlab() {
 		json=$(gitlab create_project "$1" "{ description: '$2' }" --json)
@@ -516,108 +516,108 @@ function init_npm {
 	npm init -y
 }
 
-function a.create_bash_package() {
-	name=${1:-'my-app'}
-	description=${2:-'my-app description'}
-	npx oclif multi "${name}"
-	mkdir -p $name && cd $name
-	a.sort_package_json
+# function a.create_bash_package() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	npx oclif multi "${name}"
+# 	mkdir -p $name && cd $name
+# 	a.sort_package_json
 	
-	bpkg init
-	init_npm webstorm
-	git add -A
-	git commit -m "Initial commit"
-	init_gitlab $name $description
+# 	bpkg init
+# 	init_npm webstorm
+# 	git add -A
+# 	git commit -m "Initial commit"
+# 	init_gitlab $name $description
 
-	npx okimdone
-}
-function a.create_vuepress_project() {
-	name=${1:-'my-app'}
-	description=${2:-'my-app description'}
-	mkdir -p $name && cd $name
-	init_git
-	init_npm webstorm
-	init_gitlab $name $description
-	npx okimdone
-}
-function a.create_node_project() {
-	name=${1:-'my-app'}
-	description=${2:-'my-app description'}
-	mkdir -p $name && cd $name && mkdir src && touch src/index.js
-	init_git
-	init_npm webstorm
-	init_gitlab $name $description
-	# heroku git:remote -a $name
-	npx okimdone
-}
-function a.create_laravel_project() {
-	name=${1:-'my-app'}
-	description=${2:-'my-app description'}
-	composer create-project --prefer-dist laravel/laravel $name && cd $name
-	init_git
-	init_npm laravel phpstorm
-	init_gitlab $name $description
-	# heroku git:remote -a $name
-	npx okimdone
-}
-function a.create_vue_app() {
-	name=${1:-'my-app'}
-	description=${2:-'my-app description'}
-	npx @vue/cli create $name && cd $name && \
-	init_npm node webstorm && \
-	init_gitlab $name $description
-	npx okimdone
-}
+# 	npx okimdone
+# }
+# function a.create_vuepress_project() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	mkdir -p $name && cd $name
+# 	init_git
+# 	init_npm webstorm
+# 	init_gitlab $name $description
+# 	npx okimdone
+# }
+# function a.create_node_project() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	mkdir -p $name && cd $name && mkdir src && touch src/index.js
+# 	init_git
+# 	init_npm webstorm
+# 	init_gitlab $name $description
+# 	# heroku git:remote -a $name
+# 	npx okimdone
+# }
+# function a.create_laravel_project() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	composer create-project --prefer-dist laravel/laravel $name && cd $name
+# 	init_git
+# 	init_npm laravel phpstorm
+# 	init_gitlab $name $description
+# 	# heroku git:remote -a $name
+# 	npx okimdone
+# }
+# function a.create_vue_app() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	npx @vue/cli create $name && cd $name && \
+# 	init_npm node webstorm && \
+# 	init_gitlab $name $description
+# 	npx okimdone
+# }
 
-function a.create_vue_app_storybook() {
-	name=${1:-'my-app'}
-	description=${2:-'my-app description'}
-	npx @vue/cli create $name
-	cd $name && \
-	init_npm node webstorm && \
-	# init_gitlab $name $description
-	yarn add --dev @storybook/vue
-	yarn add vue
-	yarn add  --dev vue-loader vue-template-compiler @babel/core babel-loader babel-preset-vue
-	# "storybook": "start-storybook"
-	mkdir -p ./.storybook/
-	mkdir -p ./src/stories/
-	cat > ./.storybook/config.js << EOF
-import { configure } from '@storybook/vue';
-import HelloWorld from '../src/components/HelloWorld.vue';
+# function a.create_vue_app_storybook() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	npx @vue/cli create $name
+# 	cd $name && \
+# 	init_npm node webstorm && \
+# 	# init_gitlab $name $description
+# 	yarn add --dev @storybook/vue
+# 	yarn add vue
+# 	yarn add  --dev vue-loader vue-template-compiler @babel/core babel-loader babel-preset-vue
+# 	# "storybook": "start-storybook"
+# 	mkdir -p ./.storybook/
+# 	mkdir -p ./src/stories/
+# 	cat > ./.storybook/config.js << EOF
+# import { configure } from '@storybook/vue';
+# import HelloWorld from '../src/components/HelloWorld.vue';
 
-configure(require.context('../src', true, /\.stories\.js$/), module);
-Vue.component('hello-world', HelloWorld)
-EOF
-	cat > ./src/stories/HelloWorld.stories.js << EOF
-import Vue from 'vue';
-import HelloWorld from '../components/HelloWorld.vue';
+# configure(require.context('../src', true, /\.stories\.js$/), module);
+# Vue.component('hello-world', HelloWorld)
+# EOF
+# 	cat > ./src/stories/HelloWorld.stories.js << EOF
+# import Vue from 'vue';
+# import HelloWorld from '../components/HelloWorld.vue';
 
-export default { title: 'Button' };
+# export default { title: 'Button' };
 
-export const withText = () => '<hello-world>with text</hello-world>';
+# export const withText = () => '<hello-world>with text</hello-world>';
 
-export const withEmoji = () => '<hello-world>😀 😎 👍 💯</hello-world>';
+# export const withEmoji = () => '<hello-world>😀 😎 👍 💯</hello-world>';
 
-export const asAComponent = () => ({
-  components: { HelloWorld },
-  template: '<hello-world :rounded="true">rounded</hello-world>'
-});
-EOF
+# export const asAComponent = () => ({
+#   components: { HelloWorld },
+#   template: '<hello-world :rounded="true">rounded</hello-world>'
+# });
+# EOF
 
-	npx okimdone
-	start-storybook
-}
+# 	npx okimdone
+# 	start-storybook
+# }
 
-function a.create_react_app() {
-	name=${1:-'my-app'}
-	description=${2:-'my-app description'}
-	npx create-react-app $name && cd $name
-	init_git
-	init_npm node webstorm
-	init_gitlab $name $description
-	npx okimdone
-}
+# function a.create_react_app() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	npx create-react-app $name && cd $name
+# 	init_git
+# 	init_npm node webstorm
+# 	init_gitlab $name $description
+# 	npx okimdone
+# }
 alias f.rm_all_node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
 
 alias a.rm_node_modules_reyarn_redev="rm -Rf node_modules && rm yarn.lock && yarn; yarn dev"
@@ -751,22 +751,21 @@ alias lookbusy="cat /dev/urandom | hexdump -C | grep \"34 32\""
 
 # Convert RAW images to 2560px max-dimension JPEG @ 80 quality to ./output
 # check for presence of convert command first:
-if [ -x "$(which convert)" ]; then
-  function convert-raw-to-jpg() {
-    local quality=${1:-80};
-    local max_dim=${2:-2650};
-    local source_files=${3:-*.CR2};
-    echo "Usage: convert-raw-to-jpg [quality=80] [max-dimension-px=2560] [source=*.CR2]";
-    echo "Converting all ${source_files} to JPEG (${quality} quality, ${max_dim}px max) to output/...";
-    mkdir -p output 2> /dev/null;
-    find . -type f -iname "${source_files}" -print0 |       xargs -0 -n 1 -P 8 -I {} convert -verbose -units PixelsPerInch {}       -colorspace sRGB -resize ${max_dim}x${max_dim} -set filename:new '%t-%wx%h'       -density 72 -format JPG -quality ${quality} 'output/%[filename:new].jpg';
-    echo 'Done.';
 
-  }
-fi;
+# if test -z $CONVERTCMD; then
+#     # allows to source zshrc twice
+#     export CONVERTCMD=$(which convert 2> /dev/null)
+# 		function convert-raw-to-jpg() {
+# 			local quality=${1:-80};
+# 			local max_dim=${2:-2650};
+# 			local source_files=${3:-*.CR2};
+# 			echo "Usage: convert-raw-to-jpg [quality=80] [max-dimension-px=2560] [source=*.CR2]";
+# 			echo "Converting all ${source_files} to JPEG (${quality} quality, ${max_dim}px max) to output/...";
+# 			mkdir -p output 2> /dev/null;
+# 			find . -type f -iname "${source_files}" -print0 |       xargs -0 -n 1 -P 8 -I {} convert -verbose -units PixelsPerInch {}       -colorspace sRGB -resize ${max_dim}x${max_dim} -set filename:new '%t-%wx%h'       -density 72 -format JPG -quality ${quality} 'output/%[filename:new].jpg';
+# 			echo 'Done.';
+
+# 		}
+# fi;
 
 # find . -type f -iname '*.CR2' -print0 | xargs -0 -n 1 -P 8 -I {} convert -verbose -units PixelsPerInch {} -colorspace sRGB -resize 2560x2650 -set filename:new '%t-%wx%h' -density 72 -format JPG -quality 80 '%[filename:new].jpg'
-
-
-
-

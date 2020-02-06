@@ -60,10 +60,11 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # plugins=(git)
+plugins+=(gpg-agent)
 plugins+=(ssh-agent)
 plugins+=(gnu-utils)
 plugins+=(pass)
-plugins+=(k)
+#plugins+=(k)
 plugins+=(yarn)
 # plugins+=(gitfast) # heavy load
 plugins+=(fasd)
@@ -85,8 +86,8 @@ plugins+=(colorize)
 plugins+=(history)
 plugins+=(osx)
 plugins+=(cp)
-plugins+=(zsh-autosuggestions)
-plugins+=(zsh-syntax-highlighting)
+#plugins+=(zsh-autosuggestions)
+#plugins+=(zsh-syntax-highlighting)
 
 [ -r $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 
@@ -98,8 +99,8 @@ plugins+=(zsh-syntax-highlighting)
 # fastolx autocomplete:script zsh > $MY_TEMP/temp && chmod +x $MY_TEMP/temp && source $MY_TEMP/temp && rm $MY_TEMP/temp
 
 # Advanced Tab completion
-autoload -U compinit
-compinit
+#autoload -U compinit
+#compinit
 # Now can be use code that calls compdef
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -120,13 +121,13 @@ export LANG=en_US.UTF-8
 # [ $ZSH_EVAL_CONTEXT = toplevel ] && npm $@
 
 
-if test -z $GOPASSCMD; then
-    # allows to source zshrc twice
-    export GOPASSCMD=$(which gopass)
-
-	[ -n $GOPASSCMD ] && [ -d PASSWORD_STORE_DIR ] && source <($GOPASSCMD completion zsh | head -n -1 | tail -n +2)
-	compdef _gopass gopass
-fi
+#if test -z $GOPASSCMD; then
+#    # allows to source zshrc twice
+#    export GOPASSCMD=$(which gopass)
+#
+#	[ -n $GOPASSCMD ] && [ -d PASSWORD_STORE_DIR ] && source <($GOPASSCMD completion zsh | head -n -1 | tail -n +2)
+#	compdef _gopass gopass
+#fi
 
 
 # https://github.com/nvbn/thefuck#manual-installation

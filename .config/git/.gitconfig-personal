@@ -10,5 +10,4 @@
 	user = thomasgroch
 
 [credential]
-    # helper = /usr/local/bin/pass-git-helper -l -m ~/.config/pass-git-helper/git-pass-mapping.ini
-    helper = /usr/local/bin/python3 $MY_CODE/pass-git-helper/passgithelper.py -m ~/.config/pass-git-helper/git-pass-mapping.ini
+    helper = /bin/pass-git-helper -m ~/.config/pass-git-helper/git-pass-mapping.ini

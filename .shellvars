@@ -12,8 +12,8 @@ fi
 
 export HOMEBREW_EDITOR=$VISUAL
 # bindkey -v # Disabled for crontab be able to load
-export GOPATH=$HOME/Go
-export GOROOT=/usr/local/opt/go/libexec
+#export GOPATH=$HOME/Go
+#export GOROOT=/usr/local/opt/go/libexec
 
 #########################################################################
 # Temporary aliases useful for demos, other current projects
@@ -30,36 +30,36 @@ export BARE_DOTFILES=$HOME/.bare-dotfiles
 # Tool paths
 #########################################################################
 # Remove forward-char widgets from ACCEPT
-[[ ! $SHELL == "/bin/bash" ]] && \
-	ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
+# [[ ! $SHELL == "/bin/bash" ]] && \
+# 	ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
 
 # Add forward-char widgets to PARTIAL_ACCEPT
-ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
+# ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 
-export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
-export ZSH_AUTOSUGGEST_USE_ASYNC=true
-export ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/oh-my-zsh-custom}
+# export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+# export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
+# export ZSH_AUTOSUGGEST_USE_ASYNC=true
+#export ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/oh-my-zsh-custom}
 
 #########################################################################
 # Tool settings
 #########################################################################
-export NO_COLOR=0
+# export NO_COLOR=0
 export DO_NOT_TRACK=1
 export HOMEBREW_NO_ANALYTICS=1
-export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
+#export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 
 # Set compilers to find ruby
-export LDFLAGS="-L/usr/local/opt/ruby/lib"
-export CPPFLAGS="-I/usr/local/opt/ruby/include"
+#export LDFLAGS="-L/usr/local/opt/ruby/lib"
+#export CPPFLAGS="-I/usr/local/opt/ruby/include"
 
 # Set pkg-config to find ruby
 # export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
-export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig"
+#export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig"
 
 # Set compilers to find qt
-export LDFLAGS="-L/usr/local/opt/qt/lib"
-export CPPFLAGS="-I/usr/local/opt/qt/include"
+#export LDFLAGS="-L/usr/local/opt/qt/lib"
+#export CPPFLAGS="-I/usr/local/opt/qt/include"
 
 #########################################################################
 # Dev settings
@@ -69,4 +69,4 @@ export PASSWORD_STORE_DIR=$HOME/.password-store
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export PASSWORD_STORE_EXTENSIONS_DIR=/usr/local/lib/password-store/extensions
 
-[ -d $PASSWORD_STORE_DIR ] && source <(gopass Shell/vars)
+# [ -d $PASSWORD_STORE_DIR ] && source <(gopass Shell/vars)
