@@ -74,6 +74,8 @@ brew "gnu-tar"
 brew "gnu-which"
 # upgrade grep so we can get things like inverted match (-v)
 brew "grep"
+# Search tool like grep and The Silver Searcher
+brew "rg"
 # Utility for directing compilation
 brew "make"
 brew "cmake"
@@ -288,6 +290,8 @@ brew "jq"
 brew "lf"
 # File browser
 brew "ranger"
+# New way to see and navigate directory trees
+brew "broot"
 # Pager program similar to more
 brew "less"
 # List USB devices, just like the Linux lsusb command
@@ -399,6 +403,7 @@ cask "kap"
 cask "amethyst"
 cask "diffmerge"
 cask "meld"
+cask "unetbootin"
 cask "balenaetcher"
 cask "brave-browser"
 cask "beaker-browser"
