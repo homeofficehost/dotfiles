@@ -10,7 +10,8 @@ fi
 export ZSH=$HOME/.oh-my-zsh
 
 # export ZSH_THEME="powerlevel9k/powerlevel9k"
-export ZSH_THEME="robbyrussell"
+# export ZSH_THEME="robbyrussell"
+export ZSH_THEME="spaceship"
 
 # Powerlevel9k Settings
 # if you want to use this, change your non-ascii font to Droid Sans Mono for Awesome
