@@ -10,7 +10,8 @@ fi
 export ZSH=$HOME/.oh-my-zsh
 
 # export ZSH_THEME="powerlevel9k/powerlevel9k"
-export ZSH_THEME="robbyrussell"
+# export ZSH_THEME="robbyrussell"
+export ZSH_THEME="spaceship"
 
 # Powerlevel9k Settings
 # if you want to use this, change your non-ascii font to Droid Sans Mono for Awesome
@@ -56,6 +57,7 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+# ZSH_CUSTOM=$HOME/oh-my-zsh-custom
 
 # Which plugins would you like to load? (plugins can be found in ~/oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
