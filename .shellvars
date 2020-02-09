@@ -36,10 +36,9 @@ export BARE_DOTFILES=$HOME/.bare-dotfiles
 # Add forward-char widgets to PARTIAL_ACCEPT
 # ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 
-# export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-# export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
-# export ZSH_AUTOSUGGEST_USE_ASYNC=true
-#export ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/oh-my-zsh-custom}
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 #########################################################################
 # Tool settings
