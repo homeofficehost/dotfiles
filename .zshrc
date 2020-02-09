@@ -2,9 +2,9 @@
 # Uncomment for speed debug
 # zmodload zsh/zprof
 # Is this needed?
-if [[ -n $TMUX ]]; then
+# if [[ -n $TMUX ]]; then
 	[ -r $HOME/.profile ] && source $HOME/.profile
-fi
+# fi
 
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
@@ -60,7 +60,7 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Which plugins would you like to load? (plugins can be found in ~/oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-# plugins=(git)
+plugins=(git)
 plugins+=(gpg-agent)
 plugins+=(ssh-agent)
 plugins+=(gnu-utils)
@@ -87,8 +87,9 @@ plugins+=(colorize)
 plugins+=(history)
 plugins+=(osx)
 plugins+=(cp)
-#plugins+=(zsh-autosuggestions)
-#plugins+=(zsh-syntax-highlighting)
+plugins+=(zsh-z)
+plugins+=(zsh-autosuggestions)
+plugins+=(zsh-syntax-highlighting)
 
 [ -r $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 
@@ -100,17 +101,17 @@ plugins+=(cp)
 # fastolx autocomplete:script zsh > $MY_TEMP/temp && chmod +x $MY_TEMP/temp && source $MY_TEMP/temp && rm $MY_TEMP/temp
 
 # Advanced Tab completion
-#autoload -U compinit
-#compinit
+autoload -U compinit
+compinit
 # Now can be use code that calls compdef
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # if (command which -s yarn) npm () {
 #   case $@ in
@@ -122,13 +123,13 @@ export LANG=en_US.UTF-8
 # [ $ZSH_EVAL_CONTEXT = toplevel ] && npm $@
 
 
-#if test -z $GOPASSCMD; then
-#    # allows to source zshrc twice
-#    export GOPASSCMD=$(which gopass)
-#
-#	[ -n $GOPASSCMD ] && [ -d PASSWORD_STORE_DIR ] && source <($GOPASSCMD completion zsh | head -n -1 | tail -n +2)
-#	compdef _gopass gopass
-#fi
+if test -z $GOPASSCMD; then
+   # allows to source zshrc twice
+   export GOPASSCMD=$(which gopass)
+
+	[ -n $GOPASSCMD ] && [ -d PASSWORD_STORE_DIR ] && source <($GOPASSCMD completion zsh | head -n -1 | tail -n +2)
+	compdef _gopass gopass
+fi
 
 
 # https://github.com/nvbn/thefuck#manual-installation

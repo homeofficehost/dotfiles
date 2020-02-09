@@ -769,3 +769,6 @@ alias lookbusy="cat /dev/urandom | hexdump -C | grep \"34 32\""
 # fi;
 
 # find . -type f -iname '*.CR2' -print0 | xargs -0 -n 1 -P 8 -I {} convert -verbose -units PixelsPerInch {} -colorspace sRGB -resize 2560x2650 -set filename:new '%t-%wx%h' -density 72 -format JPG -quality 80 '%[filename:new].jpg'
+
+alias linux_kernel="journalctl -afn100"
+alias linux_update="sudo pacman -Syyu"

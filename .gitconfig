@@ -16,7 +16,7 @@
 [includeIf "gitdir:~/.vim/"]
   path = ~/.config/git/.gitconfig-personal
 
-[includeIf "gitdir:~"]
+[includeIf "gitdir:~/"]
   path = ~/.config/git/.gitconfig-personal
 
 [includeIf "gitdir:~/.bare-dotfiles/"]
@@ -237,8 +237,8 @@
 
 [credential]
 	# helper = osxkeychain
-  helper = /usr/local/bin/python3 $MY_CODE/pass-git-helper/passgithelper.py -m ~/.config/pass-git-helper/git-pass-mapping.ini > /Users/tg/dev/temp/asd
 	useHttpPath = true
+	helper = store
 
 [filter "tabspace"]
   clean = expand -t 4
@@ -268,3 +268,6 @@
 	required = true
 [commit]
 	gpgsign = true
+[user]
+	email = thomas.groch@gmail.com
+	name = Thomas Letsch Groch

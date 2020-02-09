@@ -1,7 +1,7 @@
 ##############################################################################
 #Import the shell-agnostic (Bash or Zsh) environment config
 ##############################################################################
-#source ~/.profile
+[ -r ~/.profile ] && source ~/.profile
 
 ##############################################################################
 # History Configuration
@@ -16,10 +16,3 @@ HISTDUP=erase               #Erase duplicates in the history file
 #	setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
 # fi
 
-##############################################################################
-# z-zsh setup
-##############################################################################
-#. $HOME/z-zsh/z.sh
-#function precmd () {
-#  z --add "$(pwd -P)"
-#}
