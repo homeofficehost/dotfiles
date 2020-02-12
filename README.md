@@ -1,12 +1,8 @@
-# dotfiles
+# :octocat: dotfiles
 
 This repository contains a collection of scripts, tools and configurations that help me to be more productive in my everyday job as a software web developer. The repository will grow over time, as I publish more scripts.
 
-Re-create my dev environment if my laptop fails
-
-Robot Automated Configuration, Preferences and Software Installation on 🖥️ macOS + :octocat: My Awesome `.` files project
-
-[![xkcd: Automation](http://imgs.xkcd.com/comics/automation.png)](http://xkcd.com/1319/)
+Automated strategy to re-create my `.` files environment in case my device fails.
 
 ## Compatibility
 
@@ -20,17 +16,11 @@ POSIX configuration files designed to be cross-platform between macOS and GNU/Li
 
 I intend for my managed dotfiles to be portable between GNU/Linux and macOS systems.
 
-## Installation
-
-I suppose for those that _just want the dotfiles_ getting set up is as easy as
-
-## \\[._.]/ - Hi, I'm the MacOS robot
-
-I will update your MacOS machine with Better™ system defaults, preferences, software configuration and even auto-install some handy development tools and apps that my developer friends find helpful.
+## 🚀 Installation setup and Replication
 
 You don't need to install or configure anything upfront! This works with a brand-new macOS machine.
 
-## 🚀 Install setup and Replication
+I suppose for those that _just want the dotfiles_ getting set up is as easy as
 
 ```sh
 curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/bare/bootstrap.sh | /bin/bash
@@ -38,6 +28,8 @@ curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/bare/bootstrap.
 # or POSIX compatible lazy install
 download=false ; if type curl >/dev/null 2>/dev/null ; then download='curl -Lks' ; elif type wget >/dev/null ; then download='wget -O -' ; else ; echo "No way to download dotfiles; please install curl or wget with your package manager" ; fi ; eval "$download https://raw.githubusercontent.com/thomasgroch/dotfiles/bare/bootstrap.sh" | /bin/bash
 ```
+
+\\[._.]/ Done!
 
 No extra tooling, no symlinks, files are tracked on a version control system, you can use different branches for different computers, you can replicate you configuration easily on new installation.
 
