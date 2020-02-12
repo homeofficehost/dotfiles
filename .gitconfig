@@ -102,6 +102,11 @@
 
 [alias]
   # most commonly used
+  this = !git init && git add -A && git commit -m \"Initial commit.\"
+  undo = reset --soft HEAD^
+  amend = commit --amend --no-edit
+  log-line = log --oneline --graph --decorate
+
   co = checkout
   d = diff --color-words
   cam = commit -a -m
@@ -214,7 +219,8 @@
   prompt = false
 
 [diff]
-  tool = vimdiff
+  tool = icdiff
+  # tool = vimdiff
 	color = true
 	guitool = meld
 
@@ -230,6 +236,11 @@
   # Always show a diffstat at the end of a merge
   stat = true
   conflictstyle = diff3
+
+# [merge]
+#     tool = pycharm
+# [mergetool "pycharm"]
+#     cmd = /usr/local/bin/charm merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
 
 [branch]
     # Automatically set up pull to be --rebase
@@ -268,6 +279,5 @@
 	required = true
 [commit]
 	gpgsign = true
-[user]
-	email = thomas.groch@gmail.com
-	name = Thomas Letsch Groch
+[icdiff]
+	options = --highlight --line-numbers

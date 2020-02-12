@@ -387,6 +387,22 @@ mkdir -p ~/blog;ok
 running "Create logs folder in home directory"
 mkdir -p ~/logs;ok
 
+if [[ -r $(which bb) ]]; then
+  cd $HOME/dev && mkdir -p temp && cd temp && \
+    git clone https://github.com/artyfarty/bb-osx.git && cd bb-osx
+  LIBMIKMOD_PATH=$(brew --prefix)/Cellar/libmikmod
+  LIBMIKMOD_PATH="$LIBMIKMOD_PATH/$(ls -t $LIBMIKMOD_PATH* | head -1)/"
+  ./configure --with-libmkmod-exec-prefix=$LIBMIKMOD_PATH --with-libmikmod-prefix=$LIBMIKMOD_PATH
+  make; make install
+  cd $HOME/dev && rm -Rf temp
+fi
+###############################################################################
+# pushd /bin/ > /dev/null 2>&1
+# [ -r /bin/pass-git-helper ] && sudo ln -s $(which pass-git-helper) pass-git-helper
+# [ -r /bin/gpg ] && sudo ln -s $(which gpg) gpg
+# popd > /dev/null 2>&1
+###############################################################################
+
 pushd scripts/ > /dev/null 2>&1
 running "Downloading App-Every "
 curl -O https://raw.githubusercontent.com/iarna/App-Every/master/packed/every && chmod a+x every;ok

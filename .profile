@@ -1,7 +1,14 @@
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export QT_DEVICE_PIXEL_RATIO=1.2
+export OS="$(uname -s)"
 
-# source ~/.shellvars
+if [[ "$OS" == "Darwin" ]]; then
+	export USR_PATH="/usr/local"
+elif [[ "$(uname -s)" == "Linux" ]]; then
+	export USR_PATH="/usr"
+	export QT_QPA_PLATFORMTHEME="qt5ct"
+	export QT_DEVICE_PIXEL_RATIO=1.2
+fi
+
+source ~/.shellvars
 source ~/.shellfn
 source ~/.shellpaths
 source ~/.shellaliases

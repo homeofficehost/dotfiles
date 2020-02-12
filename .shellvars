@@ -13,7 +13,7 @@ fi
 export HOMEBREW_EDITOR=$VISUAL
 # bindkey -v # Disabled for crontab be able to load
 #export GOPATH=$HOME/Go
-#export GOROOT=/usr/local/opt/go/libexec
+#export GOROOT=$USR_PATH/opt/go/libexec
 
 #########################################################################
 # Temporary aliases useful for demos, other current projects
@@ -30,11 +30,11 @@ export BARE_DOTFILES=$HOME/.bare-dotfiles
 # Tool paths
 #########################################################################
 # Remove forward-char widgets from ACCEPT
-# [[ ! $SHELL == "/bin/bash" ]] && \
-# 	ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
+[[ ! $SHELL == "/bin/bash" ]] && \
+	ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
 
 # Add forward-char widgets to PARTIAL_ACCEPT
-# ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
@@ -49,16 +49,16 @@ export HOMEBREW_NO_ANALYTICS=1
 #export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 
 # Set compilers to find ruby
-#export LDFLAGS="-L/usr/local/opt/ruby/lib"
-#export CPPFLAGS="-I/usr/local/opt/ruby/include"
+#export LDFLAGS="-L$USR_PATH/opt/ruby/lib"
+#export CPPFLAGS="-I$USR_PATH/opt/ruby/include"
 
 # Set pkg-config to find ruby
-# export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
-#export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig"
+# export PKG_CONFIG_PATH="$USR_PATH/opt/ruby/lib/pkgconfig"
+#export PKG_CONFIG_PATH="$USR_PATH/opt/qt/lib/pkgconfig"
 
 # Set compilers to find qt
-#export LDFLAGS="-L/usr/local/opt/qt/lib"
-#export CPPFLAGS="-I/usr/local/opt/qt/include"
+#export LDFLAGS="-L$USR_PATH/opt/qt/lib"
+#export CPPFLAGS="-I$USR_PATH/opt/qt/include"
 
 #########################################################################
 # Dev settings
@@ -66,7 +66,7 @@ export HOMEBREW_NO_ANALYTICS=1
 export PASSWORD_STORE_REMOTE_URL=https://gitlab.com/thomas.groch/password-store
 export PASSWORD_STORE_DIR=$HOME/.password-store
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
-# export PASSWORD_STORE_EXTENSIONS_DIR=/usr/local/lib/password-store/extensions
+# export PASSWORD_STORE_EXTENSIONS_DIR=$USR_PATH/lib/password-store/extensions
 export PASSWORD_STORE_EXTENSIONS_DIR=/usr/lib/password-store/extensions
 
 [ -d $PASSWORD_STORE_DIR ] && source <(gopass shell/vars)

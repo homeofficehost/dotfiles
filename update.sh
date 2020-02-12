@@ -63,6 +63,9 @@ brew cleanup 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew cleanup;
 # checks for configuration issues
 brew doctor 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew doctor; exit code was ${code}"
 
+# Clear quicklook macos cache
+qlmanage -r cache
+
 # Remote Notification
 TEXT=$(printf "\
 ==============\n \

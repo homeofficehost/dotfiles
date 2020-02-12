@@ -19,6 +19,8 @@ alias weather2="curl -s 'http://v2.wttr.in/Curitiba?lang=pt'"
 alias tempo="weather"
 alias tempo2="weather2"
 alias qrcode="curl qrenco.de/$@"
+
+alias hollywood='docker run --rm -it bcbcarl/hollywood'
 alias browser='docker run --rm -it browsh/browsh:latest'
 alias audit_this_site='docker run --rm -it trailofbits/twa -vw '
 alias nogiveup="curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash"
@@ -769,6 +771,10 @@ alias lookbusy="cat /dev/urandom | hexdump -C | grep \"34 32\""
 # fi;
 
 # find . -type f -iname '*.CR2' -print0 | xargs -0 -n 1 -P 8 -I {} convert -verbose -units PixelsPerInch {} -colorspace sRGB -resize 2560x2650 -set filename:new '%t-%wx%h' -density 72 -format JPG -quality 80 '%[filename:new].jpg'
-
-alias linux_kernel="journalctl -afn100"
-alias linux_update="sudo pacman -Syyu"
+if [[ "$(uname -s)" == "Darwin" ]]; then
+	alias mount_ESP="mkdir -p /Volumes/ESP && sudo mount -t msdos /dev/disk0s1 /Volumes/ESP"
+elif [[ "$(uname -s)" == "Linux" ]]; then
+	alias mount_ESP="sudo mkdir -p /mnt/ESP && sudo mount -t msdos /dev/disk0s1 /mnt/ESP"
+	alias linux_kernel="journalctl -afn100"
+	alias linux_update="sudo pacman -Syyu"
+fi

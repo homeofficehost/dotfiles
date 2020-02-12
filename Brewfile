@@ -84,6 +84,10 @@ brew "emacs"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
 brew "binutils"
+brew "libmikmod"
+brew "aalib"
+# Improved colored diff
+brew "icdiff"
 brew "diffutils"
 # Color-highlighted diff(1) output
 brew "colordiff"

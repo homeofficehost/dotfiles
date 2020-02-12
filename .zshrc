@@ -66,7 +66,7 @@ plugins+=(gpg-agent)
 plugins+=(ssh-agent)
 plugins+=(gnu-utils)
 plugins+=(pass)
-#plugins+=(k)
+plugins+=(k)
 plugins+=(yarn)
 # plugins+=(gitfast) # heavy load
 plugins+=(fasd)
@@ -102,11 +102,10 @@ plugins+=(zsh-syntax-highlighting)
 # fastolx autocomplete:script zsh > $MY_TEMP/temp && chmod +x $MY_TEMP/temp && source $MY_TEMP/temp && rm $MY_TEMP/temp
 
 # Advanced Tab completion
-autoload -U compinit
-compinit
+autoload -Uz compinit && compinit
 # Now can be use code that calls compdef
 
-export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="$USR_PATH/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -132,6 +131,7 @@ if test -z $GOPASSCMD; then
 	compdef _gopass gopass
 fi
 
+alias zsh_is_loading="zsh -o SOURCE_TRACE"
 
 # https://github.com/nvbn/thefuck#manual-installation
 # eval $(thefuck --alias)
