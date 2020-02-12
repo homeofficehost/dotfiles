@@ -1,4 +1,4 @@
-# :octocat: dotfiles
+# dotfiles :octocat:
 
 This repository contains a collection of scripts, tools and configurations that help me to be more productive in my everyday job as a software web developer. The repository will grow over time, as I publish more scripts.
 
@@ -20,7 +20,9 @@ I intend for my managed dotfiles to be portable between GNU/Linux and macOS syst
 
 You don't need to install or configure anything upfront! This works with a brand-new macOS machine.
 
-I suppose for those that _just want the dotfiles_ getting set up is as easy as
+All steps use configuration convention (sensitive defaults) and everything should be performed automatically without having to press any buttons until the end. However, you can still interact at any time.
+
+I suppose for those that _just want the dotfiles_ getting set up is as easy as:
 
 ```sh
 curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/bare/bootstrap.sh | /bin/bash
@@ -29,7 +31,7 @@ curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/bare/bootstrap.
 download=false ; if type curl >/dev/null 2>/dev/null ; then download='curl -Lks' ; elif type wget >/dev/null ; then download='wget -O -' ; else ; echo "No way to download dotfiles; please install curl or wget with your package manager" ; fi ; eval "$download https://raw.githubusercontent.com/thomasgroch/dotfiles/bare/bootstrap.sh" | /bin/bash
 ```
 
-\\[._.]/ Done!
+** \\[._.]/ Done! **
 
 No extra tooling, no symlinks, files are tracked on a version control system, you can use different branches for different computers, you can replicate you configuration easily on new installation.
 
