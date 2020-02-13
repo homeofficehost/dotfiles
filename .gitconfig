@@ -102,6 +102,13 @@
   cob = checkout -b
   up = pull --rebase --autostash
 
+  snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+
+  # Often during a merge you know you want to take a file from one side wholesale. 
+  # The following aliases let you pick a file(s) from the current branch or the merged branch respectively:
+  ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
+  theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+
   # least used
   ec = config --global -e
   br = branch -a
@@ -272,6 +279,7 @@
 	gpgsign = true
 [format]
 	signoff = true
+  pretty = "%H %ci %ce %ae %d %s"
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
