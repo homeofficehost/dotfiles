@@ -64,18 +64,43 @@
 [alias]
   # most commonly used
   this = !git init && git add -A && git commit -m \"Initial commit.\"
-  undo = reset --soft HEAD^
   amend = commit --amend --no-edit
   log-line = log --oneline --graph --decorate
-
+  unstage = reset HEAD --
+  last = log -1 HEAD
+  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+  bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+  cm = !git add -A && git commit -m
   co = checkout
+  cob = checkout -b
+  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  # This commits everything in working directory and then does a hard reset to remove that commit.
+  # Backup and reset
+  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+  # Soft reset your existing branch to 1 before your merge
+  undolastcommit = reset --soft HEAD^
+  # http://haacked.com/archive/2014/07/28/github-flow-aliases/
+  
+  cm = !git add -A && git commit -m
+  save = !git add -A && git commit -m 'SAVEPOINT'
+  wip = !git add -u && git commit -m "WIP"
+  undo = reset HEAD~1 --mixed
+  amend = commit -a --amend
+  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
+  # TODO: Test this fix
+  # bclean = "!f() { branches=$(git branch --merged ${1-master} | grep -v " ${1-master}$"); [ -z \"$branches\" ] || git branch -d $branches; }; f"`
+  bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+
   d = diff --color-words
   cam = commit -a -m
   upm = !git fetch upstream && git merge upstream/master
   # new standard to replace the deprecated git-up gem package:
+  cob = checkout -b
   up = pull --rebase --autostash
 
   # least used
+  ec = config --global -e
   br = branch -a
   s = status -s -u
   cl = log --stat -C -2
@@ -145,7 +170,6 @@
   showuntracked = ls-files --others --exclude-standard
   rmmissing = !git rm $(git ls-files --deleted)
   mergekeepoursonly = merge -s ours
-  redocommit = reset --soft HEAD^
   listunstaged = diff --name-status
   liststaged = diff --name-status --staged
   listhistory = log --name-status
@@ -164,10 +188,8 @@
   fixup = "!sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -"
   squash = "!sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -"
   ccfq = "!sh -c 'git add $1 && git commit -m\"Placeholder\"' -"
-  cob = checkout -b
   sno = show --name-only
   logsimple = log --graph --abbrev-commit --pretty=oneline --all --decorate
-	reset = reset --soft HEAD^
 	graph = log --graph --oneline --decorate
   # Setup Git Submodules To Auto-Pull
 	pull = "!f(){ git pull \"$@\" && git submodule update --init --recursive; }; f"
@@ -188,7 +210,10 @@
 	guitool = meld
 
 [difftool "icdiff"]
-  cmd = icdiff $LOCAL $REMOTE
+    cmd = icdiff --head=5000 --highlight --line-numbers -L \"$BASE\" -L \"$REMOTE\" \"$LOCAL\" \"$REMOTE\"
+
+[icdiff]
+  options = --highlight --line-numbers
 
 [color "diff-highlight"]
   oldNormal = red bold
@@ -224,7 +249,10 @@
   clean = expand -t 4
 
 [push]
-	default = matching
+  # push the current branch to update a branch with the same name on the receiving end. Works in both central and non-central workflows.
+  default = current
+  # Push only the current branch
+  # default = simple
 	followTags = true
 
 [init]
@@ -246,7 +274,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[icdiff]
-	options = --highlight --line-numbers
 [fetch]
 	recurseSubmodules = true

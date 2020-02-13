@@ -95,6 +95,10 @@ git config --global format.signoff true
 git config --global alias.reset 'reset --soft HEAD^'
 git config --global alias.graph 'log --graph --oneline --decorate'
 
+# Git Submodules To Auto-Pull
+git config --add fetch.recurseSubmodules true
+git config alias.pull '!f(){ git pull "$@" && git submodule update --init --recursive; }; f'
+
 if which meld &>/dev/null; then
 	git config --global diff.guitool meld
 	git config --global merge.tool meld
