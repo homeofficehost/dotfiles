@@ -1,3 +1,6 @@
+[include]
+  path = ~/.gitalias.txt
+
 [includeIf "gitdir:~/"]
   path = ~/.config/git/.gitconfig-personal
 
