@@ -1,0 +1,435 @@
+[
+    {
+        "emoji": "🎨",
+        "entity": "&#x1f3a8;",
+        "code": ":art:",
+        "description": "Melhorando a estrutura / formato do código.",
+        "name": "art"
+    },
+    {
+        "emoji": "⚡️",
+        "entity": "&#x26a1;",
+        "code": ":zap:",
+        "description": "Melhorando a performance.",
+        "name": "zap"
+    },
+    {
+        "emoji": "🔥",
+        "entity": "&#x1f525;",
+        "code": ":fire:",
+        "description": "Removendo código ou arquivos.",
+        "name": "fire"
+    },
+    {
+        "emoji": "🐛",
+        "entity": "&#x1f41b;",
+        "code": ":bug:",
+        "description": "Corrigindo um erro.",
+        "name": "bug"
+    },
+    {
+        "emoji": "🚑",
+        "entity": "&#128657;",
+        "code": ":ambulance:",
+        "description": "Hotfix crítico.",
+        "name": "ambulance"
+    },
+    {
+        "emoji": "✨",
+        "entity": "&#x2728;",
+        "code": ":sparkles:",
+        "description": "Apresentando novos recursos.",
+        "name": "sparkles"
+    },
+    {
+        "emoji": "📝",
+        "entity": "&#x1f4dd;",
+        "code": ":memo:",
+        "description": "Escrevendo documentos.",
+        "name": "memo"
+    },
+    {
+        "emoji": "🚀",
+        "entity": "&#x1f680;",
+        "code": ":rocket:",
+        "description": "Implantando coisas.",
+        "name": "rocket"
+    },
+    {
+        "emoji": "💄",
+        "entity": "&#ff99cc;",
+        "code": ":lipstick:",
+        "description": "Atualizando a interface do usuário e os arquivos de estilo.",
+        "name": "lipstick"
+    },
+    {
+        "emoji": "🎉",
+        "entity": "&#127881;",
+        "code": ":tada:",
+        "description": "Confirmação inicial.",
+        "name": "tada"
+    },
+    {
+        "emoji": "✅",
+        "entity": "&#x2705;",
+        "code": ":white_check_mark:",
+        "description": "Atualizando testes.",
+        "name": "white-check-mark"
+    },
+    {
+        "emoji": "🔒",
+        "entity": "&#x1f512;",
+        "code": ":lock:",
+        "description": "Corrigindo problemas de segurança.",
+        "name": "lock"
+    },
+    {
+        "emoji": "🍎",
+        "entity": "&#x1f34e;",
+        "code": ":apple:",
+        "description": "Corrigindo algo no macOS.",
+        "name": "apple"
+    },
+    {
+        "emoji": "🐧",
+        "entity": "&#x1f427;",
+        "code": ":penguin:",
+        "description": "Corrigindo algo no Linux.",
+        "name": "penguin"
+    },
+    {
+        "emoji": "🏁",
+        "entity": "&#x1f3c1;",
+        "code": ":checkered_flag:",
+        "description": "Corrigindo algo no Windows.",
+        "name": "checkered-flag"
+    },
+    {
+        "emoji": "🤖",
+        "entity": "&#129302;",
+        "code": ":robot:",
+        "description": "Corrigindo algo no Android.",
+        "name": "robot"
+    },
+    {
+        "emoji": "🍏",
+        "entity": "&#127823;",
+        "code": ":green_apple:",
+        "description": "Corrigindo algo no iOS.",
+        "name": "green-apple"
+    },
+    {
+        "emoji": "🔖",
+        "entity": "&#x1f516;",
+        "code": ":bookmark:",
+        "description": "Tags de liberação / versão.",
+        "name": "bookmark"
+    },
+    {
+        "emoji": "🚨",
+        "entity": "&#x1f6a8;",
+        "code": ":rotating_light:",
+        "description": "Removendo os avisos do linter.",
+        "name": "rotating-light"
+    },
+    {
+        "emoji": "🚧",
+        "entity": "&#x1f6a7;",
+        "code": ":construction:",
+        "description": "Trabalho em progresso.",
+        "name": "construction"
+    },
+    {
+        "emoji": "💚",
+        "entity": "&#x1f49a;",
+        "code": ":green_heart:",
+        "description": "Corrigindo a criação de IC.",
+        "name": "green-heart"
+    },
+    {
+        "emoji": "⬇️",
+        "entity": "⬇️",
+        "code": ":arrow_down:",
+        "description": "Downgrade de dependências.",
+        "name": "arrow-down"
+    },
+    {
+        "emoji": "⬆️",
+        "entity": "⬆️",
+        "code": ":arrow_up:",
+        "description": "Atualizando dependências.",
+        "name": "arrow-up"
+    },
+    {
+        "emoji": "📌",
+        "entity": "&#x1F4CC;",
+        "code": ":pushpin:",
+        "description": "Fixando dependências para versões específicas.",
+        "name": "pushpin"
+    },
+    {
+        "emoji": "👷",
+        "entity": "&#x1f477;",
+        "code": ":construction_worker:",
+        "description": "Adicionando sistema de criação de IC.",
+        "name": "construction-worker"
+    },
+    {
+        "emoji": "📈",
+        "code": ":chart_with_upwards_trend:",
+        "description": "Adicionando análise ou código de rastreamento.",
+        "name": "chart-with-upwards-trend"
+    },
+    {
+        "emoji": "♻️",
+        "entity": "&#x2672;",
+        "code": ":recycle:",
+        "description": "Código de refatoração.",
+        "name": "recycle"
+    },
+    {
+        "emoji": "🐳",
+        "entity": "&#x1f433;",
+        "code": ":whale:",
+        "description": "Trabalhe sobre o Docker.",
+        "name": "whale"
+    },
+    {
+        "emoji": "➕",
+        "entity": "&#10133;",
+        "code": ":heavy_plus_sign:",
+        "description": "Adicionando uma dependência.",
+        "name": "heavy-plus-sign"
+    },
+    {
+        "emoji": "➖",
+        "entity": "&#10134;",
+        "code": ":heavy_minus_sign:",
+        "description": "Removendo uma dependência.",
+        "name": "heavy-minus-sign"
+    },
+    {
+        "emoji": "🔧",
+        "entity": "&#x1f527;",
+        "code": ":wrench:",
+        "description": "Alterando arquivos de configuração.",
+        "name": "wrench"
+    },
+    {
+        "emoji": "🌐",
+        "entity": "&#127760;",
+        "code": ":globe_with_meridians:",
+        "description": "Internacionalização e localização.",
+        "name": "globe-with-meridians"
+    },
+    {
+        "emoji": "✏️",
+        "entity": "&#59161;",
+        "code": ":pencil2:",
+        "description": "Corrigindo erros de digitação.",
+        "name": "pencil"
+    },
+    {
+        "emoji": "💩",
+        "entity": "&#58613;",
+        "code": ":hankey:",
+        "description": "Escrever código incorreto que precisa ser aprimorado.",
+        "name": "hankey"
+    },
+    {
+        "emoji": "⏪",
+        "entity": "&#9194;",
+        "code": ":rewind:",
+        "description": "Revertendo mudanças.",
+        "name": "rewind"
+    },
+    {
+        "emoji": "🔀",
+        "entity": "&#128256;",
+        "code": ":twisted_rightwards_arrows:",
+        "description": "Mesclando ramificações.",
+        "name": "twisted-rightwards-arrows"
+    },
+    {
+        "emoji": "📦",
+        "entity": "&#1F4E6;",
+        "code": ":package:",
+        "description": "Atualizando arquivos ou pacotes compilados.",
+        "name": "package"
+    },
+    {
+        "emoji": "👽",
+        "entity": "&#1F47D;",
+        "code": ":alien:",
+        "description": "Atualizando código devido a alterações externas da API.",
+        "name": "alien"
+    },
+    {
+        "emoji": "🚚",
+        "entity": "&#1F69A;",
+        "code": ":truck:",
+        "description": "Movendo ou renomeando arquivos.",
+        "name": "truck"
+    },
+    {
+        "emoji": "📄",
+        "entity": "&#1F4C4;",
+        "code": ":page_facing_up:",
+        "description": "Adicionando ou atualizando licença.",
+        "name": "page-facing-up"
+    },
+    {
+        "emoji": "💥",
+        "entity": "&#x1f4a5;",
+        "code": ":boom:",
+        "description": "Apresentando mudanças de última hora.",
+        "name": "boom"
+    },
+    {
+        "emoji": "🍱",
+        "entity": "&#1F371",
+        "code": ":bento:",
+        "description": "Adicionando ou atualizando ativos.",
+        "name": "bento"
+    },
+    {
+        "emoji": "👌",
+        "entity": "&#x1f44c;",
+        "code": ":ok_hand:",
+        "description": "Atualizando código devido a alterações de revisão de código.",
+        "name": "ok-hand"
+    },
+    {
+        "emoji": "♿️",
+        "entity": "&#9855;",
+        "code": ":wheelchair:",
+        "description": "Melhorando a acessibilidade.",
+        "name": "wheelchair"
+    },
+    {
+        "emoji": "💡",
+        "entity": "&#128161;",
+        "code": ":bulb:",
+        "description": "Documentando o código fonte.",
+        "name": "bulb"
+    },
+    {
+        "emoji": "🍻",
+        "entity": "&#x1f37b;",
+        "code": ":beers:",
+        "description": "Escrevendo código bêbado.",
+        "name": "beers"
+    },
+    {
+        "emoji": "💬",
+        "entity": "&#128172;",
+        "code": ":speech_balloon:",
+        "description": "Atualizando texto e literais.",
+        "name": "speech-balloon"
+    },
+    {
+        "emoji": "🗃",
+        "entity": "&#128451;",
+        "code": ":card_file_box:",
+        "description": "Executando alterações relacionadas ao banco de dados.",
+        "name": "card-file-box"
+    },
+    {
+        "emoji": "🔊",
+        "entity": "&#128266;",
+        "code": ":loud_sound:",
+        "description": "Adicionando logs.",
+        "name": "loud-sound"
+    },
+    {
+        "emoji": "🔇",
+        "entity": "&#128263;",
+        "code": ":mute:",
+        "description": "Removendo logs.",
+        "name": "mute"
+    },
+    {
+        "emoji": "👥",
+        "entity": "&#128101;",
+        "code": ":busts_in_silhouette:",
+        "description": "Adicionando contribuidor (es).",
+        "name": "busts-in-silhouette"
+    },
+    {
+        "emoji": "🚸",
+        "entity": "&#128696;",
+        "code": ":children_crossing:",
+        "description": "Melhorando a experiência / usabilidade do usuário.",
+        "name": "children-crossing"
+    },
+    {
+        "emoji": "🏗",
+        "entity": "&#1f3d7;",
+        "code": ":building_construction:",
+        "description": "Fazendo mudanças na arquitetura.",
+        "name": "building-construction"
+    },
+    {
+        "emoji": "📱",
+        "entity": "&#128241;",
+        "code": ":iphone:",
+        "description": "Trabalhando no design responsivo.",
+        "name": "iphone"
+    },
+    {
+        "emoji": "🤡",
+        "entity": "&#129313;",
+        "code": ":clown_face:",
+        "description": "Zombando das coisas.",
+        "name": "clown-face"
+    },
+    {
+        "emoji": "🥚",
+        "entity": "&#129370;",
+        "code": ":egg:",
+        "description": "Adicionando um ovo de páscoa.",
+        "name": "egg"
+    },
+    {
+        "emoji": "🙈",
+        "entity": "&#8bdfe7;",
+        "code": ":see_no_evil:",
+        "description": "Adicionando ou atualizando um arquivo .gitignore.",
+        "name": "see-no-evil"
+    },
+    {
+        "emoji": "📸",
+        "entity": "&#128248;",
+        "code": ":camera_flash:",
+        "description": "Incluindo ou Atualizando Instantâneos.",
+        "name": "camera-flash"
+    },
+    {
+        "emoji": "⚗",
+        "entity": "&#128248;",
+        "code": ":alembic:",
+        "description": "Experimentando coisas novas.",
+        "name": "alembic"
+    },
+    {
+        "emoji": "🔍",
+        "entity": "&#128269;",
+        "code": ":mag:",
+        "description": "Melhorando SEO.",
+        "name": "mag"
+    },
+    {
+        "emoji": "☸️",
+        "entity": "&#9784;",
+        "code": ":wheel_of_dharma:",
+        "description": "Trabalhe sobre o Kubernetes.",
+        "name": "wheel-of-dharma"
+    },
+    {
+        "emoji": "🏷️",
+        "entity": "&#127991;",
+        "code": ":label:",
+        "description": "Adicionando ou atualizando tipos (Flow, TypeScript).",
+        "name": "label"
+    }
+]

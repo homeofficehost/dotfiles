@@ -207,6 +207,8 @@ brew "git"
 brew "bfg"
 brew "git-extras"
 brew "git-flow"
+# Emoji guide for your commit messages
+brew "gitmoji"
 # Git extension for versioning large files"
 brew "git-lfs"
 # Ruby client and CLI for GitLab API

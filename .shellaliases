@@ -231,6 +231,24 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 ###############################################################################
 alias gitsubmoduleinit="git submodule update --init --recursive"
 
+function gitmoji_switch_stack {
+	pushd $HOME/.gitmoji > /dev/null 2>&1
+	rm -f gitmojis.json
+	if [[ -r "gitmojis-${1}.json" ]]; then
+		ln -s gitmojis-$1.json gitmojis.json
+	else
+		echo "$HOME/.gitmoji/gitmojis-${1}.json not found."
+	fi
+	popd > /dev/null 2>&1
+
+	# Process all arguments except the first one
+	[[ -r "$HOME/.gitmoji/gitmojis.json" ]] && gitmoji "${@:2}"
+}
+alias gitmoji_en="gitmoji_switch_stack default"
+alias gitmoji_br="gitmoji_switch_stack br"
+alias autocommit_en="gitmoji_en --commit"
+alias autocommit="gitmoji_br --commit"
+
 # Git Tools
 # assumes git-up is installed (gem install git-up)
 # switches to 'develop' branch, updates all local branches (nicely using git-up), removes all local branches already merged into 'develop'
@@ -643,7 +661,6 @@ alias s.filepizza="npx filepizza $@"
 alias s.fkill="npx fkill-cli $@"
 alias s.get-urls="npx get-urls-cli $@"
 alias s.git_open="npx git-open $@"
-alias s.gitmoji="npx gitmoji-cli $@"
 alias s.gtop="npx gtop $@"
 alias s.instant_markdown_d="npx instant-markdown-d $@"
 alias s.iponmap="npx iponmap $@"
