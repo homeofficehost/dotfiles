@@ -66,7 +66,6 @@ export HOMEBREW_NO_ANALYTICS=1
 export PASSWORD_STORE_REMOTE_URL=https://gitlab.com/thomas.groch/password-store
 export PASSWORD_STORE_DIR=$HOME/.password-store
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
-# export PASSWORD_STORE_EXTENSIONS_DIR=$USR_PATH/lib/password-store/extensions
-export PASSWORD_STORE_EXTENSIONS_DIR=/usr/lib/password-store/extensions
+export PASSWORD_STORE_EXTENSIONS_DIR=$USR_PATH/lib/password-store/extensions
 
 [ -d $PASSWORD_STORE_DIR ] && source <(gopass shell/vars)

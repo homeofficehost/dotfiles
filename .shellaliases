@@ -770,6 +770,8 @@ alias lookbusy="cat /dev/urandom | hexdump -C | grep \"34 32\""
 # 		}
 # fi;
 
+alias tor_exit_nodes="curl https://check.torproject.org/cgi-bin/TorBulkExitList.py?ip=1.1.1.1"
+
 # find . -type f -iname '*.CR2' -print0 | xargs -0 -n 1 -P 8 -I {} convert -verbose -units PixelsPerInch {} -colorspace sRGB -resize 2560x2650 -set filename:new '%t-%wx%h' -density 72 -format JPG -quality 80 '%[filename:new].jpg'
 if [[ "$(uname -s)" == "Darwin" ]]; then
 	alias mount_ESP="mkdir -p /Volumes/ESP && sudo mount -t msdos /dev/disk0s1 /Volumes/ESP"

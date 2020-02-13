@@ -1,50 +1,11 @@
-[includeIf "gitdir:~/.oh-my-zsh/custom/"]
-  path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/Library/Preferences/WebStorm2019.1/settingsRepository/repository/"]
-  path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/Library/Preferences/PhpStorm2018.3/settingsRepository/repository/"]
-  path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/Library/Preferences/WebStorm2018.3/settingsRepository/repository/"]
-  path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/.password-store/"]
-  path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/.vim/"]
-  path = ~/.config/git/.gitconfig-personal
-
 [includeIf "gitdir:~/"]
   path = ~/.config/git/.gitconfig-personal
 
-[includeIf "gitdir:~/.bare-dotfiles/"]
-  path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/.dotfiles/"]
-  path = ~/.config/git/.gitconfig-personal
+[includeIf "gitdir:~/hero/"]
+  path = ~/.config/git/.gitconfig-hero
 
 [includeIf "gitdir:~/company/"]
   path = ~/.config/git/.gitconfig-company
-
-[includeIf "gitdir:~/dev/"]
-  path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/olx/"]
-  path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/blog/"]
-  path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/hero/"]
-  path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/pi/"]
-  path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/arduino/"]
-  path = ~/.config/git/.gitconfig-personal
 
 [color]
   # ui = true is a superset of all the more specific color options
@@ -54,7 +15,7 @@
   # When more specific variables of color.* are set, they always take precedence over this setting.
   # Defaults to false.
 	ui = true
-	diff = auto
+	# diff = auto
 	status = auto
 	branch = auto
   # diff = auto
@@ -208,6 +169,8 @@
   logsimple = log --graph --abbrev-commit --pretty=oneline --all --decorate
 	reset = reset --soft HEAD^
 	graph = log --graph --oneline --decorate
+  # Setup Git Submodules To Auto-Pull
+	pull = "!f(){ git pull \"$@\" && git submodule update --init --recursive; }; f"
 [apply]
   whitespace = nowarn
 
@@ -217,15 +180,21 @@
 
 [difftool]
   prompt = false
-
+  
 [diff]
   tool = icdiff
   # tool = vimdiff
 	color = true
 	guitool = meld
 
-[init]
-	templatedir = ~/.git-templates
+[difftool "icdiff"]
+  cmd = icdiff $LOCAL $REMOTE
+
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 
 [mergetool]
   prompt = false
@@ -242,7 +211,7 @@
 # [mergetool "pycharm"]
 #     cmd = /usr/local/bin/charm merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
 
-[branch]
+# [branch]
     # Automatically set up pull to be --rebase
     # autosetuprebase = always
 
@@ -258,18 +227,18 @@
 	default = matching
 	followTags = true
 
+[init]
+  templatedir = ~/.git-templates
+
 [filter "media"]
   required = true
   clean = git media clean %f
   smudge = git media smudge %f
 
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
 [gpg]
 	program = /bin/gpg
+[commit]
+	gpgsign = true
 [format]
 	signoff = true
 [filter "lfs"]
@@ -277,7 +246,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[commit]
-	gpgsign = true
 [icdiff]
 	options = --highlight --line-numbers
+[fetch]
+	recurseSubmodules = true

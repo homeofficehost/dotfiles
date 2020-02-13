@@ -13,6 +13,7 @@
 # ASCII Armored Text
 *.asc
 
+.hooks
 Library/
 .password-store/
 .bare-dotfiles/
