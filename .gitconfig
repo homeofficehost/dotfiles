@@ -207,7 +207,7 @@
   whitespace = nowarn
 
 [rerere]
-  #Enable the recording of resolved conflicts, so that identical hunks can be resolved automatically later on
+  # Enable the recording of resolved conflicts, so that identical hunks can be resolved automatically later on
   enabled = 1
 
 [difftool]
@@ -218,6 +218,8 @@
   # tool = vimdiff
 	color = true
 	guitool = meld
+  # Same end result but much easier to read
+	algorithm = patience 
 
 [difftool "icdiff"]
     cmd = icdiff --head=5000 --highlight --line-numbers -L \"$BASE\" -L \"$REMOTE\" \"$LOCAL\" \"$REMOTE\"
