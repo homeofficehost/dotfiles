@@ -1,10 +1,6 @@
 # https://blog.jonlu.ca/posts/speeding-up-zsh
 # Uncomment for speed debug
 # zmodload zsh/zprof
-# Is this needed?
-# if [[ -n $TMUX ]]; then
-	[ -r $HOME/.profile ] && source $HOME/.profile
-# fi
 
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
@@ -105,13 +101,20 @@ plugins+=(zsh-syntax-highlighting)
 autoload -Uz compinit && compinit
 # Now can be use code that calls compdef
 
+# Is this needed?
+# if [[ -n $TMUX ]]; then
+	[ -r $HOME/.profile ] && source $HOME/.profile
+# fi
+
 export MANPATH="$USR_PATH/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
+if [[ "$OS" == "Linux" ]]; then
+	# Compilation flags
+	export ARCHFLAGS="-arch x86_64"
+fi
 
 # if (command which -s yarn) npm () {
 #   case $@ in
