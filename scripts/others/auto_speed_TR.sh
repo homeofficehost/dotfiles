@@ -1,6 +1,6 @@
 ﻿more auto_speed_TR.sh 
-  found=0;
-  computers=/usb/hdzao/Snake/scripts/computers.txt;
+  found=0
+  computers=$HOME/computers.txt
 
   for ip in `cat $computers`; do ping -c 1 $ip>/dev/null; [ $? -eq 0 ] && echo "$ip UP" &&   found=1 && break || echo "$ip DOWN" ; done
 

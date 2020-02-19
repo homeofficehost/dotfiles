@@ -403,11 +403,6 @@ fi
 # popd > /dev/null 2>&1
 ###############################################################################
 
-pushd scripts/ > /dev/null 2>&1
-running "Downloading App-Every "
-curl -O https://raw.githubusercontent.com/iarna/App-Every/master/packed/every && chmod a+x every;ok
-popd > /dev/null 2>&1
-
 running "KeyboardMaestro: Disable Welcome Window"
 defaults read com.stairways.keyboardmaestro.editor DisplayWelcomeWindow -bool false;ok
 
