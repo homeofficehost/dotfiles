@@ -276,7 +276,7 @@
   smudge = git media smudge %f
 
 [gpg]
-	program = /bin/gpg
+	program = gpg
 [commit]
 	gpgsign = true
 [format]
