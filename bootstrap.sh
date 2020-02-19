@@ -1,18 +1,21 @@
+# Edit this line to set your own remote
+THIS_REPO=https://github.com/thomasgroch/dotfiles.git
+
 # where $BARE_DOTFILES directory is a git bare repository.
 BARE_DOTFILES=$HOME/.bare-dotfiles
 BARE_DOTFILES_BACKUP=$HOME/.bare-dotfiles-bkp
 BARE_DOTFILES_TMP=$HOME/.bare-dotfiles-tmp
 
-[[ ! -e .gitmodules ]] && git clone --depth 1 --branch bare --separate-git-dir=$BARE_DOTFILES https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES_TMP && \
+[[ ! -e .gitmodules ]] && git clone --depth 1 --branch bare --separate-git-dir=$BARE_DOTFILES $THIS_REPO $BARE_DOTFILES_TMP && \
 	cp $BARE_DOTFILES_TMP/.gitmodules $HOME
 rm -rf $BARE_DOTFILES_TMP
 
-[[ ! -e $BARE_DOTFILES ]] && git clone --jobs 10 --branch bare --bare https://github.com/thomasgroch/dotfiles.git $BARE_DOTFILES
+[[ ! -e $BARE_DOTFILES ]] && git clone --jobs 10 --branch bare --bare $THIS_REPO $BARE_DOTFILES
 function dotfiles {
    /usr/bin/git --git-dir=$BARE_DOTFILES --work-tree=$HOME $@
 }
 
-# dotfiles remote add origin https://github.com/thomasgroch/dotfiles.git
+# dotfiles remote add origin $THIS_REPO
 # dotfiles checkout --track bare/bare
 # dotfiles checkout bare
 # dotfiles branch --set-upstream-to=origin/bare bare
