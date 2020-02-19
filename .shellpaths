@@ -15,6 +15,7 @@ export PATH=$PATH:$USR_PATH/opt/go/libexec/bin
 export PATH=$PATH:$USR_PATH/opt/ruby/bin
 export PATH=$PATH:$USR_PATH/opt/ruby@2.5/bin
 export PATH=$PATH:$USR_PATH/.rbenv/bin
+export PATH="$HOME/.rbenv/bin:$PATH"
 
 # Node
 export PATH=$PATH:$HOME/.local/bin

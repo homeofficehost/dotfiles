@@ -66,6 +66,9 @@ brew doctor 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew doctor; e
 # Clear quicklook macos cache
 qlmanage -r cache
 
+# Upgrade Oh-my-zsh
+upgrade_oh_my_zsh
+
 # Remote Notification
 TEXT=$(printf "\
 ==============\n \

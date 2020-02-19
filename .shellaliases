@@ -188,6 +188,11 @@ alias qq="cat ~/.zsh_history | grep "
 alias ww="which "
 alias ee="open https://litewrite.net/"
 
+# Make some possibly destructive commands more interactive.
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
@@ -195,7 +200,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias pbcopynn='tr -d "\n" | pbcopy'
 
 # Reload the shell (i.e. invoke as a login shell)
-alias reload="exec $SHELL -l"
+alias reload="exec \$SHELL -l"
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias mac.update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
@@ -230,6 +235,8 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 # Git section
 ###############################################################################
 alias gitsubmoduleinit="git submodule update --init --recursive"
+
+
 
 function gitmoji_switch_stack {
 	pushd $HOME/.gitmoji > /dev/null 2>&1
@@ -294,6 +301,10 @@ alias gdt='git diff-tree --no-commit-id --name-only -r'
 alias gdw='git diff --word-diff'
 
 alias nah="git reset --hard && git clean -df"
+
+# cp repo
+# git remote add personal https://gitlab.com/asd/qwe.git
+# git push personal
 
 # LARAVEL
 # alias laratail="tail -f $(find /laravel/storage/logs | tail -n 1)"
@@ -794,7 +805,49 @@ alias tor_exit_nodes="curl https://check.torproject.org/cgi-bin/TorBulkExitList.
 if [[ "$(uname -s)" == "Darwin" ]]; then
 	alias mount_ESP="mkdir -p /Volumes/ESP && sudo mount -t msdos /dev/disk0s1 /Volumes/ESP"
 elif [[ "$(uname -s)" == "Linux" ]]; then
+
+	# YAY
+	# Print current configuration
+	alias yaconf="yay -Pg"
+	# Install packages from the repositories
+	alias yain="yay -S"
+	# Install a package from a local file
+	alias yains="yay -U"
+	# Install packages as dependencies of another package
+	alias yainsd="yay -S --asdeps"
+	# Display information about a package in the local database
+	alias yaloc="yay -Qi"
+	# Search for packages in the local database
+	alias yalocs="yay -Qs"
+	# List installed packages including from AUR (tagged as "local")
+	alias yalst="yay -Qe"
+	# Force refresh of all package lists after updating mirrorlist
+	alias yamir="yay -Syy"
+	# Remove orphans using yaourt
+	alias yaorph="yay -Qtd"
+	# Remove packages, keeping its settings and dependencies
+	alias yare="yay -R"
+	# Remove packages, including its settings and unneeded dependencies
+	alias yarem="yay -Rns"
+	# Display information about a package in the repositories
+	alias yarep="yay -Si"
+	# Search for packages in the repositories
+	alias yareps="yay -Ss"
+	# Sync with repositories before upgrading packages
+	alias yaupg="yay -Syu"
+	 # Same as yaupg, but without confirmation
+	alias yasu="yay -Syu --no-confirm"
+
+
+	alias yay_install_packages='yay -S'
+	alias yay_search_packages='yay -Ss'
+	alias yay_description_of_the_package='yay -Si'
+	alias yay_update_all_packages='yay -Syu'
+	alias yay_remove_package='yay -Rns'
+	alias yay_clean_unwanted_packages='yay -Yc'
+
 	alias mount_ESP="sudo mkdir -p /mnt/ESP && sudo mount -t msdos /dev/disk0s1 /mnt/ESP"
 	alias linux_kernel="journalctl -afn100"
 	alias linux_update="sudo pacman -Syyu"
+
 fi

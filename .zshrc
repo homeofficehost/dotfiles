@@ -86,7 +86,11 @@ plugins+=(osx)
 plugins+=(cp)
 plugins+=(zsh-z)
 plugins+=(zsh-autosuggestions)
+plugins+=(zsh-completions)
 plugins+=(zsh-syntax-highlighting)
+if [[ "$OS" == "Linux" ]]; then
+	plugins+=(archlinux)
+fi
 
 [ -r $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 
@@ -116,6 +120,8 @@ if [[ "$OS" == "Linux" ]]; then
 	export ARCHFLAGS="-arch x86_64"
 fi
 
+setopt list_ambiguous
+
 # if (command which -s yarn) npm () {
 #   case $@ in
 #     *-g*|root*) command npm $@;;
@@ -135,6 +141,9 @@ if test -z $GOPASSCMD; then
 fi
 
 alias zsh_is_loading="zsh -o SOURCE_TRACE"
+
+# make rbenv load automatically when open Terminal
+eval "$(rbenv init -)"
 
 # https://github.com/nvbn/thefuck#manual-installation
 # eval $(thefuck --alias)

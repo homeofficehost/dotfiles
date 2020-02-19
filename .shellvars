@@ -49,16 +49,16 @@ export HOMEBREW_NO_ANALYTICS=1
 #export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 
 # Set compilers to find ruby
-#export LDFLAGS="-L$USR_PATH/opt/ruby/lib"
-#export CPPFLAGS="-I$USR_PATH/opt/ruby/include"
+export LDFLAGS="-L$USR_PATH/opt/ruby/lib"
+export CPPFLAGS="-I$USR_PATH/opt/ruby/include"
 
 # Set pkg-config to find ruby
-# export PKG_CONFIG_PATH="$USR_PATH/opt/ruby/lib/pkgconfig"
-#export PKG_CONFIG_PATH="$USR_PATH/opt/qt/lib/pkgconfig"
+export PKG_CONFIG_PATH="$USR_PATH/opt/ruby/lib/pkgconfig"
+export PKG_CONFIG_PATH="$USR_PATH/opt/qt/lib/pkgconfig"
 
 # Set compilers to find qt
-#export LDFLAGS="-L$USR_PATH/opt/qt/lib"
-#export CPPFLAGS="-I$USR_PATH/opt/qt/include"
+export LDFLAGS="-L$USR_PATH/opt/qt/lib"
+export CPPFLAGS="-I$USR_PATH/opt/qt/include"
 
 #########################################################################
 # Dev settings

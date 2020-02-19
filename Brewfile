@@ -262,6 +262,8 @@ brew "wireshark"
 
 
 # Utilities
+# Command-line translator using Google Translate and more
+brew "translate-shell"
 # Configure transparent encryption of files in a Git repo
 brew "transcrypt"
 # Improved top (interactive process viewer)
