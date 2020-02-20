@@ -77,7 +77,7 @@ git merge upstream/master
 
 Now you'll have an up-to-date version of the upstream code in your current branch.
 
-Or just use the shortcut `dotfiles_update` defined on [.shellaliases](../blob/master/.shellaliases#L150)
+Or just use the shortcut `dotfiles_update` defined on [.shellaliases](../master/.shellaliases#L150)
 
 # References
 
