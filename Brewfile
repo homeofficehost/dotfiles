@@ -338,6 +338,8 @@ brew "neomutt"
 brew "sshfs"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
+# Remote terminal with IP roaming
+brew "mistertea/et/et"
 # Shell command parallelization utility
 brew "parallel"
 # Install some other useful utilities like `sponge`
