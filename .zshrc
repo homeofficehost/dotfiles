@@ -169,7 +169,8 @@ if [[ "$OS" == "Linux" ]]; then
 	test -d \~/.linuxbrew && eval $(\~/.linuxbrew/bin/brew shellenv)
 	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 	test -r \~/.bash\_profile && echo "eval \\$($(brew --prefix)/bin/brew shellenv)" >>\~/.bash\_profile
-	echo "eval \\$($(brew --prefix)/bin/brew shellenv)" >>\~/.profile
+   	export BREWCMD=$(which brew)
+	[ -n $BREWCMD ] && echo "eval \\$($(brew --prefix)/bin/brew shellenv)" >>\~/.profile
 fi
 
 # https://github.com/nvbn/thefuck#manual-installation

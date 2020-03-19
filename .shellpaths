@@ -1,6 +1,9 @@
 # Brew
 # homebrews ($USR_PATH/bin) should always take precedence
 export PATH=/bin:/usr/bin:$USR_PATH/sbin:$HOME/bin:$USR_PATH/bin:${PATH}
+if [[ "$OS" == "Linux" ]]; then
+	export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+fi
 
 # PHP
 export PATH=$PATH:$HOME/.composer/vendor/bin

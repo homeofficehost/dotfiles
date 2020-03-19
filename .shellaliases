@@ -178,6 +178,7 @@ function exploit_this_cms {
 # Dev
 alias encriptar="gpg --encrypt --recipient thomas.groch@gmail.com "
 alias decriptar="gpg --decrypt "
+alias pid_gpg_agent="pgrep -x gpg-agent"
 
 alias "mynexts"='echo "Finding issues available for contributing, based on my ⭐️ repositories...\n"; docker run -e TOKEN=$MIGHTY_WATCHER_GITHUB_TOKEN --rm igorperikov/mighty-watcher:latest'
 
@@ -750,5 +751,6 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias mount_ESP="sudo mkdir -p /mnt/ESP && sudo mount -t msdos /dev/disk0s1 /mnt/ESP"
 	alias linux_kernel="journalctl -afn100"
 	alias linux_update="sudo pacman -Syyu"
+	alias pacman_rm_corrupt_packages='sudo find /var/cache/pacman/pkg/ -iname "*.part" -delete'
 
 fi
