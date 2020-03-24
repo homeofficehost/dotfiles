@@ -68,20 +68,43 @@ alias mk="minikube"
 
 alias p="gopass $@"
 
+# usages:
+#  genpass "sites/example.com"
+#  genpass "sites/example.com" 8 "username"
 function genpass {
-	pass generate --no-symbols --clip $1 ${2:-16}
-	read -n 1 -r -p "Press any key to continue"
-	echo "user:${GIT_COMMITTER_EMAIL}\nurl:${1}" | pbcopy
-	gopass edit $1
-}
+	source $HOME/lib_sh/echos.sh
+	entry=$1
+	url=$(echo $entry| sed -e 's/.*\///g')
+	user=${3:-$GIT_AUTHOR_EMAIL}
+	password_length=${2:-16}
 
-function gensite {
-	pass generate --no-symbols --clip "sites/${1}" ${2:-16}
-	read -n 1 -r -p "Press any key to continue"
-	echo "user:${GIT_COMMITTER_EMAIL}\nurl:${1}" | pbcopy
-	gopass edit "sites/${1}"
+	running "generating ${entry} password.."
+	expect << EOF
+	  spawn gopass generate $@ --force
+	  sleep 1
+	  expect "How long should the password be?"
+	  send -- "$password_length"
+	  send "\r"
+	  expect "Do you have strict rules to include different character classes?"
+	  send "N\r"
+	  expect "Do you want to continue?"
+	  send "y\r"
+	  expect eof
+EOF
+	ok
+	running "setting user.."
+	printf "${user}" | gopass insert $entry user;ok
+	running "setting user.."
+	printf "${url}" | gopass insert $entry url;ok
+	
+	# read -t 7 -r -p "Auto sync? (y|N) [default=y] " response; echo ;
+	echo "Auto sync? (y|N) [default=y] "
+	read -t 7 -r response; echo ;
+	response=${response:-y}
+	if [[ $response =~ (yes|y|Y) ]];then
+		gopass sync
+	fi
 }
-
 
 alias pass_update="gopass update --no-symbols --clip $@"
 # PHP

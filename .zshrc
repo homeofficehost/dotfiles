@@ -161,6 +161,8 @@ alias zsh_is_loading="zsh -o SOURCE_TRACE"
 # make rbenv load automatically when open Terminal
 eval "$(rbenv init -)"
 
+eval "$(pyenv init -)"
+
 eval "$(starship init zsh)"
 
 source $(dirname $(gem which colorls))/tab_complete.sh
