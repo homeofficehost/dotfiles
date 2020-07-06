@@ -12,8 +12,8 @@ fi
 
 export HOMEBREW_EDITOR=$VISUAL
 # bindkey -v # Disabled for crontab be able to load
-#export GOPATH=$HOME/Go
-#export GOROOT=$USR_PATH/opt/go/libexec
+export GOPATH=$HOME/Go
+export GOROOT=$USR_PATH/opt/go/libexec
 
 #########################################################################
 # Temporary aliases useful for demos, other current projects

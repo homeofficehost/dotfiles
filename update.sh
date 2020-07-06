@@ -25,6 +25,7 @@ BEAUTIFUL_LOG_FILE="${CURRENT_LOG_FILE}.png"
 # # Use python3 by default
 # rm -f /usr/local/bin/python 2>&1 >/dev/null; ln -s $(which python3) /usr/local/bin/python
 
+
 # Update App Store apps
 # sudo softwareupdate -i -a
 # mas upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "mas upgrade; exit code was ${code}\n"
@@ -32,24 +33,6 @@ BEAUTIFUL_LOG_FILE="${CURRENT_LOG_FILE}.png"
 # Update Homebrew (Cask) & packages
 brew update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew update; exit code was ${code}\n"
 # brew upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew upgrade; exit code was ${code}\n"
-
-# Update composer packages
-composer global update
-
-# Update npm & yarn packages
-# yarn update -g
-# npm update -g
-
-# Update Ruby & gems
-# sudo gem update --system --verbose 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "gem update; exit code was ${code}\n"
-# sudo gem update
-
-# Update Python
-# pip3 install --upgrade setuptools 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "pip setuptools update; exit code was ${code}\n"
-# pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "pip3 update; exit code was ${code}\n"
-
-# Update Others packages
-tldr --update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "tldr update; exit code was ${code}\n"
 
 casks_outdated=`brew cask outdated --greedy --verbose | grep -v '(latest)' | cut -d' ' -f1`
 delete=(webstorm phpstorm intellij-idea pycharm metasploit)
@@ -66,17 +49,37 @@ done
 
 # cleans up cached downloads (with --outdated, only cleans old downloads)
 brew cleanup 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew cleanup; exit code was ${code}\n"
+
+
+# Update composer packages
+composer global update
+
+# Update npm & yarn packages
+yarn update -g
+npm update -g
+
+# Update Ruby & gems
+sudo gem update --system --verbose 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "gem update; exit code was ${code}\n"
+sudo gem update
+sudo gem cleanup
+
+# Update Python
+# pip3 install --upgrade setuptools 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "pip setuptools update; exit code was ${code}\n"
+# pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U 2>&1 >/dev/null;	code=$?; [[ code -ne 0 ]] && echo "pip3 update; exit code was ${code}\n"
+
+# Update Others packages
+tldr --update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "tldr update; exit code was ${code}\n"
+
 # checks for configuration issues
 brew doctor 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew doctor; exit code was ${code}"
-
-# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias mac.update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
 # Clear quicklook macos cache
 qlmanage -r cache
 
+# fc-cache -vf
+
 # Upgrade Oh-my-zsh
-# upgrade_oh_my_zsh
+upgrade_oh_my_zsh
 
 # Remote Notification
 TEXT=$(printf "\

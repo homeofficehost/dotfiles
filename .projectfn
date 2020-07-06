@@ -1,21 +1,24 @@
 #!/bin/sh
 
+# alias heroku.temp="temp && heroku create $1 && heroku ps:exec --status --app $1 && heroku ps:exec "
 
-# function a.create_bash_package() {
-# 	name=${1:-'my-app'}
-# 	description=${2:-'my-app description'}
-# 	npx oclif multi "${name}"
-# 	mkdir -p $name && cd $name
-# 	a.sort_package_json
+function a.create_bash_package() {
+	name=${1:-'my-app'}
+	description=${2:-'my-app description'}
+	npx oclif multi "${name}"
+	mkdir -p $name && cd $name
+	a.sort_package_json
 	
-# 	bpkg init
-# 	init_npm webstorm
-# 	git add -A
-# 	git commit -m "Initial commit"
-# 	gitlab_init $name $description
+	bpkg init
+	init_npm webstorm
+	git add -A
+	git commit -m "Initial commit"
+	gitlab_init $name $description
 
-# 	npx okimdone
-# }
+	npx okimdone
+}
+
+
 # function a.create_vuepress_project() {
 # 	name=${1:-'my-app'}
 # 	description=${2:-'my-app description'}

@@ -12,10 +12,18 @@ EOF
 ###############################################################################
 # Development section
 ###############################################################################
+alias vps="mosh --ssh='ssh -C -i ~/.ssh/tgroch_id_rsa' root@78.47.130.144 bash"
+
+alias lg="lazygit"
+alias git_branch="git checkout -b $@ > /dev/null 2>&1 || git checkout $@"
+alias new_feature="git_branch features/$@"
+alias new_hot_fix="git_branch hot-fixes/$@"
+alias new_patch="git_branch patchs/$@"
+
 function sync_all(){
 	rsync -rtavuc --delete --progress ${1}/.[^.]* ${2}
 }
-alias youtube="mpsyt"
+alias youtube="rm ~/.config/mps-youtube/cache_py_* 2>&1 >/dev/null; mpsyt"
 alias s="sublimetext"
 alias weather="curl -s 'http://wttr.in/Curitiba?lang=pt'"
 alias weather2="curl -s 'http://v2.wttr.in/Curitiba?lang=pt'"
@@ -96,7 +104,7 @@ EOF
 	printf "${user}" | gopass insert $entry user;ok
 	running "setting user.."
 	printf "${url}" | gopass insert $entry url;ok
-	
+
 	# read -t 7 -r -p "Auto sync? (y|N) [default=y] " response; echo ;
 	echo "Auto sync? (y|N) [default=y] "
 	read -t 7 -r response; echo ;
@@ -119,10 +127,27 @@ alias pass_update="gopass update --no-symbols --clip $@"
 # ARP ping:       -PR
 # alias nmap.router="sudo nmap -v -sT -PN 192.168.0.1 --spoof-mac 0 -D 10.0.0.1,10.0.0.2,10.0.0.4"
 alias nmap.router="sudo nmap --osscan_guess -v -sT -PN 192.168.0.1 --spoof-mac 0 -D 10.0.0.1,10.0.0.2,10.0.0.4"
+
+# usages:
+#  nmap_local_subnet 192.168.100 [|only_ips]
+function nmap_local_subnet {
+	# TCP Null Scan
+	SUBNET="${1:-192.168.100}.0/24"
+	echo "Looking on $SUBNET\n"
+	nmap -sn $SUBNET
+}
+alias whoarehere="nmap_local_subnet $@"
+alias marco="whoarehere $@"
+
+alias only_ips='grep -Eo "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" | sort -u '
+
 alias ping="prettyping -i 2 $@"
 alias lping="prettyping -i 20 $@"
-alias lynda="youtube-dl $1 --username controle@hero99.com.br --password Hero30888899 --output \"%(playlist_title)s/%(autonumber)s.%(title)s.%(ext)s\" --all-subs --autonumber-size 2"
+
+
 alias arduino="/Applications/Arduino.app/Contents/MacOS/Arduino"
+
+alias lynda="youtube-dl $@ --username controle@hero99.com.br --password Hero30888899 --output \"%(playlist_title)s/%(autonumber)s.%(title)s.%(ext)s\" --all-subs --autonumber-size 2"
 
 # Apps
 alias jumpcutter="exec ${HOME}/dev/jumpcutter/run.sh $@"
@@ -145,7 +170,10 @@ function take_my_wifi {
 	npx qrcode "WIFI:T:WPA;S:${SSID};P:${PASS};;"
 }
 
-alias heroku.temp="temp && heroku create $1 && heroku ps:exec --status --app $1 && heroku ps:exec "
+saythis() {
+  say -v 'Tom' $1
+}
+alias ok="saythis done!"
 
 alias temp="dev && mkdir -p temp && cd temp"
 alias temp.rm="dev && rm -Rf temp"
@@ -216,9 +244,9 @@ alias ww="which "
 alias ee="open https://litewrite.net/"
 
 # Make some possibly destructive commands more interactive.
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
+alias rm='rm -v'
+alias mv='mv -v'
+alias cp='cp -v'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
@@ -238,7 +266,7 @@ alias curl.download="curl -L -O -C - "
 alias down="aria2c --max-connection-per-server=16 --min-split-size=1M "
 
 alias "?"="tldr"
-alias "??"="curl cheat.sh/$1"
+alias "??"="curl cheat.sh/$@"
 
 alias td="todo.sh"
 alias tda="todo.sh add"
@@ -254,6 +282,11 @@ alias ws='open -a Webstorm'
 # Also, clear Apple’s System Logs to improve shell startup speed.
 # Finally, clear download history from quarantine. https://mths.be/bum
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+
+alias stremio_flush_cache="/bin/rm -Rf ~/Library/Application\ Support/stremio-server/stremio-cache/*"
+alias disk_usage="ncdu"
+alias net_usage="sudo iftop"
+alias net_watch="sudo ngrep -d any"
 
 ###############################################################################
 # Git section
@@ -315,7 +348,7 @@ alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgr
 alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
 
-alias gd="git-icdiff $GIT_DIFF_OPTIONS"
+alias gd="git-icdiff ${GIT_DIFF_OPTIONS:-}"
 alias gdi='git diff'
 alias gdca='git diff --cached'
 alias gdcw='git diff --cached --word-diff'
@@ -330,8 +363,11 @@ alias nah="git reset --hard && git clean -df"
 # git remote add personal https://gitlab.com/asd/qwe.git
 # git push personal
 
+alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
+alias tails="less +F " # or tail -250f
+
 # Laravel
-# alias laratail="tail -f $(find /laravel/storage/logs | tail -n 1)"
+alias laratail='tails $(find storage/logs | tail -n 1)'
 alias laratest="php artisan config:clear && phpunit"
 alias laratestrand="php artisan config:clear && $HOME/.composer/vendor/fiunchinho/phpunit-randomizer/bin/phpunit-randomizer --colors --order rand"
 alias pacc="php artisan config:cache"
@@ -361,12 +397,10 @@ function git_backup {
 # Sysadmin section
 ###############################################################################
 
-function mkreadonly(){ 
+function mkreadonly(){
 	echo -n '' > $1 && \
 	chmod 444 $1
 }
-
-alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
 
 # function defaults_debug() {
 # 	before=$(defaults read $1)
@@ -435,7 +469,7 @@ alias php.restart='php-fpm.stop && php-fpm.start'
 
 alias mariadb.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
 alias mariadb.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
-alias mariadb.logs="tail -250f /tmp/mysql.log"
+alias mariadb.logs="tails /tmp/mysql.log"
 
 alias mysql.new='mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $1;"'
 alias mysql.rm='mysql -uroot -e "DROP DATABASE IF EXISTS $1;"'
@@ -445,14 +479,20 @@ alias mysql.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql
 alias mysql.restart='mysql.stop && mysql.start'
 
 # newest log file matching
-alias mariadb.logs='tail -250f /var/log/mysql/all.log'
-alias ci.logs='tail -250f $(ls -t application/logs/log-* | head -1)'
-alias nginx.logs.error='tail -250f /Users/tg/.valet/Log/nginx-error.log'
-alias nginx.logs.access='tail -250f /Users/tg/.valet/Log/nginx-access.log'
-alias nginx.logs.default.access='tail -250f /usr/local/etc/nginx/logs/default.access.log'
-alias nginx.logs.default-ssl.access='tail -250f /usr/local/etc/nginx/logs/default-ssl.access.log'
-alias nginx.logs.phpmyadmin.error='tail -250f /usr/local/etc/nginx/logs/phpmyadmin.error.log'
-alias nginx.logs.phpmyadmin.access='tail -250f /usr/local/etc/nginx/logs/phpmyadmin.access.log'
+alias mariadb.logs='tails /var/log/mysql/all.log'
+alias ci.logs='tails $(ls -t application/logs/log-* | head -1)'
+alias nginx.logs.error='tails /Users/tg/.valet/Log/nginx-error.log'
+alias nginx.logs.access='tails /Users/tg/.valet/Log/nginx-access.log'
+alias nginx.logs.default.access='tails /usr/local/etc/nginx/logs/default.access.log'
+alias nginx.logs.default-ssl.access='tails /usr/local/etc/nginx/logs/default-ssl.access.log'
+alias nginx.logs.phpmyadmin.error='tails /usr/local/etc/nginx/logs/phpmyadmin.error.log'
+alias nginx.logs.phpmyadmin.access='tails /usr/local/etc/nginx/logs/phpmyadmin.access.log'
+
+# brew uninstall --ignore-dependencies node icu4c; brew install node; brew link --overwrite node
+# fixes this problems
+# dyld: Library not loaded: /usr/local/opt/icu4c/lib/libicui18n.58.dylib
+#   Referenced from: /usr/local/bin/node
+#   Reason: image not found 
 
 alias brew.off="sudo brew services stop --all && brew services stop --all"
 alias brew.on="sudo brew services start dnsmasq && \
@@ -479,7 +519,7 @@ alias pi.findit="dns-sd -G v4 raspberrypi.local"
 # Network section
 ###############################################################################
 # wget for check 404s
-alias "check.404"="wget get --spider -nd -r '${1}'"
+alias audit_for_404="wget get --spider -nd -r '$@'"
 
 # Reboot my home Linksys WAG160N / WAG54 / WAG320 / WAG120N Router / Gateway from *nix.
 alias rebootlinksys="curl -u 'admin:my-super-password' 'http://192.168.1.2/setup.cgi?todo=reboot'"
@@ -505,6 +545,9 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 
 # Flush the DNS on Mac
 alias dnsflush='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
+alias macinfo='sw_vers'
+
+alias distroinfo='lsb_release -a'
 
 # Show network connections
 # Often useful to prefix with SUDO to see more system level network usage
@@ -692,7 +735,7 @@ alias pet.mutilated='npx cowsay $@ -f mutilated'
 alias pet.ren='npx cowsay $@ -f ren'
 alias pet.satanic='npx cowsay $@ -f satanic'
 alias pet.sheep='npx cowsay $@ -f sheep'
-alias pet.skeleton='npx cowsay $@ -f skeleton' 
+alias pet.skeleton='npx cowsay $@ -f skeleton'
 alias pet.small='npx cowsay $@ -f small'
 alias pet.sodomized='npx cowsay $@ -f sodomized'
 alias pet.squirrel='npx cowsay $@ -f squirrel'

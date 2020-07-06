@@ -12,6 +12,8 @@ tap "mas-cli/tap", pin: true
 tap "moncho/dry"
 tap "simplydanny/pass-extensions"
 tap "amar1729/formulae"
+tap "Matt-Gleich/homebrew-taps"
+tap "jesseduffield/lazygit/lazygit"
 ## Shell
 # Encrypted pass-through FUSE file system
 brew "encfs"
@@ -47,6 +49,8 @@ brew "bat"
 brew "neofetch"
 # Console Matrix
 brew "cmatrix"
+# Create macOS applications from {Perl,Ruby,sh,Python} scripts
+brew "platypus"
 # Install GNU core utilities (those that come with macOS are outdated)
 brew "coreutils"
 brew "dos2unix"
@@ -110,6 +114,12 @@ brew "asciinema"
 brew "tmux"
 # The cross-shell prompt for astronauts
 brew "starship"
+# Distributed, Highly Available, Datacenter-Aware Scheduler
+brew "nomad"
+# Tool for service discovery, monitoring and configuration
+brew "consul"
+# Tool for creating identical machine images for multiple platforms
+brew "packer"
 # Docker Machine Parallels Driver
 brew "docker-machine-parallels"
 # a Docker manager for the terminal
@@ -133,6 +143,8 @@ brew "mas"
 brew "rust"
 # Interpreted, interactive, object-oriented programming language
 brew "python3"
+# Python version management
+brew "pyenv"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Highly capable, feature-rich programming language
@@ -208,6 +220,8 @@ brew "file-formula"
 ## Git addons
 # Distributed revision control system
 brew "git"
+# Simple terminal UI for git commands
+brew "lazygit"
 brew "bfg"
 brew "git-extras"
 brew "git-flow"
@@ -227,10 +241,14 @@ brew "spoof-mac"
 brew "chkrootkit"
 brew "pass"
 brew "gopass"
+# Pass extension that provides an easy flow for updating passwords
+brew "pass-update"
 # This is a host application for browserpass browser extension providing it access to your password store.
 brew "browserpass"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
+# NCurses Disk Usage
+brew "ncdu"
 # World's fastest and most advanced password recovery utility
 brew "hashcat"
 # Recursively compute digests on files/directories
@@ -241,12 +259,18 @@ brew "binwalk"
 brew "fcrackzip"
 # Port scanning utility for large networks
 brew "nmap"
+# Network grep
+brew "ngrep"
+# Display an interface's bandwidth usage
+brew "iftop"
 # Calculate various network masks, etc. from a given IP address
 brew "ipcalc"
 # ARP scanning and fingerprinting tool
 brew "arp-scan"
 # Network logon cracker which supports many services
 brew "hydra"
+# Tools for the WireGuard secure network tunnel
+brew "wireguard-tools"
 # Featureful UNIX password cracker
 brew "john"
 # Intercept, modify, replay, save HTTP/S traffic
@@ -266,6 +290,8 @@ brew "wireshark"
 
 
 # Utilities
+# ☢️ Force quit all applications with one terminal command
+brew "nuke"
 # Command-line translator using Google Translate and more
 brew "translate-shell"
 # Configure transparent encryption of files in a Git repo
@@ -336,6 +362,10 @@ brew "irssi"
 brew "bitlbee"
 # E-mail reader with support for Notmuch, NNTP and much more
 brew "neomutt"
+# Synchronize a maildir with an IMAP server
+brew "isync"
+# User interface to the TELNET protocol
+brew "telnet"
 # File system client based on SSH File Transfer Protocol
 brew "sshfs"
 # OpenBSD freely-licensed SSH connectivity tools
@@ -412,7 +442,7 @@ brew "gifski"
 cask "keyboard-maestro"
 cask "fork"
 cask "ubersicht"
-cask "motrix"
+# cask "motrix" Download manager
 cask "kap"
 cask "amethyst"
 cask "diffmerge"
@@ -421,6 +451,7 @@ cask "unetbootin"
 cask "balenaetcher"
 cask "brave-browser"
 cask "beaker-browser"
+cask "appcleaner"
 cask "ccleaner"
 cask "cryptomator"
 cask "disk-inventory-x"
@@ -494,6 +525,11 @@ cask "typora"
 cask "vnc-viewer"
 # Free instant messaging that connect to AIM, XMPP (Jabber), ICQ, IRC and more
 cask "adium"
+# Japanese text editor for macOS
+cask "mi"
+cask "oversight"
+# easy to use mac osx image editing application for the rest of us
+cask "seashore"
 cask "transmit-disk"
 cask "karabiner-elements"
 # cask "gpg-suite"
