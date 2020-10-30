@@ -124,7 +124,8 @@ mkdir -p ~/blog;ok
 running "Create logs folder in home directory"
 mkdir -p ~/logs;ok
 
-sudo apt-get install build-essential curl file git
+# sudo apt-get install build-essential curl file git
+sudo pacman -S build-essential curl file git
 
 sh -c "$(curl -fsSL [https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh])"
 
