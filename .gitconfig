@@ -1,16 +1,15 @@
+# default case
 [include]
   path = ~/.gitalias.txt
-
-[includeIf "gitdir:~/"]
   path = ~/.config/git/.gitconfig-personal
 
-[includeIf "gitdir:~/dev/"]
-  path = ~/.config/git/.gitconfig-personal
+[includeIf "gitdir:**/cr/**/.git"]
+  path = ~/.config/git/.gitconfig-other
 
-[includeIf "gitdir:~/hero/"]
+[includeIf "gitdir:**/hero/**/.git"]
   path = ~/.config/git/.gitconfig-hero
 
-[includeIf "gitdir:~/company/"]
+[includeIf "gitdir:**/company/**/.git"]
   path = ~/.config/git/.gitconfig-company
 
 [color]
@@ -86,7 +85,7 @@
   # Soft reset your existing branch to 1 before your merge
   undolastcommit = reset --soft HEAD^
   # http://haacked.com/archive/2014/07/28/github-flow-aliases/
-  
+
   cm = !git add -A && git commit -m
   save = !git add -A && git commit -m 'SAVEPOINT'
   wip = !git add -u && git commit -m "WIP"
@@ -107,7 +106,7 @@
 
   snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
 
-  # Often during a merge you know you want to take a file from one side wholesale. 
+  # Often during a merge you know you want to take a file from one side wholesale.
   # The following aliases let you pick a file(s) from the current branch or the merged branch respectively:
   ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
   theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
@@ -215,14 +214,14 @@
 
 [difftool]
   prompt = false
-  
+
 [diff]
   tool = icdiff
   # tool = vimdiff
 	color = true
 	guitool = meld
   # Same end result but much easier to read
-	algorithm = patience 
+	algorithm = patience
 
 [difftool "icdiff"]
     cmd = icdiff --head=5000 --highlight --line-numbers -L \"$BASE\" -L \"$REMOTE\" \"$LOCAL\" \"$REMOTE\"

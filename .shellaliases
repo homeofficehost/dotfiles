@@ -14,6 +14,7 @@ EOF
 ###############################################################################
 alias vps="mosh --ssh='ssh -C -i ~/.ssh/tgroch_id_rsa' root@78.47.130.144 bash"
 
+alias findd="fd $@"
 alias lg="lazygit"
 alias git_branch="git checkout -b $@ > /dev/null 2>&1 || git checkout $@"
 alias new_feature="git_branch features/$@"
@@ -25,8 +26,8 @@ function sync_all(){
 }
 alias youtube="rm ~/.config/mps-youtube/cache_py_* 2>&1 >/dev/null; mpsyt"
 alias s="sublimetext"
-alias weather="curl -s 'http://wttr.in/Curitiba?lang=pt'"
-alias weather2="curl -s 'http://v2.wttr.in/Curitiba?lang=pt'"
+alias weather="curl -s 'http://wttr.in/Florianopolis?lang=pt'"
+alias weather2="curl -s 'http://v2.wttr.in/Florianopolis?lang=pt'"
 alias tempo="weather"
 alias tempo2="weather2"
 alias qrcode="curl qrenco.de/$@"
@@ -128,16 +129,29 @@ alias pass_update="gopass update --no-symbols --clip $@"
 # alias nmap.router="sudo nmap -v -sT -PN 192.168.0.1 --spoof-mac 0 -D 10.0.0.1,10.0.0.2,10.0.0.4"
 alias nmap.router="sudo nmap --osscan_guess -v -sT -PN 192.168.0.1 --spoof-mac 0 -D 10.0.0.1,10.0.0.2,10.0.0.4"
 
+function nmap_enumerate {
+	SUBNET="${1:-192.168.100}.0/24"
+	echo "Enumerating on $SUBNET\n"
+	sudo nmap -snA $SUBNET
+}
+
 # usages:
-#  nmap_local_subnet 192.168.100 [|only_ips]
+#  nmap_local_subnet 192.168.0 [|only_ips]
 function nmap_local_subnet {
 	# TCP Null Scan
-	SUBNET="${1:-192.168.100}.0/24"
+	SUBNET="${1:-192.168.0}.0/24"
 	echo "Looking on $SUBNET\n"
 	nmap -sn $SUBNET
 }
 alias whoarehere="nmap_local_subnet $@"
 alias marco="whoarehere $@"
+function nmap_check_win_vunerable {
+	nmap -Pn -p445 --script=smb-vuln-ms17-010 192.168.0.0/24 -oN eternalblue-scan.txt
+	cat eternalblue-scan.txt | grep VULNERABLE
+}
+# nmap -T4 -A 192.168.0/24
+# nmap -T4 -A 192.168.0/24
+# nmap -T4 -p- -iL ips.tx
 
 alias only_ips='grep -Eo "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" | sort -u '
 
@@ -230,6 +244,8 @@ function exploit_this_cms {
 alias encriptar="gpg --encrypt --recipient thomas.groch@gmail.com "
 alias decriptar="gpg --decrypt "
 alias pid_gpg_agent="pgrep -x gpg-agent"
+# The export command below gives you the key you add to GitHub
+alias gpg_export="gpg --armor --export $@"
 
 alias "mynexts"='echo "Finding issues available for contributing, based on my ⭐️ repositories...\n"; docker run -e TOKEN=$MIGHTY_WATCHER_GITHUB_TOKEN --rm igorperikov/mighty-watcher:latest'
 
@@ -700,6 +716,8 @@ alias l.eslint_plugin_prettier="npx eslint-plugin-prettier $@"
 alias game.seek='txt="";for i in {1..20};do txt=$txt"$i. ";done;txt=$txt" Ready or not, here I come";say $txt'
 
 # A full set of cowsay aliases (includes all default cowsay options)
+alias pet.cow='npx cowsay $@'
+alias asdff="curl -s  https://raw.githubusercontent.com/julianosirtori/Cowsay-coachdefracassos/master/frases.json | jq -r '.[] | .frase ' | sort -R | head -n 1 | npx cowsay  -f www"
 alias pet.cow='npx cowsay $@'
 alias pet.turtle='npx cowsay $@ -f turtle'
 alias pet.beavis='npx cowsay $@ -f beavis.zen'

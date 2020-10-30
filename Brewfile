@@ -324,6 +324,8 @@ brew "imagesnap" # needed to support gitshots
 brew "jp2a"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# C routines to compute the Discrete Fourier Transform
+brew "fftw"
 # Terminal file manager
 brew "lf"
 # File browser
@@ -364,6 +366,16 @@ brew "bitlbee"
 brew "neomutt"
 # Synchronize a maildir with an IMAP server
 brew "isync"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Modern replacement for ps written by Rust
+brew "procs"
+# Intuitive find & replace CLI
+brew "sd"
+# More intuitive version of du in rust
+brew "dust"
+# Program that allows you to count code, quickly
+brew "tokei"
 # User interface to the TELNET protocol
 brew "telnet"
 # File system client based on SSH File Transfer Protocol
@@ -402,6 +414,12 @@ brew "autojump"
 # brew "sshrc" # temp offline
 # Simplified and community-driven man pages
 brew "tldr"
+# Very fast implementation of tldr in Rust
+brew "tealdeer"
+# Terminal bandwidth utilization tool
+brew "bandwhich"
+# Command-line tool for generating regular expressions
+brew "grex"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Extract, view, and test RAR archives
@@ -441,6 +459,7 @@ brew "gifski"
 #############################
 cask "keyboard-maestro"
 cask "fork"
+cask "fritzing"
 cask "ubersicht"
 # cask "motrix" Download manager
 cask "kap"

@@ -1,7 +1,7 @@
 [user]
 	name = Thomas Letsch Groch
 	email = thomas.groch@gmail.com
-	signingkey = 0x62391C2A7551540F
+	signingkey = 62391C2A7551540F
 	# Is it safe to share your gitconfig's user.signingkey value with the world?
 	# https://security.stackexchange.com/a/153582
 
