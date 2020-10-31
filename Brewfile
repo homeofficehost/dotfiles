@@ -8,7 +8,6 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "homebrew/cask-versions"
 tap "puma/puma"
-tap "mas-cli/tap", pin: true
 tap "moncho/dry"
 tap "simplydanny/pass-extensions"
 tap "amar1729/formulae"
