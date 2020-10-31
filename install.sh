@@ -2,7 +2,7 @@
 # This is the main install script, it runs the system specific installer script
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  caffeinate -i ./install-darwin.sh
+	caffeinate -i ./install-darwin.sh
 elif [[ "$(uname -s)" == "Linux" ]]; then
-  . ./install-linux.sh
+	. ./install-linux.sh
 fi
