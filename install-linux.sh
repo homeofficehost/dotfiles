@@ -144,12 +144,14 @@ mkdir -p ~/logs;ok
 if  [ "$distro" == "ubuntu" ]; then
 	sudo apt-get -y install build-essential curl file git
 elif [ "$distro" == "debian" ]; then
-	yum -y install build-essential curl file git
+	sudo yum -y groupinstall 'Development Tools'
+	sudo yum -y install curl file git
+	sudo yum -y install libxcrypt-compat # needed by Fedora 30 and up
 elif [ "$distro" == "arch" ]  || [ "$distro" == "manjaro" ]; then
+	sudo pacman -Sy # prevent fail on fist boot because no pacman database files
 	sudo pacman -S build-essential curl file git
 fi
-
-sh -c "$(curl -fsSL [https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh])"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" 
 
 test -d \~/.linuxbrew && eval $(\~/.linuxbrew/bin/brew shellenv)
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
