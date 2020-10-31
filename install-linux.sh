@@ -5,6 +5,23 @@ if [[ "$(uname -s)" != "Linux" ]]; then
   exit 1
 fi
 
+get_distribution() {
+	lsb_dist=""
+	# Every system that we officially support has /etc/os-release
+	if [ -r /etc/os-release ]; then
+		lsb_dist="$(. /etc/os-release && echo "$ID")"
+	fi
+	# Returning an empty string here should be alright since the
+	# case statements don't act unless you provide an actual value
+	echo "$lsb_dist"
+}
+distro=$( get_distribution )
+distro="$(echo "$distro" | tr '[:upper:]' '[:lower:]')"
+if  [ "$distro" != "ubuntu" ] && [ "$distro" != "debian" ] && [ "$distro" != "arch" ]; then 
+    echo 'Sorry, the distro you are using is not supported by this script'
+    exit 1;
+fi	
+
 source ./lib_sh/echos.sh
 source ./lib_sh/requirers.sh
 
@@ -124,8 +141,13 @@ mkdir -p ~/blog;ok
 running "Create logs folder in home directory"
 mkdir -p ~/logs;ok
 
-# sudo apt-get install build-essential curl file git
-sudo pacman -S build-essential curl file git
+if  [ "$distro" != "ubuntu" ]; then
+	sudo apt-get -y install build-essential curl file git
+elif [ "$distro" != "debian" ]; then
+	yum -y install build-essential curl file git
+elif [ "$distro" != "arch" ]; then
+	sudo pacman -S build-essential curl file git
+fi
 
 sh -c "$(curl -fsSL [https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh])"
 
