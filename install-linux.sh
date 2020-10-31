@@ -153,10 +153,11 @@ elif [ "$distro" == "arch" ]  || [ "$distro" == "manjaro" ]; then
 fi
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" 
 
-test -d \~/.linuxbrew && eval $(\~/.linuxbrew/bin/brew shellenv)
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-test -r \~/.bash\_profile && echo "eval \\$($(brew --prefix)/bin/brew shellenv)" >>\~/.bash\_profile
-echo "eval \\$($(brew --prefix)/bin/brew shellenv)" >>\~/.shellpaths
+test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+sudo pacman -S base-devel
 
 ###############################################################################
 bot "The End"
