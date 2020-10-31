@@ -159,6 +159,26 @@ test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>
 echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 sudo pacman -S base-devel
 
+bot "Configuring brew global packages"
+response_retry_install=y
+while [[ $response_retry_install =~ (yes|y|Y) ]]; do
+    running "installing brew bundle..."
+    brew bundle --verbose;ok
+
+    running "checking brew bundle..."
+    brew bundle check >& /dev/null
+    if [ $? -eq 0 ]; then
+      response_retry_install=N
+      ok "Full brew bundle successfully installed."
+    else
+      warn "brew bundle check exited with error code"
+      bot "Often some programs are not installed."
+      read -t 7 -r -p "Would you like to try again brew bundle? (y|N) [or wait 7 seconds for default=y]" response_retry_install; echo ;
+      response_retry_install=${response_retry_install:-Y}
+    fi
+done
+
+
 ###############################################################################
 bot "The End"
 ###############################################################################
