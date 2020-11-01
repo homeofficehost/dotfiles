@@ -1,3 +1,11 @@
+export OS="$(uname -s)"
+
+if [[ "$OS" == "Darwin" ]]; then
+	export USR_PATH="/usr/local"
+elif [[ "$(uname -s)" == "Linux" ]]; then
+	export USR_PATH="/usr"
+fi
+
 # Preferred default editor for local and remote sessions
 SSH_CONNECTION=false
 if [[ -n $SSH_CONNECTION ]]; then

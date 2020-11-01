@@ -1,3 +1,11 @@
+export OS="$(uname -s)"
+
+if [[ "$OS" == "Darwin" ]]; then
+	export USR_PATH="/usr/local"
+elif [[ "$(uname -s)" == "Linux" ]]; then
+	export USR_PATH="/usr"
+fi
+
 # Brew
 # homebrews ($USR_PATH/bin) should always take precedence
 # export PATH=ASD:${PATH}
