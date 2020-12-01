@@ -31,6 +31,7 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 # Python
 # export PYTHONPATH=
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 
 # Node
 export PATH=$PATH:$HOME/.local/bin
@@ -50,6 +51,10 @@ export PATH=$PATH:$USR_PATH/opt/openssl@1.1/bin
 
 # qt5
 export PATH=$PATH:$USR_PATH/opt/qt/bin
+
+if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
+ export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
+fi
 
 # fastolx autocomplete setup
 # FASTOLX_AC_ZSH_SETUP_PATH=/Users/tg/Library/Caches/fast-olx-cli/autocomplete/zsh_setup && test -f $FASTOLX_AC_ZSH_SETUP_PATH && source $FASTOLX_AC_ZSH_SETUP_PATH;
