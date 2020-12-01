@@ -15,6 +15,18 @@ EOF
 alias vps="mosh --ssh='ssh -C -i ~/.ssh/tgroch_id_rsa' root@78.47.130.144 bash"
 
 alias findd="fd $@"
+
+# https://dev.to/maxpou/git-cheat-sheet-advanced-3a17
+# ✔ Custom commits
+# # Edit last commit
+# git commit --amend -m "A better message"
+
+# # Add something to the last commit without writing message again
+# git add . && git commit --amend --no-edit
+
+# # empty commit - can be useful to re-trigger CI build...
+# git commit --allow-empty -m "chore: re-trigger build"
+
 alias lg="lazygit"
 alias git_branch="git checkout -b $@ > /dev/null 2>&1 || git checkout $@"
 alias new_feature="git_branch features/$@"
@@ -119,6 +131,8 @@ alias pass_update="gopass update --no-symbols --clip $@"
 # PHP
 # alias phptags="sh ~/.scripts/phpctags"
 # alias phptags_vendor="sh ~/.scripts/phpctags_vendor"
+
+alias nmap="nmap --spoof-mac 0 $@"
 
 # Ping scan only: -sP
 # Don't ping:     -PN
