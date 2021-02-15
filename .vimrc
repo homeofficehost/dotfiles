@@ -1,3 +1,6 @@
+" gopass installed with homebrew
+au BufNewFile,BufRead /private/**/gopass** setlocal noswapfile nobackup noundofile
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Must Have
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

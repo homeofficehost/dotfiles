@@ -155,6 +155,8 @@ brew "rbenv"
 brew "ruby"
 
 ## Servers
+# Command-line DNS client
+brew "dog"
 # Lightweight DNS forwarder and DHCP server
 brew "dnsmasq"
 # Drop-in replacement for MySQL
@@ -323,6 +325,8 @@ brew "imagesnap" # needed to support gitshots
 brew "jp2a"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Interactive jq
+brew "gpanders/tap/ijq"
 # C routines to compute the Discrete Fourier Transform
 brew "fftw"
 # Terminal file manager

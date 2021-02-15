@@ -274,9 +274,12 @@ alias ww="which "
 alias ee="open https://litewrite.net/"
 
 # Make some possibly destructive commands more interactive.
-alias rm='rm -v'
+# alias rm='rm -v'
 alias mv='mv -v'
 alias cp='cp -v'
+
+# has checks presence of various command line tools on the PATH and reports their installed version.
+alias has="curl -sL https://git.io/_has | bash -s"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
@@ -408,6 +411,7 @@ alias pas="php artisan serve"
 # docker run -v `pwd`/src:/src composer create-project --prefer-dist laravel/laravel src/$1
 alias npm_cache_proxy="docker run -e REDIS_ADDRESS=host.docker.internal:6379 -p 6660:8080 -it -d pkgems/npm-cache-proxy && npm config set registry http://localhost:6660"
 alias npm_cache_proxy_off="npm config set registry "
+alias run="npm run $@"
 
 # push git repo, but first, use git-up to make sure you are in sync and rebased with the remote
 alias pushup="git-up && git push"

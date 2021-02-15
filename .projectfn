@@ -2,12 +2,12 @@
 
 # alias heroku.temp="temp && heroku create $1 && heroku ps:exec --status --app $1 && heroku ps:exec "
 
-function a.create_bash_package() {
+function init_bash_package() {
 	name=${1:-'my-app'}
 	description=${2:-'my-app description'}
 	npx oclif multi "${name}"
 	mkdir -p $name && cd $name
-	a.sort_package_json
+	npx sort-package-json
 	
 	bpkg init
 	init_npm webstorm
@@ -19,7 +19,18 @@ function a.create_bash_package() {
 }
 
 
-# function a.create_vuepress_project() {
+function init_saber_app() {
+	name=${1:-'my-app'}
+	description=${2:-'my-app description'}
+	mkdir -p $name && cd $name
+	init_git
+	init_npm webstorm
+	npm install saber
+	# gitlab_init $name $description
+	npx okimdone
+}
+
+# function init_vuepress_app() {
 # 	name=${1:-'my-app'}
 # 	description=${2:-'my-app description'}
 # 	mkdir -p $name && cd $name
@@ -28,7 +39,7 @@ function a.create_bash_package() {
 # 	gitlab_init $name $description
 # 	npx okimdone
 # }
-# function a.create_node_project() {
+# function init_node_app() {
 # 	name=${1:-'my-app'}
 # 	description=${2:-'my-app description'}
 # 	mkdir -p $name && cd $name && mkdir src && touch src/index.js
@@ -38,7 +49,7 @@ function a.create_bash_package() {
 # 	# heroku git:remote -a $name
 # 	npx okimdone
 # }
-function a.create_laravel_project() {
+function init_laravel_app() {
 	name=${1:-'my-app'}
 	description=${2:-'my-app description'}
 	composer create-project --prefer-dist laravel/laravel $name && cd $name
@@ -48,7 +59,7 @@ function a.create_laravel_project() {
 	# heroku git:remote -a $name
 	npx okimdone
 }
-# function a.create_vue_app() {
+# function init_vue_app() {
 # 	name=${1:-'my-app'}
 # 	description=${2:-'my-app description'}
 # 	npx @vue/cli create $name && cd $name && \
@@ -57,7 +68,7 @@ function a.create_laravel_project() {
 # 	npx okimdone
 # }
 
-# function a.create_vue_app_storybook() {
+# function init_vue_storybook_app() {
 # 	name=${1:-'my-app'}
 # 	description=${2:-'my-app description'}
 # 	npx @vue/cli create $name
@@ -97,7 +108,7 @@ function a.create_laravel_project() {
 # 	start-storybook
 # }
 
-# function a.create_react_app() {
+# function init_react_app() {
 # 	name=${1:-'my-app'}
 # 	description=${2:-'my-app description'}
 # 	npx create-react-app $name && cd $name
