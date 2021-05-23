@@ -19,7 +19,7 @@ distro=$( get_distribution )
 distro="$(echo "$distro" | tr '[:upper:]' '[:lower:]')"
 if  [ "$distro" != "ubuntu" ] && [ "$distro" != "debian" ] && [ "$distro" != "arch" ] && [ "$distro" != "manjaro" ]; then 
     echo 'Sorry, the distro you are using is not supported by this script'
-    exit 1;
+    # exit 1;
 fi	
 
 source ./lib_sh/echos.sh
