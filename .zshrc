@@ -158,14 +158,22 @@ fi
 
 alias zsh_is_loading="zsh -o SOURCE_TRACE"
 
-# make rbenv load automatically when open Terminal
-eval "$(rbenv init -)"
+if [ -x "$(command -v rbenv)" ]; then
+	# make rbenv load automatically when open Terminal
+	eval "$(rbenv init -)"
+fi
 
-eval "$(pyenv init -)"
+if [ -x "$(command -v pyenv)" ]; then
+	eval "$(pyenv init -)"
+fi
 
-eval "$(starship init zsh)"
+if [ -x "$(command -v starship)" ]; then
+	eval "$(starship init zsh)"
+fi
 
-source $(dirname $(gem which colorls))/tab_complete.sh
+if [ -x "$(command -v colorls)" ]; then
+	source $(dirname $(gem which colorls))/tab_complete.sh
+fi
 
 # https://github.com/nvbn/thefuck#manual-installation
 # eval $(thefuck --alias)
