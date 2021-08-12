@@ -3,6 +3,7 @@
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
 	caffeinate -i ./install-darwin.sh
-elif [[ "$(uname -s)" == "Linux" ]]; then
+# elif [[ "$(uname -s)" == "Linux" ]]; then
+else
 	. ./install-linux.sh
 fi
