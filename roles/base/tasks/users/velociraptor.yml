@@ -1,0 +1,23 @@
+- name: users | velociraptor | Create user
+  tags: dotfiles,velociraptor,ssh,ssh-keys,users
+  ansible.builtin.user:
+    name: velociraptor
+    create_home: yes
+    group: wheel
+
+- name: users | velociraptor | add public key
+  tags: dotfiles,velociraptor,ssh,ssh-keys,users
+  authorized_key:
+    user: velociraptor
+    key: "{{ item }}"
+  with_file:
+    - users/velociraptor/ssh/velociraptor_id_rsa.pub
+    # - users/velociraptor/ssh/velociraptor_id_ed25519.pub
+
+- name: users | velociraptor | add sudoers file
+  tags: settings,velociraptor,sudo,system,users
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/11-install-velociraptor
+    line: 'velociraptor ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    create: yes
+    validate: 'visudo -cf %s'

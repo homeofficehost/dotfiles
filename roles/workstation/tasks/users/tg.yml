@@ -1,0 +1,72 @@
+- name: users | tg | remove preinstalled clutter from home directory
+  tags: dotfiles,dotfiles-bare
+  file:
+    path: "/home/{{ lookup('env', 'USER') }}/{{ item }}"
+    state: absent
+  with_items:
+    - examples.desktop
+
+- name: users | tg | create personal config directories
+  tags: dotfiles,dotfiles-bare
+  file:
+    path: /home/{{ lookup('env', 'USER') }}/{{ item.dir }}
+    state: directory
+  with_items:
+    - { dir: Desktop }
+    - { dir: Documents }
+    - { dir: Downloads }
+    - { dir: Projects }
+    - { dir: Templates }
+    - { dir: dev }
+    - { dir: blog }
+    - { dir: logs }
+    - { dir: pi/.bin/ }
+    - { dir: $MY_TEMP }
+    - { dir: bin }
+    - { dir: .config }
+    - { dir: .config/autostart }
+    - { dir: .config/bpytop }
+    - { dir: .config/gtk-3.0 }
+    - { dir: .config/terminator }
+    - { dir: .local }
+    - { dir: .local/share }
+    - { dir: .local/share/applications }
+    - { dir: $ZSH_CUSTOM/plugins/ }
+    - { dir: /usr/local/etc/my.cnf.d }
+
+# - name: users | tg | copy user-dirs.dirs
+#   tags: dotfiles,dotfiles-bare
+#   copy:
+#     src: users/{{ lookup('env', 'USER') }}/user-dirs.dirs
+#     dest: /home/{{ lookup('env', 'USER') }}/.config/user-dirs.dirs
+#     owner: "tg"
+#     owner: wheel
+#     mode: 0600
+#   notify: update_xdg
+
+# - name: users | tg | copy personal config files
+#   tags: dotfiles,dotfiles-bare
+#   copy:
+#     src: users/{{ lookup('env', 'USER') }}/{{ item.src }}
+#     dest: /home/{{ lookup('env', 'USER') }}/{{ item.dest }}
+#     owner: "tg"
+#     owner: wheel
+#     mode: 0600
+#   with_items:
+#     - { src: 'asunder', dest: '.asunder' }
+    # - { src: 'bpytop.conf', dest: '.config/bpytop/bpytop.conf' }
+    # - { src: 'directory_bookmarks', dest: '.config/gtk-3.0/bookmarks' }
+#     - { src: 'gvimrc', dest: '.gvimrc' }
+#     - { src: 'linode-cli', dest: '.config/linode-cli' }
+#     - { src: 'mimeapps.list', dest: '.config/mimeapps.list' }
+    # - { src: 'ssh_client_config', dest: '.ssh/config' }
+#     - { src: 'terminator_config', dest: '.config/terminator/config' }
+
+# - name: users | tg | copy profile image
+#   tags: dotfiles,dotfiles-bare
+#   copy:
+#     src: users/{{ lookup('env', 'USER') }}/profile_image.png
+#     dest: /var/lib/AccountsService/icons/{{ lookup('env', 'USER') }}.png
+#     owner: root
+#     group: root
+#     mode: 0644

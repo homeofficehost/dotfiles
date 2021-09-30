@@ -1,0 +1,18 @@
+- name: Install packages
+  vars:
+    packages: "{{ lookup('file', 'packages.txt').splitlines()|select('match', '^[^#]')|list }}"
+  with_items: "{{ packages }}"
+  when: item != ""
+  pacman: name={{ item }}
+
+- name: Install AUR packages
+  vars:
+    aur_packages: "{{ lookup('file', 'packages_aur.txt').splitlines()|select('match', '^[^#]')|list }}"
+  with_items: "{{ aur_packages }}"
+  when: item != ""
+  aur:
+    name: "{{ item }}"
+  become: yes
+  become_user: "velociraptor"
+
+# sudo pip3 install defusedxml
