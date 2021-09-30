@@ -9,7 +9,7 @@ realvnc-vnc-server
 # spark
 stremio
 sublime-text-3
-transcrypt
+# transcrypt
 
 mailspring
 minbrowser
@@ -87,7 +87,7 @@ heroku
 usbutils
 
 # jdownloader
-# transmission
+transmission
 # parsehub
 # mysqlworkbench
 # webstorm
