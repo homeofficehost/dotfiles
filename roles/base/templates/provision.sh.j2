@@ -4,7 +4,7 @@
 ANSIBLEUSER="velociraptor"
 BRANCH="{{ branch | default('master') }}"
 LOGFILE="/var/log/ansible.log"
-REPO="https://gitlab.com/thomas.groch/ansible.git"
+REPO="https://github.com/thomasgroch/dotfiles"
 VAULT_KEY="/home/tg/ansible_vault_key">
 PRECMD="sudo systemd-inhibit --who='ansible-pull' --why='provisioning'"
 
