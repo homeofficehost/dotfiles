@@ -339,7 +339,7 @@ brave-browser
 firefox
 opera
 qtpass
-discord
+# discord
 telegram-desktop
 vlc
 dia

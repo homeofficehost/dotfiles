@@ -1,5 +1,4 @@
 autojump
-brave-nightly-bin
 eternalterminal
 fswatch
 gitkraken
