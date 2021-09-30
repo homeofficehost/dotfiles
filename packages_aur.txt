@@ -87,7 +87,8 @@ heroku
 usbutils
 
 # jdownloader
-transmission
+transmission-qt
+#transmission-gtk
 # parsehub
 # mysqlworkbench
 # webstorm
