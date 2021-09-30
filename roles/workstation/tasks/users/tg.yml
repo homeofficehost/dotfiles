@@ -34,16 +34,6 @@
     - { dir: $ZSH_CUSTOM/plugins/ }
     - { dir: /usr/local/etc/my.cnf.d }
 
-# - name: users | tg | copy user-dirs.dirs
-#   tags: dotfiles,dotfiles-bare
-#   copy:
-#     src: users/tg/user-dirs.dirs
-#     dest: /home/tg/.config/user-dirs.dirs
-#     owner: "tg"
-#     owner: wheel
-#     mode: 0600
-#   notify: update_xdg
-
 # - name: users | tg | copy personal config files
 #   tags: dotfiles,dotfiles-bare
 #   copy:
