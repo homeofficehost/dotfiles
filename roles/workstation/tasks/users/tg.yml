@@ -1,7 +1,7 @@
 - name: users | tg | remove preinstalled clutter from home directory
   tags: dotfiles,dotfiles-bare
   file:
-    path: "/home/{{ lookup('env', 'USER') }}/{{ item }}"
+    path: "/home/tg/{{ item }}"
     state: absent
   with_items:
     - examples.desktop
@@ -9,7 +9,7 @@
 - name: users | tg | create personal config directories
   tags: dotfiles,dotfiles-bare
   file:
-    path: /home/{{ lookup('env', 'USER') }}/{{ item.dir }}
+    path: /home/tg/{{ item.dir }}
     state: directory
   with_items:
     - { dir: Desktop }
@@ -37,8 +37,8 @@
 # - name: users | tg | copy user-dirs.dirs
 #   tags: dotfiles,dotfiles-bare
 #   copy:
-#     src: users/{{ lookup('env', 'USER') }}/user-dirs.dirs
-#     dest: /home/{{ lookup('env', 'USER') }}/.config/user-dirs.dirs
+#     src: users/tg/user-dirs.dirs
+#     dest: /home/tg/.config/user-dirs.dirs
 #     owner: "tg"
 #     owner: wheel
 #     mode: 0600
@@ -47,8 +47,8 @@
 # - name: users | tg | copy personal config files
 #   tags: dotfiles,dotfiles-bare
 #   copy:
-#     src: users/{{ lookup('env', 'USER') }}/{{ item.src }}
-#     dest: /home/{{ lookup('env', 'USER') }}/{{ item.dest }}
+#     src: users/tg/{{ item.src }}
+#     dest: /home/tg/{{ item.dest }}
 #     owner: "tg"
 #     owner: wheel
 #     mode: 0600
@@ -65,8 +65,8 @@
 # - name: users | tg | copy profile image
 #   tags: dotfiles,dotfiles-bare
 #   copy:
-#     src: users/{{ lookup('env', 'USER') }}/profile_image.png
-#     dest: /var/lib/AccountsService/icons/{{ lookup('env', 'USER') }}.png
+#     src: users/tg/profile_image.png
+#     dest: /var/lib/AccountsService/icons/tg.png
 #     owner: root
 #     group: root
 #     mode: 0644
