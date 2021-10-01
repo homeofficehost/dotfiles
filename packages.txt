@@ -338,6 +338,7 @@ brave-browser
 # Run containers through a simple, yet powerful graphical user interface.
 firefox
 opera
+vivaldi
 qtpass
 # discord
 telegram-desktop
