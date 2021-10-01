@@ -282,7 +282,7 @@ extract () {
 }
 
 
-reload () {
+function reload () {
     exec "${SHELL}" "$@"
 }
 

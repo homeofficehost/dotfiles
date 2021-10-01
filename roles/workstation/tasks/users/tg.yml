@@ -11,6 +11,8 @@
   file:
     path: /home/tg/{{ item.dir }}
     state: directory
+    owner: tg
+    group: tg
   with_items:
     - { dir: Desktop }
     - { dir: Documents }
