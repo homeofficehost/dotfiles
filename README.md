@@ -31,6 +31,15 @@ curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/master/bootstra
 download=false ; if type curl >/dev/null 2>/dev/null ; then download='curl -Lks' ; elif type wget >/dev/null ; then download='wget -O -' ; else ; echo "No way to download dotfiles; please install curl or wget with your package manager" ; fi ; eval "$download https://raw.githubusercontent.com/thomasgroch/dotfiles/master/bootstrap.sh" | /bin/bash
 ```
 
+This other method installs ansible with pacman and setup dotfiles with ansible-pull.
+
+```sh
+curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/master/bootstrap-ansible.sh | /bin/bash
+
+# or POSIX compatible lazy install
+download=false ; if type curl >/dev/null 2>/dev/null ; then download='curl -Lks' ; elif type wget >/dev/null ; then download='wget -O -' ; else ; echo "No way to download dotfiles; please install curl or wget with your package manager" ; fi ; eval "$download https://raw.githubusercontent.com/thomasgroch/dotfiles/master/bootstrap-ansible.sh" | /bin/bash
+```
+
 ** \\[._.]/ Done! **
 
 No extra tooling, no symlinks, files are tracked on a version control system, you can use different branches for different computers, you can replicate you configuration easily on new installation.
