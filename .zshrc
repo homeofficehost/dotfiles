@@ -282,11 +282,6 @@ extract () {
 }
 
 
-function reload () {
-    exec "${SHELL}" "$@"
-}
-
-
 ##### shopt
 
 # save timestamp of command and duration
