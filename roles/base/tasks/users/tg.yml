@@ -1,7 +1,6 @@
 - name: users | tg | create group
   tags: groups,tg,users
-  become: yes
-  become_user: "velociraptor"
+  become_user: "tg"
   group:
     name: wheel
     state: present
@@ -47,6 +46,7 @@
 
 # ensure git repositories
 - name: Git | Checkout git bare repository
+  become_user: "tg"
   git:
     repo: "{{ upstream }}"
     dest: "{{ repo_dir }}"
@@ -101,6 +101,6 @@
     src: "{{ repo_dir }}"
     dest: "{{ work_dir }}.git"
     owner: tg
-    group: wheel
+    group: tg
     state: link
   tags: dotfiles,tg,users,barerepo
