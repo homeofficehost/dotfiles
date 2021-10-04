@@ -38,3 +38,15 @@
 #     owner: root
 #     group: root
 #     mode: 0644
+
+# - name: Create pass with random 32 character password. If password exists just give the password
+#   ansible.builtin.debug:
+#     var: mypassword
+#   vars:
+#     mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=create length=32 nosymbols=true')}}"
+
+# - name: Loading vault vars
+#   debug:
+#     var: ansible_become_pass
+#   vars:
+#     ansible_become_pass: "{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=create length=32 nosymbols=true')}}"

@@ -5,7 +5,8 @@ ANSIBLEUSER="velociraptor"
 BRANCH="{{ branch | default('master') }}"
 LOGFILE="/var/log/ansible.log"
 REPO="https://github.com/thomasgroch/dotfiles"
-# VAULT_KEY="/home/tg/ansible_vault_key">
+
+VAULT_ID="ansible/workstation/tg@gopass-client.py">
 PRECMD="sudo systemd-inhibit --who='ansible-pull' --why='provisioning'"
 
 # check if ansible-pull is already running, and if not, run it
@@ -15,12 +16,12 @@ if pgrep -f ansible-pull; then
     exit 1
 else
     if [ ! $1 == "" ]; then
-        $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull -U $REPO -C $BRANCH --tags $1 2>&1
-        # $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull --vault-password-file=$VAULT_KEY -U $REPO -C $BRANCH --tags $1 2>&1
-        # $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull --vault-id vault-label@gopass-client -U $REPO -C $BRANCH --tags $1 2>&1
+        # $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull --ask-vault-password -U $REPO -C $BRANCH --tags $1 2>&1
+        # $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull -U $REPO -C $BRANCH --tags $1 2>&1
+        $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull --vault-id=$VAULT_ID -U $REPO -C $BRANCH --tags $1 2>&1
     else
-        $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull -o -U $REPO -C $BRANCH 2>&1
-        # $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull --vault-password-file=$VAULT_KEY -o -U $REPO -C $BRANCH 2>&1
-        # $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull --vault-id vault-label@gopass-client -o -U $REPO -C $BRANCH 2>&1
+        # $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull --ask-vault-password -o -U $REPO -C $BRANCH 2>&1
+        # $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull -o -U $REPO -C $BRANCH 2>&1
+        $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull --vault-id=$VAULT_ID -o -U $REPO -C $BRANCH 2>&1
     fi
 fi
