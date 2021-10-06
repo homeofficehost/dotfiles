@@ -27,7 +27,6 @@
     - { dir: .local }
     - { dir: .local/share }
     - { dir: .local/share/applications }
-    - { dir: $ZSH_CUSTOM/plugins/ }
     - { dir: /usr/local/etc/my.cnf.d }
 
 # - name: users | tg | copy profile image

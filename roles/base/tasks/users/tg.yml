@@ -108,4 +108,5 @@
     owner: tg
     group: tg
     state: link
+  become_user: "tg"
   tags: dotfiles,tg,users,barerepo
