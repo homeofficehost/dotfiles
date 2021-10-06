@@ -17,7 +17,7 @@
   tags: cron
   cron:
     name: "ansible provision"
-    user: tg
+    user: velociraptor
     hour: "{{ ansible_cron_hour | default('*') }}"
     minute: "{{ ansible_cron_minute | default('*/30') }}"
     job: "/usr/local/bin/provision >/var/log/provision_cron.log 2>&1"
@@ -27,6 +27,6 @@
   tags: cron
   cron:
     name: "ansible refresh at boot"
-    user: tg
+    user: velociraptor
     special_time: reboot
     job: "/bin/rm -rf /home/tg/.ansible"
