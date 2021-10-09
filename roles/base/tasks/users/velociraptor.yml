@@ -17,7 +17,10 @@
 - name: users | velociraptor | add sudoers file
   tags: settings,velociraptor,sudo,system,users
   ansible.builtin.lineinfile:
-    path: /etc/sudoers.d/11-install-velociraptor
+    path: /etc/sudoers.d/velociraptor
     line: 'velociraptor ALL=(ALL) NOPASSWD: /usr/bin/pacman'
     create: yes
     validate: 'visudo -cf %s'
+    owner: root
+    group: root
+    mode: '0440'

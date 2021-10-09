@@ -16,13 +16,17 @@
     password: "{{ tg_passwd }}"
     shell: /usr/bin/zsh
 
-- name: users | tg | tg | add sudoers file
-  tags: tg,settings,velociraptor,sudo,system,users
+- name: users | tg | add sudoers file
+  tags: tg,sudo,users,settings,velociraptor,system
+  tags: settings,tg,sudo,system,users
   ansible.builtin.lineinfile:
-    path: /etc/sudoers.d/11-install-tg
+    path: /etc/sudoers.d/tg
     line: 'tg ALL=(ALL) NOPASSWD: /usr/bin/pacman'
     create: yes
     validate: 'visudo -cf %s'
+    owner: root
+    group: root
+    mode: '0440'
 
 - name: users | tg | create .ssh directory
   tags: dotfiles,tg,ssh,users
