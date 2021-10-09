@@ -17,16 +17,13 @@
     shell: /usr/bin/zsh
 
 - name: users | tg | add sudoers file
-  tags: tg,sudo,users,settings,velociraptor,system
   tags: settings,tg,sudo,system,users
-  ansible.builtin.lineinfile:
-    path: /etc/sudoers.d/tg
-    line: 'tg ALL=(ALL) NOPASSWD: /usr/bin/pacman'
-    create: yes
-    validate: 'visudo -cf %s'
+  copy:
+    src: users/sudoers_tg
+    dest: /etc/sudoers.d/tg
     owner: root
     group: root
-    mode: '0440'
+    mode: 0440
 
 - name: users | tg | create .ssh directory
   tags: dotfiles,tg,ssh,users
