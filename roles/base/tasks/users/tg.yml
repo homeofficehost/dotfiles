@@ -80,15 +80,15 @@
   become_user: "tg"
   tags: dotfiles,tg,users,barerepo
 
-# - name: Git | Checkout version
-#   command: "chdir={{ work_dir }} git --git-dir={{ repo_dir }} checkout -f {{ version | default('HEAD') }}"
-#   become_user: "tg"
-#   tags: dotfiles,tg,users,barerepo
-
-- name: Git | Fetch dotfiles updates
-  command: "chdir={{ work_dir }} git fetch && git checkout master && git merge upstream/master"
+- name: Git | Checkout version
+  command: "chdir={{ work_dir }} git --git-dir={{ repo_dir }} checkout -f {{ version | default('HEAD') }}"
   become_user: "tg"
   tags: dotfiles,tg,users,barerepo
+
+# - name: Git | Checkout dotfiles updates
+#   command: "chdir={{ work_dir }} git fetch && git checkout master && git merge upstream/master"
+#   become_user: "tg"
+#   tags: dotfiles,tg,users,barerepo
 
 # git submodules
 - name: Git | Submodules | Syncing

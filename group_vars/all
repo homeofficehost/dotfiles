@@ -5,4 +5,4 @@ non_root_user: "tg"
 upstream: https://github.com/thomasgroch/dotfiles.git
 repo_dir: /home/tg/.bare-dotfiles/
 work_dir: /home/tg/
-ansible_cron_minute: 5
+ansible_cron_minute: "*/5"
