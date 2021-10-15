@@ -7,14 +7,19 @@
 
 - name: users | tg | create user
   tags: tg,sudo,users
+  # ansible.builtin.debug:
+  #   var: mypassword
+  vars:
+    mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=create length=32 nosymbols=true')}}"
   user:
     name: tg
     group: tg
     groups: wheel,users,{{ sudo_group }}
     state: present
     comment: "Thomas Groch"
-    password: "{{ tg_passwd }}"
+    password: "{{ tg_passwd | mypassword }}"
     shell: /usr/bin/zsh
+    # shell: /usr/bin/nologin
 
 - name: users | tg | add sudoers file
   tags: settings,tg,sudo,system,users
