@@ -17,8 +17,9 @@
     groups: wheel,users,{{ sudo_group }}
     state: present
     comment: "Thomas Groch"
-    password: "{{ tg_passwd | mypassword }}"
+    password: "{{ tg_passwd }}"
     shell: /usr/bin/zsh
+    # password: "{{ mypassword }}"
     # shell: /usr/bin/nologin
 
 - name: users | tg | add sudoers file
