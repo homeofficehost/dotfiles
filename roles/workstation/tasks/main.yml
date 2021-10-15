@@ -7,51 +7,10 @@
   - import_tasks: users/tg.yml
 
   ## desktop environments
-  - include_tasks: desktop_environments/mate/appearance.yml
+  - include_tasks: desktop_environments/mate/main.yml
     when: mate is defined and mate == true
 
-  - include_tasks: desktop_environments/mate/caja.yml
-    when: mate is defined and mate == true
-
-  # - include_tasks: desktop_environments/mate/keybindings.yml
-  #   when: mate is defined and mate == true
-
-  - include_tasks: desktop_environments/mate/packages.yml
-    when: mate is defined and mate == true
-
-  - include_tasks: desktop_environments/mate/peripherals.yml
-    when: mate is defined and mate == true
-
-  - include_tasks: desktop_environments/mate/terminal.yml
-    when: mate is defined and mate == true
-
-  - include_tasks: desktop_environments/mate/workspace_settings.yml
-    when: mate is defined and mate == true
-
-  # - include_tasks: desktop_environments/gnome/meta.yml
-  #   when: gnome is defined and gnome == true
-  - include_tasks: desktop_environments/gnome/appearance.yml
-    when: gnome is defined and gnome == true
-
-  # - include_tasks: desktop_environments/gnome/keybindings.yml
-  #   when: gnome is defined and gnome == true
-
-  - include_tasks: desktop_environments/gnome/nautilus.yml
-    when: gnome is defined and gnome == true
-
-  - include_tasks: desktop_environments/gnome/packages.yml
-    when: gnome is defined and gnome == true
-
-  - include_tasks: desktop_environments/gnome/peripherals.yml
-    when: gnome is defined and gnome == true
-
-  # - include_tasks: desktop_environments/gnome/shell_settings.yml
-  #   when: gnome is defined and gnome == true
-
-  - include_tasks: desktop_environments/gnome/terminal.yml
-    when: gnome is defined and gnome == true
-
-  - include_tasks: desktop_environments/gnome/tracker.yml
+  - include_tasks: desktop_environments/gnome/main.yml
     when: gnome is defined and gnome == true
 
   ## system setup

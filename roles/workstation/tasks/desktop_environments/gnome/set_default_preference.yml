@@ -1,0 +1,16 @@
+---
+
+- name: configure defaults gnome shell
+  become:      true
+  become_user: "{{ username }}"
+  shell: |
+    toto="$(dbus-launch gsettings get {{ item.schemas }} {{ item.path }})" ;
+    if [ "'$toto'" != "'{{ item.key }}'" ];then
+      dbus-launch gsettings set {{ item.schemas }} {{ item.path }} "{{ item.key }}" ; return $? ;
+    else
+      return 2;
+    fi
+  with_items: "{{ gnome_gsettings|default([]) }}"
+  changed_when: result.rc == 0
+  failed_when:  result.rc == 1
+  register: result
