@@ -11,5 +11,4 @@
 - include_tasks: tracker.yml
 
 - include_tasks: extension.yml
-- include_tasks: set_default_preference.yml
 - include_tasks: enable_extensions.yml
