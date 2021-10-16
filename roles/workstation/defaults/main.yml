@@ -7,11 +7,11 @@ gnome_extension_target:
   - { id: '1037',  name: 'CustomCorner' }
 
 gnome_enable_extensions:
-  'pamac-updates@manjaro.org'
-  'dash-to-dock@micxgx.gmail.com'
-  'appindicatorsupport@rgcjonas.gmail.com'
-  'gnome-ui-tune@itstime.tech'
-  'x11gestures@joseexposito.github.io'
-  'customcorner@eccheng.gitlab.com'
-  'sound-output-device-chooser@kgshank.net'
-  'bluetooth-quick-connect@bjarosze.gmail.com'
+  - 'pamac-updates@manjaro.org'
+  - 'dash-to-dock@micxgx.gmail.com'
+  - 'appindicatorsupport@rgcjonas.gmail.com'
+  - 'gnome-ui-tune@itstime.tech'
+  - 'x11gestures@joseexposito.github.io'
+  - 'customcorner@eccheng.gitlab.com'
+  - 'sound-output-device-chooser@kgshank.net'
+  - 'bluetooth-quick-connect@bjarosze.gmail.com'
