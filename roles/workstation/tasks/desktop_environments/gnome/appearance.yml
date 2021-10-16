@@ -50,5 +50,4 @@
     - { key: "/org/gnome/shell/extensions/dash-to-panel/show-show-apps-button", value: "'false'" }
     - { key: "/org/gtk/Settings/FileChooser/sort-directories-first", value: "'true'" }
     - { key: "/org/gnome/shell/favorite-apps", value: "['org.gnome.Evolution.desktop', 'libreoffice-writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.Terminal.desktop', 'firefox-esr.desktop']" }
-    # - { key: "/org/gnome/shell/enabled-extensions", value: "['dash-to-panel@jderose9.github.com', 'redshift@tommie-lie.de', 'remove-dropdown-arrows@mpdeimos.com', 'TopIcons@phocean.net', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'openweather-extension@jenslody.de', 'ubuntu-appindicators@ubuntu.com', 'EasyScreenCast@iacopodeenosee.gmail.com', 'gnomenu@panacier.gmail.com', 'removeaccesibility@lomegor', 'nohotcorner@azuri.free.fr']" }
     - { key: "/org/gnome/shell/enabled-extensions", value: "['bluetooth-quick-connect@bjarosze.gmail.com', 'sound-output-device-chooser@kgshank.net', 'customcorner@eccheng.gitlab.com']" }
