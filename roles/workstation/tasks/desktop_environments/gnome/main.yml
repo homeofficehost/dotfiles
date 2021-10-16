@@ -1,6 +1,5 @@
 ---
 
-- include_tasks: extension.yml
 # - include_tasks: meta.yml
 - include_tasks: appearance.yml
 # - include_tasks: keybindings.yml
@@ -10,3 +9,6 @@
 # shell_- include_tasks: settings.yml
 - include_tasks: terminal.yml
 - include_tasks: tracker.yml
+
+- include_tasks: extension.yml
+- include_tasks: enable_extensions.yml
