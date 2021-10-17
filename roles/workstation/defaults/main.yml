@@ -4,7 +4,6 @@
 gnome_extension_target:
   - { id: '1401',  name: 'Bluetooth quick connect' }
   - { id: '906',  name: 'Sound Input & Output Device Chooser' }
-  - { id: '1037',  name: 'CustomCorner' }
 
 gnome_enable_extensions:
   - 'pamac-updates@manjaro.org'
@@ -12,6 +11,5 @@ gnome_enable_extensions:
   - 'appindicatorsupport@rgcjonas.gmail.com'
   - 'gnome-ui-tune@itstime.tech'
   - 'x11gestures@joseexposito.github.io'
-  - 'customcorner@eccheng.gitlab.com'
   - 'sound-output-device-chooser@kgshank.net'
   - 'bluetooth-quick-connect@bjarosze.gmail.com'
