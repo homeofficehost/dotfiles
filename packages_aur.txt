@@ -10,6 +10,11 @@ realvnc-vnc-server
 stremio
 sublime-text-3
 # transcrypt
+python-gaphor
+haguichi
+font-downloader
+# apostrophe
+newsflash
 
 mailspring
 minbrowser
