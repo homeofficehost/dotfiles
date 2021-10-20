@@ -10,7 +10,7 @@ realvnc-vnc-server
 stremio
 sublime-text-3
 # transcrypt
-python-gaphor
+# python-gaphor
 haguichi
 font-downloader
 # apostrophe
