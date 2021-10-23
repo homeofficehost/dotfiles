@@ -2,16 +2,22 @@
   tags: gnome,gnome-shell
   become_user: "{{ username }}"
   dconf:
+    key: "/org/gnome/desktop/wm/preferences/num-workspaces"
+    value: "5"
+
+- name: gnome | shell settings | button-layout
+  tags: gnome,gnome-shell
+  become_user: "{{ username }}"
+  dconf:
     key: "/org/gnome/desktop/wm/preferences/button-layout"
     value: "':close'"
 
-# Disable hot corners
 - name: gnome | shell settings | enable-hot-corners
   tags: gnome,gnome-shell
   become_user: "{{ username }}"
   dconf:
-    key: "/org/gnome/shell/interface/enable-hot-corners"
-    value: "false"
+    key: "/org/gnome/desktop/interface/enable-hot-corners"
+    value: "enable"
 
 - name: gnome | shell settings | event-sounds (disable)
   tags: gnome,audio,sounds,alerts
@@ -99,7 +105,7 @@
   tags: gnome,gnome-lockscreen
   become_user: "{{ username }}"
   dconf:
-    key: "/org/gnome/shell/extensions/pop-shell/tile-by-default"
+    key: "/org/gnome/desktop/extensions/pop-shell/tile-by-default"
     value: "true"
   when: ansible_distribution == "Pop!_OS"
 
@@ -107,7 +113,7 @@
   tags: gnome,gnome-shell
   become_user: "{{ username }}"
   dconf:
-    key: "/org/gnome/shell/overrides/workspaces-only-on-primary"
+    key: "/org/gnome/desktop/overrides/workspaces-only-on-primary"
     value: "true"
 
 - name: gnome | shell settings | set gnome-screenshot default save directory
