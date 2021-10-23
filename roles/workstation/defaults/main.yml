@@ -5,6 +5,7 @@ gnome_extension_target:
   - { id: '1401',  name: 'Bluetooth quick connect' }
   - { id: '906',  name: 'Sound Input & Output Device Chooser' }
   - { id: '3843',  name: 'Custom hot corners extended' }
+  - { id: '1082',  name: 'cpufreq' }
 
 gnome_enable_extensions:
   - 'pamac-updates@manjaro.org'
@@ -14,3 +15,4 @@ gnome_enable_extensions:
   - 'x11gestures@joseexposito.github.io'
   - 'sound-output-device-chooser@kgshank.net'
   - 'bluetooth-quick-connect@bjarosze.gmail.com'
+  - 'cpufreq@konkor'
