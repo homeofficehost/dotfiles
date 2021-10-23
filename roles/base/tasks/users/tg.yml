@@ -1,6 +1,6 @@
 - name: users | tg | create group
   tags: groups,tg,users
-  become_user: "tg"
+  become_user: "{{ username }}"
   group:
     name: wheel
     state: present
@@ -53,7 +53,7 @@
 
 # ensure git repositories
 - name: Git | Checkout git bare repository
-  become_user: "tg"
+  become_user: "{{ username }}"
   git:
     repo: "{{ upstream }}"
     dest: "{{ repo_dir }}"
@@ -83,33 +83,33 @@
 # fetch/checkout
 - name: Git | Fetching new changes
   shell: chdir={{ repo_dir }} git fetch --prune && git fetch --tags
-  become_user: "tg"
+  become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo
 
 # - name: Git | Checkout version
 #   command: "chdir={{ work_dir }} git --git-dir={{ repo_dir }} checkout -f {{ version | default('HEAD') }}"
-#   become_user: "tg"
+#   become_user: "{{ username }}"
 #   tags: dotfiles,tg,users,barerepo
 
 # - name: Git | Checkout dotfiles updates
 #   command: "chdir={{ work_dir }} git fetch && git checkout master && git merge upstream/master"
-#   become_user: "tg"
+#   become_user: "{{ username }}"
 #   tags: dotfiles,tg,users,barerepo
 
 # git submodules
 - name: Git | Submodules | Syncing
   command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} submodule sync
-  become_user: "tg"
+  become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo,update
 
 - name: Git | Submodules | Updating
   command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} submodule update -f --init --recursive
-  become_user: "tg"
+  become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo,update
 
 - name: Git | Ensure untracked files are hidden
   command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} config --local status.showUntrackedFiles no
-  become_user: "tg"
+  become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo,update
 
 - name: Git | Create symbolic link
@@ -119,5 +119,5 @@
     owner: tg
     group: tg
     state: link
-  become_user: "tg"
+  become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo

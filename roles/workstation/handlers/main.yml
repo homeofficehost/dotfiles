@@ -19,7 +19,7 @@
 
 - name: update_xdg
   tags: users,config,xdg
-  become_user: "tg"
+  become_user: "{{ username }}"
   command: /usr/bin/xdg-user-dirs-update
 
 # GNOME stuff
