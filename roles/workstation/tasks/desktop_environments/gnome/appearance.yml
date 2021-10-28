@@ -20,6 +20,7 @@
     - { key: "/org/gnome/desktop/screensaver/picture-uri", value: "'file:///usr/share/backgrounds/default-lockscreen.png'" }
     - { key: "/org/gnome/desktop/background/picture-uri", value: "'file:///usr/share/backgrounds/default-wallpaper.png'" }
     - { key: "/org/gnome/desktop/background/picture-options", value: "'zoom'" }
+    - { key: "/org/gnome/tweaks/show-extensions-notice", value: "'false'" }
     - { key: "/org/gnome/desktop/calendar/show-weekdate", value: "'true'" }
     - { key: "/org/gnome/desktop/datetime/automatic-timezone", value: "'true'" }
     - { key: "/org/gnome/desktop/interface/clock-show-date", value: "'true'" }
