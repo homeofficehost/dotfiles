@@ -1,5 +1,5 @@
 ---
-dotfiles_repo: "https://github.com/tg/dotfiles.git"
+dotfiles_repo: "https://github.com/thomasgroch/dotfiles.git"
 dotfiles_repo_directory: "/home/tg/.dotfiles-bare"
 dotfiles_user: "tg"
 
