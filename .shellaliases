@@ -12,6 +12,18 @@ EOF
 ###############################################################################
 # Development section
 ###############################################################################
+# linux xorg copy/paste implementation - mirroring the macos commands
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+# pipe the destination machines clipboard to local clipboard
+alias osxnetwork-paste='ssh OSX_MACHINENAME.local pbpaste | pbcopy'
+
+# pipe the local clipboard to the destination android device using termux sshd and termux-api
+alias android-paste='pbpaste | ssh android.local termux-clipboard-set'
+
+
+
 alias vps="mosh --ssh='ssh -C -i ~/.ssh/tgroch_id_rsa' root@78.47.130.144 bash"
 
 alias findd="fd $@"
