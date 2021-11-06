@@ -65,29 +65,39 @@
   when: dotfiles_checkout is undefined
   tags: dotfiles,tg,users,barerepo
 
-# The ansible.builtin.git module does not seem to support checking out bare repositories, have to do it with shell commands
 - name: Dotfiles - Check if directory exists
   stat:
     path: "{{ repo_dir }}"
   register: repo_directory
   tags: dotfiles,tg,users,barerepo
 
-- name: Dotfiles - Clone repository
-  command: "git clone --bare {{ dotfiles_repo }} {{ repo_dir }}"
-  become: yes
+- name: Dotfiles | Checkout git bare repository
   become_user: "{{ username }}"
+  git:
+    repo: "{{ dotfiles_repo }}"
+    dest: "{{ repo_dir }}"
+    bare: yes
+    update: yes
+    track_submodules: yes
   when: not repo_directory.stat.exists
   tags: dotfiles,tg,users,barerepo
 
+
 - name: Dotfiles - Enable sparse checkout
-  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --local core.sparseCheckout true"
-  become: yes
+  git_config:
+    repo: "{{ repo_dir }}"
+    name: core.sparseCheckout
+    scope: local
+    value: true
   become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo
 
 - name: Dotfiles - Disable showing untracked files
-  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --local status.showUntrackedFiles no"
-  become: yes
+  git_config:
+    repo: "{{ repo_dir }}"
+    name: status.showUntrackedFiles
+    scope: local
+    value: no
   become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo
 
@@ -100,11 +110,11 @@
   become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo
 
-- name: Dotfiles - Checkout Git repository
-  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} checkout --force" # This will overwrite existing files!
-  become: yes
-  become_user: "{{ username }}"
-  tags: dotfiles,tg,users,barerepo
+# - name: Dotfiles - Checkout Git repository
+#   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} checkout --force" # This will overwrite existing files!
+#   become: yes
+#   become_user: "{{ username }}"
+#   tags: dotfiles,tg,users,barerepo
 
 - name: Dotfiles - Pull Git repository
   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} pull"
