@@ -1,0 +1,103 @@
+autojump
+eternalterminal
+fswatch
+gitkraken
+pass-git-helper
+realvnc-vnc-server
+# spark
+stremio
+sublime-text-3
+# transcrypt
+# python-gaphor
+haguichi
+font-downloader
+# apostrophe
+newsflash
+# Command-line tool for generating regular expressions
+# grex
+
+mailspring
+minbrowser
+# To record screencasts
+kazam
+
+octopi
+hakuneko-desktop
+# Diff images from the command-line
+# spaceman-diff
+# # Command-line tool to manage your ssh connections
+# stormssh
+# # Very fast implementation of tldr in Rust
+# tealdeer
+# Successor of namebench a DNS benchmark utility
+# nameinator
+
+# Monitor a directory for changes and run a shell command. Req by gitwatch
+fswatch
+# Remote terminal with IP roaming
+eternalterminal
+# Sparklines for the shell
+spark
+# Automatically restart SSH sessions and tunnels
+autossh
+# Shell extension to jump to frequently used directories
+# autojump
+
+# Everything you need to get started with Heroku
+# heroku
+
+# Command-line interface for WordPress
+#wp-cli
+
+# HTTP benchmarking tool
+# wrk
+# # Instant coding answers via the command-line
+# howdoi
+
+# # Improved colored diff
+# icdiff
+# # Search tool like grep and The Silver Searcher
+# rg
+# ttyrec
+# # Unit testing tool
+# roundup
+# # Executes a program periodically, showing output fullscreen
+# watch
+# # Monitor DHCP traffic for debugging purposes
+# dhcpdump
+# # Perl lib for reading and writing EXIF metadata
+# exiftool
+# bfg
+# # Emoji guide for your commit messages
+# gitmoji
+# # Ruby client and CLI for GitLab API
+# gitlab-gem
+
+# ## Security and penetration testing tool
+# # Rootkit detector
+# chkrootkit
+# # Pass extension that provides an easy flow for updating passwords
+# pass-update
+# # Recursively compute digests on files/directories
+# md5deep
+
+# Interactive jq
+#ijq
+## Terminal file manager
+#lf
+
+# List USB devices
+usbutils
+
+# jdownloader
+#transmission-gtk
+# parsehub
+# mysqlworkbench
+# webstorm
+# phpstorm
+# gitkraken
+
+## GUI apps
+# fritzing
+# Huge set of common tools for making games
+# godot-mono

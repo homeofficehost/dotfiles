@@ -1,0 +1,39 @@
+- name: users | tg | remove preinstalled clutter from home directory
+  tags: dotfiles
+  file:
+    path: "/home/tg/{{ item }}"
+    state: absent
+  with_items:
+    - examples.desktop
+
+- name: users | tg | create personal config directories
+  tags: dotfiles
+  file:
+    path: /home/tg/{{ item.dir }}
+    state: directory
+    owner: tg
+    group: tg
+  with_items:
+    - { dir: Desktop }
+    - { dir: Documents }
+    - { dir: Downloads }
+    - { dir: Projects }
+    - { dir: Templates }
+    - { dir: dev }
+    - { dir: blog }
+    - { dir: pro }
+    - { dir: docs }
+    - { dir: pi }
+    - { dir: .local }
+    - { dir: .local/share }
+    - { dir: .local/share/applications }
+    - { dir: /usr/local/etc/my.cnf.d }
+
+# - name: users | tg | copy profile image
+#   tags: dotfiles
+#   copy:
+#     src: users/tg/profile_image.png
+#     dest: /var/lib/AccountsService/icons/tg.png
+#     owner: root
+#     group: root
+#     mode: 0644

@@ -1,0 +1,28 @@
+- name: users | velociraptor | Create user
+  tags: dotfiles,velociraptor,ssh,ssh-keys,users
+  vars:
+    mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=create length=32 nosymbols=true')}}"
+  user:
+    name: velociraptor
+    create_home: yes
+    groups: wheel,users,{{ sudo_group }}
+    state: present
+    password: "{{ tg_passwd }}"
+
+- name: users | velociraptor | add public key
+  tags: dotfiles,velociraptor,ssh,ssh-keys,users
+  authorized_key:
+    user: velociraptor
+    key: "{{ item }}"
+  with_file:
+    - users/velociraptor/ssh/velociraptor_id_rsa.pub
+    # - users/velociraptor/ssh/velociraptor_id_ed25519.pub
+
+- name: users | velociraptor | add sudoers file
+  tags: settings,velociraptor,sudo,system,users
+  copy:
+    src: users/sudoers_velociraptor
+    dest: /etc/sudoers.d/velociraptor
+    owner: root
+    group: root
+    mode: 0440
