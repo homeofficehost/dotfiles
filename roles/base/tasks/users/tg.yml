@@ -97,7 +97,7 @@
     repo: "{{ repo_dir }}"
     name: status.showUntrackedFiles
     scope: local
-    value: no
+    value: 'no'
   become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo
 
