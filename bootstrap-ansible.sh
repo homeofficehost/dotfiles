@@ -1,6 +1,3 @@
-# Import my GnuPG and OpenSSH keys
-. /run/media/tg/safe/run.sh
-# read -n 1 -s -r -p "Press any key to continue"
 
 if [[ ! -e ~/.password-store ]]; then
 	git clone https://gitlab.com/thomas.groch/password-store.git ~/.password-store
@@ -14,3 +11,7 @@ if [[ -z $(which ansible-pull) ]]; then # if are not installed
 fi
 
 sudo ansible-pull --url https://github.com/thomasgroch/dotfiles --limit $(cat /etc/hostname).local
+
+echo "To import my GnuPG and OpenSSH keys run:"
+echo ". /run/media/tg/safe/run.sh \n"
+# read -n 1 -s -r -p "Press any key to continue"
