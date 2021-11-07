@@ -71,24 +71,19 @@
   register: repo_directory
   tags: dotfiles,tg,users,barerepo
 
-- name: Dotfiles | Checkout git bare repository
+- name: Dotfiles - Clone repository
+  command: "git clone --bare {{ dotfiles_repo }} {{ repo_dir }}"
+  become: yes
   become_user: "{{ username }}"
-  git:
-    repo: "{{ dotfiles_repo }}"
-    dest: "{{ repo_dir }}"
-    bare: yes
-    update: yes
-    track_submodules: yes
   when: not repo_directory.stat.exists
   tags: dotfiles,tg,users,barerepo
-
 
 - name: Dotfiles - Enable sparse checkout
   git_config:
     repo: "{{ repo_dir }}"
     name: core.sparseCheckout
     scope: local
-    value: true
+    value: 'true'
   become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo
 
