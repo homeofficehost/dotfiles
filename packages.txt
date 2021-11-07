@@ -1,3 +1,5 @@
+virtualbox
+linux513-virtualbox-host-modules
 curl
 file
 # Distributed revision control system
