@@ -97,7 +97,7 @@ nomad
 # Tool for service discovery, monitoring and configuration
 consul
 # Tool for creating identical machine images for multiple platforms
-packer
+# packer
 # Cross platform, open source .NET development framework
 mono
 tree
