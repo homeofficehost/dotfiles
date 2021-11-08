@@ -1,3 +1,9 @@
+- name: Create a directory if it does not exist
+  file:
+    path: /usr/share/backgrounds
+    state: directory
+    mode: '0755'
+
 - name: gnome | appearance | copy lock screen and wallpaper background files
   tags: gnome,gnome-lockscreen
   with_items:
