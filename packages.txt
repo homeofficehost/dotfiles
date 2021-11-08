@@ -1,12 +1,12 @@
 virtualbox
-linux513-virtualbox-host-modules
+# linux513-virtualbox-host-modules
 curl
 file
 # Distributed revision control system
 git
 base-devel
 # Multi-panel tabbed file manager
-spacefm
+# spacefm
 # for video editing
 # kdenlive
 
@@ -334,7 +334,7 @@ gifski
 docker
 
 ## GUI apps
-brave-browser
+# brave-browser
 # Run containers through a simple, yet powerful graphical user interface.
 firefox
 opera
