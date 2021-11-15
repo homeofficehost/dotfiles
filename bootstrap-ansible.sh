@@ -1,4 +1,7 @@
 
+echo "To import my GnuPG and OpenSSH keys run:"
+echo ". /run/media/tg/safe/run.sh \n"
+read -n 1 -s -r -p "Press any key to continue and ctrl+c to exit"
 if [[ ! -e ~/.password-store ]]; then
 	git clone https://gitlab.com/thomas.groch/password-store.git ~/.password-store
 fi
@@ -13,7 +16,3 @@ fi
 # sudo ansible-pull --url https://github.com/thomasgroch/dotfiles --limit $(cat /etc/hostname).local
 sudo ansible-pull --url https://github.com/thomasgroch/dotfiles --vault-id ansible/workstation/tg@gopass-client.py --limit $(cat /etc/hostname).local
 # --ask-vault-pass
-
-echo "To import my GnuPG and OpenSSH keys run:"
-echo ". /run/media/tg/safe/run.sh \n"
-# read -n 1 -s -r -p "Press any key to continue"
