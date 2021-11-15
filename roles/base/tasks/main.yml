@@ -3,9 +3,7 @@
   tags: always
 
 - name: Ensure password is not empty and vault can be decrypted
-  debug: 
-    verbosity: 3
-  vars: 
+  set_fact: 
     mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=empty') | default('', true) }}"
 
 - block:
