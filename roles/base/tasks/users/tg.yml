@@ -7,11 +7,8 @@
 
 - name: users | tg | create user
   tags: tg,sudo,users
-  # ansible.builtin.debug:
-  #   var: mypassword
   vars:
     mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=empty length=32 nosymbols=true') | default('123456', true) }}"
-    # mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=create length=32 nosymbols=true')}}"
   user:
     name: tg
     group: tg
@@ -19,8 +16,8 @@
     state: present
     comment: "Thomas Groch"
     password: "{{ tg_passwd }}"
-    shell: /usr/bin/zsh
     # password: "{{ mypassword }}"
+    shell: /usr/bin/zsh
     # shell: /usr/bin/nologin
 
 - name: users | tg | add sudoers file
@@ -65,6 +62,7 @@
   when: dotfiles_checkout is undefined
   tags: dotfiles,tg,users,barerepo
 
+# The ansible.builtin.git module does not seem to support checking out bare repositories, have to do it with shell commands
 - name: Dotfiles - Check if directory exists
   stat:
     path: "{{ repo_dir }}"
@@ -79,20 +77,14 @@
   tags: dotfiles,tg,users,barerepo
 
 - name: Dotfiles - Enable sparse checkout
-  git_config:
-    repo: "{{ repo_dir }}"
-    name: core.sparseCheckout
-    scope: local
-    value: 'true'
+  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --local core.sparseCheckout true"
+  become: yes
   become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo
 
 - name: Dotfiles - Disable showing untracked files
-  git_config:
-    repo: "{{ repo_dir }}"
-    name: status.showUntrackedFiles
-    scope: local
-    value: 'no'
+  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --local status.showUntrackedFiles no"
+  become: yes
   become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo
 
@@ -105,11 +97,11 @@
   become_user: "{{ username }}"
   tags: dotfiles,tg,users,barerepo
 
-# - name: Dotfiles - Checkout Git repository
-#   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} checkout --force" # This will overwrite existing files!
-#   become: yes
-#   become_user: "{{ username }}"
-#   tags: dotfiles,tg,users,barerepo
+- name: Dotfiles - Checkout Git repository
+  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} checkout --force" # This will overwrite existing files!
+  become: yes
+  become_user: "{{ username }}"
+  tags: dotfiles,tg,users,barerepo
 
 - name: Dotfiles - Pull Git repository
   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} pull"
@@ -122,8 +114,6 @@
 #   become: yes
 #   become_user: "{{ username }}"
 #   loop: "{{ dotfiles_checkout | map('regex_replace', '^.*\\/\\*', '~/') | list }}" # Recurse through all files/directories and attempt to recursively clone submodules. Just does nothing if there are none. Regex replace /* to ~/ for compatability with dotfiles_checkout.
-
-
 
 # # ensure git repositories
 # - name: Git | Checkout git bare repository

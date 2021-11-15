@@ -9,7 +9,7 @@ if [[ -z $(which ansible-pull) ]]; then # if are not installed
 		sudo apt install -y ansible
 	fi
 fi
-
+# sudo pacman -Syu --noconfirm virtualbox linux54-virtualbox-host-modules
 sudo ansible-pull --url https://github.com/thomasgroch/dotfiles --limit $(cat /etc/hostname).local
 
 echo "To import my GnuPG and OpenSSH keys run:"

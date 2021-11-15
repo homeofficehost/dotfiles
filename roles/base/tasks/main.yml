@@ -2,7 +2,14 @@
 - include_vars: "{{ ansible_distribution }}.yml"
   tags: always
 
+- name: Ensure password is not empty and vault can be decrypted
+  debug: 
+    verbosity: 3
+  vars: 
+    mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=empty') | default('', true) }}"
+
 - block:
+
   # Make sure users exist on the system
   - import_tasks: users/root.yml
   - import_tasks: users/velociraptor.yml
@@ -30,3 +37,12 @@
 
   rescue:
     - set_fact: task_failed=true
+
+  when: mypassword is defined and mypassword != ''
+
+# otherwise output a message
+- block:
+
+  - fail: msg="Missing vault password"
+  
+  when: mypassword is not defined and mypassword == ''

@@ -6,6 +6,14 @@
       line: "IgnorePkg   = ansible linux linux-headers linux-lts linux-lts-headers"
   when: ansible_distribution == "Archlinux"
 
+- name: system setup | enable pacman parallel downloads for faster downloads
+  tags: packages,repositories
+  lineinfile:
+      dest: /etc/pacman.conf
+      regexp: "^#?ParallelDownloads"
+      line: "ParallelDownloads = 5"
+  when: ansible_distribution == "Archlinux"
+
 - name: system setup | repositories | add sources.list for debian hosts
   tags: non-free,repositories
   copy:
