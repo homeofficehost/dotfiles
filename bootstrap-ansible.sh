@@ -2,7 +2,7 @@
 
 echo "To import my GnuPG and OpenSSH keys run:"
 echo ". /run/media/tg/safe/run.sh \n"
-read -n 1 -s -r -p "Press any key to continue and ctrl+c to exit"
+read -n 1 -s -r -p "Press any key to continue"
 
 if [[ ! -e ~/.password-store ]]; then
 	git clone https://gitlab.com/thomas.groch/password-store.git ~/.password-store
