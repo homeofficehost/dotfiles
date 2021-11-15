@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "To import my GnuPG and OpenSSH keys run:"
-echo ". /run/media/tg/safe/run.sh \n"
+echo ". /run/media/tg/safe/run.sh"
 read -n 1 -s -r -p "Press any key to continue"
 
 if [[ ! -e ~/.password-store ]]; then
