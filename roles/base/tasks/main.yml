@@ -2,8 +2,11 @@
 - include_vars: "{{ ansible_distribution }}.yml"
   tags: always
 
+- name: debug
+  debug: msg="{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=empty') | default('', true) }}"
+
 - name: Ensure password is not empty and vault can be decrypted
-  set_fact: 
+  set_fact:
     mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=empty') | default('', true) }}"
 
 - block:
