@@ -1,0 +1,8 @@
+- hosts: all
+  connection: local
+  become: yes 
+  tasks:
+
+    - name: TEST PLAYBOOK
+      debug: 
+        var: ansible_become_pass

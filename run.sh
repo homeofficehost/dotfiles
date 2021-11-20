@@ -1,3 +1,3 @@
-
-# ansible-playbook -c local local.yml --vault-id ansible/workstation/tg@gopass-client.py --ask-vault-pass --limit $(cat /etc/hostname).local
-sudo ansible-playbook -c local local.yml --vault-id ansible/workstation/tg@gopass-client.py --limit $(cat /etc/hostname).local
+ansible-playbook -c local local.yml --vault-id ansible/workstation/tg@gopass-client.py --limit $(cat /etc/hostname).local
+# sudo -u tg ansible-playbook -c local local.yml --vault-id ansible/workstation/tg@gopass-client.py --limit $(cat /etc/hostname).local --ask-vault-pass
+# sudo -iH -u "tg" ansible-playbook -c local local.yml --vault-id ansible/workstation/tg@gopass-client.py --limit $(cat /etc/hostname).local --ask-vault-pass
