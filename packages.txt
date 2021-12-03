@@ -339,6 +339,7 @@ docker
 firefox
 opera
 vivaldi
+#vivaldi-ffmpeg-codecs
 qtpass
 # discord
 telegram-desktop
