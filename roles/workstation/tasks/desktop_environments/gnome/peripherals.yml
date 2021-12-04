@@ -75,12 +75,12 @@
 #     key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type"
 #     value: "'suspend'"
 
-# - name: gnome | peripherals | set timeout for automatic suspend while plugged in to ac
-#   tags: gnome,peripherals,power
-#   become_user: "{{ username }}"
-#   dconf:
-#     key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-timeout"
-#     value: "2700"
+- name: gnome | peripherals | set timeout for automatic suspend while plugged in to ac
+  tags: gnome,peripherals,power
+  become_user: "{{ username }}"
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-timeout"
+    value: "2700"
 
 # - name: gnome | peripherals | enable automatic suspend while on battery
 #   tags: gnome,peripherals,power
