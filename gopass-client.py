@@ -88,7 +88,7 @@ def main():
 
     keyname = args.vault_id
 
-    result = subprocess.run(["gopass", "show", "%s/%s/%s" % (mount, directory, keyname)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    result = subprocess.run(["pass", "show", "%s/%s/%s" % (mount, directory, keyname)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     if result.returncode != 0 and not suppress_gopass_errors:
       sys.stderr.write(result.stderr.decode("utf-8"))
