@@ -12,5 +12,7 @@
   when: item != ""
   aur:
     name: "{{ item }}"
+  become: yes
+  become_user: "velociraptor"
 
 # sudo pip3 install defusedxml
