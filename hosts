@@ -1,5 +1,7 @@
 [server]
 
 [workstation]
-tgworkstation.local
-crworkstation.local
+tgworkstation.local ansible_sudo=True \
+					ansible_sudo_pass="{{ lookup('passwordstore', 'ansible/workstation/tg') }}"
+crworkstation.local ansible_sudo=True \
+					ansible_sudo_pass="{{ lookup('passwordstore', 'ansible/workstation/cr') }}"
