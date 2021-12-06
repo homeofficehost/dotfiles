@@ -12,4 +12,4 @@
 - include_tasks: tracker.yml
 
 - include_tasks: extension.yml
-# - include_tasks: enable_extensions.yml
+- include_tasks: enable_extensions.yml
