@@ -21,3 +21,8 @@ if [[ -z $(which ansible-pull) ]]; then # if are not installed
 		sudo apt install -y ansible
 	fi
 fi
+if [[ -n $(which pacman) ]]; then
+	sudo pacman -Syyu --noconfirm
+elif [[ -n $(which apt) ]]; then
+	sudo apt update
+fi
