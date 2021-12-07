@@ -11,7 +11,7 @@
   lineinfile:
       dest: /etc/pacman.conf
       regexp: "^#?ParallelDownloads"
-      line: "ParallelDownloads = 5"
+      line: "ParallelDownloads = 50"
   when: ansible_distribution == "Archlinux"
 
 - name: system setup | repositories | add sources.list for debian hosts

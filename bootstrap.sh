@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PASSWORD_STORE_REPO=${1:-https://gitlab.com/thomas.groch/password-store.git}
+PASSWORD_STORE_REPO=$1
 
 echo "To import my GnuPG and OpenSSH keys run:"
 echo "cd /run/media/tg/safe && ./run.sh"
@@ -24,6 +24,8 @@ if [[ -z $(which ansible-pull) ]]; then # if are not installed
 	fi
 fi
 if [[ -n $(which pacman) ]]; then
+	sudo sed -i "s/#ParallelDownloads = 5/ParallelDownloads = 50/g" /etc/pacman.conf
+	sudo sed -i "s/#Color/Color/g" /etc/pacman.conf
 	sudo pacman -Syyu --noconfirm
 elif [[ -n $(which apt) ]]; then
 	sudo apt update
