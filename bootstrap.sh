@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PASSWORD_STORE_REPO=${1:-https://gitlab.com/thomas.groch/password-store.git}
+PASSWORD_STORE_REPO=$1
 
 echo "To import my GnuPG and OpenSSH keys run:"
 echo "cd /run/media/tg/safe && ./run.sh"
