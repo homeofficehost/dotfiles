@@ -1,18 +1,18 @@
-- name: users | tg | remove preinstalled clutter from home directory
+- name: users | remove preinstalled clutter from home directory
   tags: dotfiles
   file:
-    path: "/home/tg/{{ item }}"
+    path: "/home/{{ username }}/{{ item }}"
     state: absent
   with_items:
     - examples.desktop
 
-- name: users | tg | create personal config directories
+- name: users | create personal config directories
   tags: dotfiles
   file:
-    path: /home/tg/{{ item.dir }}
+    path: /home/{{ username }}/{{ item.dir }}
     state: directory
-    owner: tg
-    group: tg
+    owner: {{ username }}
+    group: {{ username }}
   with_items:
     - { dir: Desktop }
     - { dir: Documents }
@@ -29,11 +29,11 @@
     - { dir: .local/share/applications }
     - { dir: /usr/local/etc/my.cnf.d }
 
-# - name: users | tg | copy profile image
+# - name: users | copy profile image
 #   tags: dotfiles
 #   copy:
-#     src: users/tg/profile_image.png
-#     dest: /var/lib/AccountsService/icons/tg.png
+#     src: users/{{ username }}/profile_image.png
+#     dest: /var/lib/AccountsService/icons/{{ username }}.png
 #     owner: root
 #     group: root
 #     mode: 0644
