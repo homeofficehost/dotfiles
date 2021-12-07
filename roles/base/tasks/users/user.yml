@@ -1,92 +1,92 @@
-- name: users | tg | create group
-  tags: groups,tg,users
+- name: users | create group
+  tags: groups,users
   become_user: "{{ username }}"
   group:
     name: wheel
     state: present
 
-- name: users | tg | create user
-  tags: tg,sudo,users
+- name: users | create user
+  tags: sudo,users
   vars:
-    mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=empty length=32 nosymbols=true') | default('123456', true) }}"
+    mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/' + username + ' missing=empty length=32 nosymbols=true') | default('123456', true) }}"
   user:
-    name: tg
-    group: tg
+    name: "{{ username }}"
+    group: "{{ username }}"
     groups: wheel,users,{{ sudo_group }}
     state: present
-    comment: "Thomas Groch"
-    password: "{{ tg_passwd }}"
+    comment: "user"
+    password: "{{ user_passwd }}"
     # password: "{{ mypassword }}"
     shell: /usr/bin/zsh
     # shell: /usr/bin/nologin
 
-- name: users | tg | add sudoers file
-  tags: settings,tg,sudo,system,users
+- name: users | add sudoers file
+  tags: settings,sudo,system,users
   copy:
-    src: users/sudoers_tg
-    dest: /etc/sudoers.d/tg
+    src: "users/sudoers_{{ username }}"
+    dest: "/etc/sudoers.d/{{ username }}"
     owner: root
     group: root
     mode: 0440
 
-- name: users | tg | create .ssh directory
-  tags: dotfiles,tg,ssh,users
+- name: users | create .ssh directory
+  tags: dotfiles,ssh,users
   file:
     path: "{{ item.dir }}"
     state: directory
-    owner: tg
-    group: tg
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: 0700
   with_items:
-    - { dir: '/home/tg/.ssh' }
+    - { dir: "/home/{{ username }}/.ssh" }
 
-- name: users | tg | add public key
-  tags: dotfiles,tg,ssh,ssh-keys,users
+- name: users | add public key
+  tags: dotfiles,ssh,ssh-keys,users
   authorized_key:
-    user: tg
+    user: "{{ username }}"
     key: "{{ item }}"
   with_file:
-    - users/tg/ssh/tgroch_id_rsa.pub
-    # - users/tg/ssh/tg_id_ed25519.pub
+    - users/user/ssh/user_id_rsa.pub
+    # - users/user/ssh/user_id_ed25519.pub
 
 - name: Dotfiles - Get home directory
   user:
     name: "{{ username }}"
     state: present
   register: dotfiles_user_registered
-  tags: dotfiles,tg,users,barerepo
+  tags: dotfiles,users,barerepo
 
 - name: Dotfiles - Set checkout if undefined
   set_fact:
     dotfiles_checkout: ['/*']
   when: dotfiles_checkout is undefined
-  tags: dotfiles,tg,users,barerepo
+  tags: dotfiles,users,barerepo
 
 # The ansible.builtin.git module does not seem to support checking out bare repositories, have to do it with shell commands
 - name: Dotfiles - Check if directory exists
   stat:
     path: "{{ repo_dir }}"
   register: repo_directory
-  tags: dotfiles,tg,users,barerepo
+  tags: dotfiles,users,barerepo
 
 - name: Dotfiles - Clone repository
   command: "git clone --bare {{ dotfiles_repo }} {{ repo_dir }}"
   become: yes
   become_user: "{{ username }}"
   when: not repo_directory.stat.exists
-  tags: dotfiles,tg,users,barerepo
+  tags: dotfiles,users,barerepo
 
 - name: Dotfiles - Enable sparse checkout
   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --local core.sparseCheckout true"
   become: yes
   become_user: "{{ username }}"
-  tags: dotfiles,tg,users,barerepo
+  tags: dotfiles,users,barerepo
 
 - name: Dotfiles - Disable showing untracked files
   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --local status.showUntrackedFiles no"
   become: yes
   become_user: "{{ username }}"
-  tags: dotfiles,tg,users,barerepo
+  tags: dotfiles,users,barerepo
 
 # Copy the dotfiles_checkout variable into a file for checkout
 - name: Dotfiles - Configure Git sparse checkout
@@ -95,19 +95,19 @@
     content: "{{ dotfiles_checkout | join('\n') }}"
   become: yes
   become_user: "{{ username }}"
-  tags: dotfiles,tg,users,barerepo
+  tags: dotfiles,users,barerepo
 
 - name: Dotfiles - Checkout Git repository
   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} checkout --force" # This will overwrite existing files!
   become: yes
   become_user: "{{ username }}"
-  tags: dotfiles,tg,users,barerepo
+  tags: dotfiles,users,barerepo
 
 - name: Dotfiles - Pull Git repository
   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} pull"
   become: yes
   become_user: "{{ username }}"
-  tags: dotfiles,tg,users,barerepo
+  tags: dotfiles,users,barerepo
 
 # - name: Dotfiles - Update submodules
 #   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} -C {{ work_dir }} submodule update --init --recursive {{ item }}" # Git wants to cd into the directory first before using the submodule command
@@ -124,57 +124,57 @@
 #     bare: yes
 #     update: no
 #     track_submodules: yes
-#   tags: dotfiles,tg,users,barerepo
+#   tags: dotfiles,users,barerepo
 
 # - name: Git | Ensure repository set properly
 #   lineinfile: dest={{ repo_dir }}/config
 #               regexp="^\s*bare.?="
 #               line="    bare = false"
-#   tags: dotfiles,tg,users,barerepo
+#   tags: dotfiles,users,barerepo
 
 # - name: Git | Ensure proper worktree
 #   lineinfile: dest={{ repo_dir }}/config
 #               regexp='^\s*worktree.?='
 #               line="    worktree = {{ work_dir }}"
-#   tags: dotfiles,tg,users,barerepo
+#   tags: dotfiles,users,barerepo
 
 # - name: Git | Ensure work dir
 #   file: path={{ work_dir }} state=directory
 #         mode=0775
-#   tags: dotfiles,tg,users,barerepo
+#   tags: dotfiles,users,barerepo
 
 
 # # fetch/checkout
 # - name: Git | Fetching new changes
 #   shell: chdir={{ repo_dir }} git fetch --prune && git fetch --tags
 #   become_user: "{{ username }}"
-#   tags: dotfiles,tg,users,barerepo
+#   tags: dotfiles,users,barerepo
 
 # # - name: Git | Checkout version
 # #   command: "chdir={{ work_dir }} git --git-dir={{ repo_dir }} checkout -f {{ version | default('HEAD') }}"
 # #   become_user: "{{ username }}"
-# #   tags: dotfiles,tg,users,barerepo
+# #   tags: dotfiles,users,barerepo
 
 # # - name: Git | Checkout dotfiles updates
 # #   command: "chdir={{ work_dir }} git fetch && git checkout master && git merge upstream/master"
 # #   become_user: "{{ username }}"
-# #   tags: dotfiles,tg,users,barerepo
+# #   tags: dotfiles,users,barerepo
 
 # # git submodules
 # - name: Git | Submodules | Syncing
 #   command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} submodule sync
 #   become_user: "{{ username }}"
-#   tags: dotfiles,tg,users,barerepo,update
+#   tags: dotfiles,users,barerepo,update
 
 # - name: Git | Submodules | Updating
 #   command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} submodule update -f --init --recursive
 #   become_user: "{{ username }}"
-#   tags: dotfiles,tg,users,barerepo,update
+#   tags: dotfiles,users,barerepo,update
 
 # - name: Git | Ensure untracked files are hidden
 #   command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} config --local status.showUntrackedFiles no
 #   become_user: "{{ username }}"
-#   tags: dotfiles,tg,users,barerepo,update
+#   tags: dotfiles,users,barerepo,update
 
 - name: Git | Create symbolic link
   file:
@@ -184,5 +184,5 @@
     group: "{{ username }}"
     state: link
   become_user: "{{ username }}"
-  tags: dotfiles,tg,users,barerepo
+  tags: dotfiles,users,barerepo
 

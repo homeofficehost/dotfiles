@@ -3,8 +3,9 @@
   tags: always
 
 - block:
+
   ## User configs
-  - import_tasks: users/tg.yml
+  - import_tasks: "users/user.yml"
 
   ## desktop environments
   - include_tasks: desktop_environments/mate/main.yml

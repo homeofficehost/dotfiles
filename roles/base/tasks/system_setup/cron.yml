@@ -28,4 +28,4 @@
     name: "ansible refresh at boot"
     user: velociraptor
     special_time: reboot
-    job: "/bin/rm -rf /home/tg/.ansible"
+    job: "/bin/rm -rf /home/{{ username }}/.ansible"

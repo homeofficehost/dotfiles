@@ -7,7 +7,7 @@
     create_home: yes
     groups: wheel,users,{{ sudo_group }}
     state: present
-    password: "{{ tg_passwd }}"
+    password: "{{ user_passwd }}"
 
 - name: users | velociraptor | add public key
   tags: dotfiles,velociraptor,ssh,ssh-keys,users
