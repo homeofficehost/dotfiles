@@ -98,6 +98,8 @@ Or just use the shortcut `dotfiles_update` defined on [.shellaliases](../master/
 
 - [setup local dev tampermonkey](https://stackoverflow.com/questions/49509874/how-to-update-tampermonkey-script-to-a-local-file-programatically)
 
+- [unlocked the key for gpg-agent earlier](https://serverfault.com/questions/560106/how-can-i-implement-ansible-with-per-host-passwords-securely)
+
 # Credits
 
 I've rewritten my dotfiles many times, and each time I've been influenced by someone new. These people include:
