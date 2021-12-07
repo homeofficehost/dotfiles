@@ -24,6 +24,8 @@ if [[ -z $(which ansible-pull) ]]; then # if are not installed
 	fi
 fi
 if [[ -n $(which pacman) ]]; then
+	sudo sed -i "s/#ParallelDownloads = 5/ParallelDownloads = 50/g" /etc/pacman.conf
+	sudo sed -i "s/#Color/Color/g" /etc/pacman.conf
 	sudo pacman -Syyu --noconfirm
 elif [[ -n $(which apt) ]]; then
 	sudo apt update
