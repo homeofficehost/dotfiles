@@ -19,7 +19,7 @@ I intend for my managed dotfiles to be portable between GNU/Linux and macOS syst
 ## 🚀 Installation with ansible
 
 ```sh
-curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/master/bootstrap.sh "https://gitlab.com/camilasrody/password-store.git" | /bin/bash
+curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/master/bootstrap.sh > bootstrap.sh && chmod +x bootstrap.sh && ./bootstrap.sh "https://gitlab.com/camilasrody/password-store.git"
 curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/master/ansible.sh | /bin/bash
 
 # or POSIX compatible lazy install
