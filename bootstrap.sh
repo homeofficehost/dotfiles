@@ -1,11 +1,13 @@
 #!/bin/sh
 
+PASSWORD_STORE_REPO=${1:-https://gitlab.com/thomas.groch/password-store.git}
+
 echo "To import my GnuPG and OpenSSH keys run:"
-echo ". /run/media/tg/safe/run.sh"
+echo "cd /run/media/tg/safe && ./run.sh"
 read -n 1 -s -r -p "Press any key to continue"
 
 if [[ ! -e ~/.password-store ]]; then
-	git clone https://gitlab.com/thomas.groch/password-store.git ~/.password-store
+	git clone $PASSWORD_STORE_REPO ~/.password-store
 fi
 if [[ -z $(which pass) ]]; then # if are not installed
 	if [[ -n $(which pacman) ]]; then # if are installed
