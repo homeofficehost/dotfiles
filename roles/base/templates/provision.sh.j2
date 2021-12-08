@@ -6,7 +6,7 @@ BRANCH="{{ branch | default('master') }}"
 LOGFILE="/var/log/ansible.log"
 REPO="{{ upstream | default('https://github.com/thomasgroch/dotfiles') }}"
 
-VAULT_ID="ansible/workstation/tg@gopass-client.py"
+VAULT_ID="ansible/workstation/{{ username }}@gopass-client.py"
 PRECMD="sudo systemd-inhibit --who='ansible-pull' --why='provisioning'"
 
 # check if ansible-pull is already running, and if not, run it
