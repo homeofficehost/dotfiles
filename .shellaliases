@@ -100,7 +100,7 @@ alias kb="kubectl"
 alias mk="minikube"
 
 alias p="gopass $@"
-
+alias shellconf="EDITOR=subl pass edit shell/vars"
 # usages:
 #  genpass "sites/example.com"
 #  genpass "sites/example.com" 8 "username"
