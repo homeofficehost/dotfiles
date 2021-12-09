@@ -147,6 +147,8 @@ libevent
 fontconfig
 # Graph visualization software from AT&T and Bell Labs
 graphviz
+# Modern, hackable, featureful, OpenGL based terminal emulator
+kitty
 # Terminal based YouTube player and downloader
 mps-youtube
 # Media player based on MPlayer and mplayer2
