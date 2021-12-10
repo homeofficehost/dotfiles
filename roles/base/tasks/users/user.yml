@@ -186,3 +186,12 @@
   become_user: "{{ username }}"
   tags: dotfiles,users,barerepo
 
+- name: users | copy config directory
+  copy:
+    src: "{{ item }}"
+    dest: "/home/{{ username }}/.config"
+    owner: "{{ username }}"
+    group: wheel
+    mode: 0644
+  with_fileglob:
+    - "users/{{ username }}/config/*"
