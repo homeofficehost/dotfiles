@@ -7,8 +7,8 @@
 - name: gnome | appearance | copy lock screen and wallpaper background files
   tags: gnome,gnome-lockscreen
   with_items:
-    - { src: files/gnome/wallpaper.png, dest: "/usr/share/backgrounds/default-wallpaper.png" }
-    - { src: files/gnome/lockscreen.png, dest: "/usr/share/backgrounds/default-lockscreen.png" }
+    - { src: "files/gnome/wallpaper-{{ username }}.png, dest: "/usr/share/backgrounds/default-wallpaper.png" }
+    - { src: "files/gnome/lockscreen-{{ username }}.png, dest: "/usr/share/backgrounds/default-lockscreen.png" }
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
