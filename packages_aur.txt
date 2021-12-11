@@ -52,10 +52,10 @@ autossh
 # HTTP benchmarking tool
 # wrk
 # # Instant coding answers via the command-line
-# howdoi
+howdoi
 
 # # Improved colored diff
-# icdiff
+icdiff
 # # Search tool like grep and The Silver Searcher
 # rg
 # ttyrec
