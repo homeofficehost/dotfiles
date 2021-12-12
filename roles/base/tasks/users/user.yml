@@ -40,10 +40,6 @@
   with_items:
     - { dir: "/home/{{ username }}/.ssh" }
 
-
-  - name: Create user account
-    user: name=ituser comment="ituser" shell="/bin/bash"
-    
 - name: users | add all public keys
   tags: dotfiles,ssh,ssh-keys,users
   authorized_key:
