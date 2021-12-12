@@ -46,7 +46,6 @@
     user: "{{ username }}"
     key: "{{ item }}"
   with_fileglob:
-  with_file:
     - "users/{{ username }}/ssh/*.pub"
     # - "users/{{ username }}/ssh/{{ username }}_id_ed25519.pub"
 
