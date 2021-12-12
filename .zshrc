@@ -55,8 +55,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-# ZSH_CUSTOM=$HOME/oh-my-zsh-custom
+ZSH_CUSTOM=$HOME/.oh-my-zsh-custom/
 
 # Which plugins would you like to load? (plugins can be found in ~/oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -70,7 +69,6 @@ plugins+=(yarn)
 # plugins+=(gitfast) # heavy load
 plugins+=(fasd)
 plugins+=(git-extras)
-plugins+=(brew)
 plugins+=(sudo)
 # plugins+=(composer)
 plugins+=(docker)
@@ -85,7 +83,6 @@ plugins+=(dircycle) # cycle your directory stack {left,right} using Ctrl+Shift+L
 plugins+=(copyfile)
 plugins+=(colorize)
 plugins+=(history)
-plugins+=(osx)
 plugins+=(cp)
 plugins+=(tmuxinator)
 plugins+=(zsh-z)
