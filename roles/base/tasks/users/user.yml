@@ -40,14 +40,18 @@
   with_items:
     - { dir: "/home/{{ username }}/.ssh" }
 
+
+  - name: Create user account
+    user: name=ituser comment="ituser" shell="/bin/bash"
+    
 - name: users | add all public keys
   tags: dotfiles,ssh,ssh-keys,users
   authorized_key:
     user: "{{ username }}"
-    key: "{{ item }}"
+    key: "{{ lookup('file', item) }}"
   with_fileglob:
     - "users/{{ username }}/ssh/*.pub"
-    # - "users/{{ username }}/ssh/{{ username }}_id_ed25519.pub"
+    # - "users/{{ username }}/ssh/*_id_ed25519.pub"
 
 - name: Dotfiles - Get home directory
   user:
