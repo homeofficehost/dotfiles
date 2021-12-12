@@ -20,7 +20,7 @@
         token: "{{ telegram_token }}"
         chat_id: "{{ telegram_chat_id }}"
         msg_format: markdown
-        msg: "⚠️  Ansible provision failed on *{{ ansible_hostname }}*\n\n
+        msg: "🚩  Ansible provision failed on *{{ ansible_hostname }}*\n\n
           The specific error couldn't be shown, check the log."
       changed_when: False
 

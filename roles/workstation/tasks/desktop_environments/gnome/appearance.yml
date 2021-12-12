@@ -59,4 +59,4 @@
     - { key: "/org/gnome/shell/extensions/dash-to-dock/show-mounts", value: "true" }
     - { key: "/org/gtk/Settings/FileChooser/sort-directories-first", value: "true" }
     - { key: "/org/gnome/shell/favorite-apps", value: "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'kitty.desktop', 'vivaldi-stable.desktop', 'firefox-esr.desktop']" }
-    - { key: "/org/gnome/shell/enabled-extensions", value: "{{ gnome_enable_extensions|default([]) }}" }
+    # - { key: "/org/gnome/shell/enabled-extensions", value: "{{ gnome_enable_extensions|default([]) }}" }
