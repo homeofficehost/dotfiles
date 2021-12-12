@@ -45,7 +45,6 @@
     - { key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type", value: "'nothing'" }
     - { key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-battery-timeout", value: "'1800'" }
     - { key: "/org/gnome/shell/app-switcher/current-workspace-only", value: "false" }
-    - { key: "/org/gnome/shell/extensions/dash-to-panel/location-clock", value: "'STATUSRIGHT'" }
     - { key: "/org/gnome/software/refresh-when-metered", value: "true" }
     - { key: "/org/gnome/software/first-run", value: "false" }
     - { key: "/org/gnome/boxes/first-run", value: "false" }
