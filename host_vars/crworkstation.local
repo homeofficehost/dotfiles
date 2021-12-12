@@ -1,0 +1,3 @@
+---
+enable_dnscrypt_proxy:             true
+telegram_chat_id: ""
