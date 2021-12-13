@@ -214,6 +214,7 @@ saythis() {
   say -v 'Tom' $1
 }
 alias ok="saythis done!"
+alias falar="espeak -v pt-br $@"
 
 alias temp="dev && mkdir -p temp && cd temp"
 alias temp.rm="dev && rm -Rf temp"

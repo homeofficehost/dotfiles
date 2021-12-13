@@ -1,7 +1,10 @@
 autojump
 eternalterminal
+termscp
+espeak-ng
 fswatch
 # gitkraken
+gopass-jsonapi
 pass-git-helper
 realvnc-vnc-server
 # spark
