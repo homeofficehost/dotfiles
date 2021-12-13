@@ -1,3 +1,24 @@
+- name: gnome | peripherals | keyboard repeat interval
+  tags: gnome,keyboard,peripherals
+  become_user: "{{ username }}"
+  dconf:
+    key: "/org/gnome/desktop/peripherals/keyboard/repeat-interval"
+    value: "30"
+
+- name: gnome | peripherals | keyboard delay
+  tags: gnome,keyboard,peripherals
+  become_user: "{{ username }}"
+  dconf:
+    key: "/org/gnome/desktop/peripherals/keyboard/delay"
+    value: "250"
+
+- name: gnome | peripherals | 
+  tags: gnome,keyboard,peripherals
+  become_user: "{{ username }}"
+  dconf:
+    key: "/org/gnome/desktop/peripherals/keyboard/repeat-interval"
+    value: "15"
+
 - name: gnome | peripherals | enable natural scrolling (mouse)
   tags: gnome,mouse,peripherals
   become_user: "{{ username }}"
