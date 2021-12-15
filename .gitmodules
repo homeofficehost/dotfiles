@@ -10,6 +10,6 @@
 [submodule "setup-keys"]
 	path = setup-keys
 	url = https://github.com/thomasgroch/setup-keys.git
-[submodule "oh-my-zsh-custom"]
-	path = oh-my-zsh-custom/
+[submodule ".oh-my-zsh-custom"]
+	path = .oh-my-zsh-custom/
 	url = https://github.com/thomasgroch/oh-my-zsh-custom.git
