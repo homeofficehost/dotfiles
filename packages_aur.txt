@@ -1,7 +1,7 @@
 autojump
 eternalterminal
 termscp
-espeak-ng
+# espeak-ng
 fswatch
 # gitkraken
 gopass-jsonapi
