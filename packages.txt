@@ -260,7 +260,7 @@ m4
 # Fast and user friendly build system
 meson
 # Text to speech, software speech synthesizer
-espeak
+# espeak
 prettyping
 ## Utilities
 # Scriptable ping program for checking if multiple hosts are up
