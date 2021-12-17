@@ -109,6 +109,12 @@
   become_user: "{{ username }}"
   tags: dotfiles,users,barerepo
 
+- name: Dotfiles - Updating submodules
+  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} submodule update -f --init --recursive"
+  become: yes
+  become_user: "{{ username }}"
+  tags: dotfiles,users,barerepo,update
+
 # - name: Dotfiles - Update submodules
 #   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} -C {{ work_dir }} submodule update --init --recursive {{ item }}" # Git wants to cd into the directory first before using the submodule command
 #   become: yes
@@ -166,10 +172,10 @@
 #   become_user: "{{ username }}"
 #   tags: dotfiles,users,barerepo,update
 
-- name: Git | Submodules | Updating
-  command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} submodule update -f --init --recursive
-  become_user: "{{ username }}"
-  tags: dotfiles,users,barerepo,update
+# - name: Git | Submodules | Updating
+#   command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} submodule update -f --init --recursive
+#   become_user: "{{ username }}"
+#   tags: dotfiles,users,barerepo,update
 
 # - name: Git | Ensure untracked files are hidden
 #   command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} config --local status.showUntrackedFiles no
