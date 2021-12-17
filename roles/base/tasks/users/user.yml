@@ -98,7 +98,7 @@
   tags: dotfiles,users,barerepo
 
 - name: Dotfiles - Checkout Git repository
-  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} checkout --force" # This will overwrite existing files!
+  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} checkout --force --recursive" # This will overwrite existing files!
   become: yes
   become_user: "{{ username }}"
   tags: dotfiles,users,barerepo
@@ -160,16 +160,16 @@
 # #   become_user: "{{ username }}"
 # #   tags: dotfiles,users,barerepo
 
-# # git submodules
-# - name: Git | Submodules | Syncing
-#   command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} submodule sync
-#   become_user: "{{ username }}"
-#   tags: dotfiles,users,barerepo,update
+# git submodules
+- name: Git | Submodules | Syncing
+  command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} submodule sync
+  become_user: "{{ username }}"
+  tags: dotfiles,users,barerepo,update
 
-# - name: Git | Submodules | Updating
-#   command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} submodule update -f --init --recursive
-#   become_user: "{{ username }}"
-#   tags: dotfiles,users,barerepo,update
+- name: Git | Submodules | Updating
+  command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} submodule update -f --init --recursive
+  become_user: "{{ username }}"
+  tags: dotfiles,users,barerepo,update
 
 # - name: Git | Ensure untracked files are hidden
 #   command: chdir={{ work_dir }} git --git-dir={{ repo_dir }} config --local status.showUntrackedFiles no
