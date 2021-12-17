@@ -20,7 +20,7 @@ newsflash
 # grex
 
 mailspring
-minbrowser
+min
 # To record screencasts
 kazam
 
