@@ -98,7 +98,7 @@
   tags: dotfiles,users,barerepo
 
 - name: Dotfiles - Checkout Git repository
-  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} checkout --force --recursive" # This will overwrite existing files!
+  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} checkout --force --recurse-submodules -j8" # This will overwrite existing files!
   become: yes
   become_user: "{{ username }}"
   tags: dotfiles,users,barerepo
