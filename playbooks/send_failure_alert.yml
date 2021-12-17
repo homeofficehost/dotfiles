@@ -3,14 +3,15 @@
     tags: always
     telegram:
       token: "{{ telegram_token }}"
-      chat_id: "{{ telegram_chat_id }}"
-      msg_format: markdown
-      msg: "⚠️  Ansible provision failed on *{{ ansible_hostname }}*\n\n
-        *Task*:  {{ ansible_failed_task.name }}\n
-        # *Action*: {{ ansible_failed_task.action }}\n
-        # *Error Message*: \n ```{{  ansible_failed_result.msg }}```"
-        # *Action*: {{ ansible_failed_task.action }}"
-        # *Error Message*: \n ```{{ ansible_failed_result | to_nice_json }}```"
+      api_args:
+        chat_id: "{{ telegram_chat_id }}"
+        msg_format: markdown
+        text: "⚠️  Ansible provision failed on *{{ ansible_hostname }}*\n\n
+          *Task*:  {{ ansible_failed_task.name }}\n
+          # *Action*: {{ ansible_failed_task.action }}\n
+          # *Error Message*: \n ```{{  ansible_failed_result.msg }}```"
+          # *Action*: {{ ansible_failed_task.action }}"
+          # *Error Message*: \n ```{{ ansible_failed_result | to_nice_json }}```"
     changed_when: False
 
   rescue:
@@ -18,10 +19,11 @@
       tags: always
       telegram:
         token: "{{ telegram_token }}"
-        chat_id: "{{ telegram_chat_id }}"
-        msg_format: markdown
-        msg: "🚩  Ansible provision failed on *{{ ansible_hostname }}*\n\n
-          The specific error couldn't be shown, check the log."
+        api_args:
+          chat_id: "{{ telegram_chat_id }}"
+          msg_format: markdown
+          text: "🚩  Ansible provision failed on *{{ ansible_hostname }}*\n\n
+            The specific error couldn't be shown, check the log."
       changed_when: False
 
 - name: ansible job failed, clear cache later on to trigger another provision run
