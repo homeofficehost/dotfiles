@@ -201,3 +201,4 @@
     mode: 0644
   with_fileglob:
     - "users/{{ username }}/config/*"
+  tags: dotfiles,users,barerepo
