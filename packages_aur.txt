@@ -8,24 +8,24 @@ gopass-jsonapi
 pass-git-helper
 realvnc-vnc-server
 # spark
-stremio
+#stremio
 sublime-text-3
 # transcrypt
 # python-gaphor
-haguichi
+#haguichi
 font-downloader
 # apostrophe
 newsflash
 # Command-line tool for generating regular expressions
 # grex
 
-mailspring
+#mailspring
 # minbrowser
 # min
 # To record screencasts
-kazam
+#kazam
 
-octopi
+#octopi
 hakuneko-desktop
 # Diff images from the command-line
 # spaceman-diff
@@ -56,7 +56,7 @@ autossh
 # HTTP benchmarking tool
 # wrk
 # # Instant coding answers via the command-line
-howdoi
+#howdoi
 
 # # Improved colored diff
 icdiff
