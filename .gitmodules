@@ -6,10 +6,10 @@
 	url = https://github.com/sjl/z-zsh.git
 [submodule ".vim"]
 	path = .vim
-	url = https://github.com/thomasgroch/.vim.git
+	url = https://github.com/homeofficehost/.vim.git
 [submodule "setup-keys"]
 	path = setup-keys
-	url = https://github.com/thomasgroch/setup-keys.git
+	url = https://github.com/homeofficehost/setup-keys.git
 [submodule ".oh-my-zsh-custom"]
 	path = .oh-my-zsh-custom
-	url = https://github.com/thomasgroch/oh-my-zsh-custom.git
+	url = https://github.com/homeofficehost/oh-my-zsh-custom.git
