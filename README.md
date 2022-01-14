@@ -19,11 +19,11 @@ I intend for my managed dotfiles to be portable between GNU/Linux and macOS syst
 ## 🚀 Installation with ansible
 
 ```sh
-curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/master/bootstrap.sh > bootstrap.sh && chmod +x bootstrap.sh && ./bootstrap.sh "https://git.com/user/password-store.git"
-curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/master/ansible.sh | /bin/bash
+curl -Lks https://raw.githubusercontent.com/homeofficehost/dotfiles/master/bootstrap.sh > bootstrap.sh && chmod +x bootstrap.sh && ./bootstrap.sh "https://git.com/user/password-store.git"
+curl -Lks https://raw.githubusercontent.com/homeofficehost/dotfiles/master/ansible.sh | /bin/bash
 
 # or POSIX compatible lazy install
-download=false ; if type curl >/dev/null 2>/dev/null ; then download='curl -Lks' ; elif type wget >/dev/null ; then download='wget -O -' ; else ; echo "No way to download ansible; please install curl or wget with your package manager" ; fi ; eval "$download https://raw.githubusercontent.com/thomasgroch/dotfiles/master/bootstrap-ansible.sh" | /bin/bash
+download=false ; if type curl >/dev/null 2>/dev/null ; then download='curl -Lks' ; elif type wget >/dev/null ; then download='wget -O -' ; else ; echo "No way to download ansible; please install curl or wget with your package manager" ; fi ; eval "$download https://raw.githubusercontent.com/homeofficehost/dotfiles/master/bootstrap-ansible.sh" | /bin/bash
 ```
 
 ## 🚀 Installation setup and Replication
@@ -35,10 +35,10 @@ All steps use configuration convention (sensitive defaults) and everything shoul
 I suppose for those that _just want the dotfiles_ getting set up is as easy as:
 
 ```sh
-curl -Lks https://raw.githubusercontent.com/thomasgroch/dotfiles/master/bootstrap.sh | /bin/bash
+curl -Lks https://raw.githubusercontent.com/homeofficehost/dotfiles/master/bootstrap.sh | /bin/bash
 
 # or POSIX compatible lazy install
-download=false ; if type curl >/dev/null 2>/dev/null ; then download='curl -Lks' ; elif type wget >/dev/null ; then download='wget -O -' ; else ; echo "No way to download dotfiles; please install curl or wget with your package manager" ; fi ; eval "$download https://raw.githubusercontent.com/thomasgroch/dotfiles/master/bootstrap.sh" | /bin/bash
+download=false ; if type curl >/dev/null 2>/dev/null ; then download='curl -Lks' ; elif type wget >/dev/null ; then download='wget -O -' ; else ; echo "No way to download dotfiles; please install curl or wget with your package manager" ; fi ; eval "$download https://raw.githubusercontent.com/homeofficehost/dotfiles/master/bootstrap.sh" | /bin/bash
 ```
 
 ** \\[._.]/ Done! **
@@ -67,7 +67,7 @@ dotfiles push
 If you plan on working on this project for anything more than a very quick fix. Use the following commands to add the 'upsteam' (original project location) as a remote branch so that you can get my updates into your branch.
 
 ```sh
-git remote add --track master upstream https://github.com/thomasgroch/dotfiles.git
+git remote add --track master upstream https://github.com/homeofficehost/dotfiles.git
 ```
 
 This will add the original project as a remote named 'upstream'.
@@ -122,7 +122,7 @@ Os arquivos e scripts neste repositório são licenciados sob a Licença MIT, qu
 # Contributions
 Contributions are always welcome in the form of pull requests with explanatory comments.
 
-Please refer to the [Contributor Covenant](https://github.com/thomasgroch/dotfiles/blob/master/CODE_OF_CONDUCT.md)
+Please refer to the [Contributor Covenant](https://github.com/homeofficehost/dotfiles/blob/master/CODE_OF_CONDUCT.md)
 
 # Loathing, Mehs and Praise
 1. Loathing should be directed into pull requests that make it better. woot.

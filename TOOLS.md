@@ -49,7 +49,7 @@ This started as MacOS shell configuration dotfiles but has grown to a multi-deve
 
 [![asciicast](https://asciinema.org/a/Sl5Qsv1EGHaJR6hcUR1No3OiD.png)](https://asciinema.org/a/Sl5Qsv1EGHaJR6hcUR1No3OiD)
 
-![iTerm Screenshot](https://raw.githubusercontent.com/thomasgroch/dotfiles/master/img/term.png)
+![iTerm Screenshot](https://raw.githubusercontent.com/homeofficehost/dotfiles/master/img/term.png)
 
 launch fullscreen hit `Command + Enter`
 iTerm, then use `Command + d` and `Command + D` to create split panes.
@@ -81,7 +81,7 @@ You can `cron ~/.crontab` if you want to add my nightly cron software updates.
 
 ## Remap Caps-Lock
 - I highly recommend remapping your Caps Lock key to Control per [Dr. Bunsen](http://www.drbunsen.org/remapping-caps-lock/):
-![Remap Caps Lock](https://raw.githubusercontent.com/thomasgroch/dotfiles/master/img/remap_capslock.png)
+![Remap Caps Lock](https://raw.githubusercontent.com/homeofficehost/dotfiles/master/img/remap_capslock.png)
 
 # Settings
 This project changes a number of settings and configures software on MacOS.
