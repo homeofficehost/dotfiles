@@ -91,7 +91,7 @@
 # Copy the dotfiles_checkout variable into a file for checkout
 - name: Dotfiles - Configure Git sparse checkout
   copy:
-    dest: "{{ repo_dir }}/info/sparse-checkout"
+    dest: "{{ repo_dir }}info/sparse-checkout"
     content: "{{ dotfiles_checkout | join('\n') }}"
   become: yes
   become_user: "{{ username }}"
@@ -133,13 +133,13 @@
 #   tags: dotfiles,users,barerepo
 
 # - name: Git | Ensure repository set properly
-#   lineinfile: dest={{ repo_dir }}/config
+#   lineinfile: dest={{ repo_dir }}config
 #               regexp="^\s*bare.?="
 #               line="    bare = false"
 #   tags: dotfiles,users,barerepo
 
 # - name: Git | Ensure proper worktree
-#   lineinfile: dest={{ repo_dir }}/config
+#   lineinfile: dest={{ repo_dir }}config
 #               regexp='^\s*worktree.?='
 #               line="    worktree = {{ work_dir }}"
 #   tags: dotfiles,users,barerepo
