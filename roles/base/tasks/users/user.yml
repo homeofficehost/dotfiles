@@ -83,8 +83,10 @@
     repo: "{{ upstream }}"
     dest: "{{ repo_dir }}"
     bare: yes
-    update: no
-    # track_submodules: yes
+    update: yes
+    track_submodules: yes
+    recursive: yes
+    version: master
   when: not repo_directory.stat.exists
   tags: dotfiles,users,barerepo
 
