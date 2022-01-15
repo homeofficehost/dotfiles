@@ -84,7 +84,7 @@
     dest: "{{ repo_dir }}"
     bare: yes
     update: no
-    track_submodules: yes
+    # track_submodules: yes
   when: not repo_directory.stat.exists
   tags: dotfiles,users,barerepo
 
