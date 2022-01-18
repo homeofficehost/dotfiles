@@ -16,8 +16,8 @@ if pgrep -f ansible-pull; then
     exit 1
 else
     if [ ! $1 == "" ]; then
-        $PRECMD sudo -iH --user $ANSIBLEUSER ansible-pull --track-subs --limit $(cat /etc/hostname).local --vault-id=$VAULT_ID --url $REPO --checkout $BRANCH --tags $1 2>&1
+        $PRECMD sudo -iH --user $ANSIBLEUSER ansible-pull --limit $(cat /etc/hostname).local --vault-id=$VAULT_ID --url $REPO --checkout $BRANCH --tags $1 2>&1
     else
-        $PRECMD sudo -iH --user $ANSIBLEUSER ansible-pull --track-subs --limit $(cat /etc/hostname).local --vault-id=$VAULT_ID --only-if-changed --url $REPO --checkout $BRANCH 2>&1
+        $PRECMD sudo -iH --user $ANSIBLEUSER ansible-pull --limit $(cat /etc/hostname).local --vault-id=$VAULT_ID --only-if-changed --url $REPO --checkout $BRANCH 2>&1
     fi
 fi
