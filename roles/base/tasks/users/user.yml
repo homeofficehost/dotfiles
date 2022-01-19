@@ -62,7 +62,6 @@
   when: dotfiles_checkout is undefined
   tags: dotfiles,users,barerepo
 
-# The ansible.builtin.git module does not seem to support checking out bare repositories, have to do it with shell commands
 - name: Dotfiles - Check if directory exists
   stat:
     path: "{{ repo_dir }}"
@@ -227,3 +226,79 @@
 #   with_fileglob:
 #     - "users/{{ username }}/config/*"
 #   tags: dotfiles,users,barerepo
+
+
+- name: Dotfiles - Clone oh-my-zsh repositories (aka submodules)
+  stat:
+    path: "oh-my-zsh"
+  register: subrepo_directory
+  tags: dotfiles,users,barerepo
+
+- name: Git | Checkout oh-my-zsh repository
+  become_user: "{{ username }}"
+  git:
+    repo: "https://github.com/robbyrussell/oh-my-zsh.git"
+    dest: ".oh-my-zsh"
+    # update: yes
+  when: not subrepo_directory.stat.exists
+  tags: dotfiles,users,barerepo
+
+- name: Dotfiles - Clone z-zsh repositories (aka submodules)
+  stat:
+    path: "z-zsh"
+  register: subrepo_directory
+  tags: dotfiles,users,barerepo
+
+- name: Git | Checkout z-zsh repository
+  become_user: "{{ username }}"
+  git:
+    repo: "https://github.com/sjl/z-zsh.git"
+    dest: "z-zsh"
+    # update: yes
+  when: not subrepo_directory.stat.exists
+  tags: dotfiles,users,barerepo
+
+- name: Dotfiles - Clone .vim repositories (aka submodules)
+  stat:
+    path: ".vim"
+  register: subrepo_directory
+  tags: dotfiles,users,barerepo
+
+- name: Git | Checkout .vim repository
+  become_user: "{{ username }}"
+  git:
+    repo: "https://github.com/homeofficehost/.vim.git"
+    dest: ".vim"
+    # update: yes
+  when: not subrepo_directory.stat.exists
+  tags: dotfiles,users,barerepo
+
+- name: Dotfiles - Clone setup-keys repositories (aka submodules)
+  stat:
+    path: "setup-keys"
+  register: subrepo_directory
+  tags: dotfiles,users,barerepo
+
+- name: Git | Checkout setup-keys repository
+  become_user: "{{ username }}"
+  git:
+    repo: "https://github.com/homeofficehost/setup-keys.git"
+    dest: "setup-keys"
+    # update: yes
+  when: not subrepo_directory.stat.exists
+  tags: dotfiles,users,barerepo
+
+- name: Dotfiles - Clone .oh-my-zsh-custom repositories (aka submodules)
+  stat:
+    path: ".oh-my-zsh-custom"
+  register: subrepo_directory
+  tags: dotfiles,users,barerepo
+
+- name: Git | Checkout .oh-my-zsh-custom repository
+  become_user: "{{ username }}"
+  git:
+    repo: "https://github.com/homeofficehost/oh-my-zsh-custom.git"
+    dest: ".oh-my-zsh-custom"
+    # update: yes
+  when: not subrepo_directory.stat.exists
+  tags: dotfiles,users,barerepo
