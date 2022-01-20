@@ -75,7 +75,7 @@
 #   when: not repo_directory.stat.exists
 #   tags: dotfiles,users,barerepo
 
-# ensure git repositories
+# ensure there is a dotfiles repository
 - name: Git | Checkout git bare repository
   become_user: "{{ username }}"
   git:
@@ -228,11 +228,11 @@
 #   tags: dotfiles,users,barerepo
 
 
-- name: Dotfiles - Clone oh-my-zsh repositories (aka submodules)
+- name: Dotfiles - Clone oh-my-zsh
   stat:
     path: "oh-my-zsh"
   register: subrepo_directory
-  tags: dotfiles,users,barerepo
+  tags: dotfiles,users,submodules
 
 - name: Git | Checkout oh-my-zsh repository
   become_user: "{{ username }}"
@@ -241,13 +241,13 @@
     dest: ".oh-my-zsh"
     # update: yes
   when: not subrepo_directory.stat.exists
-  tags: dotfiles,users,barerepo
+  tags: dotfiles,users,submodules
 
-- name: Dotfiles - Clone z-zsh repositories (aka submodules)
+- name: Dotfiles - Clone z-zsh
   stat:
     path: "z-zsh"
   register: subrepo_directory
-  tags: dotfiles,users,barerepo
+  tags: dotfiles,users,submodules
 
 - name: Git | Checkout z-zsh repository
   become_user: "{{ username }}"
@@ -256,13 +256,13 @@
     dest: "z-zsh"
     # update: yes
   when: not subrepo_directory.stat.exists
-  tags: dotfiles,users,barerepo
+  tags: dotfiles,users,submodules
 
-- name: Dotfiles - Clone .vim repositories (aka submodules)
+- name: Dotfiles - Clone .vim
   stat:
     path: ".vim"
   register: subrepo_directory
-  tags: dotfiles,users,barerepo
+  tags: dotfiles,users,submodules
 
 - name: Git | Checkout .vim repository
   become_user: "{{ username }}"
@@ -271,13 +271,13 @@
     dest: ".vim"
     # update: yes
   when: not subrepo_directory.stat.exists
-  tags: dotfiles,users,barerepo
+  tags: dotfiles,users,submodules
 
-- name: Dotfiles - Clone setup-keys repositories (aka submodules)
+- name: Dotfiles - Clone setup-keys
   stat:
     path: "setup-keys"
   register: subrepo_directory
-  tags: dotfiles,users,barerepo
+  tags: dotfiles,users,submodules
 
 - name: Git | Checkout setup-keys repository
   become_user: "{{ username }}"
@@ -286,13 +286,22 @@
     dest: "setup-keys"
     # update: yes
   when: not subrepo_directory.stat.exists
-  tags: dotfiles,users,barerepo
+  tags: dotfiles,users,submodules
 
-- name: Dotfiles - Clone .oh-my-zsh-custom repositories (aka submodules)
+- name: Dotfiles - Clone .oh-my-zsh-custom
   stat:
     path: ".oh-my-zsh-custom"
   register: subrepo_directory
-  tags: dotfiles,users,barerepo
+  tags: dotfiles,users,submodules
+
+- name: Git | Checkout .oh-my-zsh repository
+  become_user: "{{ username }}"
+  git:
+    repo: "https://github.com/robbyrussell/oh-my-zsh.git`"
+    dest: ".oh-my-zsh"
+    # update: yes
+  when: not subrepo_directory.stat.exists
+  tags: dotfiles,users,submodules
 
 - name: Git | Checkout .oh-my-zsh-custom repository
   become_user: "{{ username }}"
@@ -301,4 +310,4 @@
     dest: ".oh-my-zsh-custom"
     # update: yes
   when: not subrepo_directory.stat.exists
-  tags: dotfiles,users,barerepo
+  tags: dotfiles,users,submodules
