@@ -89,11 +89,11 @@
   when: not repo_directory.stat.exists
   tags: dotfiles,users,barerepo
 
-- name: Dotfiles - Update submodules
-  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} -C {{ work_dir }} submodule update --init --recursive {{ item }}" # Git wants to cd into the directory first before using the submodule command
-  become: yes
-  become_user: "{{ username }}"
-  loop: "{{ dotfiles_checkout | map('regex_replace', '^.*\\/\\*', '~/') | list }}" # Recurse through all files/directories and attempt to recursively clone submodules. Just does nothing if there are none. Regex replace /* to ~/ for compatability with dotfiles_checkout.
+# - name: Dotfiles - Update submodules
+#   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} -C {{ work_dir }} submodule update --init --recursive {{ item }}" # Git wants to cd into the directory first before using the submodule command
+#   become: yes
+#   become_user: "{{ username }}"
+#   loop: "{{ dotfiles_checkout | map('regex_replace', '^.*\\/\\*', '~/') | list }}" # Recurse through all files/directories and attempt to recursively clone submodules. Just does nothing if there are none. Regex replace /* to ~/ for compatability with dotfiles_checkout.
 
 - name: Dotfiles - Enable sparse checkout
   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --local core.sparseCheckout true"
