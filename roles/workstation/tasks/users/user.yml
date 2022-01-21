@@ -29,6 +29,12 @@
     - { dir: .local/share/applications }
     - { dir: /usr/local/etc/my.cnf.d }
 
+- name: ansible setup | generate gtk bookmarks from template
+  tags: dotfiles
+  template:
+    src: bookmarks.j2
+    dest: .config/gtk-3.0/bookmarks
+
 # - name: users | copy profile image
 #   tags: dotfiles
 #   copy:
