@@ -202,7 +202,6 @@
     dest: "/home/{{ username }}/.config/git/"
     owner: "{{ username }}"
     group: wheel
-    mode: 0644
   with_items:
     ["users/{{ username }}/config/git/.gitconfig-personal", "users/{{ username }}/config/git/.gitconfig-hero", "users/{{ username }}/config/git/.gitconfig-company", "users/{{ username }}/config/pass-git-helper/git-pass-mapping.ini" ]
 
@@ -212,7 +211,6 @@
     dest: "/home/{{ username }}/.config/pass-git-helper/"
     owner: "{{ username }}"
     group: wheel
-    mode: 0644
   with_items:
     ["users/{{ username }}/config/pass-git-helper/git-pass-mapping.ini" ]
 
