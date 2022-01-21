@@ -33,7 +33,7 @@
   tags: dotfiles
   template:
     src: bookmarks.j2
-    dest: .config/gtk-3.0/bookmarks
+    dest: /home/{{ username }}/.config/gtk-3.0/bookmarks
 
 # - name: users | copy profile image
 #   tags: dotfiles
