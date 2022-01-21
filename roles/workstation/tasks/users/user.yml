@@ -29,7 +29,9 @@
     - { dir: .local/share/applications }
     - { dir: /usr/local/etc/my.cnf.d }
 
-- name: ansible setup | generate gtk bookmarks from template
+- name: user | ensures /home/{{ username }}/.config/gtk-3.0/ dir exists
+  file: path=/home/{{ username }}/.config/gtk-3.0 state=directory
+- name: user | generate gtk bookmarks from template
   tags: dotfiles
   template:
     src: bookmarks.j2
