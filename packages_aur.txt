@@ -19,6 +19,7 @@ newsflash
 # Command-line tool for generating regular expressions
 # grex
 
+sauerbraten
 #mailspring
 # minbrowser
 # min
