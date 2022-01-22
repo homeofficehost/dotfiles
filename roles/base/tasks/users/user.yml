@@ -297,7 +297,6 @@
   git:
     repo: "https://github.com/robbyrussell/oh-my-zsh.git`"
     dest: ".oh-my-zsh"
-    # update: yes
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
 
@@ -306,6 +305,8 @@
   git:
     repo: "https://github.com/homeofficehost/oh-my-zsh-custom.git"
     dest: ".oh-my-zsh-custom"
-    # update: yes
+    update: yes
+    track_submodules: yes
+    recursive: yes
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
