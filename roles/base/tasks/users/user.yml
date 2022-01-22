@@ -261,7 +261,6 @@
     path: ".vim"
   register: subrepo_directory
   tags: dotfiles,users,submodules
-
 - name: Git | Checkout .vim repository
   become_user: "{{ username }}"
   git:
@@ -278,7 +277,6 @@
     path: "setup-keys"
   register: subrepo_directory
   tags: dotfiles,users,submodules
-
 - name: Git | Checkout setup-keys repository
   become_user: "{{ username }}"
   git:
@@ -288,12 +286,11 @@
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
 
-- name: Dotfiles - Clone .oh-my-zsh-custom
+- name: Dotfiles - Clone .oh-my-zsh
   stat:
-    path: ".oh-my-zsh-custom"
+    path: ".oh-my-zsh"
   register: subrepo_directory
   tags: dotfiles,users,submodules
-
 - name: Git | Checkout .oh-my-zsh repository
   become_user: "{{ username }}"
   git:
@@ -302,6 +299,11 @@
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
 
+- name: Dotfiles - Clone .oh-my-zsh-custom
+  stat:
+    path: ".oh-my-zsh-custom"
+  register: subrepo_directory
+  tags: dotfiles,users,submodules
 - name: Git | Checkout .oh-my-zsh-custom repository
   become_user: "{{ username }}"
   git:
