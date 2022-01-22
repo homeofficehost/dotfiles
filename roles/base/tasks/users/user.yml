@@ -267,7 +267,9 @@
   git:
     repo: "https://github.com/homeofficehost/.vim.git"
     dest: ".vim"
-    # update: yes
+    update: yes
+    track_submodules: yes
+    recursive: yes
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
 
