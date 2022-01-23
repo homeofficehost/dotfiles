@@ -2,9 +2,9 @@
 
 PASSWORD_STORE_REPO=$1
 
-echo "To import my GnuPG and OpenSSH keys run:"
-echo "cd /run/media/tg/safe && ./run.sh"
-read -n 1 -s -r -p "Press any key to continue"
+# echo "To import my GnuPG and OpenSSH keys run:"
+# echo "cd /run/media/tg/safe && ./run.sh"
+# read -n 1 -s -r -p "Press any key to continue"
 
 if [[ ! -e ~/.password-store ]]; then
 	git clone $PASSWORD_STORE_REPO ~/.password-store
