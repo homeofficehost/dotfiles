@@ -93,6 +93,32 @@ if [[ "$OS" == "Linux" ]]; then
 	plugins+=(archlinux)
 fi
 
+
+
+
+###### Prompt
+# prompt='%F{35}%* [%j] [%m:%F{75}%f%F{69}%c%f%F{35}] %F{black}%K{red}%#%f%k '
+
+##### History
+
+# Set history file
+HISTFILE=~/.zsh_history
+
+# Set history size
+HISTSIZE=500000
+
+# Set the number of lines in $HISTFILE
+SAVEHIST="${HISTSIZE}"
+
+# # Enable history search with up and down arrows
+# autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
+
+# [[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
+# [[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
+
+
 [ -r $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 [ -r $ZSH/custom/.colored_man_pages.zsh ] && source $ZSH/custom/.colored_man_pages.zsh
 [ -r $ZSH/custom/tmuxinator.zsh ] && source $ZSH/custom/tmuxinator.zsh
@@ -172,28 +198,6 @@ if [ -x "$(command -v colorls)" ]; then
 	source $(dirname $(gem which colorls))/tab_complete.sh
 fi
 
-
-###### Prompt
-# prompt='%F{35}%* [%j] [%m:%F{75}%f%F{69}%c%f%F{35}] %F{black}%K{red}%#%f%k '
-
-##### History
-
-# Set history file
-HISTFILE=~/.zhistory
-
-# Set history size
-HISTSIZE=500000
-
-# Set the number of lines in $HISTFILE
-SAVEHIST="${HISTSIZE}"
-
-# # Enable history search with up and down arrows
-# autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-# zle -N up-line-or-beginning-search
-# zle -N down-line-or-beginning-search
-
-# [[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
-# [[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
 
 
 ##### Aliases
