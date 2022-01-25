@@ -284,7 +284,7 @@
 - name: Git | Checkout .oh-my-zsh repository
   become_user: "{{ username }}"
   git:
-    repo: "https://github.com/robbyrussell/oh-my-zsh.git`"
+    repo: "https://github.com/robbyrussell/oh-my-zsh.git"
     dest: ".oh-my-zsh"
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
