@@ -96,7 +96,7 @@
 #   loop: "{{ dotfiles_checkout | map('regex_replace', '^.*\\/\\*', '~/') | list }}" # Recurse through all files/directories and attempt to recursively clone submodules. Just does nothing if there are none. Regex replace /* to ~/ for compatability with dotfiles_checkout.
 
 - name: Dotfiles - Unset bare option to prevent fatal error (must be run in a work tree)
-  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --unset core.bare"
+  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --local --set core.bare false"
   become: yes
   become_user: "{{ username }}"
   tags: dotfiles,users,barerepo
