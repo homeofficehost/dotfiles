@@ -95,6 +95,12 @@
 #   become_user: "{{ username }}"
 #   loop: "{{ dotfiles_checkout | map('regex_replace', '^.*\\/\\*', '~/') | list }}" # Recurse through all files/directories and attempt to recursively clone submodules. Just does nothing if there are none. Regex replace /* to ~/ for compatability with dotfiles_checkout.
 
+- name: Dotfiles - Unset bare option to prevent fatal error (must be run in a work tree)
+  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --local --unset core.bare"
+  become: yes
+  become_user: "{{ username }}"
+  tags: dotfiles,users,barerepo
+
 - name: Dotfiles - Enable sparse checkout
   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --local core.sparseCheckout true"
   become: yes
@@ -226,27 +232,11 @@
 #   tags: dotfiles,users,barerepo
 
 
-- name: Dotfiles - Clone oh-my-zsh
-  stat:
-    path: "oh-my-zsh"
-  register: subrepo_directory
-  tags: dotfiles,users,submodules
-
-- name: Git | Checkout oh-my-zsh repository
-  become_user: "{{ username }}"
-  git:
-    repo: "https://github.com/robbyrussell/oh-my-zsh.git"
-    dest: ".oh-my-zsh"
-    # update: yes
-  when: not subrepo_directory.stat.exists
-  tags: dotfiles,users,submodules
-
 - name: Dotfiles - Clone z-zsh
   stat:
     path: "z-zsh"
   register: subrepo_directory
   tags: dotfiles,users,submodules
-
 - name: Git | Checkout z-zsh repository
   become_user: "{{ username }}"
   git:
@@ -299,7 +289,7 @@
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
 
-- name: Dotfiles - Clone .oh-my-zsh-custom
+- name: Dotifles - Clone .oh-my-zsh-custom
   stat:
     path: ".oh-my-zsh-custom"
   register: subrepo_directory
