@@ -42,17 +42,15 @@ export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 
 # Node
-export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.config/yarn/link/
-export PATH=$PATH:$MY_DOTFILES/node_modules/.bin
 export PATH=$PATH:./node_modules/.bin
 export PATH=$PATH:$USR_PATH/share/npm/bin
 
 # My Scripts
 export PATH=$PATH:$MY_DOTFILES/scripts
 
-# Rpi
-export PATH=$PATH:$HOME/pi/.bin
+# # Rpi
+# export PATH=$PATH:$HOME/pi/.bin
 
 # OPENSSL
 export PATH=$PATH:$USR_PATH/opt/openssl@1.1/bin
@@ -62,6 +60,18 @@ export PATH=$PATH:$USR_PATH/opt/qt/bin
 
 if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
  export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
+fi
+
+if [ -d "$HOME/.bin" ] ;
+  then PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ;
+  then PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/Applications" ] ;
+  then PATH="$HOME/Applications:$PATH"
 fi
 
 # fastolx autocomplete setup
