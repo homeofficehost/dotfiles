@@ -20,7 +20,6 @@ xsel
 ## CLI's
 zsh
 yay
-paru
 # Encrypted pass-through FUSE file system
 encfs
 # Static analysis and lint tool, for (ba)sh scripts
