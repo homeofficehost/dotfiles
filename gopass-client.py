@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Assuming you have a working gopass installation. I personally use multiple mounts and I store all the passwords under a
