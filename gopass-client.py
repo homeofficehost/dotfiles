@@ -1,5 +1,4 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
 #
 # Assuming you have a working gopass installation. I personally use multiple mounts and I store all the passwords under a
 # single directory.
@@ -50,8 +49,6 @@
 #
 # If someone knows how to make config manager work like in the example client in the ansible directory let me know and I will
 # happily make the adjustments.
-
-# -*- coding: utf-8 -*-
 
 import sys
 import argparse
