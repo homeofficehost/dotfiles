@@ -96,7 +96,7 @@
 #   loop: "{{ dotfiles_checkout | map('regex_replace', '^.*\\/\\*', '~/') | list }}" # Recurse through all files/directories and attempt to recursively clone submodules. Just does nothing if there are none. Regex replace /* to ~/ for compatability with dotfiles_checkout.
 
 - name: Dotfiles - Unset bare option to prevent fatal error (must be run in a work tree)
-  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --unset core.bare"
+  command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} config --local core.bare false"
   become: yes
   become_user: "{{ username }}"
   tags: dotfiles,users,barerepo
@@ -234,28 +234,28 @@
 
 - name: Dotfiles - Clone z-zsh
   stat:
-    path: "z-zsh"
+    path: "/home/{{ username }}/z-zsh"
   register: subrepo_directory
   tags: dotfiles,users,submodules
 - name: Git | Checkout z-zsh repository
   become_user: "{{ username }}"
   git:
     repo: "https://github.com/sjl/z-zsh.git"
-    dest: "z-zsh"
+    dest: "/home/{{ username }}/z-zsh"
     # update: yes
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
 
 - name: Dotfiles - Clone .vim
   stat:
-    path: ".vim"
+    path: "/home/{{ username }}/.vim"
   register: subrepo_directory
   tags: dotfiles,users,submodules
 - name: Git | Checkout .vim repository
   become_user: "{{ username }}"
   git:
     repo: "https://github.com/homeofficehost/.vim.git"
-    dest: ".vim"
+    dest: "/home/{{ username }}/.vim"
     update: yes
     track_submodules: yes
     recursive: yes
@@ -264,41 +264,41 @@
 
 - name: Dotfiles - Clone setup-keys
   stat:
-    path: "setup-keys"
+    path: "/home/{{ username }}/setup-keys"
   register: subrepo_directory
   tags: dotfiles,users,submodules
 - name: Git | Checkout setup-keys repository
   become_user: "{{ username }}"
   git:
     repo: "https://github.com/homeofficehost/setup-keys.git"
-    dest: "setup-keys"
+    dest: "/home/{{ username }}/setup-keys"
     # update: yes
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
 
 - name: Dotfiles - Clone .oh-my-zsh
   stat:
-    path: ".oh-my-zsh"
+    path: "/home/{{ username }}/.oh-my-zsh"
   register: subrepo_directory
   tags: dotfiles,users,submodules
 - name: Git | Checkout .oh-my-zsh repository
   become_user: "{{ username }}"
   git:
-    repo: "https://github.com/robbyrussell/oh-my-zsh.git`"
-    dest: ".oh-my-zsh"
+    repo: "https://github.com/robbyrussell/oh-my-zsh.git"
+    dest: "/home/{{ username }}/.oh-my-zsh"
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
 
 - name: Dotifles - Clone .oh-my-zsh-custom
   stat:
-    path: ".oh-my-zsh-custom"
+    path: "/home/{{ username }}/.oh-my-zsh-custom"
   register: subrepo_directory
   tags: dotfiles,users,submodules
 - name: Git | Checkout .oh-my-zsh-custom repository
   become_user: "{{ username }}"
   git:
     repo: "https://github.com/homeofficehost/oh-my-zsh-custom.git"
-    dest: ".oh-my-zsh-custom"
+    dest: "/home/{{ username }}/.oh-my-zsh-custom"
     update: yes
     track_submodules: yes
     recursive: yes
