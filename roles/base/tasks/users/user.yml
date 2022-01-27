@@ -80,7 +80,7 @@
     # recursive: yes
   when: not repo_directory.stat.exists
   tags: dotfiles,users,barerepo
-  register: git_result
+  set_fact: git_result
   # changed_when: "git_result.after|default('after') != git_result.before|default('before')"
 
 # - name: Dotfiles - Clone repository
