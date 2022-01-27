@@ -62,11 +62,11 @@
   when: dotfiles_checkout is undefined
   tags: dotfiles,users,barerepo
 
-- name: Dotfiles - Check if directory exists
-  stat:
-    path: "{{ repo_dir }}"
-  register: repo_directory
-  tags: dotfiles,users,barerepo
+# - name: Dotfiles - Check if directory exists
+#   stat:
+#     path: "{{ repo_dir }}"
+#   register: repo_directory
+#   tags: dotfiles,users,barerepo
 
 # - name: Dotfiles - Clone repository
 #   command: "git clone --bare {{ dotfiles_repo }} {{ repo_dir }}"
@@ -75,18 +75,19 @@
 #   when: not repo_directory.stat.exists
 #   tags: dotfiles,users,barerepo
 
-# ensure there is a dotfiles repository
-- name: Git | Checkout git bare repository
+- name: Git | Ensure bare repo is checked out
   become_user: "{{ username }}"
   git:
     repo: "{{ upstream }}"
     dest: "{{ repo_dir }}"
+    version: "master"
     bare: yes
     # update: yes
     # track_submodules: yes
     # recursive: yes
-    version: master
-  when: not repo_directory.stat.exists
+  register: git_result
+  changed_when: "git_result.after|default('after') != git_result.before|default('before')"
+  # when: not repo_directory.stat.exists
   tags: dotfiles,users,barerepo
 
 # - name: Dotfiles - Update submodules
