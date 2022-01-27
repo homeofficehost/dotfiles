@@ -144,7 +144,6 @@ redis
 syncthing
 # Asynchronous event library
 libevent
-ttf-ms-fonts
 # need fontconfig to install/build fonts
 fontconfig
 # Graph visualization software from AT&T and Bell Labs
