@@ -1,10 +1,10 @@
-- block:
+- name: Temp clone git project to get commit id
+  git:
+    repo: "{{ upstream }}"
+    dest: /tmp/
+  register: result_git
 
-  - name: Temp clone git project to get commit id
-    git:
-      repo: "{{ upstream }}"
-      dest: /tmp/
-    register: result_git
+- block:
 
   - name: send failure notification via telegram
     tags: always
