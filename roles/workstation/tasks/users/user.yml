@@ -36,7 +36,7 @@
   template:
     src: bookmarks.j2
     dest: /home/{{ username }}/.config/gtk-3.0/bookmarks
-    force: no
+    force: yes
 
 # - name: users | copy profile image
 #   tags: dotfiles

@@ -13,7 +13,7 @@ sublime-text-3
 # transcrypt
 # python-gaphor
 #haguichi
-font-downloader
+#font-downloader
 # apostrophe
 newsflash
 # Command-line tool for generating regular expressions
@@ -83,6 +83,12 @@ icdiff
 # chkrootkit
 # # Pass extension that provides an easy flow for updating passwords
 # pass-update
+# native messaging host
+browserpass
+# Browser extension for Firefox-based browsers
+browserpass-firefox
+# Browser extension for Chromium-based browsers
+browserpass-chromium
 # # Recursively compute digests on files/directories
 # md5deep
 

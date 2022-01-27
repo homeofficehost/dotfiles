@@ -870,6 +870,7 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias yay_clean_unwanted_packages='yay -Yc'
 
 	alias mount_ESP="sudo mkdir -p /mnt/ESP && sudo mount -t msdos /dev/disk0s1 /mnt/ESP"
+	alias linux_kernel_log="sudo journalctl -p 3 -xb"
 	alias linux_kernel="journalctl -afn100"
 	alias linux_update="sudo pacman -Syyu"
 	alias pacman_rm_corrupt_packages='sudo find /var/cache/pacman/pkg/ -iname "*.part" -delete'
