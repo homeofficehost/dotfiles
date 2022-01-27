@@ -4,17 +4,18 @@
   changed_when: False
   when: healthcheck_uuid is defined
 
-- name: Print last commit ID
-  debug:
-    msg:
-      - "{{ commit_id_after }}"
+- name: Temp clone git project to get commit id
+  git:
+    repo: "{{ upstream }}"
+    dest: /tmp/
+  register: result_git
 
 - name: send completion notification via telegram
-  tags: always
+  tags: always,telegram
   telegram:
     token: "{{ telegram_token }}"
     api_args:
       chat_id: "{{ telegram_chat_id }}"
       parse_mode: "markdown"
-      text: "👍 *{{ ansible_hostname }}* provision finished. *{{ commit_id_after }}* is last commit revision of the repository retrieved during the update."
+      text: "👍 *{{ ansible_hostname }}* provision finished. *{{ result_git.after }}* is last commit revision of the repository retrieved during the update."
   changed_when: False
