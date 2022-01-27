@@ -7,7 +7,7 @@
 - name: Print last commit ID
   debug:
     msg:
-      - "{{ git_result.before }}"
+      - "{{ commit_id_after }}"
 
 - name: send completion notification via telegram
   tags: always
@@ -16,5 +16,5 @@
     api_args:
       chat_id: "{{ telegram_chat_id }}"
       parse_mode: "markdown"
-      text: "👍 *{{ ansible_hostname }}* provision finished. *{{ git_result.after }}* is last commit revision of the repository retrieved during the update."
+      text: "👍 *{{ ansible_hostname }}* provision finished. *{{ commit_id_after }}* is last commit revision of the repository retrieved during the update."
   changed_when: False

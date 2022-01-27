@@ -22,9 +22,7 @@
         api_args:
           chat_id: "{{ telegram_chat_id }}"
           parse_mode: "markdown"
-          text: "🚩 *{{ ansible_hostname }}* provision failed.\n\n{{ git_result.before }} \n*{{ git_result.after }}*"
-          text: "🚩  Ansible provision failed on *{{ ansible_hostname }}*\n\n
-            The specific error couldn't be shown, check the log."
+          text: "🚩 *{{ ansible_hostname }}* provision failed.\n\n{{ commit_id_before }} \n*{{ commit_id_after }}*"
       changed_when: False
 
 - name: ansible job failed, clear cache later on to trigger another provision run
