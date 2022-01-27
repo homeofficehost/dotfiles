@@ -84,8 +84,8 @@
 
 - name: Git | Retrive last commit id
   set_fact: 
-    commit_id_before: git_result.before
-    commit_id_after: git_result.after
+    commit_id_before: "{{ git_result.before }}"
+    commit_id_after: "{{ git_result.after }}"
 
 # - name: Dotfiles - Clone repository
 #   command: "git clone --bare {{ dotfiles_repo }} {{ repo_dir }}"
