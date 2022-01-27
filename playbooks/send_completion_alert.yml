@@ -4,6 +4,11 @@
   changed_when: False
   when: healthcheck_uuid is defined
 
+- name: Print last commit ID
+  debug:
+    msg:
+      - "{{ git_result.before }}"
+
 - name: send completion notification via telegram
   tags: always
   telegram:
@@ -11,5 +16,5 @@
     api_args:
       chat_id: "{{ telegram_chat_id }}"
       parse_mode: "markdown"
-      text: "✔️  Ansible provision finished on *{{ ansible_hostname }}*"
+      text: "👍 *{{ ansible_hostname }}* provision finished. *{{ git_result.after }}* is last commit revision of the repository retrieved during the update."
   changed_when: False
