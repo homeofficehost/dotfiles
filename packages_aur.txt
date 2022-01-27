@@ -13,7 +13,7 @@ sublime-text-3
 # transcrypt
 # python-gaphor
 #haguichi
-font-downloader
+#font-downloader
 # apostrophe
 newsflash
 # Command-line tool for generating regular expressions

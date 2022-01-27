@@ -16,6 +16,7 @@ base-devel
 # Utilities
 xclip
 xsel
+gufw
 
 ## CLI's
 zsh
@@ -143,12 +144,13 @@ redis
 syncthing
 # Asynchronous event library
 libevent
+ttf-ms-fonts
 # need fontconfig to install/build fonts
 fontconfig
 # Graph visualization software from AT&T and Bell Labs
 graphviz
 # Modern, hackable, featureful, OpenGL based terminal emulator
-kitty
+#kitty (no ctrl + f)
 # Terminal based YouTube player and downloader
 mps-youtube
 # Media player based on MPlayer and mplayer2
