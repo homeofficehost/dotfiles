@@ -1,7 +1,7 @@
 - name: Temp clone git project to get commit id
   git:
     repo: "{{ upstream }}"
-    dest: /tmp/
+    clone: no
   register: result_git
 
 - block:
