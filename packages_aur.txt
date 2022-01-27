@@ -83,6 +83,8 @@ icdiff
 # chkrootkit
 # # Pass extension that provides an easy flow for updating passwords
 # pass-update
+# native messaging host
+browserpass
 # Browser extension for Firefox-based browsers
 browserpass-firefox
 # Browser extension for Chromium-based browsers
