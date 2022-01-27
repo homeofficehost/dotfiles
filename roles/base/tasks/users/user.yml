@@ -62,18 +62,11 @@
   when: dotfiles_checkout is undefined
   tags: dotfiles,users,barerepo
 
-# - name: Dotfiles - Check if directory exists
-#   stat:
-#     path: "{{ repo_dir }}"
-#   register: repo_directory
-#   tags: dotfiles,users,barerepo
-
-# - name: Dotfiles - Clone repository
-#   command: "git clone --bare {{ dotfiles_repo }} {{ repo_dir }}"
-#   become: yes
-#   become_user: "{{ username }}"
-#   when: not repo_directory.stat.exists
-#   tags: dotfiles,users,barerepo
+- name: Dotfiles - Check if directory exists
+  stat:
+    path: "{{ repo_dir }}"
+  register: repo_directory
+  tags: dotfiles,users,barerepo
 
 - name: Git | Ensure bare repo is checked out
   become_user: "{{ username }}"
@@ -87,8 +80,15 @@
     # recursive: yes
   register: git_result
   changed_when: "git_result.after|default('after') != git_result.before|default('before')"
-  # when: not repo_directory.stat.exists
+  when: not repo_directory.stat.exists
   tags: dotfiles,users,barerepo
+
+# - name: Dotfiles - Clone repository
+#   command: "git clone --bare {{ dotfiles_repo }} {{ repo_dir }}"
+#   become: yes
+#   become_user: "{{ username }}"
+#   when: not repo_directory.stat.exists
+#   tags: dotfiles,users,barerepo
 
 # - name: Dotfiles - Update submodules
 #   command: "git --git-dir={{ repo_dir }} --work-tree={{ work_dir }} -C {{ work_dir }} submodule update --init --recursive {{ item }}" # Git wants to cd into the directory first before using the submodule command
