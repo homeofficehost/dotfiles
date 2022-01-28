@@ -16,7 +16,7 @@
         text: "⚠️  Ansible provision failed on *{{ ansible_hostname }}*\n\n
           *Task*:  {{ ansible_failed_task.name }}\n
           # *Action*: {{ ansible_failed_task.action }}\n
-          # *Revision id*: {{ result_git.after }}\n
+          # *Revision*: [failed commit revision]({{ upstream }}/commit/{{ result_git.before }})\n
           # *Error Message*: \n ```{{  ansible_failed_result.msg }}```"
           # *Action*: {{ ansible_failed_task.action }}"
           # *Error Message*: \n ```{{ ansible_failed_result | to_nice_json }}```"
@@ -30,7 +30,7 @@
         api_args:
           chat_id: "{{ telegram_chat_id }}"
           parse_mode: "markdown"
-          text: "🚩 *{{ ansible_hostname }}* provision failed.\n\n{{ result_git.before }} \n*{{ result_git.after }}*"
+          text: "🚩 *{{ ansible_hostname }}* provision failed.\n\n[failed commit revision]({{ upstream }}/commit/{{ result_git.before }})"
       changed_when: False
 
 - name: ansible job failed, clear cache later on to trigger another provision run
