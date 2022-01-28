@@ -289,7 +289,7 @@
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
 
-- name: Dotifles - Clone .oh-my-zsh-custom
+- name: Dotfiles - Clone .oh-my-zsh-custom
   stat:
     path: "/home/{{ username }}/.oh-my-zsh-custom"
   register: subrepo_directory
@@ -305,7 +305,7 @@
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
 
-- name: Dotifles - Clone personal blog
+- name: Dotfiles - Clone personal blog
   stat:
     path: "/home/{{ username }}/blog"
   register: subrepo_directory
