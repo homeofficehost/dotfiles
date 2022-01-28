@@ -209,7 +209,7 @@
     owner: "{{ username }}"
     group: wheel
   with_items:
-    ["users/{{ username }}/config/git/.gitconfig-personal", "users/{{ username }}/config/git/.gitconfig-hero", "users/{{ username }}/config/git/.gitconfig-company", "users/{{ username }}/config/pass-git-helper/git-pass-mapping.ini" ]
+    ["users/{{ username }}/config/git/.gitconfig-personal", "users/{{ username }}/config/git/.gitconfig-hero", "users/{{ username }}/config/git/.gitconfig-company" ]
 
 - name: users | copy config directory pass
   copy:
