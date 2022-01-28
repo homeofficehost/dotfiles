@@ -304,3 +304,19 @@
     recursive: yes
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
+
+- name: Dotifles - Clone personal blog
+  stat:
+    path: "/home/{{ username }}/blog"
+  register: subrepo_directory
+  tags: dotfiles,users,submodules
+- name: Git | Vlone personal
+  become_user: "{{ username }}"
+  git:
+    repo: "{{ blog_upstream }}"
+    dest: "/home/{{ username }}/blog"
+    update: yes
+    track_submodules: yes
+    recursive: yes
+  when: not subrepo_directory.stat.exists
+  tags: dotfiles,users,submodules

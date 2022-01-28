@@ -1,2 +1,3 @@
 ---
 enable_dnscrypt_proxy:             true
+blog_upstream:	https://github.com/thomasgroch/my-awesome-portfolio

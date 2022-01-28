@@ -1,2 +1,3 @@
 ---
 enable_dnscrypt_proxy:             false
+blog_upstream:	https://gitlab.com/camilasrody/my-awesome-portfolio
