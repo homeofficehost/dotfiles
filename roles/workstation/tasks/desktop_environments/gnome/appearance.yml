@@ -39,7 +39,7 @@
     - { key: "/org/gnome/desktop/privacy/remove-old-temp-files", value: "true" }
     - { key: "/org/gnome/desktop/privacy/remove-old-trash-files", value: "true" }
     - { key: "/org/gnome/desktop/privacy/show-full-name-in-top-bar", value: "false" }
-    - { key: "/org/gnome/desktop/wm/preferences/button-layout", value: "':minimize,maximize,close'" }
+    - { key: "/org/gnome/desktop/wm/preferences/button-layout", value: "':minimize,close'" }
     - { key: "/org/gnome/settings-daemon/plugins/color/night-light-enabled", value: "false" }
     - { key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-timeout", value: "'3600'" }
     - { key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type", value: "'nothing'" }

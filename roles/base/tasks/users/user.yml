@@ -310,7 +310,7 @@
     path: "/home/{{ username }}/blog"
   register: subrepo_directory
   tags: dotfiles,users,submodules
-- name: Git | Vlone personal
+- name: Git | Clone personal
   become_user: "{{ username }}"
   git:
     repo: "{{ blog_upstream }}"

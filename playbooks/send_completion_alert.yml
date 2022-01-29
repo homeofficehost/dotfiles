@@ -17,5 +17,5 @@
     api_args:
       chat_id: "{{ telegram_chat_id }}"
       parse_mode: "markdown"
-      text: "👍 *{{ ansible_hostname }}* provision finished. Here is the [last commit revision]({{ upstream }}/commit/{{ result_git.after }}) retrieved during the update."
+      text: "👍 *{{ ansible_hostname }}* provision finished.\nHere is the [last commit revision]({{ upstream }}/commit/{{ result_git.after }}) retrieved during the update."
   changed_when: False
