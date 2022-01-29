@@ -1,9 +1,3 @@
-- name: gnome | keybindings | copy remap.sh script
-  tags: distro-setup
-  copy:
-    src: scripts/remap.sh
-    dest: "/home/{{ username }}/Downloads/"
-
 - name: Git | Clone gnome-macos-remap
   become_user: "{{ username }}"
   git:
