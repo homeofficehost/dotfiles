@@ -27,4 +27,4 @@
     key: "{{ item.key }}"
     value: "{{ item.value}}"
   with_items:
-    - { key: "/org/gnome/desktop/wm/keybindings/show-desktop", value: "[]" } # disable super+d shortcut
+    - { key: "/org/gnome/desktop/wm/keybindings/show-desktop", value: "'[]'" } # disable super+d shortcut
