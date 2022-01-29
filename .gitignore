@@ -15,6 +15,7 @@
 
 .hooks
 Library/
+.config/pass-git-helper/git-pass-mapping.ini
 .password-store/
 .bare-dotfiles/
 .dotfiles/
@@ -40,7 +41,7 @@ scripts/jetbrains-agent/
 scripts/every
 anticaptcha-plugin_*.crx
 node_modules
-homedir/.config/thefuck
+homedir/.config/
 homedir/.vim/backup/*
 !homedir/.vim/backup/.gitignore
 homedir/.vim/temp/*
