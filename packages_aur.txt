@@ -91,6 +91,9 @@ browserpass-firefox
 browserpass-chromium
 # Extension for firefox which block ads and banners
 firefox-adblock-plus
+autokey-gtk
+meld
+ulauncher
 # # Recursively compute digests on files/directories
 # md5deep
 
