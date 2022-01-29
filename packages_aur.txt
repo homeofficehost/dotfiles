@@ -94,6 +94,7 @@ firefox-adblock-plus
 autokey-gtk
 meld
 ulauncher
+chrome-gnome-shell
 # # Recursively compute digests on files/directories
 # md5deep
 
