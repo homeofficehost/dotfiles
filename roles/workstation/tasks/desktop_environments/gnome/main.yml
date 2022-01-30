@@ -2,7 +2,8 @@
 
 # - include_tasks: meta.yml
 - include_tasks: appearance.yml
-# - include_tasks: keybindings.yml
+# - include_tasks: keybindidngs.yml
+- include_tasks: keybindings2.yml
 - include_tasks: shell_settings.yml
 - include_tasks: nautilus.yml
 - include_tasks: packages.yml

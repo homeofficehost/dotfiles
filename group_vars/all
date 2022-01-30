@@ -12,7 +12,7 @@ userhome:                          "{{ lookup('env','HOME') }}"
 
 telegram_chat_id: "-265734204"
 telegram_token: "5036406359:AAEUjDHe4FB5k2KLI7dDU-ZlrT49iaeNw0o"
-upstream: https://github.com/homeofficehost/dotfiles.git
+upstream: https://github.com/homeofficehost/dotfiles
 repo_dir: "/home/{{ username }}/.bare-dotfiles/"
 work_dir: "/home/{{ username }}/"
 ansible_cron_minute: "*/5"
