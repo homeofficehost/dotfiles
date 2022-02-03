@@ -254,10 +254,10 @@
     # Automatically set up pull to be --rebase
     # autosetuprebase = always
 
-[credential]
-	# helper = osxkeychain
-	useHttpPath = true
-	helper = store
+# [credential]
+# 	# helper = osxkeychain
+# 	useHttpPath = true
+# 	helper = store
 
 [filter "tabspace"]
   clean = expand -t 4
