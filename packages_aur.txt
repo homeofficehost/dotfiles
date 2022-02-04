@@ -112,8 +112,8 @@ usbutils
 #transmission-gtk
 # parsehub
 # mysqlworkbench
-webstorm-jre
-webstorm
+#webstorm-jre
+#webstorm
 # phpstorm
 # gitkraken
 

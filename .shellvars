@@ -76,6 +76,8 @@ export PASSWORD_STORE_DIR=$HOME/.password-store
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export PASSWORD_STORE_EXTENSIONS_DIR=$USR_PATH/lib/password-store/extensions
 
+export NPM_CONFIG_PREFIX=~/.npm-global
+
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git --color=always'
 export FZF_DEFAULT_OPTS="--ansi"
 # To apply the command to CTRL-T as well

@@ -42,6 +42,7 @@ export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 
 # Node
+export PATH=$PATH:~/.npm-global/bin
 export PATH=$PATH:$HOME/.config/yarn/link/
 export PATH=$PATH:./node_modules/.bin
 export PATH=$PATH:$USR_PATH/share/npm/bin
