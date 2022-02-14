@@ -1,4 +1,4 @@
-composer
+#composer
 virtualbox
 # linux513-virtualbox-host-modules
 curl
