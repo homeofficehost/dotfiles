@@ -668,7 +668,8 @@ function init_npm {
 
 alias f.rm_all_node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
 
-alias a.rm_node_modules_reyarn_redev="rm -Rf node_modules && rm yarn.lock && yarn; yarn dev"
+alias reyarn="rm -Rf node_modules; rm yarn.lock; yarn; yarn dev"
+alias a.rm_node_modules_reyarn_redev="reyarn"
 alias a.sort_package_json="npx sort-package-json $@"
 alias a.npm_check="npx npm-check $@"
 alias a.npm_check2="npx nsp check $@"

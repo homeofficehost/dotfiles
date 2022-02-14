@@ -44,7 +44,7 @@ export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 # Node
 export PATH=$PATH:~/.npm-global/bin
 export PATH=$PATH:$HOME/.config/yarn/link/
-export PATH=$PATH:./node_modules/.bin
+# export PATH=$PATH:./node_modules/.bin # is insecure in combination with the -execdir action of find.
 export PATH=$PATH:$USR_PATH/share/npm/bin
 
 # My Scripts
