@@ -86,7 +86,7 @@ dot_link() {
 	ln -s "$MY_DOTFILES/homedir/$1" $1
 }
 alias dotfiles='git --git-dir=${BARE_DOTFILES}/ --work-tree=$HOME'
-alias d='dotfiles'
+alias dot='dotfiles'
 
 # Cheat sheets
 alias dterm="curl -s -X GET https://raw.githubusercontent.com/LeCoupa/awesome-cheatsheets/master/languages/bash.sh | less"
@@ -871,4 +871,6 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias linux_update="sudo pacman -Syyu"
 	alias pacman_rm_corrupt_packages='sudo find /var/cache/pacman/pkg/ -iname "*.part" -delete'
 
+	alias open="xdg-open"
+	alias d="yarn dev"
 fi
