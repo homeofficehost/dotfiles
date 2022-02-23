@@ -668,7 +668,11 @@ function init_npm {
 
 alias f.rm_all_node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
 
-alias reyarn="rm -Rf node_modules; rm yarn.lock; yarn; yarn dev"
+alias d="pnpm dev"
+alias i="pnpm install"
+alias y="i"
+alias reyarn="rm -Rf node_modules; rm -f yarn.lock; rm -f package-lock.json; rm -f yarn-error.log; i; d"
+alias repnpm="reyarn"
 alias a.rm_node_modules_reyarn_redev="reyarn"
 alias a.sort_package_json="npx sort-package-json $@"
 alias a.npm_check="npx npm-check $@"
@@ -872,5 +876,5 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias pacman_rm_corrupt_packages='sudo find /var/cache/pacman/pkg/ -iname "*.part" -delete'
 
 	alias open="xdg-open"
-	alias d="yarn dev"
+
 fi
