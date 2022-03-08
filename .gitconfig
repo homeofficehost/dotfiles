@@ -271,6 +271,7 @@
 
 [init]
   templatedir = ~/.git-templates
+	defaultBranch = master
 
 [filter "media"]
   required = true
