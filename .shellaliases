@@ -12,6 +12,9 @@ EOF
 ###############################################################################
 # Development section
 ###############################################################################
+alias getlogos='for t in $(cat techs); do echo -e "${t}\n";curl -s https://logosear.ch/api/search.json\?q\=$t\&max\=48 | jq .results[].url -r >> logolist; done'
+alias getlogos.download='aria2c --max-connection-per-server=16 --min-split-size=1M  --input-file=logolist'
+
 # linux xorg copy/paste implementation - mirroring the macos commands
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'

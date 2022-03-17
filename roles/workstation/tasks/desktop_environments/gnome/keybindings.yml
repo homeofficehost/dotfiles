@@ -210,3 +210,4 @@
   with_items:
     - { key: maximize, value: "'<Super>Up'" }
     - { key: unmaximize, value: "'<Super>Down'" }
+    - { key: close, value: "'<Primary><Shift>q'" }
