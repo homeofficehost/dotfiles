@@ -43,6 +43,7 @@ alias findd="fd $@"
 # git commit --allow-empty -m "chore: re-trigger build"
 
 alias lg="lazygit"
+alias hn="hackernews_tui"
 alias git_branch="git checkout -b $@ > /dev/null 2>&1 || git checkout $@"
 alias new_feature="git_branch features/$@"
 alias new_hot_fix="git_branch hot-fixes/$@"
@@ -189,6 +190,12 @@ alias lping="prettyping -i 20 $@"
 
 
 alias arduino="/Applications/Arduino.app/Contents/MacOS/Arduino"
+# sudo tail -f /dev/ttyACM0
+# sudo chmod a+rw /dev/ttyUSB0
+#                      ttyUSB1
+#                      ttyACM0
+#                      ttyACM1
+#                      ttyS0
 
 alias lynda="youtube-dl $@ --username controle@hero99.com.br --password Hero30888899 --output \"%(playlist_title)s/%(autonumber)s.%(title)s.%(ext)s\" --all-subs --autonumber-size 2"
 
@@ -676,11 +683,10 @@ alias u="update"
 
 alias d="pnpm dev"
 alias i="pnpm install"
-alias y="i"
 alias redo="rm -Rf node_modules; rm -f yarn.lock; rm -f package-lock.json; rm -f pnpm-lock.yaml; rm -f .pnpm-debug.log; rm -f yarn-error.log; i; yarn; pnpx vuepress dev portfolio --clean-cache --clean-temp"
-alias reyarn="rm -Rf node_modules; rm -f yarn.lock; rm -f package-lock.json; rm -f pnpm-lock.yaml; rm -f .pnpm-debug.log; rm -f yarn-error.log; i; yarn; d"
-alias repnpm="reyarn"
-alias a.rm_node_modules_reyarn_redev="reyarn"
+alias rm_node_modules="rm -Rf node_modules; rm -f yarn.lock; rm -f package-lock.json; rm -f pnpm-lock.yaml; rm -f .pnpm-debug.log; rm -f yarn-error.log"
+alias clean="rm_node_modules"
+# alias a.rm_node_modules_reyarn_redev="reyarn"
 alias a.sort_package_json="npx sort-package-json $@"
 alias a.npm_check="npx npm-check $@"
 alias a.npm_check2="npx nsp check $@"
