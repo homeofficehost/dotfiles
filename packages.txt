@@ -228,7 +228,7 @@ translate-shell
 #transcrypt
 # Improved top (interactive process viewer)
 htop
-hardinfo
+# hardinfo #error
 # Alternative to top/htop
 glances
 python-pip
