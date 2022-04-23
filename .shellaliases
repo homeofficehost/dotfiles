@@ -683,10 +683,9 @@ alias u="update"
 
 alias d="pnpm dev"
 alias i="pnpm install"
-alias redo="rm -Rf node_modules; rm -f yarn.lock; rm -f package-lock.json; rm -f pnpm-lock.yaml; rm -f .pnpm-debug.log; rm -f yarn-error.log; i; yarn; pnpx vuepress dev portfolio --clean-cache --clean-temp"
-alias rm_node_modules="rm -Rf node_modules; rm -f yarn.lock; rm -f package-lock.json; rm -f pnpm-lock.yaml; rm -f .pnpm-debug.log; rm -f yarn-error.log"
-alias clean="rm_node_modules"
-# alias a.rm_node_modules_reyarn_redev="reyarn"
+alias clean="rm -Rf .temp; rm -Rf node_modules; rm -f yarn.lock; rm -f package-lock.json; rm -f pnpm-lock.yaml"
+alias rm_node_modules="clean"
+
 alias a.sort_package_json="npx sort-package-json $@"
 alias a.npm_check="npx npm-check $@"
 alias a.npm_check2="npx nsp check $@"
