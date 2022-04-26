@@ -18,7 +18,6 @@ base-devel
 xclip
 xsel
 gufw
-dug
 
 ## CLI's
 zsh
