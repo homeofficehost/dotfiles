@@ -17,7 +17,7 @@
   become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/nautilus/preferences/click-policy"
-    value: "'single'"
+    value: "'double'"
 
 - name: gnome | nautilus | set executable text activation
   tags: gnome,nautilus
@@ -38,4 +38,4 @@
   become_user: "{{ username }}"
   dconf:
     key: "/org/gtk/settings/file-chooser/sort-directories-first"
-    value: "false"
+    value: "true"

@@ -1,0 +1,1 @@
+curl -Lks https://raw.githubusercontent.com/homeofficehost/dotfiles/master/bootstrap.sh | /bin/bash

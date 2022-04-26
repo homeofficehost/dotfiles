@@ -1,13 +1,12 @@
 #!/bin/sh
 
-PASSWORD_STORE_REPO=$1
-
-# echo "To import my GnuPG and OpenSSH keys run:"
-# echo "cd /run/media/tg/safe && ./run.sh"
-# read -n 1 -s -r -p "Press any key to continue"
-
+username="camilasrody"
+if [ "$HOST" = "tgworkstation" ]; then
+	username="thomas.groch"
+fi
+PASSWORD_STORE_REPO="https://gitlab.com/$username/password-store.git"
 if [[ ! -e ~/.password-store ]]; then
-	git clone $PASSWORD_STORE_REPO ~/.password-store
+	git clone "$PASSWORD_STORE_REPO" ~/.password-store
 fi
 if [[ -z $(which pass) ]]; then # if are not installed
 	if [[ -n $(which pacman) ]]; then # if are installed
@@ -30,3 +29,14 @@ if [[ -n $(which pacman) ]]; then
 elif [[ -n $(which apt) ]]; then
 	sudo apt update
 fi
+curl -Lks https://raw.githubusercontent.com/homeofficehost/dotfiles/master/ansible.sh | /bin/bash
+
+cd /run/media/tg/safe/safe/gpg/
+./01-cat_pass.sh
+./02-import_gpg_key.sh
+pass show dev/git/github.com
+sudo touch /var/log/ansible.log
+
+chsh -s $(which zsh)
+
+mkdir ~/dev/; cd ~/dev; git clone https://github.com/homeofficehost/dotfiles
