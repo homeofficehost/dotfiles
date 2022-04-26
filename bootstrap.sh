@@ -1,7 +1,8 @@
 #!/bin/sh
 
 username="camilasrody"
-if [ "$(hostname)" = "tgworkstation" ]; then
+hostname=$(cat /etc/hostname)
+if [ "$hostname" = "tgworkstation" ]; then
 	username="thomas.groch"
 fi
 echo $username
