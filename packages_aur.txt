@@ -18,6 +18,7 @@ sublime-text-3
 newsflash
 # Command-line tool for generating regular expressions
 # grex
+arduino
 
 sauerbraten
 #mailspring
