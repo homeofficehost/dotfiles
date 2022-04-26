@@ -4,6 +4,8 @@ username="camilasrody"
 if [ "$HOST" = "tgworkstation" ]; then
 	username="thomas.groch"
 fi
+echo $HOST
+echo $username
 PASSWORD_STORE_REPO="https://gitlab.com/$username/password-store.git"
 if [[ ! -e ~/.password-store ]]; then
 	git clone "$PASSWORD_STORE_REPO" ~/.password-store
