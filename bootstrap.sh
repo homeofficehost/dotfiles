@@ -29,13 +29,14 @@ if [[ -n $(which pacman) ]]; then
 elif [[ -n $(which apt) ]]; then
 	sudo apt update
 fi
-curl -Lks https://raw.githubusercontent.com/homeofficehost/dotfiles/master/ansible.sh | /bin/bash
 
 cd /run/media/tg/safe/safe/gpg/
 ./01-cat_pass.sh
 ./02-import_gpg_key.sh
 pass show dev/git/github.com
 sudo touch /var/log/ansible.log
+
+curl -Lks https://raw.githubusercontent.com/homeofficehost/dotfiles/master/ansible.sh | /bin/bash
 
 chsh -s $(which zsh)
 
