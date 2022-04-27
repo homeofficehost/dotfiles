@@ -1,5 +1,4 @@
 autojump
-eternalterminal
 termscp
 # espeak-ng
 fswatch
@@ -41,7 +40,7 @@ hakuneko-desktop
 # Monitor a directory for changes and run a shell command. Req by gitwatch
 fswatch
 # Remote terminal with IP roaming
-eternalterminal
+# eternalterminal
 # Sparklines for the shell
 spark
 # Automatically restart SSH sessions and tunnels
