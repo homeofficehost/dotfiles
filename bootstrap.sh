@@ -42,4 +42,4 @@ curl -Lks https://raw.githubusercontent.com/homeofficehost/dotfiles/master/ansib
 
 chsh -s $(which zsh)
 
-mkdir ~/dev/; cd ~/dev; git clone https://github.com/homeofficehost/dotfiles
+mkdir -p ~/dev/; cd ~/dev; git clone https://github.com/homeofficehost/dotfiles
