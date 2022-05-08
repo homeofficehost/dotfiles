@@ -95,8 +95,8 @@ autokey-gtk
 meld
 ulauncher
 chrome-gnome-shell
-# librewolf
-# librewolf-extension-gnome-shell-integration
+librewolf
+librewolf-extension-gnome-shell-integration
 # # Recursively compute digests on files/directories
 # md5deep
 
