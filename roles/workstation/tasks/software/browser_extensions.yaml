@@ -1,0 +1,31 @@
+- debug:
+    msg: "System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}"
+  when: ansible_default_ipv4.gateway is defined
+
+- name: Display all variables/facts known for a host
+  debug:
+    var: hostvars[inventory_hostname]
+    verbosity: 4
+
+
+- name: Install firefox profiles
+  vars:
+    firefox_profiles:
+      default:
+        extensions:
+          - ublock-origin
+        preferences:
+          privacy.donottrackheader.enabled: "true"
+          privacy.trackingprotection.enabled: "true"
+          signon.rememberSignons: "false"
+          datareporting.healthreport.uploadEnabled: "false"
+      bob:
+        extensions:
+          - adblock-plus
+        preferences:
+          privacy.donottrackheader.enabled: "false"
+          privacy.trackingprotection.enabled: "false"
+          signon.rememberSignons: "false"
+          datareporting.healthreport.uploadEnabled: "false"
+  import_role:
+    name: basvandenbrink.firefox
