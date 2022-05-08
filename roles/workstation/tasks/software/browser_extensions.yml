@@ -9,6 +9,7 @@
 
 
 - name: Install firefox profiles
+  become_user: "{{ username }}"
   vars:
     firefox_profiles:
       default:
