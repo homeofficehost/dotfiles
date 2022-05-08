@@ -95,6 +95,8 @@ autokey-gtk
 meld
 ulauncher
 chrome-gnome-shell
+# librewolf
+# librewolf-extension-gnome-shell-integration
 # # Recursively compute digests on files/directories
 # md5deep
 
@@ -110,7 +112,8 @@ usbutils
 #transmission-gtk
 # parsehub
 # mysqlworkbench
-# webstorm
+#webstorm-jre
+#webstorm
 # phpstorm
 # gitkraken
 
