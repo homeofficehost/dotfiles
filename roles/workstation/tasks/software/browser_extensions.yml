@@ -6,21 +6,3 @@
   debug:
     var: hostvars[inventory_hostname]
     verbosity: 4
-
-- name: Install firefox profiles
-  become_user: "{{ username }}"
-  vars:
-    firefox_profiles:
-      default:
-        extensions:
-          - ublock-origin
-          - adblock-plus
-          - read-aloud
-          - vue-js-devtools
-        preferences:
-          privacy.donottrackheader.enabled: "true"
-          privacy.trackingprotection.enabled: "true"
-          signon.rememberSignons: "false"
-          datareporting.healthreport.uploadEnabled: "false"
-  import_role:
-    name: basvandenbrink.firefox
