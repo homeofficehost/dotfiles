@@ -43,7 +43,7 @@ function error() {
     echo -e "$COL_RED[error]$COL_RESET "$1
 }
 
-FINGERPRINT=$GIT_AUTHOR_EMAIL
+FINGERPRINT="${1}"
 SAFE_PATH=./
 mkdir -p $SAFE_PATH
 
@@ -90,14 +90,14 @@ gpg --import "${DISKRAM_PATH}/subkeys"
 
 gpg --list-secret-keys
 bot "now verify everything is in order"
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -r -p "Press any key to continue"
 
 action "*delete and unmount* ramdisk"
 if [[ `uname -s` = "Darwin" ]]; then
 	hdiutil detach $(basename $DISKRAM_ID)
 else
 	sudo umount "${DISKRAM_PATH}/subkeys"
-	rmdir "${DISKRAM_PATH}/subkeys"
+	rm -f "${DISKRAM_PATH}/subkeys"
 fi
 
 
