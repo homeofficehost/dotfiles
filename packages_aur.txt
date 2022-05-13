@@ -18,6 +18,11 @@ newsflash
 # Command-line tool for generating regular expressions
 # grex
 arduino
+# Network logon cracker which supports many services
+hydra-bin
+# Highest-quality GIF encoder based on pngquant
+gifski
+
 
 sauerbraten
 #mailspring

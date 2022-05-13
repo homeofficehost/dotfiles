@@ -195,8 +195,6 @@ bpytop
 ipcalc
 # ARP scanning and fingerprinting tool
 arp-scan
-# Network logon cracker which supports many services
-hydra
 # Tools for the WireGuard secure network tunnel
 wireguard-tools
 # Featureful UNIX password cracker
@@ -333,8 +331,6 @@ byobu
 mosh
 npm
 yarn
-# Highest-quality GIF encoder based on pngquant
-gifski
 docker
 
 ## GUI apps
