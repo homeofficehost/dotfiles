@@ -91,9 +91,9 @@ browserpass-firefox
 browserpass-chromium
 # Extension for firefox which block ads and banners
 firefox-adblock-plus
-autokey-gtk
+## autokey-gtk
 meld
-ulauncher
+## ulauncher
 chrome-gnome-shell
 # librewolf # broke
 # librewolf-extension-gnome-shell-integration
