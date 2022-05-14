@@ -15,7 +15,6 @@
 
 .hooks
 Library/
-.config/pass-git-helper/git-pass-mapping.ini
 .password-store/
 .bare-dotfiles/
 .dotfiles/
