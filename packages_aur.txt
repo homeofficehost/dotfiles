@@ -130,3 +130,4 @@ usbutils
 discord
 telegram-desktop
 vlc
+picom-ibhagwan-git
