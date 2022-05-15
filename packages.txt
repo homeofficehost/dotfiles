@@ -341,5 +341,4 @@ opera
 vivaldi
 #vivaldi-ffmpeg-codecs
 qtpass
-vlc
 dia
