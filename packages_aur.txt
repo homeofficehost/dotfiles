@@ -129,3 +129,4 @@ usbutils
 
 discord
 telegram-desktop
+vlc
