@@ -126,3 +126,6 @@ usbutils
 # fritzing
 # Huge set of common tools for making games
 # godot-mono
+
+discord
+telegram-desktop
