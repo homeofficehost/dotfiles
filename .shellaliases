@@ -887,6 +887,7 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias linux_kernel_log="sudo journalctl -p 3 -xb"
 	alias linux_kernel="journalctl -afn100"
 	alias linux_update="sudo pacman -Syyu"
+	alias linux_bundle="pacman -Qqen > pkglist.txt"
 	alias pacman_rm_corrupt_packages='sudo find /var/cache/pacman/pkg/ -iname "*.part" -delete'
 	alias openports='sudo lsof -i -P -n | grep LISTEN'
 
