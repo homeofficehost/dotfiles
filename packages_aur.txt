@@ -131,3 +131,5 @@ discord
 telegram-desktop
 vlc
 picom-ibhagwan-git
+awesome
+awesome-freedesktop
