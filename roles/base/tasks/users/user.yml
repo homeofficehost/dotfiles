@@ -216,7 +216,7 @@
     src: "{{ item }}"
     dest: "/home/{{ username }}/.config/pass-git-helper/"
     owner: "{{ username }}"
-    group: "{{ username }}""
+    group: "{{ username }}"
   with_items:
     ["users/{{ username }}/config/pass-git-helper/git-pass-mapping.ini" ]
 
@@ -225,7 +225,7 @@
 #     src: "{{ item }}"
 #     dest: "/home/{{ username }}/.config"
 #     owner: "{{ username }}"
-#     group: "{{ username }}""
+#     group: "{{ username }}"
 #     mode: 0644
 #   with_fileglob:
 #     - "users/{{ username }}/config/*"
