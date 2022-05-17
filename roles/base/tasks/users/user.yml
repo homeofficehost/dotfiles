@@ -12,7 +12,7 @@
   user:
     name: "{{ username }}"
     group: "{{ username }}"
-    groups: {{ username }},users,{{ sudo_group }}
+    groups: "{{ username }},users,{{ sudo_group }}"
     state: present
     comment: "user"
     password: "{{ user_passwd }}"
