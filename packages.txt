@@ -61,6 +61,8 @@
 # Clone of ls with colorful output, file type icons, and more
 # lsd
 # yay
+# ensure gawk gets good readline
+# readline
 
 
 #composer
@@ -101,8 +103,6 @@ expect
 pv
 # Classic UNIX line editor
 ed
-# ensure gawk gets good readline
-readline
 # Search tool like grep, but optimized for programmers - http://conqueringthecommandline.com/book/ack_ag
 ack
 # Wrapper around ripgrep that adds multiple rich file types
