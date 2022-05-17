@@ -1,3 +1,68 @@
+## Only on arch
+# This is a host application for browserpass browser extension providing it access to your password store.
+# browserpass
+# base-devel
+# opera
+# vivaldi
+# vivaldi-ffmpeg-codecs
+# The Dart SDK
+# dart
+# Terminal bandwidth utilization tool
+# bandwhich
+# OpenBSD freely-licensed SSH connectivity tools
+# openssh
+# Program that allows you to count code, quickly
+# tokei
+# More intuitive version of du in rust
+# dust
+# Intuitive find & replace CLI
+# sd
+# Modern replacement for ps written by Rust
+# procs
+# Simple, fast and user-friendly alternative to find
+# fd
+# New way to see and navigate directory trees
+# broot
+# C routines to compute the Discrete Fourier Transform
+# fftw
+# python-pip
+# An idempotent command-line utility for managing your /etc/hosts* file.
+# hostess
+# Swiss army knife for network attacks and monitoring
+# bettercap
+# bpytop
+# GNU Transport Layer Security (TLS) Library
+# gnutls
+# Simple terminal UI for git commands
+# lazygit
+# Asynchronous event library
+# libevent
+# Drop-in replacement for MySQL
+# mariadb
+# Command-line DNS client
+# dog
+# Python version management
+# pyenv
+# Open source programming language to build simple/reliable/efficient software
+# go
+# Safe, concurrent, practical language
+# rust
+# Cross platform, open source .NET development framework
+# mono
+# The cross-shell prompt for astronauts
+# starship
+# diff-so-fancy
+# aalib
+# libmikmod
+# alternative to `cat`: https://github.com/sharkdp/bat
+# bat
+# General-purpose data compression with high compression ratio
+# xz
+# Clone of ls with colorful output, file type icons, and more
+# lsd
+# yay
+
+
 #composer
 virtualbox
 # linux513-virtualbox-host-modules
@@ -5,7 +70,6 @@ curl
 file
 # Distributed revision control system
 git
-base-devel
 # Multi-panel tabbed file manager
 # spacefm
 # for video editing
@@ -21,7 +85,6 @@ gufw
 
 ## CLI's
 zsh
-yay
 # Encrypted pass-through FUSE file system
 encfs
 # Static analysis and lint tool, for (ba)sh scripts
@@ -36,20 +99,14 @@ openssl
 expect
 # Monitor data's progress through a pipe
 pv
-# Clone of ls with colorful output, file type icons, and more
-lsd
 # Classic UNIX line editor
 ed
 # ensure gawk gets good readline
 readline
-# General-purpose data compression with high compression ratio
-xz
 # Search tool like grep, but optimized for programmers - http://conqueringthecommandline.com/book/ack_ag
 ack
 # Wrapper around ripgrep that adds multiple rich file types
 ripgrep
-# alternative to `cat`: https://github.com/sharkdp/bat
-bat
 # Fast, highly customisable system info script
 neofetch
 # Console Matrix
@@ -71,12 +128,9 @@ cmake
 # Free (GNU) replacement for the Pico text editor
 nano
 binutils
-libmikmod
-aalib
 diffutils
 # Color-highlighted diff(1) output
 colordiff
-diff-so-fancy
 # Internet file retriever
 wget
 # Download with resuming and segmented downloading
@@ -92,28 +146,18 @@ openconnect
 screen
 asciinema
 tmux
-# The cross-shell prompt for astronauts
-starship
 # Distributed, Highly Available, Datacenter-Aware Scheduler
 nomad
 # Tool for service discovery, monitoring and configuration
 consul
 # Tool for creating identical machine images for multiple platforms
 # packer
-# Cross platform, open source .NET development framework
-mono
 tree
 vim
 
 ## Languages
-# Safe, concurrent, practical language
-rust
 # Interpreted, interactive, object-oriented programming language
 python3
-# Python version management
-pyenv
-# Open source programming language to build simple/reliable/efficient software
-go
 # # Platform built on V8 to build network applications
 # node
 # # Ruby version manager
@@ -121,12 +165,8 @@ go
 ruby
 
 ## Servers
-# Command-line DNS client
-dog
 # Lightweight DNS forwarder and DHCP server
 dnsmasq
-# Drop-in replacement for MySQL
-mariadb
 # High-performance, schema-free, document-oriented database
 # mongodb
 # Object-relational database system
@@ -143,8 +183,6 @@ redis
 # # Dependency Manager for PHP
 # composer
 syncthing
-# Asynchronous event library
-libevent
 # need fontconfig to install/build fonts
 fontconfig
 # Graph visualization software from AT&T and Bell Labs
@@ -163,8 +201,6 @@ mplayer
 # gtk+3
 
 ## Git addons
-# Simple terminal UI for git commands
-lazygit
 # Git extension for versioning large files"
 git-lfs
 # Add GitHub support to git on the command-line
@@ -172,10 +208,6 @@ hub
 
 ## Security and penetration testing tool
 gopass
-# This is a host application for browserpass browser extension providing it access to your password store.
-browserpass
-# GNU Transport Layer Security (TLS) Library
-gnutls
 # NCurses Disk Usage
 ncdu
 # World's fastest and most advanced password recovery utility
@@ -190,7 +222,6 @@ nmap
 ngrep
 # Display an interface's bandwidth usage
 iftop
-bpytop
 # Calculate various network masks, etc. from a given IP address
 ipcalc
 # ARP scanning and fingerprinting tool
@@ -201,8 +232,6 @@ wireguard-tools
 john
 # Intercept, modify, replay, save HTTP/S traffic
 mitmproxy
-# Swiss army knife for network attacks and monitoring
-bettercap
 # SSL manipulation tools, \`mitmproxy --host\` runs on 8080
 # Man-in-the-middle attacks against SSL encrypted network connections
 sslsplit
@@ -214,8 +243,6 @@ mitmproxy
 # Utilities
 # Top-like interface for docker container metrics
 ctop
-# An idempotent command-line utility for managing your /etc/hosts* file.
-hostess
 # generate pronounceable passwords
 pwgen
 # A command-line fuzzy finder
@@ -229,7 +256,6 @@ htop
 # hardinfo #error
 # Alternative to top/htop
 glances
-python-pip
 psutils
 # Version Control Visualization Tool
 gource
@@ -245,12 +271,8 @@ graphicsmagick
 jp2a
 # Lightweight and flexible command-line JSON processor
 jq
-# C routines to compute the Discrete Fourier Transform
-fftw
 # File browser
 ranger
-# New way to see and navigate directory trees
-broot
 # Pager program similar to more
 less
 # Text-based web browser
@@ -279,20 +301,8 @@ irssi
 neomutt
 # Synchronize a maildir with an IMAP server
 isync
-# Simple, fast and user-friendly alternative to find
-fd
-# Modern replacement for ps written by Rust
-procs
-# Intuitive find & replace CLI
-sd
-# More intuitive version of du in rust
-dust
-# Program that allows you to count code, quickly
-tokei
 # File system client based on SSH File Transfer Protocol
 sshfs
-# OpenBSD freely-licensed SSH connectivity tools
-openssh
 # Shell command parallelization utility
 parallel
 # Rsync for cloud storage
@@ -305,8 +315,6 @@ speedtest-cli
 # sshrc" # temp offlin
 # Simplified and community-driven man pages
 tldr
-# Terminal bandwidth utilization tool
-bandwhich
 # Display directories as trees (with optional color/HTML output)
 tree
 # Extract, view, and test RAR archives
@@ -317,8 +325,6 @@ unzip
 wdiff
 # Download YouTube videos from the command-line
 youtube-dl
-# The Dart SDK
-dart
 # Monitor data's progress through a pipe
 pv
 # Statistics utility to count lines of code
@@ -337,8 +343,5 @@ docker
 # brave-browser
 # Run containers through a simple, yet powerful graphical user interface.
 firefox
-opera
-vivaldi
-#vivaldi-ffmpeg-codecs
 qtpass
 dia
