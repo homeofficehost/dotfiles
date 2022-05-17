@@ -2,7 +2,7 @@
   tags: groups,users
   become_user: "{{ username }}"
   group:
-    name: {{ username }}
+    name: "{{ username }}"
     state: present
 
 - name: users | create user
