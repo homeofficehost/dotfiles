@@ -207,7 +207,7 @@
     src: "{{ item }}"
     dest: "/home/{{ username }}/.config/git/"
     owner: "{{ username }}"
-    group: {{ username }}
+    group: "{{ username }}"
   with_items:
     ["users/{{ username }}/config/git/.gitconfig-personal", "users/{{ username }}/config/git/.gitconfig-hero", "users/{{ username }}/config/git/.gitconfig-company" ]
 
