@@ -890,6 +890,7 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias linux_bundle="pacman -Qqen > pkglist.txt"
 	alias pacman_rm_corrupt_packages='sudo find /var/cache/pacman/pkg/ -iname "*.part" -delete'
 	alias openports='sudo lsof -i -P -n | grep LISTEN'
+	alias watchopenports='watch "sudo lsof -i -P -n | grep LISTEN"'
 
 	alias open="xdg-open"
 

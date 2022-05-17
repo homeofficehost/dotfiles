@@ -23,6 +23,8 @@ export HOMEBREW_EDITOR=$VISUAL
 export GOPATH=$HOME/Go
 export GOROOT=$USR_PATH/opt/go/libexec
 
+
+# export _JAVA_OPTIONS=-Xmx512M
 #########################################################################
 # Temporary aliases useful for demos, other current projects
 #########################################################################

@@ -56,6 +56,8 @@ export PATH=$PATH:$MY_DOTFILES/scripts
 # OPENSSL
 export PATH=$PATH:$USR_PATH/opt/openssl@1.1/bin
 
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
+export PATH="$JAVA_HOME/bin:$PATH"
 # qt5
 export PATH=$PATH:$USR_PATH/opt/qt/bin
 
