@@ -23,7 +23,7 @@
   file:
     path: "/var/log/ansible.log"
     owner: velociraptor
-    group: wheel
+    group: users
     mode: 0664
     state: touch
   changed_when: False
