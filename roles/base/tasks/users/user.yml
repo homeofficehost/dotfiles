@@ -2,7 +2,7 @@
   tags: groups,users
   become_user: "{{ username }}"
   group:
-    name: wheel
+    name: {{ username }}
     state: present
 
 - name: users | create user
@@ -12,7 +12,7 @@
   user:
     name: "{{ username }}"
     group: "{{ username }}"
-    groups: wheel,users,{{ sudo_group }}
+    groups: {{ username }},users,{{ sudo_group }}
     state: present
     comment: "user"
     password: "{{ user_passwd }}"
@@ -207,7 +207,7 @@
     src: "{{ item }}"
     dest: "/home/{{ username }}/.config/git/"
     owner: "{{ username }}"
-    group: wheel
+    group: {{ username }}
   with_items:
     ["users/{{ username }}/config/git/.gitconfig-personal", "users/{{ username }}/config/git/.gitconfig-hero", "users/{{ username }}/config/git/.gitconfig-company" ]
 
@@ -216,7 +216,7 @@
     src: "{{ item }}"
     dest: "/home/{{ username }}/.config/pass-git-helper/"
     owner: "{{ username }}"
-    group: wheel
+    group: {{ username }}
   with_items:
     ["users/{{ username }}/config/pass-git-helper/git-pass-mapping.ini" ]
 
@@ -225,7 +225,7 @@
 #     src: "{{ item }}"
 #     dest: "/home/{{ username }}/.config"
 #     owner: "{{ username }}"
-#     group: wheel
+#     group: {{ username }}
 #     mode: 0644
 #   with_fileglob:
 #     - "users/{{ username }}/config/*"
