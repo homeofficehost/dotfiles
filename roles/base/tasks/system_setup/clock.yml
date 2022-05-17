@@ -14,12 +14,12 @@
     state: latest
   when: ansible_distribution == "Debian"
 
-- name: system setup | clock | start and enable systemd-timesyncd
-  tags: ntp,system settiings
-  service:
-    name: systemd-timesyncd
-    state: started
-    enabled: true
+# - name: system setup | clock | start and enable systemd-timesyncd
+#   tags: ntp,system settiings
+#   service:
+#     name: systemd-timesyncd
+#     state: started
+#     enabled: true
 
 - name: system setup | clock | set time zone
   tags: ntp,timezone,system setup
