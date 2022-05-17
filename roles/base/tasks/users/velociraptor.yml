@@ -5,7 +5,7 @@
   user:
     name: velociraptor
     create_home: yes
-    groups: wheel,users,{{ sudo_group }}
+    groups: users,{{ sudo_group }}
     state: present
     password: "{{ user_passwd }}"
 
