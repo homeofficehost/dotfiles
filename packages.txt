@@ -64,7 +64,7 @@ yay
 # ensure gawk gets good readline
 readline
 
-
+ffmpeg
 #composer
 virtualbox
 # linux513-virtualbox-host-modules
