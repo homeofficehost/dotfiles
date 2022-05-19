@@ -1,5 +1,5 @@
 autojump
-termscp
+##termscp
 # espeak-ng
 fswatch
 # gitkraken
@@ -14,10 +14,10 @@ sublime-text-3
 #haguichi
 #font-downloader
 # apostrophe
-newsflash
+# newsflash
 # Command-line tool for generating regular expressions
 # grex
-arduino
+# arduino
 # Network logon cracker which supports many services
 hydra-bin
 # Highest-quality GIF encoder based on pngquant

@@ -1,7 +1,7 @@
 ## Only on arch
 # This is a host application for browserpass browser extension providing it access to your password store.
-# browserpass
-# base-devel
+browserpass
+base-devel
 # opera
 # vivaldi
 # vivaldi-ffmpeg-codecs
@@ -34,13 +34,13 @@
 # GNU Transport Layer Security (TLS) Library
 # gnutls
 # Simple terminal UI for git commands
-# lazygit
+lazygit
 # Asynchronous event library
 # libevent
 # Drop-in replacement for MySQL
 # mariadb
 # Command-line DNS client
-# dog
+dog
 # Python version management
 # pyenv
 # Open source programming language to build simple/reliable/efficient software
@@ -50,19 +50,19 @@
 # Cross platform, open source .NET development framework
 # mono
 # The cross-shell prompt for astronauts
-# starship
-# diff-so-fancy
-# aalib
-# libmikmod
+starship
+diff-so-fancy
+aalib
+libmikmod
 # alternative to `cat`: https://github.com/sharkdp/bat
-# bat
+bat
 # General-purpose data compression with high compression ratio
-# xz
+xz
 # Clone of ls with colorful output, file type icons, and more
-# lsd
-# yay
+lsd
+yay
 # ensure gawk gets good readline
-# readline
+readline
 
 
 #composer
