@@ -340,8 +340,9 @@ yarn
 docker
 
 ## GUI apps
-# brave-browser
+brave-browser
 # Run containers through a simple, yet powerful graphical user interface.
 firefox
 qtpass
 dia
+apostrophe

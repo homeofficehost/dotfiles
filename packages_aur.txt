@@ -118,7 +118,7 @@ usbutils
 # parsehub
 # mysqlworkbench
 #webstorm-jre
-#webstorm
+webstorm
 # phpstorm
 # gitkraken
 
@@ -128,8 +128,10 @@ usbutils
 # godot-mono
 
 discord
-telegram-desktop
+telegram-desktop-bin
 vlc
 picom-ibhagwan-git
 awesome
 awesome-freedesktop
+xorg-server-xephyr
+awmtt

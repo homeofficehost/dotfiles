@@ -8,8 +8,12 @@
 
 [includeIf "gitdir:**/hero/**/.git"]
   path = ~/.config/git/.gitconfig-hero
+[includeIf "gitdir:~/hero/"]
+  path = ~/.config/git/.gitconfig-hero
 
 [includeIf "gitdir:**/company/**/.git"]
+  path = ~/.config/git/.gitconfig-company
+[includeIf "gitdir:~/company/"]
   path = ~/.config/git/.gitconfig-company
 
 [color]
@@ -23,9 +27,6 @@
 	# diff = auto
 	status = auto
 	branch = auto
-  # diff = auto
-  # status = auto
-  # branch = auto
 
 [color "branch"]
   current = yellow reverse

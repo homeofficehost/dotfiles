@@ -888,6 +888,8 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias linux_kernel="journalctl -afn100"
 	alias linux_update="sudo pacman -Syyu"
 	alias linux_bundle="pacman -Qqen > pkglist.txt"
+	alias wmtest="awmtt start -C ~/.config/awesome/rc.lua -D 3 -S 1280x800"
+	alias wmreset="cp /etc/xdg/awesome/rc.lua ~/.config/awesome/rc.lua"
 	alias pacman_rm_corrupt_packages='sudo find /var/cache/pacman/pkg/ -iname "*.part" -delete'
 	alias openports='sudo lsof -i -P -n | grep LISTEN'
 	alias watchopenports='watch "sudo lsof -i -P -n | grep LISTEN"'
