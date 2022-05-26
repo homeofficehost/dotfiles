@@ -346,3 +346,4 @@ firefox
 qtpass
 dia
 apostrophe
+exa

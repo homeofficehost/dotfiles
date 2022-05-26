@@ -58,7 +58,7 @@
     - { key: "/org/gnome/shell/extensions/dash-to-dock/multi-monitor", value: "false" }
     - { key: "/org/gnome/shell/extensions/dash-to-dock/show-mounts", value: "true" }
     - { key: "/org/gtk/Settings/FileChooser/sort-directories-first", value: "true" }
-    - { key: "/org/gnome/shell/favorite-apps", value: "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'sublime_text.desktop', 'arduino.desktop', 'firefox.desktop', 'telegramdesktop.desktop', 'discord.desktop']" }
+    - { key: "/org/gnome/shell/favorite-apps", value: "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'jetbrains-webstorm.desktop', 'sublime_text.desktop', 'arduino.desktop', 'firefox.desktop', 'brave-browser.desktop', 'telegramdesktop.desktop', 'discord.desktop', 'Ripcord.desktop']" }
     - { key: "/org/gnome/mutter/workspaces-only-on-primary", value: "false" }
     - { key: "/org/gnome/shell/app-switcher/current-workspace-only", value: "true" }
     - { key: "/org/gnome/mutter/dynamic-workspaces", value: "false" }
