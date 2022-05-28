@@ -884,6 +884,7 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias yay_clean_unwanted_packages='yay -Yc'
 
 	alias mount_ESP="sudo mkdir -p /mnt/ESP && sudo mount -t msdos /dev/disk0s1 /mnt/ESP"
+	alias saferestart="leftwm-check | grep failed || leftwm-command SoftReload"
 	alias linux_kernel_log="sudo journalctl -p 3 -xb"
 	alias linux_kernel="journalctl -afn100"
 	alias linux_update="sudo pacman -Syyu"
@@ -894,6 +895,7 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias openports='sudo lsof -i -P -n | grep LISTEN'
 	alias watchopenports='watch "sudo lsof -i -P -n | grep LISTEN"'
 
+	alias wminwm="Xephyr -br -ac -noreset -screen 1920x1200 :$@"
 	alias open="xdg-open"
 
 fi
