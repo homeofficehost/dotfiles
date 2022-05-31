@@ -22,6 +22,15 @@
     minute: "{{ ansible_cron_minute | default('*/30') }}"
     job: "/usr/local/bin/provision > /dev/null"
 
+- name: system setup | cron | close process everyday
+  tags: cron
+  cron:
+    name: "close process everyday"
+    user: {{ username }}
+    hour: "7"
+    minute: "0"
+    job: "top -p $(pgrep -d',' httpd) > /dev/null"
+
 - name: system setup | cron | schedule ansible cleanup at boot
   tags: cron
   cron:
