@@ -135,3 +135,5 @@ awesome
 awesome-freedesktop
 xorg-server-xephyr
 awmtt
+
+netdiscover
