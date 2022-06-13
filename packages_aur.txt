@@ -137,3 +137,14 @@ xorg-server-xephyr
 awmtt
 
 netdiscover
+pulseaudio-equalizer
+blueman
+# polybar paysystray blueman-applet picom
+
+leftwm
+leftwm-theme-git
+mpd
+kitty
+
+# hypr-git
+# hyprland-git eww fuzzel rofi mako trayer mpvpaper macchina nerd-fonts-inter
