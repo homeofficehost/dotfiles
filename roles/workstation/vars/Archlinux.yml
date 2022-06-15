@@ -28,4 +28,4 @@ vagrant_version: 2.2.14
 virtualbox_package: virtualbox
 wireless_tools_package: wireless_tools
 wpa_supplicant_package: wpa_supplicant
-gnome: true
+gnome: false
