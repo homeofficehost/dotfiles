@@ -130,7 +130,7 @@ webstorm
 discord
 telegram-desktop-bin
 vlc
-picom-ibhagwan-git
+#picom-ibhagwan-git
 awesome
 awesome-freedesktop
 xorg-server-xephyr
