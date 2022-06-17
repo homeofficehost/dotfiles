@@ -345,5 +345,5 @@ brave-browser
 firefox
 qtpass
 dia
-apostrophe
+#apostrophe
 exa
