@@ -314,7 +314,7 @@ speedtest-cli
 # Bring your .bashrc, .vimrc, etc. with you when you SSH
 # sshrc" # temp offlin
 # Simplified and community-driven man pages
-#tldr
+tldr
 # Display directories as trees (with optional color/HTML output)
 tree
 # Extract, view, and test RAR archives

@@ -13,7 +13,7 @@
       - gnome-shell
       - gnome-shell-extensions
       - gnome-system-monitor
-      - gnome-terminal
+      # - gnome-terminal
       - gnome-todo
       - gnome-tweaks
       - nautilus
