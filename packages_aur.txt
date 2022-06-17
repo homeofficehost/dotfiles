@@ -90,6 +90,7 @@ icdiff
 # pass-update
 # native messaging host
 browserpass
+browserpass-librewolf
 # Browser extension for Firefox-based browsers
 browserpass-firefox
 # Browser extension for Chromium-based browsers
@@ -100,7 +101,7 @@ autokey-gtk
 meld
 ## ulauncher
 chrome-gnome-shell
-# librewolf # broke
+librewolf # broke
 # librewolf-extension-gnome-shell-integration
 # # Recursively compute digests on files/directories
 # md5deep
