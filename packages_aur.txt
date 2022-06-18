@@ -90,6 +90,7 @@ icdiff
 # pass-update
 # native messaging host
 browserpass
+browserpass-librewolf
 # Browser extension for Firefox-based browsers
 browserpass-firefox
 # Browser extension for Chromium-based browsers
@@ -100,7 +101,7 @@ autokey-gtk
 meld
 ## ulauncher
 chrome-gnome-shell
-# librewolf # broke
+# librewolf
 # librewolf-extension-gnome-shell-integration
 # # Recursively compute digests on files/directories
 # md5deep
@@ -130,7 +131,7 @@ webstorm
 discord
 telegram-desktop-bin
 vlc
-picom-ibhagwan-git
+#picom-ibhagwan-git
 awesome
 awesome-freedesktop
 xorg-server-xephyr
@@ -143,7 +144,7 @@ blueman
 
 leftwm
 leftwm-theme-git
-mpd
+#mpd
 kitty
 
 # hypr-git
