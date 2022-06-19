@@ -1,6 +1,5 @@
 ---
 
-
 gnome_extension_target:
   - { id: '1401',  name: 'Bluetooth quick connect' }
   - { id: '906',  name: 'Sound Input & Output Device Chooser' }
