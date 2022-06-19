@@ -8,6 +8,7 @@ gnome_extension_target:
   - { id: '3628',  name: 'arcmenu' }
 
 gnome_enable_extensions:
+  - 'arcmenu@arcmenu.com'
   # - 'pamac-updates@manjaro.org'
   # - 'dash-to-dock@micxgx.gmail.com'
   # - 'appindicatorsupport@rgcjonas.gmail.com'
