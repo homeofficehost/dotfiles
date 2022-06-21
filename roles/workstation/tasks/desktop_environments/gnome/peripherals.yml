@@ -19,6 +19,13 @@
     key: "/org/gnome/desktop/peripherals/keyboard/repeat-interval"
     value: "15"
 
+- name: gnome | peripherals | numlock on by default
+  tags: gnome,keyboard,peripherals
+  become_user: "{{ username }}"
+  dconf:
+    key: "/org/gnome/desktop/peripherals/keyboard/numlock-state"
+    value: "true"
+
 - name: gnome | peripherals | enable natural scrolling (mouse)
   tags: gnome,mouse,peripherals
   become_user: "{{ username }}"
