@@ -1,6 +1,5 @@
 ---
 
-
 - name: Enable Gnome Shell extension
   become:      true
   become_user: "{{ username }}"

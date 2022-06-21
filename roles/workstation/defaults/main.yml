@@ -1,13 +1,14 @@
 ---
 
-
 gnome_extension_target:
   - { id: '1401',  name: 'Bluetooth quick connect' }
   - { id: '906',  name: 'Sound Input & Output Device Chooser' }
   - { id: '3843',  name: 'Custom hot corners extended' }
   - { id: '1082',  name: 'cpufreq' }
+  - { id: '3628',  name: 'arcmenu' }
 
 gnome_enable_extensions:
+  - 'arcmenu@arcmenu.com'
   # - 'pamac-updates@manjaro.org'
   # - 'dash-to-dock@micxgx.gmail.com'
   # - 'appindicatorsupport@rgcjonas.gmail.com'
