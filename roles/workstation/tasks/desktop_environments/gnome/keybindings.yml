@@ -50,19 +50,7 @@
   with_items:
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name", value: "'browser'" }
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding", value: "'<Super>b'" }
-    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command", value: "'{{ web_browser }}'" }
-  when: web_browser is defined
-
-- name: gnome | keybindings | set primary browser keybinding
-  tags: gnome,keybindings
-  become_user: "{{ username }}"
-  dconf:
-    key: "{{ item.key }}"
-    value: "{{ item.value}}"
-  with_items:
-    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name", value: "'browser'" }
-    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding", value: "'<Super>b'" }
-    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command", value: "'firefox'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command", value: "'librewolf'" }
   when: web_browser is not defined
 
 - name: gnome | keybindings | set browser (alternate) keybinding
@@ -74,7 +62,7 @@
   with_items:
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name", value: "'browser-alt'" }
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding", value: "'<Shift><Super>b'" }
-    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command", value: "'/usr/bin/google-chrome'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command", value: "'chromium'" }
 
 - name: gnome | keybindings | set file manager keybinding
   tags: gnome,keybindings
