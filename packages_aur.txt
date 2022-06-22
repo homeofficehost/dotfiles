@@ -128,7 +128,6 @@ webstorm
 # Huge set of common tools for making games
 # godot-mono
 
-ungoogled-chromium
 discord
 telegram-desktop-bin
 vlc
