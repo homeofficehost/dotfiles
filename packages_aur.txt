@@ -139,7 +139,6 @@ xorg-server-xephyr
 awmtt
 
 netdiscover
-pulseaudio-equalizer
 blueman
 # polybar paysystray blueman-applet picom
 
