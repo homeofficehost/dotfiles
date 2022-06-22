@@ -60,7 +60,6 @@
     - { key: "/org/gtk/Settings/FileChooser/sort-directories-first", value: "true" }
     - { key: "/org/gnome/shell/favorite-apps", value: "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'jetbrains-webstorm.desktop', 'sublime_text.desktop', 'arduino.desktop', 'librewolf.desktop', 'chromium.desktop', 'telegramdesktop.desktop', 'Ripcord.desktop']" }
     - { key: "/org/gnome/mutter/workspaces-only-on-primary", value: "false" }
-    - { key: "/org/gnome/shell/app-switcher/current-workspace-only", value: "true" }
     - { key: "/org/gnome/mutter/dynamic-workspaces", value: "false" }
     
     # - { key: "/org/gnome/shell/enabled-extensions", value: "{{ gnome_enable_extensions|default([]) }}" }

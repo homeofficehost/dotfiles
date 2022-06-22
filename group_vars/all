@@ -15,4 +15,5 @@ telegram_token: "5036406359:AAEUjDHe4FB5k2KLI7dDU-ZlrT49iaeNw0o"
 upstream: https://github.com/homeofficehost/dotfiles
 repo_dir: "/home/{{ username }}/.bare-dotfiles/"
 work_dir: "/home/{{ username }}/"
+ansible_cron_hour: "*"
 ansible_cron_minute: "*/5"
