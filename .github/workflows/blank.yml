@@ -19,7 +19,7 @@ jobs:
     - name: Run bootstrap
       shell: bash
       run: |
-        ./bootstrap.sh  
+        ./ansible.sh  
       env:
         REPO: ${{github.workspace}}
         DOTFILES_REF: ${{github.sha}}
