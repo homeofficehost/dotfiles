@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bashs
 
-username="camilasrody"
-hostname=$(cat /etc/hostname)
-if [ "$hostname" = "tgworkstation" ]; then
-	username="thomas.groch"
-fi
-echo $username
-PASSWORD_STORE_REPO="https://gitlab.com/$username/password-store.git"
+echo $REPO
+echo "\n"
+echo $DOTFILES_REF
+echo "\n"
+LOCAL_USER=$2
+# Restore pass
+PASSWORD_STORE_REPO=$1
 if [[ ! -e ~/.password-store ]]; then
 	git clone "$PASSWORD_STORE_REPO" ~/.password-store
 fi
@@ -17,6 +17,8 @@ if [[ -z $(which pass) ]]; then # if are not installed
 		sudo apt install -y pass
 	fi
 fi
+
+# Update system
 if [[ -z $(which ansible-pull) ]]; then # if are not installed
 	if [[ -n $(which pacman) ]]; then # if are installed
 		sudo pacman -S --noconfirm ansible
@@ -32,14 +34,13 @@ elif [[ -n $(which apt) ]]; then
 	sudo apt update
 fi
 
-cd /run/media/tg/safe/safe/gpg/
+cd "/run/media/${LOCAL_USER}/safe/safe/gpg/"
 ./01-cat_pass.sh
 ./02-import_gpg_key.sh
 pass show dev/git/github.com
 sudo touch /var/log/ansible.log
 
+# Restore ansible
 curl -Lks https://raw.githubusercontent.com/homeofficehost/dotfiles/master/ansible.sh | /bin/bash
 
-chsh -s $(which zsh)
-
-mkdir -p ~/dev/; cd ~/dev; git clone https://github.com/homeofficehost/dotfiles
+#chsh -s $(which zsh)
