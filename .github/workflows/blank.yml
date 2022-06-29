@@ -16,10 +16,15 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it- uses: actions/c
     - uses: actions/checkout@master
+    - name: Configure GPG Key
+      run: |
+        echo -n "$GPG_SIGNING_KEY" | base64 --decode | gpg --import
+      env:
+        GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
     - name: Run bootstrap
       shell: bash
       run: |
-        ./bootstrap.sh "https://github.com/thomasgroch/password-store-for-testing.git" "github"
+        ./bootstrap.sh "https://github.com/thomasgroch/password-store-for-testing.git" "runner"
       env:
-        REPO: ${{github.workspace}}
+        WORKSPACE_PATH: ${{github.workspace}}
         DOTFILES_REF: ${{github.sha}}

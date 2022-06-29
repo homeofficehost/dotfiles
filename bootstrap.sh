@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo $REPO
+# echo $DOTFILES_REF "8acd4815dfe44ee26810b01e6a0129f13781480a"
+echo $WORKSPACE_PATH
 echo "\n"
-echo $DOTFILES_REF
-echo "\n"
-echo -n "$GPG_SIGNING_KEY"
+echo $GPG_SIGNING_KEY
 LOCAL_USER=$2
+if [[ -n $DOTFILES_REF ]]; then
 # Restore pass
 PASSWORD_STORE_REPO=$1
 if [[ ! -e ~/.password-store ]]; then
@@ -18,7 +18,7 @@ if [[ -z $(which pass) ]]; then # if are not installed
 		sudo apt install -y pass
 	fi
 fi
-
+fi
 # Update system
 if [[ -z $(which ansible-pull) ]]; then # if are not installed
 	if [[ -n $(which pacman) ]]; then # if are installed
@@ -35,10 +35,12 @@ elif [[ -n $(which apt) ]]; then
 	sudo apt update
 fi
 
-cd "/run/media/${LOCAL_USER}/safe/safe/gpg/"
-./01-cat_pass.sh
-./02-import_gpg_key.sh
-pass show dev/git/github.com
+if [[ -n $DOTFILES_REF ]]; then
+	cd "/run/media/${LOCAL_USER}/safe/safe/gpg/"
+	./01-cat_pass.sh
+	./02-import_gpg_key.sh
+	pass show dev/git/github.com
+fi
 sudo touch /var/log/ansible.log
 
 # Restore ansible
