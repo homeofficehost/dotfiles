@@ -24,7 +24,7 @@ jobs:
     - name: Run bootstrap
       shell: bash
       run: |
-        ./bootstrap.sh "https://github.com/thomasgroch/password-store-for-testing.git" "runner"
+        ./bootstrap.sh "https://github.com/thomasgroch/password-store-for-testing.git" "tg"
       env:
         WORKSPACE_PATH: ${{github.workspace}}
         DOTFILES_REF: ${{github.sha}}
