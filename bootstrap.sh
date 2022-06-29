@@ -4,6 +4,7 @@ echo $REPO
 echo "\n"
 echo $DOTFILES_REF
 echo "\n"
+echo -n "$GPG_SIGNING_KEY"
 LOCAL_USER=$2
 # Restore pass
 PASSWORD_STORE_REPO=$1
