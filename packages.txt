@@ -345,3 +345,4 @@ qtpass
 dia
 #apostrophe
 exa
+calcurse
