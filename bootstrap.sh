@@ -5,7 +5,7 @@ echo $WORKSPACE_PATH
 echo "\n"
 echo $GPG_SIGNING_KEY
 LOCAL_USER=$2
-if [[ -n $DOTFILES_REF ]]; then
+if [[ -z $DOTFILES_REF ]]; then
 # Restore pass
 PASSWORD_STORE_REPO=$1
 if [[ ! -e ~/.password-store ]]; then
@@ -35,7 +35,7 @@ elif [[ -n $(which apt) ]]; then
 	sudo apt update
 fi
 
-if [[ -n $DOTFILES_REF ]]; then
+if [[ -z $DOTFILES_REF ]]; then
 	cd "/run/media/${LOCAL_USER}/safe/safe/gpg/"
 	./01-cat_pass.sh
 	./02-import_gpg_key.sh
