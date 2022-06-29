@@ -2,10 +2,10 @@
 - include_vars: "{{ ansible_distribution }}.yml"
   tags: always
 
-- name: debug
-  become_user: "{{ username }}"
-  debug: 
-    var: ansible_sudo_pass
+# - name: debug
+#   become_user: "{{ username }}"
+#   debug: 
+#     var: ansible_sudo_pass
 
 - block:
 
