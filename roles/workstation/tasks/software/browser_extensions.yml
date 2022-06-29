@@ -2,10 +2,10 @@
 #     msg: "System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}"
 #   when: ansible_default_ipv4.gateway is defined
 
-# - name: Display all variables/facts known for a host
-#   debug:
-#     var: hostvars[inventory_hostname]
-#     verbosity: 4
+- name: Display all variables/facts known for a host
+  debug:
+    var: hostvars[inventory_hostname]
+    verbosity: 4
 
 # - name: Install browser package
 #   vars:
