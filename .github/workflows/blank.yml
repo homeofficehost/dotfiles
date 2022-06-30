@@ -16,11 +16,31 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it- uses: actions/c
     - uses: actions/checkout@master
-    - name: Run bootstrap
-      shell: bash
-      run: |
-        ./bootstrap2.sh "https://github.com/thomasgroch/password-store-for-testing.git" "tg"
-      env:
-        WORKSPACE_PATH: ${{github.workspace}}
-        DOTFILES_REF: ${{github.sha}}
-        GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+
+    # - 
+    #   name: Configure GPG Key
+    #   run: |
+    #     echo -n "${GPG_SIGNING_KEY}" | base64 --decode | gpg --import
+    #   env:
+    #     GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+      -
+        name: List keys
+        run: gpg -K
+
+    # - name: Run bootstrap
+    #   shell: bash
+    #   run: |
+    #     ./bootstrap.sh2 "https://github.com/thomasgroch/password-store-for-testing.git" "tg"
+    #   env:
+    #     WORKSPACE_PATH: ${{github.workspace}}
+    #     DOTFILES_REF: ${{github.sha}}
+    #     GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
