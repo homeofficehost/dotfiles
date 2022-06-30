@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# echo $DOTFILES_REF "8acd4815dfe44ee26810b01e6a0129f13781480a"
-# echo $WORKSPACE_PATH "/home/runner/work/dotfiles/dotfiles"
-
 LOCAL_USER=$2
 # Restore pass
 PASSWORD_STORE_REPO=$1

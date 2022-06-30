@@ -40,8 +40,7 @@ jobs:
       name: Run bootstrap
       shell: bash
       run: |
-        ./bootstrap2.sh "https://github.com/thomasgroch/password-store-for-testing.git" "tg"
+        ./bootstrap.sh "https://github.com/thomasgroch/password-store-for-testing.git" "tg"
       env:
-        WORKSPACE_PATH: ${{github.workspace}}
-        DOTFILES_REF: ${{github.sha}}
-        GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+        WORKSPACE_PATH: ${{github.workspace}} # "/home/runner/work/dotfiles/dotfiles"
+        DOTFILES_REF: ${{github.sha}} # "8acd4815dfe44ee26810b01e6a0129f13781480a"
