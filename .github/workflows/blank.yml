@@ -31,6 +31,8 @@ jobs:
       uses: crazy-max/ghaction-import-gpg@v5
       with:
         gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        fingerprint: "430A44F67F9547FD18B0C0A10D7B0F5C2D5E1888"
     -
       name: List keys
       run: gpg -K
