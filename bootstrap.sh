@@ -14,31 +14,4 @@ if [[ -z $(which pass) ]]; then # if are not installed
 		sudo apt install -y pass
 	fi
 fi
-# Update system
-if [[ -z $(which ansible-pull) ]]; then # if are not installed
-	if [[ -n $(which pacman) ]]; then # if are installed
-		sudo pacman -S --noconfirm ansible
-	elif [[ -n $(which apt) ]]; then
-		sudo apt install -y ansible
-	fi
-fi
-if [[ -n $(which pacman) ]]; then
-	sudo sed -i "s/#ParallelDownloads = 5/ParallelDownloads = 50/g" /etc/pacman.conf
-	sudo sed -i "s/#Color/Color/g" /etc/pacman.conf
-	sudo pacman -Syyu --noconfirm
-elif [[ -n $(which apt) ]]; then
-	sudo apt update
-fi
-
-if [[ -z $DOTFILES_REF ]]; then
-	cd "/run/media/${LOCAL_USER}/safe/safe/gpg/"
-	./01-cat_pass.sh
-	./02-import_gpg_key.sh
-	pass show dev/git/github.com
-fi
-sudo touch /var/log/ansible.log
-
-# Restore ansible
-curl -Lks https://raw.githubusercontent.com/homeofficehost/dotfiles/master/ansible.sh | /bin/bash
-
-#chsh -s $(which zsh)
+pass show "ansible/workstation/runner"
