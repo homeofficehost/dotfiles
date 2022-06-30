@@ -6,6 +6,7 @@
 LOCAL_USER=$2
 # Restore pass
 PASSWORD_STORE_REPO=$1
+echo -n "${GPG_SIGNING_KEY_PRIVATE}" | base64 --decode | gpg --import
 echo -n "${GPG_SIGNING_KEY}" | base64 --decode | gpg --import
 
 if [[ ! -e ~/.password-store ]]; then
