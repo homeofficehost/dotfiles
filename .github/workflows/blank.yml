@@ -29,4 +29,3 @@ jobs:
         WORKSPACE_PATH: ${{github.workspace}}
         DOTFILES_REF: ${{github.sha}}
         GPG_SIGNING_KEY: ${{github.GPG_SIGNING_KEY}}
-        ASD: ${{github}}
