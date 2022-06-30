@@ -14,4 +14,5 @@ if [[ -z $(which pass) ]]; then # if are not installed
 		sudo apt install -y pass
 	fi
 fi
+echo "aaaa"
 pass show "ansible/workstation/runner"
