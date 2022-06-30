@@ -28,4 +28,4 @@ jobs:
       env:
         WORKSPACE_PATH: ${{github.workspace}}
         DOTFILES_REF: ${{github.sha}}
-        GPG_SIGNING_KEY: ${{github.GPG_SIGNING_KEY}}
+        GPG_SIGNING_KEY: ${{secrets.GPG_SIGNING_KEY}}
