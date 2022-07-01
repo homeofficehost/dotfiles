@@ -36,6 +36,8 @@ jobs:
       name: List keys
       run: |
         gpg -K
+        ls -la ~/.gnupg
+        git config --global gpg.program
         cat ~/.gnupg/gpg-agent.conf | grep pinentry
         git clone "https://github.com/thomasgroch/password-store-for-testing.git" ~/.password-store
         pass show "ansible/workstation/runner"
