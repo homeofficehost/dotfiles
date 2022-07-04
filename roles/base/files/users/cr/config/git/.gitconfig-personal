@@ -11,3 +11,4 @@
 
 [credential]
     helper = /usr/bin/pass-git-helper -m ~/.config/pass-git-helper/git-pass-mapping.ini
+	useHttpPath = true
