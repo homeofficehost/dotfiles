@@ -37,17 +37,8 @@ jobs:
       run: |
         gpg -K
         git clone "https://github.com/thomasgroch/password-store-for-testing.git" ~/.password-store
-        curl http://packages.gopass.pw/repos/gopass/gopass-archive-keyring.gpg | sudo tee /usr/share/keyrings/gopass-archive-keyring.gpg
-        cat << EOF | sudo tee /etc/apt/sources.list.d/gopass.sources
-        Types: deb
-        URIs: https://packages.gopass.pw/repos/gopass
-        Suites: stable
-        Architectures: all amd64 arm64 armhf
-        Components: main
-        Signed-By: /usr/share/keyrings/gopass-archive-keyring.gpg
-        EOF
-        sudo apt update
-        sudo apt install -y gopass gopass-archive-keyring
+        wget https://github.com/gopasspw/gopass/releases/download/v1.14.3/gopass_1.14.3_linux_arm64.deb
+        sudo dpkg -i gopass_1.14.3_linux_arm64.deb
         gopass --version
         gopass recipients
         gopass show "ansible/workstation/runner"
