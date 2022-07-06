@@ -37,8 +37,10 @@ jobs:
       run: |
         gpg -K
         git clone "https://github.com/thomasgroch/password-store-for-testing.git" ~/.password-store
+        sudo apt install -y pass
+        sudo apt install -y gopass
         gopass recipients
-        pass show "ansible/workstation/runner"
+        gopass show "ansible/workstation/runner"
 
     # - 
     #   name: Run bootstrap
