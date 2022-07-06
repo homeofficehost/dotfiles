@@ -37,6 +37,7 @@ jobs:
       run: |
         gpg -K
         git clone "https://github.com/thomasgroch/password-store-for-testing.git" ~/.password-store
+        gopass recipients
         pass show "ansible/workstation/runner"
 
     # - 
