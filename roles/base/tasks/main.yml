@@ -41,8 +41,8 @@
   when: ansible_sudo_pass is defined and ansible_sudo_pass != ''
 
 # otherwise output a message
-- block:
+# - block:
 
-  - fail: msg="Missing vault password"
+#   - fail: msg="Missing vault password"
   
-  when: ansible_sudo_pass is not defined and ansible_sudo_pass == ''
+#   when: ansible_sudo_pass is not defined and ansible_sudo_pass == ''
