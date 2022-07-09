@@ -48,10 +48,7 @@ jobs:
     - 
       name: Run bootstrap
       shell: bash
-      # ./bootstrap.sh "https://github.com/thomasgroch/password-store-for-testing.git" "tg"
-      run: |
-        git clone "https://github.com/thomasgroch/password-store-for-testing.git" ~/.password-store
-        sudo apt install -y pass
+        ./bootstrap.sh "https://github.com/thomasgroch/password-store-for-testing.git" "tg"
       env:
         WORKSPACE_PATH: ${{github.workspace}} # "/home/runner/work/dotfiles/dotfiles"
         DOTFILES_REF: ${{github.sha}} # "8acd4815dfe44ee26810b01e6a0129f13781480a"
