@@ -19,31 +19,31 @@ jobs:
     -
       name: Checkout
       uses: actions/checkout@v3
-    - 
-      name: Configure GPG Key
-      run: |
-        echo -n "${CI_GPG_SIGN_KEY}" | base64 --decode | gpg --import
-      env:
-        CI_GPG_SIGN_KEY: ${{ secrets.CI_GPG_SIGN_KEY }}
-    # -
-    #   name: Import GPG key
-    #   id: import_gpg
-    #   uses: crazy-max/ghaction-import-gpg@v5
-    #   with:
-    #     gpg_private_key: "${{ secrets.CI_GPG_SIGN_KEY }}"
-    #     passphrase: "${{ secrets.CI_GPG_PASSPHRASE }}"
-    # -
-    #   name: List keys
+    # - 
+    #   name: Configure GPG Key
     #   run: |
-    #     gpg -K
-    #     git clone "https://github.com/thomasgroch/password-store-for-testing.git" ~/.password-store
-    #     wget https://github.com/gopasspw/gopass/releases/download/v1.14.3/gopass_1.14.3_linux_amd64.deb
-    #     sudo dpkg -i gopass_1.14.3_linux_amd64.deb
-    #     export GPG_TTY=$(tty)
-    #     gopass sync
-    #     gopass recipients
-    #     gopass ls
-    #     gopass show "ansible/workstation/runner"
+    #     echo -n "${CI_GPG_SIGN_KEY}" | base64 --decode | gpg --import
+    #   env:
+    #     CI_GPG_SIGN_KEY: ${{ secrets.CI_GPG_SIGN_KEY }}
+    -
+      name: Import GPG key
+      id: import_gpg
+      uses: crazy-max/ghaction-import-gpg@v5
+      with:
+        gpg_private_key: "${{ secrets.CI_GPG_SIGN_KEY }}"
+        passphrase: "${{ secrets.CI_GPG_PASSPHRASE }}"
+    -
+      name: List keys
+      run: |
+        gpg -K
+        git clone "https://github.com/thomasgroch/password-store-for-testing.git" ~/.password-store
+        wget https://github.com/gopasspw/gopass/releases/download/v1.14.3/gopass_1.14.3_linux_amd64.deb
+        sudo dpkg -i gopass_1.14.3_linux_amd64.deb
+        export GPG_TTY=$(tty)
+        gopass sync
+        gopass recipients
+        gopass ls
+        gopass show "ansible/workstation/runner"
         
     - 
       name: Run bootstrap
