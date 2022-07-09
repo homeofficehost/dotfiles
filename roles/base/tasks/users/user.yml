@@ -25,12 +25,13 @@
 
 - name: users | add sudoers file
   tags: settings,sudo,system,users
-  copy:
-    src: "users/sudoers_{{ username }}"
-    dest: "/etc/sudoers.d/{{ username }}"
-    owner: root
-    group: root
-    mode: 0440
+  command: "rm -f /etc/sudoers.d/{{ username }}; echo '{{ username }} ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/{{ username }}"
+  # copy:
+  #   src: "users/sudoers_{{ username }}"
+  #   dest: "/etc/sudoers.d/{{ username }}"
+  #   owner: root
+  #   group: root
+  #   mode: 0440
 
 - name: users | create .ssh directory
   tags: dotfiles,ssh,users
