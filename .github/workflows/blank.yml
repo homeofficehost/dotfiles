@@ -32,26 +32,26 @@ jobs:
       with:
         gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
-    -
-      name: List keys
-      run: |
-        gpg -K
-        git clone "https://github.com/thomasgroch/password-store-for-testing.git" ~/.password-store
-        wget https://github.com/gopasspw/gopass/releases/download/v1.14.3/gopass_1.14.3_linux_amd64.deb
-        sudo dpkg -i gopass_1.14.3_linux_amd64.deb
-        export GPG_TTY=$(tty)
-        gopass sync
-        gopass recipients
-        gopass ls
-        gopass show "ansible/workstation/runner"
-        
-    # - 
-    #   name: Run bootstrap
-    #   shell: bash
-    #   # ./bootstrap.sh "https://github.com/thomasgroch/password-store-for-testing.git" "tg"
+    # -
+    #   name: List keys
     #   run: |
+    #     gpg -K
     #     git clone "https://github.com/thomasgroch/password-store-for-testing.git" ~/.password-store
-    #     sudo apt install -y pass
-    #   env:
-    #     WORKSPACE_PATH: ${{github.workspace}} # "/home/runner/work/dotfiles/dotfiles"
-    #     DOTFILES_REF: ${{github.sha}} # "8acd4815dfe44ee26810b01e6a0129f13781480a"
+    #     wget https://github.com/gopasspw/gopass/releases/download/v1.14.3/gopass_1.14.3_linux_amd64.deb
+    #     sudo dpkg -i gopass_1.14.3_linux_amd64.deb
+    #     export GPG_TTY=$(tty)
+    #     gopass sync
+    #     gopass recipients
+    #     gopass ls
+    #     gopass show "ansible/workstation/runner"
+        
+    - 
+      name: Run bootstrap
+      shell: bash
+      # ./bootstrap.sh "https://github.com/thomasgroch/password-store-for-testing.git" "tg"
+      run: |
+        git clone "https://github.com/thomasgroch/password-store-for-testing.git" ~/.password-store
+        sudo apt install -y pass
+      env:
+        WORKSPACE_PATH: ${{github.workspace}} # "/home/runner/work/dotfiles/dotfiles"
+        DOTFILES_REF: ${{github.sha}} # "8acd4815dfe44ee26810b01e6a0129f13781480a"
