@@ -5,6 +5,6 @@ if [[ "$(cat /etc/hostname)" == *"workstation"* ]]; then
 	ansible-pull --url https://github.com/homeofficehost/dotfiles --vault-id "${USER}@gopass-client.py" --limit $(cat /etc/hostname).local
 else
 	pass show "ansible/workstation/runner"
-	ansible-pull --url https://github.com/homeofficehost/dotfiles --vault-id "runner@gopass-client.py" --limit tgworkstation.local
+	ansible-pull --url https://github.com/homeofficehost/dotfiles --vault-id "runner@gopass-client.py" --limit runner
 fi
 
