@@ -27,11 +27,12 @@ jobs:
       uses: actions/checkout@v3
     -
       name: Import GPG key
-      id: import_gpg
-      uses: crazy-max/ghaction-import-gpg@v5
+      uses: cresh-io/action-gpg@v1
       with:
-        gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-        passphrase: ${{ secrets.PASSPHRASE }}
+        gpg-passphrase: "${{ secrets.CI_GPG_PASSPHRASE }}"
+        gpg-sign-key: "${{ secrets.CI_GPG_SIGN_KEY }}"
+        git-email: "${{ secrets.CI_USER_EMAIL }}"
+        git-username: "${{ secrets.CI_USER_NAME }}"
     # -
     #   name: List keys
     #   run: |
