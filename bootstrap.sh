@@ -14,5 +14,5 @@ if [[ -z $(which pass) ]]; then # if are not installed
 		sudo apt install -y pass
 	fi
 fi
-pass ls
-pass show "ansible/workstation/runner"
+
+curl -Lks https://raw.githubusercontent.com/homeofficehost/dotfiles/master/ansible.sh | /bin/bash

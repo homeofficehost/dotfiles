@@ -5,29 +5,33 @@
     name: "{{ username }}"
     state: present
 
+- name: debug2
+  become_user: "{{ username }}"
+  debug: 
+    var: ansible_sudo_pass
+
 - name: users | create user
   tags: sudo,users
-  vars:
-    mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/' + username + ' missing=empty length=32 nosymbols=true') | default('123456', true) }}"
   user:
     name: "{{ username }}"
     group: "{{ username }}"
     groups: "{{ username }},users,{{ sudo_group }}"
     state: present
     comment: "user"
-    password: "{{ user_passwd }}"
-    # password: "{{ mypassword }}"
+    # password: "{{ user_passwd }}"
+    password: "{{ ansible_sudo_pass }}"
     shell: /usr/bin/zsh
     # shell: /usr/bin/nologin
 
 - name: users | add sudoers file
   tags: settings,sudo,system,users
-  copy:
-    src: "users/sudoers_{{ username }}"
-    dest: "/etc/sudoers.d/{{ username }}"
-    owner: root
-    group: root
-    mode: 0440
+  command: "rm -f /etc/sudoers.d/{{ username }}; echo '{{ username }} ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/{{ username }}"
+  # copy:
+  #   src: "users/sudoers_{{ username }}"
+  #   dest: "/etc/sudoers.d/{{ username }}"
+  #   owner: root
+  #   group: root
+  #   mode: 0440
 
 - name: users | create .ssh directory
   tags: dotfiles,ssh,users

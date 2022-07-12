@@ -1,13 +1,11 @@
 - name: users | velociraptor | Create user
   tags: dotfiles,velociraptor,ssh,ssh-keys,users
-  vars:
-    mypassword: "{{ lookup('community.general.passwordstore', 'ansible/workstation/tg missing=empty length=32 nosymbols=true')}}"
   user:
     name: velociraptor
     create_home: yes
     groups: users,{{ sudo_group }}
     state: present
-    password: "{{ user_passwd }}"
+    password: "{{ ansible_sudo_pass }}"
 
 - name: users | velociraptor | add public key
   tags: dotfiles,velociraptor,ssh,ssh-keys,users
