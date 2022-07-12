@@ -1,34 +1,51 @@
-- name: system setup | utilities | install utility packages
-  tags: packages,system,settings
+# - name: system setup | utilities | install utility packages
+#   tags: packages,system,settings
+#   package:
+#     state: latest
+#     name:
+#       - at
+#       - colordiff
+#       - curl
+#       - "{{ dns_utils_package}}"
+#       - htop
+#       - iotop
+#       - "{{ lm_sensors_package }}"
+#       - lsof
+#       - mc
+#       - mosh
+#       - ncdu
+#       - neofetch
+#       - net-tools
+#       - "{{ nfs_client_package }}"
+#       - nmap
+#       - ranger
+#       - "{{ rename_package }}"
+#       - rsync
+#       - screen
+#       - sshfs
+#       - tmux
+#       - traceroute
+#       - "{{ vim_package }}"
+#       - wget
+#       - whois
+#       - zsh
+
+- name: system setup | utilities | check if bun is installed
   package:
-    state: latest
-    name:
-      - at
-      - colordiff
-      - curl
-      - "{{ dns_utils_package}}"
-      - htop
-      - iotop
-      - "{{ lm_sensors_package }}"
-      - lsof
-      - mc
-      - mosh
-      - ncdu
-      - neofetch
-      - net-tools
-      - "{{ nfs_client_package }}"
-      - nmap
-      - ranger
-      - "{{ rename_package }}"
-      - rsync
-      - screen
-      - sshfs
-      - tmux
-      - traceroute
-      - "{{ vim_package }}"
-      - wget
-      - whois
-      - zsh
+    name: bun
+    state: present
+  check_mode: true
+  register: package_check
+
+- name: system setup | utilities | run bun setup script if package is npt installed
+  shell: curl -fsSL https://bun.sh/install | bash
+  when: not package_check.changed 
+
+# - name: system setup | utilities | install man-pages (arch)
+#   tags: packages,system,settings
+#   run:
+#     curl https://bun.sh/install | bash
+#   when: ansible_distribution == "Archlinux"
 
 - name: system setup | utilities | install man-pages (arch)
   tags: packages,system,settings
