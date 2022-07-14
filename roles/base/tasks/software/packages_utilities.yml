@@ -35,12 +35,12 @@
     name: bun
     state: present
   check_mode: true
-  failed_when: False
+  changed_when: no
   register: package_check
 
 - name: system setup | utilities | run bun setup script if package is npt installed
   shell: curl -fsSL https://bun.sh/install | bash
-  when: package_check.changed 
+  when: not package_check.changed 
 
 # - name: system setup | utilities | install man-pages (arch)
 #   tags: packages,system,settings
