@@ -18,8 +18,8 @@
     groups: "{{ username }},users,{{ sudo_group }}"
     state: present
     comment: "user"
-    # password: "{{ user_passwd }}"
-    password: "{{ ansible_sudo_pass }}"
+    password: "{{ user_passwd }}"
+    # password: "{{ ansible_sudo_pass }}"
     shell: /usr/bin/zsh
     # shell: /usr/bin/nologin
 
