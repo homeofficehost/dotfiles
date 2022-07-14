@@ -40,7 +40,7 @@
 
 - name: system setup | utilities | run bun setup script if package is npt installed
   shell: curl -fsSL https://bun.sh/install | bash
-  when: not package_check.changed 
+  when: package_check.changed 
 
 # - name: system setup | utilities | install man-pages (arch)
 #   tags: packages,system,settings
