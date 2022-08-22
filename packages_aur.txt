@@ -100,7 +100,7 @@ firefox-adblock-plus
 autokey-gtk
 meld
 ## ulauncher
-chrome-gnome-shell
+###chrome-gnome-shell
 librewolf-bin
 # librewolf-extension-gnome-shell-integration
 # # Recursively compute digests on files/directories
