@@ -40,3 +40,4 @@
     name: gdm
     enabled: true
     state: started
+  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
