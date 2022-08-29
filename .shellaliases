@@ -1,5 +1,26 @@
 #!/bin/sh
 
+# find lines only in file1
+function only_left() {
+	comm -23 <(sort <(grep '^[^#]' $1)) <(sort <(grep '^[^#]' $2))
+}
+# find lines only in file2
+function only_right() {
+	comm -13 <(sort <(grep '^[^#]' $1)) <(sort <(grep '^[^#]' $2))
+}
+# find lines common to both files
+function common_to_both() {
+	comm -12 <(sort <(grep '^[^#]' $1)) <(sort <(grep '^[^#]' $2))
+}
+function uncommon_left() {
+	common_to_both $1 $2 > asd
+	only_left $1 asd
+}
+function uncommon_right() {
+	common_to_both $1 $2 > asd
+	only_right $1 asd
+}
+
 function pass_insert(){
     expect << EOF
 spawn $1
@@ -888,7 +909,7 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias linux_kernel_log="sudo journalctl -p 3 -xb"
 	alias linux_kernel="journalctl -afn100"
 	alias linux_update="sudo pacman -Syyu"
-	alias linux_bundle="pacman -Qqen > pkglist.txt"
+	alias linux_bundle="pacman -Qqe > pkglist.txt"
 	alias gnome_quit="gnome-session-quit --no-prompt"
 	alias linux_networks="sudo lshw -C network"
 	alias wmtest="awmtt start -C ~/.config/awesome/rc.lua -D 3 -S 1280x800"
