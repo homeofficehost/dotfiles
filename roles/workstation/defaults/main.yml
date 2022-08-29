@@ -6,9 +6,10 @@ gnome_extension_target:
   - { id: '3843',  name: 'Custom hot corners extended' }
   - { id: '1082',  name: 'cpufreq' }
   - { id: '3628',  name: 'arcmenu' }
+  - { id: '5237',  name: 'rounded-window-corners' }
 
 gnome_enable_extensions:
-  - 'arcmenu@arcmenu.com'
+  - 'rounded-window-corners@yilozt'
   # - 'pamac-updates@manjaro.org'
   # - 'dash-to-dock@micxgx.gmail.com'
   # - 'appindicatorsupport@rgcjonas.gmail.com'
