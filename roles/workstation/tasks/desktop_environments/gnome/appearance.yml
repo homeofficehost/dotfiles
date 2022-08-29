@@ -51,7 +51,9 @@
     - { key: "/ca/desrt/dconf-editor/show-warning", value: "false" }
     - { key: "/org/gnome/software/first-run", value: "false" }
     - { key: "/org/gnome/boxes/first-run", value: "false" }
-    - { key: "/org/gnome/Terminal/Legacy/Settings/theme-variant", value: "'dark'" }
+    - { key: "/org/gnome/terminal/legacy/Settings/theme-variant", value: "'dark'" }
+    - { key: "/org/gnome/terminal/legacy/default-show-menubar", value: "false" }
+    - { key: "/org/gnome/terminal/legacy/settings/confirm-close", value: "false" }
     - { key: "/org/gnome/swell-foop/first-run", value: "false" }
     - { key: "/org/gnome/nibbles/first-run", value: "false" }
     - { key: "/org/gnome/todo/first-run", value: "false" }
