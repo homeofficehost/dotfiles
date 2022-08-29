@@ -129,7 +129,7 @@ webstorm
 # godot-mono
 
 discord
-telegram-desktop-bin
+forkgram-bin
 vlc
 #picom-ibhagwan-git
 #awesome
