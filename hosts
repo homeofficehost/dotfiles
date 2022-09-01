@@ -1,6 +1,10 @@
-[server]
+[base]
 
 [workstation]
 tgworkstation.local ansible_sudo=True ansible_sudo_pass="{{ lookup('passwordstore', 'ansible/workstation/tg') }}"
 crworkstation.local ansible_sudo=True ansible_sudo_pass="{{ lookup('passwordstore', 'ansible/workstation/cr') }}"
 runner ansible_sudo=True ansible_sudo_pass="asdasd"
+tgworkstation.local
+crworkstation.local
+
+[server]
