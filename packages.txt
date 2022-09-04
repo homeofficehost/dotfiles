@@ -235,9 +235,6 @@ mitmproxy
 # SSL manipulation tools, \`mitmproxy --host\` runs on 8080
 # Man-in-the-middle attacks against SSL encrypted network connections
 sslsplit
-# Intercept, modify, replay, save HTTP/S traffic
-mitmproxy
-
 
 
 # Utilities
