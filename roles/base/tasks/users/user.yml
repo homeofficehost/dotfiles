@@ -82,7 +82,21 @@
     update: yes
     track_submodules: yes
     recursive: yes
+    force: yes
   when: not repo_directory.stat.exists
+  tags: dotfiles,users,barerepo
+
+- name: Git | Ensure bare repo is up to date
+  become_user: "{{ username }}"
+  git:
+    repo: "{{ upstream }}"
+    dest: "{{ repo_dir }}"
+    version: "master"
+    bare: yes
+    update: yes
+    track_submodules: yes
+    recursive: yes
+  when: repo_directory.stat.exists
   tags: dotfiles,users,barerepo
   # changed_when: "git_result.after|default('after') != git_result.before|default('before')"
 
