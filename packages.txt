@@ -344,11 +344,11 @@ dia
 exa
 calcurse
 
+#wlroots # comment out because wayfire-git conflicts with wlroots
 wayfire-git
 swaybg
 swayidle
 swaylock
-wlroots
 wl-clipboard
 waybar
 wofi
