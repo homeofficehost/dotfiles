@@ -367,5 +367,5 @@ mpd
 mpc
 viewnior
 imagemagick
-xfce-polkit-git
+#xfce-polkit
 xorg-xwayland
