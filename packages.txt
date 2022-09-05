@@ -344,7 +344,7 @@ dia
 exa
 calcurse
 
-wayfire
+wayfire-git
 swaybg
 swayidle
 swaylock
