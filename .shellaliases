@@ -917,7 +917,7 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias pacman_rm_corrupt_packages='sudo find /var/cache/pacman/pkg/ -iname "*.part" -delete'
 	alias openports='sudo lsof -i -P -n | grep LISTEN'
 	alias watchopenports='watch "sudo lsof -i -P -n | grep LISTEN"'
-
+	alias cronstatus="systemctl status cronie"
 	alias wminwm="Xephyr -br -ac -noreset -screen 1920x1200 :$@"
 	alias open="xdg-open"
 
