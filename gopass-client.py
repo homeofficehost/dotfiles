@@ -1,88 +1,100 @@
-#!/usr/bin/env python3
-# -*- coding: utf8 -*-
+#!/usr/bin/env python
+#
+# Assuming you have a working gopass installation. I personally use multiple mounts and I store all the passwords under a
+# single directory.
+#
+# Add the following section to your `ansible.cfg`
+#
+# [vault]
+# mount='store-X' # replace `store-x` with your actual store, if using the root set to an empty string
+# directory='ansible' # replace `ansible` with the folder, or folder structure to your storage
+#
+# To use this script, make sure it is is readable by ansible. I assume going foward it is in the `scripts` folder in the 
+# root directory of your ansible playbooks. The file is assumed to be saved as gopass-client.py. The only condition on the name
+# is that it MUST end with `-client.py` or else it is never passed the `--vault-id` parameter.
+#
+# If your file is not stored in the scripts directory one level down from the root you will need to update the following:
+#
+# config.read(os.path.join(curdir, "../ansible.cfg"))
+#
+# make sure the path is pointing the the ansible.cfg or some other ini file you want to store the settings in.
+#
+# To manually specify vault ids to add, simply add `--vault-id password-name@scripts/gopass-client.py`.
+# You can add as many of these as you need. But this quickly becomes unweildly.
+#
+# In your `ansible.cfg` make sure your default section has the following line
+#
+# [defaults]
+# vault_identity_list=dev@scripts/gopass-client.py, staging@scripts/gopass-client.py
+#
+# vault_identity_list is a comma seperated list. replace dev and staging and add as many more as you need to fit your needs.
+#
+# In a production situation, you may be sharing the ansible code with many users and all may not have the same permissions to
+# read the password from the gopass store. 
+#
+# By default this client will error if it can't decrypt the password. Unfortunately, on initialization ansible tries to load
+# all the vault ids you specify even if they aren't needed. Therefore if a user doesn't have access to one of the passwords
+# all ansible commands will just error if you use the `vault_identity_list` fields. 
+#
+# By adding the following to the vault configuration if a password is unabled to be determined, random data will be returned
+#
+# [vault]
+# suppress_gopass_errors = True
+#
+# This is a double edged sword, this gets around errors running playbooks when a user might not be able to decrypt the
+# password. But using `ansible-vault encrypt --encrypt-vault-id X ....` when you don't have access to X will result in a random 
+# password being used. Since it is random and not saved, you won't be able to decrypt the information again. 
+#
+# Use this option at your own discression, but I think the advantages outweigh the costs. 
+#
+# If someone knows how to make config manager work like in the example client in the ansible directory let me know and I will
+# happily make the adjustments.
 
-"""
-A script that allows to keep Ansible Vault passwords in a gpg encrypted files
-managed by pass (https://www.passwordstore.org) or compatible password managers
-like gopass (https://www.gopass.pw).
-"""
+import sys
+import argparse
+import subprocess
+import os
+import configparser
+import random
+import string
 
-from argparse import ArgumentParser as AP
-from configparser import ConfigParser, NoOptionError, NoSectionError
-from os import environ, getcwd, path
-from subprocess import PIPE, Popen
-from sys import exit, stderr, stdout
+def build_arg_parser():
+    parser = argparse.ArgumentParser(description='Get a vault password from user keyring')
 
-# Password manager to use (pass or gopass)
-pass_command = 'pass'
-
-# Get Ansible config file
-try:
-    import ansible.constants as C
-    ansible_config_file = C.CONFIG_FILE
-except ImportError:
-    try:
-        ansible_config_file = environ['ANSIBLE_CONFIG']
-    except KeyError:
-        cfg = getcwd() + '/' + 'ansible.cfg'
-        if path.isfile(cfg):
-            ansible_config_file = cfg
-        else:
-            ansible_config_file = path.expanduser('~/.ansible.cfg')
-
-
-def get_vault_id():
-    # Get passwordstore name from '--vault-id' CLI option
-    parser = AP(description='Get a vault password from passwordstore',
-                epilog='Please read the README.md file for more info.',
-                allow_abbrev=False)
-
-    parser.add_argument('--vault-id', action='store', default='default',
+    parser.add_argument('--vault-id', action='store', default=None,
                         dest='vault_id',
-                        help='passwordstore containing the vault password')
-
-    vault_id = parser.parse_args().vault_id.strip()
-
-    return vault_id
-
-
-def get_config_passwordstore():
-    # Get passwordstore name from Ansible config file
-    if ansible_config_file:
-        try:
-            # Raad Ansible config
-            config = ConfigParser()
-            config.read(ansible_config_file)
-            # Get passwordstore name from Ansible config
-            passwordstore = config.get('vault', 'passwordstore',
-                                       fallback='').strip()
-        except NoOptionError:
-            pass
-        except NoSectionError:
-            pass
-    else:
-        pass
-    return passwordstore
-
+                        help='name of the vault secret to get from keyring')
+    return parser
 
 def main():
-    vault_id = get_vault_id()
-    if (vault_id != 'default' and vault_id != ""):
-        passwordstore = vault_id
-    else:
-        passwordstore = get_config_passwordstore()
+    curdir = os.path.dirname(__file__)
+    config = configparser.ConfigParser()
+    config.read(os.path.join(curdir, "ansible.cfg"))
 
-    if passwordstore:
-        # Get vault password from passwordstore
-        proc = Popen([pass_command, passwordstore], stdout=PIPE, stderr=PIPE)
-        output = proc.communicate()[0].decode('utf-8').strip().split("\n")[0]
-        stdout.write(output)
-        exit(0)
+    mount = config['vault']['mount']
+    if mount is None:
+      sys.exit(1)
+    directory = config['vault']['directory']
+    if directory is None:
+      sys.exit(1)
+    suppress_gopass_errors = config['vault'].getboolean('suppress_gopass_errors')
+
+    arg_parser = build_arg_parser()
+    args = arg_parser.parse_args()
+
+    keyname = args.vault_id
+
+    result = subprocess.run(["pass", "show", "%s/%s/%s" % (mount, directory, keyname)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    if result.returncode != 0 and not suppress_gopass_errors:
+      sys.stderr.write(result.stderr.decode("utf-8"))
+      sys.exit(result.returncode)
+    elif suppress_gopass_errors:
+      sys.stdout.write(''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(20))+'\n')
     else:
-        stderr.write("Couldn't get passwordstore settings from Ansible config "
-                     "file or --vault-id option!\nPlease read the README.md "
-                     "file for more info about script settings.\n")
-        exit(1)
+      sys.stdout.write(f'{result.stdout.decode("utf-8")}\n')
+
+    sys.exit(0)
 
 
 if __name__ == '__main__':
