@@ -144,7 +144,7 @@ blueman
 leftwm
 leftwm-theme-git
 #mpd
-kitty
+#kitty
 
 # hypr-git
 # hyprland-git eww fuzzel rofi mako trayer mpvpaper macchina nerd-fonts-inter
