@@ -190,7 +190,7 @@ graphviz
 # Modern, hackable, featureful, OpenGL based terminal emulator
 #kitty (no ctrl + f)
 # Terminal based YouTube player and downloader
-mps-youtube
+#mps-youtube #down
 # Media player based on MPlayer and mplayer2
 mpv
 # UNIX movie player
@@ -339,13 +339,13 @@ docker
 ## GUI apps
 # Run containers through a simple, yet powerful graphical user interface.
 qtpass
-dia
+#dia
 #apostrophe
 exa
 calcurse
 
 #wlroots # comment out because wayfire-git conflicts with wlroots
-wayfire-git
+#wayfire-git # comment out because notfound
 swaybg
 swayidle
 swaylock
