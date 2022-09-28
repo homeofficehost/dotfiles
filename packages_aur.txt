@@ -1,5 +1,5 @@
 autojump
-##termscp
+###termscp
 # espeak-ng
 fswatch
 # gitkraken
