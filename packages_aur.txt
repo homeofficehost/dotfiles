@@ -95,6 +95,8 @@ browserpass-librewolf
 browserpass-firefox
 # Browser extension for Chromium-based browsers
 browserpass-chromium
+# Chrome extension for Browserpass, browser extension for zx2c4's pass (password manager)
+browserpass-chrome
 # Extension for firefox which block ads and banners
 firefox-adblock-plus
 autokey-gtk
