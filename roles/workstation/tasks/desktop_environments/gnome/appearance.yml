@@ -62,6 +62,7 @@
     - { key: "/org/gnome/shell/extensions/dash-to-dock/multi-monitor", value: "false" }
     - { key: "/org/gnome/shell/extensions/dash-to-dock/show-mounts", value: "true" }
     - { key: "/org/gnome/shell/extensions/dash-to-dock/isolate-monitors", value: "false" }
+    - { key: "/org/gnome/shell/extensions/dash-to-dock/preferred-monitor-by-connector", value: "'DP-0'" }
     - { key: "/org/gnome/shell/extensions/dash-to-dock/dock-position", value: "'LEFT'" }
     - { key: "/org/gtk/Settings/FileChooser/sort-directories-first", value: "true" }
     - { key: "/org/gnome/shell/favorite-apps", value: "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'jetbrains-webstorm.desktop', 'sublime_text.desktop', 'arduino.desktop', 'librewolf.desktop', 'chromium.desktop', 'brave-browser.desktop', 'telegramdesktop.desktop', 'Ripcord.desktop']" }
