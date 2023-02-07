@@ -9,7 +9,7 @@ gnome_extension_target:
   - { id: '5237',  name: 'rounded-window-corners' }
 
 gnome_enable_extensions:
-  - 'rounded-window-corners@yilozt'
+  # - 'rounded-window-corners@yilozt'
   # - 'pamac-updates@manjaro.org'
   # - 'dash-to-dock@micxgx.gmail.com'
   # - 'appindicatorsupport@rgcjonas.gmail.com'
