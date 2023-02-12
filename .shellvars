@@ -31,6 +31,7 @@ export GOROOT=$USR_PATH/opt/go/libexec
 export MY_TEMP=$HOME/dev/temp
 export MY_DOTFILES=$HOME
 export MY_CODE=$HOME/dev
+export MY_SITE=$HOME/site
 export MY_BLOG=$HOME/blog
 export MY_DOWNLOADS=$HOME/Downloads
 export MY_DOCUMENTS=$HOME/Documents
