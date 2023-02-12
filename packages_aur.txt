@@ -22,7 +22,8 @@ sublime-text-3
 hydra-bin
 # Highest-quality GIF encoder based on pngquant
 gifski
-
+# Obsidian is a powerful knowledge base that works on top of a local folder of plain text Markdown files
+obsidian-appimage
 
 sauerbraten
 #mailspring
