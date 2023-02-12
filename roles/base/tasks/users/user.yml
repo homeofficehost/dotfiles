@@ -315,6 +315,22 @@
   when: not subrepo_directory.stat.exists
   tags: dotfiles,users,submodules
 
+- name: Dotfiles - Clone personal site
+  stat:
+    path: "/home/{{ username }}/site"
+  register: subrepo_directory
+  tags: dotfiles,users,submodules
+- name: Git | Clone personal
+  become_user: "{{ username }}"
+  git:
+    repo: "{{ site_upstream }}"
+    dest: "/home/{{ username }}/site"
+    update: yes
+    track_submodules: yes
+    recursive: yes
+  when: not subrepo_directory.stat.exists
+  tags: dotfiles,users,submodules
+
 - name: Dotfiles - Clone personal blog
   stat:
     path: "/home/{{ username }}/blog"
