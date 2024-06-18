@@ -360,7 +360,7 @@ slurp
 wf-recorder
 #light
 yad
-wlogout
+#wlogout
 thunar
 geany
 mpd
