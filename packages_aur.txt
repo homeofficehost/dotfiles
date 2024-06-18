@@ -145,7 +145,7 @@ blueman
 # polybar paysystray blueman-applet picom
 
 leftwm
-leftwm-theme-git
+#leftwm-theme-git
 #mpd
 #kitty
 
