@@ -321,7 +321,7 @@ unzip
 # Display word differences between text files
 wdiff
 # Download YouTube videos from the command-line
-youtube-dl
+#youtube-dl
 # Monitor data's progress through a pipe
 pv
 # Statistics utility to count lines of code
@@ -358,7 +358,7 @@ mako
 grim
 slurp
 wf-recorder
-light
+#light
 yad
 wlogout
 thunar
