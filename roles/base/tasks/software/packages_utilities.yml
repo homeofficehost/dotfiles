@@ -30,14 +30,14 @@
 #       - whois
 #       - zsh
 
-- name: system setup | utilities | check if bun is installed
-  package:
-    name: bun
-    state: present
-  check_mode: true
-  ignore_errors: yes
-  changed_when: no
-  register: package_check
+# - name: system setup | utilities | check if bun is installed
+#   package:
+#     name: bun
+#     state: present
+#   check_mode: true
+#   ignore_errors: yes
+#   changed_when: no
+#   register: package_check
 
 - name: system setup | utilities | run bun setup script if package is npt installed
   shell: curl -fsSL https://bun.sh/install | bash
