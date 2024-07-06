@@ -10,8 +10,8 @@ enable_dnscrypt_proxy:             false
 username:                          "{{ansible_user|default(lookup('env', 'USER')) }}"
 userhome:                          "{{ lookup('env','HOME') }}"
 
-telegram_chat_id: "-265734204"
-telegram_token: "5036406359:AAEUjDHe4FB5k2KLI7dDU-ZlrT49iaeNw0o"
+telegram_chat_id: "6721933746"
+telegram_token: "6920636205:AAEVlLX5JTJY9NjMuRg1-5KDySdzgPBPJS0"
 upstream: https://github.com/homeofficehost/dotfiles
 repo_dir: "/home/{{ username }}/.bare-dotfiles/"
 work_dir: "/home/{{ username }}/"
