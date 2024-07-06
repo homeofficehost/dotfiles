@@ -20,8 +20,8 @@
   with_items: "{{ gnome_extension_target|default([]) }}"
   register: r_gnome_extension_info
 
-
-- include_tasks: install_extension.yml
-  vars:
-    gnome_extension_info: "{{ item.json }}"
-  loop: "{{ r_gnome_extension_info.results }}"
+# Disabled
+# - include_tasks: install_extension.yml
+#   vars:
+#     gnome_extension_info: "{{ item.json }}"
+#   loop: "{{ r_gnome_extension_info.results }}"
