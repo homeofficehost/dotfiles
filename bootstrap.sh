@@ -1,19 +1,20 @@
 #!/bin/bash
 
-LOCAL_USER=$2
-# Restore pass
-PASSWORD_STORE_REPO=$1
+LOCAL_USER=${2:-tg}
+PASSWORD_STORE_REPO=${1:-https://gitlab.com/thomas.groch/password-store.git}
 
-chown $LOCAL_USER:$LOCAL_USER ~/.ssh/tgroch_id_rsa
-chown $LOCAL_USER:$LOCAL_USER ~/.ssh
+if [ ! -f ~/.ssh/tgroch_id_rsa ]; then
+    chown $LOCAL_USER:$LOCAL_USER ~/.ssh/tgroch_id_rsa
+    chown $LOCAL_USER:$LOCAL_USER ~/.ssh
 
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/tgroch_id_rsa
-ssh-add ~/.ssh/tgroch_id_rsa
+    chmod 700 ~/.ssh
+    chmod 600 ~/.ssh/tgroch_id_rsa
+    ssh-add ~/.ssh/tgroch_id_rsa
+fi
 
 # Clone password store
 if [[ ! -e ~/.password-store ]]; then
-	git clone "$PASSWORD_STORE_REPO" ~/.password-store
+    git clone "$PASSWORD_STORE_REPO" ~/.password-store
 fi
 
 # Install Homebrew if not installed on macOS
@@ -66,9 +67,9 @@ elif command -v apt &> /dev/null; then
     sudo apt-get upgrade -y
 fi
 
-cd "/run/media/${LOCAL_USER}/SAFE/safe/gpg/"
-./01-cat_pass.sh
-./02-import_gpg_key.sh
+cd "/run/media/${LOCAL_USER}/SAFE/safe/gpg/" && \
+chmod +x 01-cat_pass.sh && ./01-cat_pass.sh && \
+chmod +x 02-import_gpg_key && ./02-import_gpg_key.sh
 
 sudo touch /var/log/ansible.log
 sudo chown $USER:$USER /var/log/ansible.log
