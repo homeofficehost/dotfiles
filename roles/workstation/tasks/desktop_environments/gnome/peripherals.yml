@@ -1,3 +1,10 @@
+- name: gnome | peripherals | keyboard layout
+  tags: gnome,keyboard,peripherals
+  become_user: "{{ username }}"
+  dconf:
+    key: "/org/gnome/desktop/input-sources/sources"
+    value: "'[('xkb', 'us+intl')]'"
+
 - name: gnome | peripherals | keyboard repeat interval
   tags: gnome,keyboard,peripherals
   become_user: "{{ username }}"
