@@ -11,21 +11,15 @@
   become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/desktop/peripherals/keyboard/repeat-interval"
-    value: "30"
+    value: 15
+    state: present
 
 - name: gnome | peripherals | keyboard delay
   tags: gnome,keyboard,peripherals
   become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/desktop/peripherals/keyboard/delay"
-    value: "250"
-
-- name: gnome | peripherals | 
-  tags: gnome,keyboard,peripherals
-  become_user: "{{ username }}"
-  dconf:
-    key: "/org/gnome/desktop/peripherals/keyboard/repeat-interval"
-    value: "15"
+    value: 250
 
 - name: gnome | peripherals | numlock on by default
   tags: gnome,keyboard,peripherals
