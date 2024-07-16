@@ -3,7 +3,8 @@
   become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/desktop/input-sources/sources"
-    value: "'[('xkb', 'us+intl')]'"
+    value: "[('xkb', 'us+intl')]"
+    state: present
 
 - name: gnome | peripherals | keyboard repeat interval
   tags: gnome,keyboard,peripherals
