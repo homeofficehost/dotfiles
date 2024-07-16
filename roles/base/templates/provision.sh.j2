@@ -21,3 +21,4 @@ else
         $PRECMD sudo -iH --user $ANSIBLEUSER ansible-pull --vault-id "${VAULT_ID}@gopass-client.py" --only-if-changed --url $REPO --limit $(cat /etc/hostname).local --checkout $BRANCH 2>&1
     fi
 fi
+
