@@ -20,7 +20,7 @@
     user: velociraptor
     hour: "{{ ansible_cron_hour | default('*') }}"
     minute: "{{ ansible_cron_minute | default('*/30') }}"
-    job: "{ date; /usr/local/bin/provision; } >> /var/log/ansible_provision.log 2>&1"
+        job: "{ date; /usr/local/bin/provision; date; } >> /var/log/ansible_provision.log 2>&1 && echo $(date) > /var/log/ansible_provision_last_run.txt"
 
 # - name: system setup | cron | close process everyday
 #   tags: cron
