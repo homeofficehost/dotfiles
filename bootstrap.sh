@@ -3,6 +3,13 @@
 LOCAL_USER=${2:-tg}
 PASSWORD_STORE_REPO=${1:-https://gitlab.com/thomas.groch/password-store.git}
 
+# Check if sudo is installed and the user has sudo privileges
+if sudo -v &>/dev/null; then
+    echo "User has sudo privileges"
+else
+    echo "sudo is not installed or user does not have sudo privileges"
+fi
+
 if [ ! -f ~/.ssh/tgroch_id_rsa ]; then
     chown $LOCAL_USER:$LOCAL_USER ~/.ssh/tgroch_id_rsa
     chown $LOCAL_USER:$LOCAL_USER ~/.ssh
@@ -67,9 +74,10 @@ elif command -v apt &> /dev/null; then
     sudo apt-get upgrade -y
 fi
 
-cd "/run/media/${LOCAL_USER}/SAFE/safe/gpg/" && \
-chmod +x 01-cat_pass.sh && ./01-cat_pass.sh && \
-chmod +x 02-import_gpg_key && ./02-import_gpg_key.sh
+cat "/run/media/${LOCAL_USER}/SAFE/safe/gpg/thomas.groch@gmail.com.private.gpg-key.passphrase" | xclip -selection clipboard
+
+gpg --import "/run/media/${LOCAL_USER}/SAFE/safe/gpg/thomas.groch@gmail.com.private.gpg-key"
+gpg --import "/run/media/${LOCAL_USER}/SAFE/safe/gpg/thomas.groch@gmail.com.public.gpg-key"
 
 sudo touch /var/log/ansible.log
 sudo chown $USER:$USER /var/log/ansible.log
