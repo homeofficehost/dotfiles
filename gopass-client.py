@@ -60,16 +60,18 @@ import string
 
 def build_arg_parser():
     parser = argparse.ArgumentParser(description='Get a vault password from user keyring')
-
     parser.add_argument('--vault-id', action='store', default=None,
                         dest='vault_id',
                         help='name of the vault secret to get from keyring')
+    parser.add_argument('--user', action='store', default=None,
+                        dest='user',
+                        help='user to run gopass as')
     return parser
 
 def main():
     curdir = os.path.dirname(__file__)
     config = configparser.ConfigParser()
-    config.read(os.path.join(curdir, "ansible.cfg"))
+    config.read(os.path.join(curdir, "../ansible.cfg"))
 
     mount = config['vault']['mount']
     if mount is None:
@@ -83,19 +85,24 @@ def main():
     args = arg_parser.parse_args()
 
     keyname = args.vault_id
+    user = args.user
 
-    result = subprocess.run(["pass", "show", "%s/%s/%s" % (mount, directory, keyname)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if user:
+        cmd = ["sudo", "-u", user, "gopass", "show", f"{mount}/{directory}/{keyname}"]
+    else:
+        cmd = ["gopass", "show", f"{mount}/{directory}/{keyname}"]
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     if result.returncode != 0 and not suppress_gopass_errors:
-      sys.stderr.write(result.stderr.decode("utf-8"))
+      sys.stderr.write(result.stderr)
       sys.exit(result.returncode)
     elif suppress_gopass_errors:
       sys.stdout.write(''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(20))+'\n')
     else:
-      sys.stdout.write(f'{result.stdout.decode("utf-8")}\n')
+      sys.stdout.write(f'{result.stdout}\n')
 
     sys.exit(0)
-
 
 if __name__ == '__main__':
     main()
