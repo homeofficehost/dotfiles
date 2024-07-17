@@ -49,7 +49,6 @@
 #
 # If someone knows how to make config manager work like in the example client in the ansible directory let me know and I will
 # happily make the adjustments.
-
 import sys
 import argparse
 import subprocess
@@ -57,6 +56,11 @@ import os
 import configparser
 import random
 import string
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 def build_arg_parser():
     parser = argparse.ArgumentParser(description='Get a vault password from user keyring')
@@ -70,38 +74,57 @@ def build_arg_parser():
 
 def main():
     curdir = os.path.dirname(__file__)
+    logger.debug(f"Current directory: {curdir}")
+
     config = configparser.ConfigParser()
     config.read(os.path.join(curdir, "../ansible.cfg"))
+    logger.debug(f"Config sections: {config.sections()}")
 
     mount = config['vault']['mount']
+    logger.debug(f"Mount: {mount}")
     if mount is None:
+      logger.error("Mount is None, exiting")
       sys.exit(1)
+
     directory = config['vault']['directory']
+    logger.debug(f"Directory: {directory}")
     if directory is None:
+      logger.error("Directory is None, exiting")
       sys.exit(1)
+
     suppress_gopass_errors = config['vault'].getboolean('suppress_gopass_errors')
+    logger.debug(f"Suppress gopass errors: {suppress_gopass_errors}")
 
     arg_parser = build_arg_parser()
     args = arg_parser.parse_args()
+    logger.debug(f"Command line arguments: {args}")
 
     keyname = args.vault_id
     user = args.user
+    logger.debug(f"Keyname: {keyname}, User: {user}")
 
     if user:
         cmd = ["sudo", "-u", user, "gopass", "show", f"{mount}/{directory}/{keyname}"]
     else:
         cmd = ["gopass", "show", f"{mount}/{directory}/{keyname}"]
+    logger.debug(f"Command to be executed: {cmd}")
 
     result = subprocess.run(cmd, capture_output=True, text=True)
+    logger.debug(f"Subprocess return code: {result.returncode}")
 
     if result.returncode != 0 and not suppress_gopass_errors:
+      logger.error(f"Error occurred: {result.stderr}")
       sys.stderr.write(result.stderr)
       sys.exit(result.returncode)
     elif suppress_gopass_errors:
-      sys.stdout.write(''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(20))+'\n')
+      random_string = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(20))
+      logger.debug(f"Generated random string due to error suppression")
+      sys.stdout.write(random_string + '\n')
     else:
+      logger.debug("Writing subprocess output to stdout")
       sys.stdout.write(f'{result.stdout}\n')
 
+    logger.debug("Exiting with code 0")
     sys.exit(0)
 
 if __name__ == '__main__':
