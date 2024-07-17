@@ -63,7 +63,7 @@ def build_arg_parser():
     parser.add_argument('--vault-id', action='store', default=None,
                         dest='vault_id',
                         help='name of the vault secret to get from keyring')
-    parser.add_argument('--user', action='store', default=None,
+    parser.add_argument('--user', action='store', default='tg',
                         dest='user',
                         help='user to run gopass as')
     return parser
