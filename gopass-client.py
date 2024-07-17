@@ -49,83 +49,85 @@
 #
 # If someone knows how to make config manager work like in the example client in the ansible directory let me know and I will
 # happily make the adjustments.
-import sys
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+An improved script for managing Ansible Vault passwords using pass (https://www.passwordstore.org)
+or gopass (https://www.gopass.pw) password managers.
+"""
+
 import argparse
-import subprocess
-import os
 import configparser
-import random
-import string
-import logging
+import os
+import subprocess
+import sys
 
-# Set up logging
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+# Default password manager (can be 'pass' or 'gopass')
+DEFAULT_PASS_COMMAND = 'gopass'
 
-def build_arg_parser():
-    parser = argparse.ArgumentParser(description='Get a vault password from user keyring')
-    parser.add_argument('--vault-id', action='store', default=None,
-                        dest='vault_id',
-                        help='name of the vault secret to get from keyring')
-    parser.add_argument('--user', action='store', default='tg',
-                        dest='user',
-                        help='user to run gopass as')
-    return parser
+def get_ansible_config_file():
+    """Determine the Ansible config file location."""
+    try:
+        import ansible.constants as C
+        return C.CONFIG_FILE
+    except ImportError:
+        config_paths = [
+            os.environ.get('ANSIBLE_CONFIG'),
+            os.path.join(os.getcwd(), 'ansible.cfg'),
+            os.path.expanduser('~/.ansible.cfg'),
+            '/etc/ansible/ansible.cfg'
+        ]
+        return next((path for path in config_paths if path and os.path.isfile(path)), None)
+
+def get_config_passwordstore(config_file):
+    """Get passwordstore name from Ansible config file."""
+    if config_file:
+        config = configparser.ConfigParser()
+        config.read(config_file)
+        try:
+            return config.get('vault', 'passwordstore', fallback='').strip()
+        except (configparser.NoSectionError, configparser.NoOptionError):
+            pass
+    return None
+
+def get_password_from_store(passwordstore, pass_command):
+    """Retrieve password from the password store."""
+    try:
+        result = subprocess.run([pass_command, passwordstore], 
+                                capture_output=True, text=True, check=True)
+        return result.stdout.strip().split("\n")[0]
+    except subprocess.CalledProcessError as e:
+        sys.stderr.write(f"Error accessing password store: {e.stderr}\n")
+        sys.exit(1)
 
 def main():
-    curdir = os.path.dirname(__file__)
-    logger.debug(f"Current directory: {curdir}")
+    parser = argparse.ArgumentParser(
+        description='Get a vault password from a password store',
+        epilog='Please read the README.md file for more information.'
+    )
+    parser.add_argument('--vault-id', default='default',
+                        help='passwordstore containing the vault password')
+    parser.add_argument('--pass-command', default=DEFAULT_PASS_COMMAND,
+                        choices=['pass', 'gopass'],
+                        help='password manager to use (default: %(default)s)')
+    args = parser.parse_args()
 
-    config = configparser.ConfigParser()
-    config.read(os.path.join(curdir, "../ansible.cfg"))
-    logger.debug(f"Config sections: {config.sections()}")
-
-    mount = config['vault']['mount']
-    logger.debug(f"Mount: {mount}")
-    if mount is None:
-      logger.error("Mount is None, exiting")
-      sys.exit(1)
-
-    directory = config['vault']['directory']
-    logger.debug(f"Directory: {directory}")
-    if directory is None:
-      logger.error("Directory is None, exiting")
-      sys.exit(1)
-
-    suppress_gopass_errors = config['vault'].getboolean('suppress_gopass_errors')
-    logger.debug(f"Suppress gopass errors: {suppress_gopass_errors}")
-
-    arg_parser = build_arg_parser()
-    args = arg_parser.parse_args()
-    logger.debug(f"Command line arguments: {args}")
-
-    keyname = args.vault_id
-    user = args.user
-    logger.debug(f"Keyname: {keyname}, User: {user}")
-
-    if user:
-        cmd = ["sudo", "-u", user, "gopass", "show", f"{mount}/{directory}/{keyname}"]
+    ansible_config_file = get_ansible_config_file()
+    
+    if args.vault_id != 'default':
+        passwordstore = args.vault_id
     else:
-        cmd = ["gopass", "show", f"{mount}/{directory}/{keyname}"]
-    logger.debug(f"Command to be executed: {cmd}")
+        passwordstore = get_config_passwordstore(ansible_config_file)
 
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    logger.debug(f"Subprocess return code: {result.returncode}")
+    if not passwordstore:
+        sys.stderr.write("Couldn't get passwordstore settings from Ansible config "
+                         "file or --vault-id option!\nPlease read the README.md "
+                         "file for more info about script settings.\n")
+        sys.exit(1)
 
-    if result.returncode != 0 and not suppress_gopass_errors:
-      logger.error(f"Error occurred: {result.stderr}")
-      sys.stderr.write(result.stderr)
-      sys.exit(result.returncode)
-    elif suppress_gopass_errors:
-      random_string = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(20))
-      logger.debug(f"Generated random string due to error suppression")
-      sys.stdout.write(random_string + '\n')
-    else:
-      logger.debug("Writing subprocess output to stdout")
-      sys.stdout.write(f'{result.stdout}\n')
-
-    logger.debug("Exiting with code 0")
-    sys.exit(0)
+    password = get_password_from_store(passwordstore, args.pass_command)
+    sys.stdout.write(password)
 
 if __name__ == '__main__':
     main()
