@@ -74,13 +74,13 @@ elif command -v apt &> /dev/null; then
     sudo apt-get upgrade -y
 fi
 
-cat "/run/media/${LOCAL_USER}/SAFE/safe/gpg/thomas.groch@gmail.com.private.gpg-key.passphrase" | xclip -selection clipboard
+# cat "/run/media/${LOCAL_USER}/SAFE/safe/gpg/thomas.groch@gmail.com.private.gpg-key.passphrase" | xclip -selection clipboard
 
-gpg --import "/run/media/${LOCAL_USER}/SAFE/safe/gpg/thomas.groch@gmail.com.private.gpg-key"
-gpg --import "/run/media/${LOCAL_USER}/SAFE/safe/gpg/thomas.groch@gmail.com.public.gpg-key"
+# gpg --import "/run/media/${LOCAL_USER}/SAFE/safe/gpg/thomas.groch@gmail.com.private.gpg-key"
+# gpg --import "/run/media/${LOCAL_USER}/SAFE/safe/gpg/thomas.groch@gmail.com.public.gpg-key"
 
 sudo touch /var/log/ansible.log
 sudo chown $USER:$USER /var/log/ansible.log
 
 # Restore ansible
-curl -Lks -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/homeofficehost/dotfiles/master/ansible.sh $PASSWORD_STORE_REPO $LOCAL_USER | /bin/bash
+ansible-pull --url https://github.com/homeofficehost/dotfiles --limit "$(cat /etc/hostname).local" --checkout master
