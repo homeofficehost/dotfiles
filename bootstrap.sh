@@ -83,4 +83,4 @@ sudo touch /var/log/ansible.log
 sudo chown $USER:$USER /var/log/ansible.log
 
 # Restore ansible
-ansible-pull --url https://github.com/homeofficehost/dotfiles --limit "$(cat /etc/hostname).local" --checkout master
+ansible-pull --vault-password-file ~/.vault_key --url https://github.com/homeofficehost/dotfiles --limit "$(cat /etc/hostname).local" --checkout master
