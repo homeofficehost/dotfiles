@@ -25,21 +25,3 @@
     owner: root
     group: root
     mode: 0440
-
-- name: users | velociraptor | copy config directory pass
-  copy:
-    src: "{{ item }}"
-    dest: "/home/velociraptor/.config/pass-git-helper/"
-    owner: "velociraptor"
-    group: "velociraptor"
-  with_items:
-    ["users/velociraptor/config/pass-git-helper/git-pass-mapping.ini" ]
-
-- name: users | velociraptor | copy git config
-  copy:
-    src: "{{ item }}"
-    dest: "/home/velociraptor/"
-    owner: "velociraptor"
-    group: "velociraptor"
-  with_items:
-    [".gitconfig" ]
