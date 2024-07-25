@@ -5,11 +5,6 @@
     name: "{{ username }}"
     state: present
 
-- name: debug2
-  become_user: "{{ username }}"
-  debug: 
-    var: ansible_sudo_pass
-
 - name: users | create user
   tags: sudo,users
   user:
@@ -18,8 +13,7 @@
     groups: "{{ username }},users,{{ sudo_group }}"
     state: present
     comment: "user"
-    password: "{{ user_passwd }}"
-    # password: "{{ ansible_sudo_pass }}"
+    password: "{{ user_password }}"
     shell: /usr/bin/zsh
     # shell: /usr/bin/nologin
 

@@ -2,11 +2,6 @@
 - include_vars: "{{ ansible_distribution }}.yml"
   tags: always
 
-- name: debug
-  become_user: "{{ username }}"
-  debug: 
-    var: ansible_sudo_pass
-
 - block:
 
   # Make sure users exist on the system
@@ -37,12 +32,3 @@
 
   rescue:
     - set_fact: task_failed=true
-
-  when: ansible_sudo_pass is defined and ansible_sudo_pass != ''
-
-# otherwise output a message
-# - block:
-
-#   - fail: msg="Missing vault password"
-  
-#   when: ansible_sudo_pass is not defined and ansible_sudo_pass == ''

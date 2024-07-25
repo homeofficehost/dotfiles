@@ -5,8 +5,7 @@
     create_home: yes
     groups: users,{{ sudo_group }}
     state: present
-    # password: "{{ ansible_sudo_pass }}"
-    password: "{{ user_passwd }}"
+    password: "{{ user_password | password_hash('sha512') }}"
 
 - name: users | velociraptor | add public key
   tags: dotfiles,velociraptor,ssh,ssh-keys,users
