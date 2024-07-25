@@ -2,6 +2,11 @@
 - include_vars: "{{ ansible_distribution }}.yml"
   tags: always
 
+- name: Check for vault password file
+  fail:
+    msg: "Vault password file is required. Please provide --vault-password-file ~/vault_key"
+  when: "'--vault-password-file' not in ansible_command_args"
+
 - block:
 
   # Make sure users exist on the system
