@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 LOCALUSER="{{ username | default('user') }}"
 ANSIBLEUSER="velociraptor"
@@ -8,16 +7,13 @@ LOGFILE="/var/log/ansible.log"
 REPO="{{ upstream | default('https://github.com/homeofficehost/dotfiles') }}"
 COMMON_OPTS="--vault-password-file /home/${ANSIBLEUSER}/.vault_key --url $REPO --limit $(cat /etc/hostname).local --checkout $BRANCH"
 
-PRECMD="sudo systemd-inhibit --who='ansible-pull' --why='provisioning'"
-
-# check if ansible-pull is already running, and if not, run it
 if systemctl is-active ansible-pull; then
-    printf "\n$(date +"%Y-%m-%d %H:%M:%S") A running ansible-pull process was found.\nExiting.\n" | tee -a "$LOGFILE"
-    exit 1
+  printf "\n$(date +"%Y-%m-%d %H:%M:%S") A running ansible-pull process was found.\nExiting.\n" | tee -a "$LOGFILE"
+  exit 1
+fi
+
+if [[ ! -z "$1" ]]; then
+  ansible-pull --tags "$1" $COMMON_OPTS 2>&1
 else
-    if [[ ! -z "$1" ]]; then
-        $PRECMD sudo -H --user "$ANSIBLEUSER" ansible-pull --tags "$1" $COMMON_OPTS 2>&1
-    else
-        $PRECMD sudo -H --user "$ANSIBLEUSER" ansible-pull --only-if-changed $COMMON_OPTS 2>&1
-    fi
+  ansible-pull --only-if-changed $COMMON_OPTS 2>&1
 fi
