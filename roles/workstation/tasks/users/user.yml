@@ -1,10 +1,10 @@
-- name: users | remove preinstalled clutter from home directory
-  tags: dotfiles
-  file:
-    path: "/home/{{ username }}/{{ item }}"
-    state: absent
-  with_items:
-    - examples.desktop
+# - name: users | remove preinstalled clutter from home directory
+#   tags: dotfiles
+#   file:
+#     path: "/home/{{ username }}/{{ item }}"
+#     state: absent
+#   with_items:
+#     - examples.desktop
 
 - name: users | create personal config directories
   tags: dotfiles
