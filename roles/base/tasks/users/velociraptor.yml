@@ -24,3 +24,12 @@
     owner: root
     group: root
     mode: 0440
+
+- name: Configurar Ansible do velociraptor para usar a chave do Vault
+  ansible.builtin.copy:
+    dest: "/home/velociraptor/ansible.cfg"
+    owner: "velociraptor"
+    mode: '0644'
+    content: |
+      [defaults]
+      vault_password_file = {{ vault_key_path }}
