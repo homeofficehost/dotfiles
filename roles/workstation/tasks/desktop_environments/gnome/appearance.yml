@@ -18,6 +18,13 @@
     group: "{{ username }}"
     mode: 0644
 
+- name: Install psutil using pip
+  pip:
+    name: psutil
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
 - name: gnome | configure defaults gnome shell
   tags: gnome,
   become_user: "{{ username }}"
