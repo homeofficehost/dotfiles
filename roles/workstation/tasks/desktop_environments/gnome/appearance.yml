@@ -1,25 +1,13 @@
-- name: Create the directory if it does not exist
-  become: true
+- name: Create a directory if it does not exist
   file:
     path: /usr/share/backgrounds
     state: directory
     mode: '0755'
 
-- name: Copy wallpaper file
-  become: true
-  copy:
-    src: files/gnome/wallpaper-tg.png
-    dest: /usr/share/backgrounds/default-wallpaper.png
-
-- name: Copy lock screen file
-  become: true
-  copy:
-    src: files/gnome/lockscreen-tg.png
-    dest: /usr/share/backgrounds/default-lockscreen.png
-
 - name: gnome | appearance | copy lock screen and wallpaper background files
   tags: gnome,gnome-lockscreen
-  become_user: "{{ username }}"
+  become: true
+  become_user: root
   with_items:
     - { src: "files/gnome/wallpaper-{{ username }}.png", dest: "/usr/share/backgrounds/default-wallpaper.png" }
     - { src: "files/gnome/lockscreen-{{ username }}.png", dest: "/usr/share/backgrounds/default-lockscreen.png" }
@@ -27,7 +15,7 @@
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     owner: "{{ username }}"
-    group: wheel
+    group: "{{ username }}"
     mode: 0644
 
 - name: gnome | configure defaults gnome shell
