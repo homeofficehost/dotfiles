@@ -32,4 +32,4 @@
     mode: '0644'
     content: |
       [defaults]
-      vault_password_file = {{ vault_password_file }}
+      vault_password_file = /home/tg/.vault_key

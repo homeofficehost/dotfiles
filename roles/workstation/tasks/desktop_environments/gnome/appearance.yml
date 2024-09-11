@@ -18,19 +18,19 @@
     group: "{{ username }}"
     mode: 0644
 
-- name: Ensure pip3 is installed
-  package:
-    name: python-pip
-    state: present
-  become: yes
-  become_user: "{{ username }}"
+# - name: Ensure pip3 is installed
+#   package:
+#     name: python-pip
+#     state: present
+#   become: yes
+#   become_user: "{{ username }}"
 
-- name: Install psutil using pip
-  pip:
-    name: psutil
-    executable: pip
-  become: yes
-  become_user: "{{ username }}"
+# - name: Install psutil using pip
+#   pip:
+#     name: psutil
+#     executable: pip
+#   become: yes
+#   become_user: "{{ username }}"
 
 - name: gnome | configure defaults gnome shell
   tags: gnome,
