@@ -144,7 +144,7 @@ netdiscover
 blueman
 # polybar paysystray blueman-applet picom
 
-leftwm
+#leftwm
 #leftwm-theme-git
 #mpd
 #kitty
