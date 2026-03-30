@@ -1,5 +1,0 @@
-- name: Add /etc/bluetooth/main.conf
-  tags: bluetooth,system setup
-  copy:
-    src: system_setup/bluetooth/main.conf
-    dest: /etc/bluetooth/main.conf

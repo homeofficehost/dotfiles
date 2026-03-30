@@ -324,6 +324,12 @@ sudo pmset -a standbydelay 86400;ok
 running "Disable the sound effects on boot"
 sudo nvram SystemAudioVolume=" ";ok
 
+running "Disable all system sounds"
+defaults write com.apple.sound.beep.feedback -bool false
+defaults write NSGlobalDomain com.apple.soundSystemBeekEnabled -bool false
+defaults write NSGlobalDomain "com.apple.sound.volume.feedback" -bool false
+defaults write com.apple.screencapture "play-sound" -bool false;ok
+
 running "Disable the crash reporter"
 defaults write com.apple.CrashReporter DialogType -string "none"
 
