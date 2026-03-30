@@ -1,0 +1,134 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install ansible ansible-lint yamllint
+
+    - name: Validate Ansible syntax
+      run: |
+        echo "=== Ansible Syntax Check ==="
+        for playbook in local.yml site.yml; do
+          if [ -f "$playbook" ]; then
+            echo "Checking $playbook..."
+            ansible-playbook "$playbook" --syntax-check
+          fi
+        done
+
+    - name: Run ansible-lint
+      run: |
+        echo "=== Ansible Lint ==="
+        for role in roles/*/; do
+          if [ -d "$role/tasks" ]; then
+            echo "Linting $(basename "$role")..."
+            ansible-lint "$role" || true
+          fi
+        done
+      continue-on-error: true
+
+    - name: Validate YAML files
+      run: |
+        echo "=== YAML Validation ==="
+        find . -name "*.yml" -not -path "./.github/*" | head -20 | while read f; do
+          python3 -c "import yaml; yaml.safe_load(open('$f'))" 2>&1 && echo "OK: $f" || echo "FAIL: $f"
+        done
+
+    - name: Upload validation report
+      if: always()
+      run: |
+        echo "=== Generating Validation Report ==="
+        REPORT="validation-report.txt"
+        echo "Dotfiles Validation Report" > "$REPORT"
+        echo "Date: $(date)" >> "$REPORT"
+        echo "Commit: $GITHUB_SHA" >> "$REPORT"
+        echo "" >> "$REPORT"
+        
+        echo "--- Ansible Syntax ---" >> "$REPORT"
+        for playbook in local.yml site.yml; do
+          if [ -f "$playbook" ]; then
+            echo "Checking $playbook..." >> "$REPORT"
+            ansible-playbook "$playbook" --syntax-check 2>&1 >> "$REPORT" || echo "FAILED" >> "$REPORT"
+          fi
+        done
+        
+        echo "" >> "$REPORT"
+        echo "--- Roles Inventory ---" >> "$REPORT"
+        ls -la roles/ >> "$REPORT" 2>/dev/null || echo "No roles dir" >> "$REPORT"
+        
+        echo "" >> "$REPORT"
+        echo "--- Files Summary ---" >> "$REPORT"
+        echo "Playbooks:" >> "$REPORT"
+        ls -la *.yml >> "$REPORT" 2>/dev/null
+        echo "" >> "$REPORT"
+        echo "Roles:" >> "$REPORT"
+        find roles -name "main.yml" 2>/dev/null | while read f; do echo "  $f"; done >> "$REPORT"
+        
+        echo "" >> "$REPORT"
+        echo "--- Brewfile (macOS packages) ---" >> "$REPORT"
+        if [ -f "Brewfile" ]; then
+          grep "^cask\|^brew " Brewfile >> "$REPORT" || echo "No casks/brews found" >> "$REPORT"
+        else
+          echo "No Brewfile found" >> "$REPORT"
+        fi
+        
+        cat "$REPORT"
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: validation-report
+        path: validation-report.txt
+        retention-days: 30
+
+  build:
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Generate inventory artifact
+      run: |
+        echo "=== Generating Inventory Artifact ==="
+        INVENTORY="inventory.txt"
+        echo "# Dotfiles Inventory - Generated $(date)" > "$INVENTORY"
+        echo "" >> "$INVENTORY"
+        
+        echo "--- Hosts ---" >> "$INVENTORY"
+        cat hosts 2>/dev/null || echo "No hosts file" >> "$INVENTORY"
+        
+        echo "" >> "$INVENTORY"
+        echo "--- Group Vars (all) ---" >> "$INVENTORY"
+        cat group_vars/all 2>/dev/null || echo "No group_vars/all" >> "$INVENTORY"
+        
+        echo "" >> "$INVENTORY"
+        echo "--- Host Vars ---" >> "$INVENTORY"
+        ls host_vars/ 2>/dev/null && cat host_vars/* >> "$INVENTORY" || echo "No host_vars" >> "$INVENTORY"
+        
+        echo "" >> "$INVENTORY"
+        echo "--- Roles Structure ---" >> "$INVENTORY"
+        find roles -type d -maxdepth 2 2>/dev/null | sort >> "$INVENTORY" || echo "No roles" >> "$INVENTORY"
+        
+        cat "$INVENTORY"
+
+    - name: Upload inventory artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: inventory
+        path: inventory.txt
+        retention-days: 30
