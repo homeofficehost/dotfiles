@@ -160,3 +160,4 @@ When a login shell exits, the files $ZDOTDIR/.zlogout and then /etc/zlogout are 
 
 > It's always a good idea to review arbitrary code from the internet before running it on your machine with sudo power!
 > You are responsible for everything this script does to your machine (see [LICENSE](LICENSE))
+# pre-push hook

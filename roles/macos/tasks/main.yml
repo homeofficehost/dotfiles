@@ -1,4 +1,4 @@
 ---
-- name: macos | run init-macos.sh
-  command: ./scripts/init-macos.sh
+- name: Run init-macos.sh
+  ansible.builtin.command: ./scripts/init-macos.sh
   changed_when: true
