@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ###########################
-# This script sets sensitive defaults on macOS
+# This script sets macOS system defaults
 # ~/.macos — https://mths.be/macos
 # --------------------------
 # 
