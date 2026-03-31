@@ -9,6 +9,8 @@ on:
 jobs:
   validate:
     runs-on: macos-latest
+    env:
+      PYTHONWARNINGS: ignore::ResourceWarning
     steps:
     - uses: actions/checkout@v4
 
@@ -17,26 +19,25 @@ jobs:
 
     - name: Validate playbooks (syntax + lint)
       run: |
+        mkdir -p ci-output
         for f in local.yml site.yml; do
-          [ -f "$f" ] && ansible-playbook "$f" --syntax-check
+          [ -f "$f" ] && ansible-playbook "$f" --syntax-check 2>&1 | tee ci-output/syntax-check.txt
         done
-        ansible-lint roles/
+        ansible-lint roles/ 2>&1 | tee ci-output/ansible-lint.txt
 
     - name: Validate Brewfile
-      run: brew bundle check --verbose 2>&1 || true
+      run: |
+        count=$(brew bundle check 2>&1 | grep -c 'needs to be' || true)
+        echo "brew bundle check: $count missing dependencies (expected on clean runner)" | tee ci-output/brew-check.txt
 
     - name: Dry run ansible-playbook
-      run: ansible-playbook -c local local.yml --check --diff 2>&1 || true
+      run: |
+        ANSIBLE_STDOUT_CALLBACK=default ansible-playbook -c local local.yml --check --diff 2>&1 | tee ci-output/dry-run.txt
 
     - name: Upload report
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: ci-report
-        path: |
-          ansible.cfg
-          local.yml
-          site.yml
-          hosts
-          Brewfile
-        retention-days: 30
+        path: ci-output/
+        retention-days: 7
