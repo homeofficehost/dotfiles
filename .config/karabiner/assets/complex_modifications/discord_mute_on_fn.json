@@ -1,0 +1,32 @@
+{
+  "title": "Discord Mute Toggle on FN Key",
+  "rules": [
+    {
+      "description": "FN key: pass to Handy + send F16 to toggle Discord mute",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "fn"
+          },
+          "to": [
+            {
+              "key_code": "fn"
+            },
+            {
+              "key_code": "f16"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "fn"
+            },
+            {
+              "key_code": "f16"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
