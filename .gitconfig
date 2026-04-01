@@ -1,0 +1,22 @@
+[user]
+	email = thomas.groch@gmail.com
+	name = Thomas Dev
+	signingkey = AAAAC3NzaC1lZDI1NTE5AAAAIIyUXqWFFmw14644QjYHpGwFXytHMrIfL/Qe5kOxCC3j
+[core]
+	sshCommand = ssh -i ~/.ssh/id_ed25519
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[init]
+	defaultBranch = main
+[gpg]
+	format = openpgp
+[commit]
+	gpgsign = false
+
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
