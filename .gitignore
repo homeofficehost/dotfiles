@@ -1,0 +1,39 @@
+# Secrets — NEVER commit these
+.ssh/id_*
+.ssh/known_hosts
+.ssh/authorized_keys
+.gnupg/
+.password-store/
+.local/share/opencode/auth.json
+.env
+.zshrc.local
+
+# Shell histories
+.zsh_history
+.bash_history
+
+# Cache and runtime
+.cache/
+.npm/
+.cargo/
+.bun/
+
+# App-generated / auto-managed
+.config/htop/
+.config/kitty/
+.config/iterm2/
+.config/sunshine/
+.colima/
+.android/
+.oh-my-zsh/
+.oh-my-zsh-custom/
+.claude
+.claude.json
+
+# Previous dotfiles management
+.dotfiles-bare/
+.bare-dotfiles/
+
+# Logs
+ansible*.log
+ansible_provision_last_run.txt
