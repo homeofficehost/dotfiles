@@ -1,0 +1,64 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "venice/minimax-m2.7-highspeed"
+    },
+    "oracle": {
+      "model": "zai-coding-plan/glm-5-turbo"
+    },
+    "librarian": {
+      "model": "venice/minimax-m2.7-highspeed"
+    },
+    "explore": {
+      "model": "venice/minimax-m2.7-highspeed"
+    },
+    "multimodal-looker": {
+      "model": "zai-coding-plan/glm-5-turbo"
+    },
+    "prometheus": {
+      "model": "zai-coding-plan/glm-5-turbo"
+    },
+    "metis": {
+      "model": "zai-coding-plan/glm-5-turbo"
+    },
+    "momus": {
+      "model": "zai-coding-plan/glm-5-turbo"
+    },
+    "atlas": {
+      "model": "venice/minimax-m2.7-highspeed"
+    },
+    "sisyphus-junior": {
+      "model": "venice/minimax-m2.7-highspeed"
+    },
+    "hephaestus": {
+      "model": "zai-coding-plan/glm-5-turbo"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "zai-coding-plan/glm-5-turbo"
+    },
+    "ultrabrain": {
+      "model": "zai-coding-plan/glm-5-turbo"
+    },
+    "quick": {
+      "model": "venice/minimax-m2.7-highspeed"
+    },
+    "unspecified-low": {
+      "model": "venice/minimax-m2.7-highspeed"
+    },
+    "unspecified-high": {
+      "model": "zai-coding-plan/glm-5-turbo"
+    },
+    "writing": {
+      "model": "venice/minimax-m2.7-highspeed"
+    },
+    "deep": {
+      "model": "zai-coding-plan/glm-5-turbo"
+    },
+    "artistry": {
+      "model": "zai-coding-plan/glm-5-turbo"
+    }
+  }
+}
