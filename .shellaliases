@@ -284,6 +284,11 @@ function docker_reset {
 	docker volume rm $(docker volume ls -q)
 	docker system prune --all --force
 }
+function colima_reset {
+	colima stop
+	colima delete
+	colima start
+}
 function exploit_this_cms {
 	temp && $(ls vulnx || git clone https://github.com/anouarbensaad/VulnX.git vulnx)
 	cd vulnx
