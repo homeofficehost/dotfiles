@@ -512,8 +512,8 @@ alias files.usage.user='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v
 alias qltext='xattr -wx com.apple.FinderInfo "54 45 58 54 21 52 63 68 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" $1'
 #alias qltext2='osascript -e tell application "Finder" to set file type of ((POSIX file "$1") as alias) to "TEXT"'
 
-# Crontab auto reload
-if test -z $CRONTABCMD; then
+# Crontab auto reload (only in a real terminal; hangs under launchd/agents waiting for TCC)
+if test -z $CRONTABCMD && [[ -t 0 && -t 1 ]]; then
     # allows to source zshrc twice
     export CRONTABCMD=$(which crontab)
     crontab()

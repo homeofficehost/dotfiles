@@ -15,8 +15,12 @@
 	format = openpgp
 [commit]
 	gpgsign = false
-
+[safe]
+	directory = /Users/tg/work/war/app/backend
+[credential "https://codeberg.org"]
+	provider = generic
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
-[credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
