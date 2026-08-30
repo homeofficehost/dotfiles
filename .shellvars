@@ -35,7 +35,6 @@ export MY_SITE=$HOME/site
 export MY_BLOG=$HOME/blog
 export MY_DOWNLOADS=$HOME/Downloads
 export MY_DOCUMENTS=$HOME/Documents
-export BARE_DOTFILES=$HOME/.bare-dotfiles
 
 #########################################################################
 # Tool paths

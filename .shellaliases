@@ -115,8 +115,7 @@ dot_link() {
 	mv $1 $MY_DOTFILES/homedir/
 	ln -s "$MY_DOTFILES/homedir/$1" $1
 }
-alias dotfiles='git --git-dir=${BARE_DOTFILES}/ --work-tree=$HOME'
-alias dot='dotfiles'
+alias dotfiles='dot'
 
 # Cheat sheets
 alias dterm="curl -s -X GET https://raw.githubusercontent.com/LeCoupa/awesome-cheatsheets/master/languages/bash.sh | less"
@@ -279,8 +278,6 @@ alias a.rm_empty_dirs="find . -type d -empty -delete"
 alias a.inspect="inspect $@"
 alias not="notify $@"
 alias blog.rec=blog_rec.sh $@
-
-alias dotfiles_update="cd && git fetch upstream && git checkout master && git merge upstream/master"
 
 function docker_reset {
 	docker stop $(docker ps -a -q)
