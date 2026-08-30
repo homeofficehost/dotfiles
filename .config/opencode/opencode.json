@@ -1,7 +1,173 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "opencode-go": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenCode Zen Go",
+      "options": {
+        "baseURL": "https://opencode.ai/zen/go/v1",
+        "apiKey": "{env:OPENCODE_GO_API_KEY}"
+      },
+      "models": {
+        "kimi-k2.7-code": {
+          "name": "Kimi K2.7 Code",
+          "limit": { "context": 262144, "output": 262144 },
+          "modalities": { "input": ["text","image"], "output": ["text"] }
+        },
+        "deepseek-v4-flash": {
+          "name": "DeepSeek V4 Flash",
+          "limit": { "context": 1000000, "output": 384000 },
+          "modalities": { "input": ["text"], "output": ["text"] }
+        }
+      }
+    },
+    "opencode-go-alt": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenCode Zen Go Alt",
+      "options": {
+        "baseURL": "https://opencode.ai/zen/go/v1",
+        "apiKey": "{env:OPENCODE_GO_ALT_API_KEY}"
+      },
+      "models": {
+        "kimi-k2.7-code": {
+          "name": "Kimi K2.7 Code",
+          "limit": { "context": 262144, "output": 262144 },
+          "modalities": { "input": ["text","image"], "output": ["text"] }
+        },
+        "deepseek-v4-flash": {
+          "name": "DeepSeek V4 Flash",
+          "limit": { "context": 1000000, "output": 384000 },
+          "modalities": { "input": ["text"], "output": ["text"] }
+        }
+      }
+    },
+    "omniroute": {
+      "name": "OmniRoute",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://omniroute.lab.thomasdev.xyz/v1",
+        "apiKey": "{env:OMNIROUTE_API_KEY}"
+      },
+      "models": {
+        "opencode-go/glm-5.2-high": { "name": "opencode-go/glm-5.2-high", "limit": { "context": 1000000, "output": 131072, "input": 1000000 } },
+        "opencode-go/glm-5.2-max": { "name": "opencode-go/glm-5.2-max", "limit": { "context": 1000000, "output": 131072, "input": 1000000 } },
+        "opencode-go/kimi-k3-max": { "name": "opencode-go/kimi-k3-max", "limit": { "context": 1048576, "output": 1048576, "input": 1048576 } },
+        "opencode-go/mimo-v2.5-high": { "name": "opencode-go/mimo-v2.5-high", "limit": { "context": 1048576, "output": 131072, "input": 1048576 } },
+        "opencode-go/mimo-v2.5-max": { "name": "opencode-go/mimo-v2.5-max", "limit": { "context": 1048576, "output": 131072, "input": 1048576 } },
+        "opencode-go/qwen3.7-max-high": { "name": "opencode-go/qwen3.7-max-high", "limit": { "context": 200000, "output": 16384 } },
+        "opencode-go/qwen3.7-max-max": { "name": "opencode-go/qwen3.7-max-max", "limit": { "context": 200000, "output": 16384 } },
+        "opencode-go/qwen3.7-plus-high": { "name": "opencode-go/qwen3.7-plus-high", "limit": { "context": 200000, "output": 16384 } },
+        "opencode-go/qwen3.7-plus-max": { "name": "opencode-go/qwen3.7-plus-max", "limit": { "context": 200000, "output": 16384 } },
+        "opencode-go/qwen3.6-plus-high": { "name": "opencode-go/qwen3.6-plus-high", "limit": { "context": 1000000, "output": 65536, "input": 1000000 } },
+        "opencode-go/qwen3.6-plus-max": { "name": "opencode-go/qwen3.6-plus-max", "limit": { "context": 1000000, "output": 65536, "input": 1000000 } },
+        "opencode-go/hy3-none": { "name": "opencode-go/hy3-none", "limit": { "context": 256000, "input": 256000, "output": 16384 } },
+        "opencode-go/hy3-low": { "name": "opencode-go/hy3-low", "limit": { "context": 256000, "input": 256000, "output": 16384 } },
+        "opencode-go/hy3-high": { "name": "opencode-go/hy3-high", "limit": { "context": 256000, "input": 256000, "output": 16384 } },
+        "opencode-go/grok-4.5-low": { "name": "opencode-go/grok-4.5-low", "limit": { "context": 200000, "output": 16384 } },
+        "opencode-go/grok-4.5-medium": { "name": "opencode-go/grok-4.5-medium", "limit": { "context": 200000, "output": 16384 } },
+        "opencode-go/grok-4.5-high": { "name": "opencode-go/grok-4.5-high", "limit": { "context": 200000, "output": 16384 } },
+        "opencode-go/deepseek-v4-pro-low": { "name": "opencode-go/deepseek-v4-pro-low", "limit": { "context": 1000000, "output": 384000, "input": 1000000 } },
+        "opencode-go/deepseek-v4-pro-medium": { "name": "opencode-go/deepseek-v4-pro-medium", "limit": { "context": 1000000, "output": 384000, "input": 1000000 } },
+        "opencode-go/deepseek-v4-pro-high": { "name": "opencode-go/deepseek-v4-pro-high", "limit": { "context": 1000000, "output": 384000, "input": 1000000 } },
+        "opencode-go/deepseek-v4-pro-max": { "name": "opencode-go/deepseek-v4-pro-max", "limit": { "context": 1000000, "output": 384000, "input": 1000000 } },
+        "opencode-go/deepseek-v4-flash-high": { "name": "opencode-go/deepseek-v4-flash-high", "limit": { "context": 1000000, "output": 384000, "input": 1000000 } },
+        "opencode-go/deepseek-v4-flash-max": { "name": "opencode-go/deepseek-v4-flash-max", "limit": { "context": 1000000, "output": 384000, "input": 1000000 } },
+        "opencode-go/minimax-m3": { "name": "opencode-go/minimax-m3", "limit": { "context": 1048576, "output": 512000, "input": 1048576 } },
+        "opencode-go/minimax-m2.7": { "name": "opencode-go/minimax-m2.7", "limit": { "context": 204800, "output": 131072, "input": 204800 } },
+        "opencode-go/minimax-m2.5": { "name": "opencode-go/minimax-m2.5", "limit": { "context": 200000, "output": 131072, "input": 200000 } },
+        "opencode-go/kimi-k3": { "name": "opencode-go/kimi-k3", "limit": { "context": 1048576, "output": 1048576, "input": 1048576 } },
+        "opencode-go/kimi-k2.7-code": { "name": "opencode-go/kimi-k2.7-code", "limit": { "context": 262144, "output": 262144, "input": 262144 } },
+        "opencode-go/kimi-k2.6": { "name": "opencode-go/kimi-k2.6", "limit": { "context": 262144, "output": 262144, "input": 262144 } },
+        "opencode-go/kimi-k2.5": { "name": "opencode-go/kimi-k2.5", "limit": { "context": 262144, "output": 262144, "input": 262144 } },
+        "opencode-go/glm-5.2": { "name": "opencode-go/glm-5.2", "limit": { "context": 1000000, "output": 131072, "input": 1000000 } },
+        "opencode-go/glm-5.1": { "name": "opencode-go/glm-5.1", "limit": { "context": 200000, "output": 128000, "input": 200000 } },
+        "opencode-go/glm-5": { "name": "opencode-go/glm-5", "limit": { "context": 200000, "output": 128000, "input": 200000 } },
+        "opencode-go/deepseek-v4-pro": { "name": "opencode-go/deepseek-v4-pro", "limit": { "context": 1000000, "output": 384000, "input": 1000000 } },
+        "opencode-go/deepseek-v4-flash": { "name": "opencode-go/deepseek-v4-flash", "limit": { "context": 1000000, "output": 384000, "input": 1000000 } },
+        "opencode-go/qwen3.7-max": { "name": "opencode-go/qwen3.7-max", "limit": { "context": 1000000, "output": 65536, "input": 1000000 } },
+        "opencode-go/qwen3.8-max": { "name": "opencode-go/qwen3.8-max", "limit": { "context": 200000, "output": 16384 } },
+        "opencode-go/qwen3.7-plus": { "name": "opencode-go/qwen3.7-plus", "limit": { "context": 200000, "output": 16384 } },
+        "opencode-go/qwen3.6-plus": { "name": "opencode-go/qwen3.6-plus", "limit": { "context": 1000000, "output": 65536, "input": 1000000 } },
+        "opencode-go/qwen3.5-plus": { "name": "opencode-go/qwen3.5-plus", "limit": { "context": 1000000, "output": 65536, "input": 1000000 } },
+        "opencode-go/mimo-v2-pro": { "name": "opencode-go/mimo-v2-pro", "limit": { "context": 262144, "output": 131072, "input": 262144 } },
+        "opencode-go/mimo-v2-omni": { "name": "opencode-go/mimo-v2-omni", "limit": { "context": 262144, "output": 131072, "input": 262144 } },
+        "opencode-go/mimo-v2.5-pro": { "name": "opencode-go/mimo-v2.5-pro", "limit": { "context": 1048576, "output": 131072, "input": 1048576 } },
+        "opencode-go/mimo-v2.5": { "name": "opencode-go/mimo-v2.5", "limit": { "context": 1048576, "output": 131072, "input": 1048576 } },
+        "opencode-go/hy3": { "name": "opencode-go/hy3", "limit": { "context": 256000, "input": 256000, "output": 16384 } },
+        "opencode-go/hy3-preview": { "name": "opencode-go/hy3-preview", "limit": { "context": 262144, "output": 262144, "input": 262144 } },
+        "opencode-go/gpt-5.6-luna": { "name": "opencode-go/gpt-5.6-luna", "limit": { "context": 1050000, "output": 128000, "input": 1050000 } },
+        "opencode-go/grok-4.5": { "name": "opencode-go/grok-4.5", "limit": { "context": 200000, "output": 16384 } },
+        "auto": { "name": "Auto-Combo" }
+      }
+    },
+    "mlx-local": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "MLX Local (Qwen3.5-9B)",
+      "options": {
+        "baseURL": "http://127.0.0.1:8080/v1",
+        "apiKey": "mlx-local"
+      },
+      "models": {
+        "mlx-community/Qwen3.5-9B-MLX-4bit": {
+          "name": "Qwen3.5-9B MLX (local)",
+          "limit": { "context": 32768, "output": 4096 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        }
+      }
+    }
+  },
+  "disabled_providers": [
+    "anthropic",
+    "cloudflare-ai-gateway",
+    "fireworks-ai",
+    "kimi-for-coding",
+    "minimax",
+    "minimax-cn",
+    "minimax-cn-coding-plan",
+    "minimax-coding-plan",
+    "zai-coding-plan"
+  ],
   "plugin": [
-    "@tarquinen/opencode-dcp@latest",
-    "oh-my-openagent@latest"
-  ]
+    "oh-my-openagent@latest",
+    "opencode-agent-skills@latest",
+    "opencode-background-agents@latest",
+    "@cortexkit/opencode-magic-context@0.33.1",
+    "@warp-dot-dev/opencode-warp",
+    "@zhafron/opencode-kiro-auth"
+  ],
+  "experimental": {
+    "disable_paste_summary": true
+  },
+  "compaction": {
+    "auto": false,
+    "prune": false
+  },
+  "agent": {
+    "build": { "model": "openai/gpt-5.6-sol-fast" },
+    "plan": { "model": "openai/gpt-5.6-sol-fast" },
+    "title": { "model": "kiro/claude-haiku-4-5" }
+  },
+  "mcp": {
+    "cloudflare-api": {
+      "type": "remote",
+      "url": "https://mcp.cloudflare.com/mcp",
+      "enabled": false
+    },
+    "cloudflare-docs": {
+      "type": "remote",
+      "url": "https://docs.mcp.cloudflare.com/mcp",
+      "enabled": false
+    },
+    "dokploy": {
+      "type": "local",
+      "command": ["npx", "-y", "@ahdev/dokploy-mcp@latest"],
+      "environment": {
+        "DOKPLOY_URL": "https://panel.buildaut.com.au/api",
+        "DOKPLOY_API_KEY": "{env:DOKPLOY_API_KEY}"
+      },
+      "enabled": true
+    }
+  },
+  "model": "openai/gpt-5.6-sol-fast",
+  "small_model": "kiro/claude-haiku-4-5"
 }

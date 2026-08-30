@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# dotfiles bare repo no $HOME
+alias dot='git --git-dir=$HOME/.dotfiles-bare --work-tree=$HOME'
+
+alias rr="ssh runner"
+
 # find lines only in file1
 function only_left() {
 	comm -23 <(sort <(grep '^[^#]' $1)) <(sort <(grep '^[^#]' $2))
