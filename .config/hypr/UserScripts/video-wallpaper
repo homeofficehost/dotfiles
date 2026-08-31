@@ -1,0 +1,221 @@
+#!/usr/bin/env bash
+# video-wallpaper - single script to manage mpvpaper video wallpaper on Hyprland
+# Subcommands:
+#   start [VIDEO] [--outputs="eDP-1,HDMI-A-1"] [--mute] [--no-loop] [--mpv-args="..."] [--top]
+#   stop
+#   toggle [VIDEO] [flags...]
+#   set-default /path/to/video.mp4 [--apply]
+#
+# Optional config: ~/.config/hypr/video-wallpaper.conf
+#   VIDEO="/path/to/video.mp4"
+#   OUTPUTS="eDP-1,HDMI-A-1"   # comma-separated; default: all outputs
+#   MUTE=true                   # default: false
+#   LOOP=true                   # default: true
+#   MPV_ARGS="--vo=gpu --profile=fast"
+#   ZORDER=bottom               # bottom|top (default bottom)
+set -euo pipefail
+
+CONFIG_DIR="$HOME/.config/hypr"
+CONFIG_FILE="$CONFIG_DIR/video-wallpaper.conf"
+RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+PIDFILE="$RUNTIME_DIR/mpvpaper.pid"
+SOCKET_DIR="$RUNTIME_DIR/mpvpaper"
+
+usage() {
+  sed -n '1,40p' "$0" | sed 's/^# \{0,1\}//'
+}
+
+load_config() {
+  if [[ -f "$CONFIG_FILE" ]]; then
+    # shellcheck disable=SC1090
+    source "$CONFIG_FILE"
+  fi
+}
+
+mpvpaper_is_running() {
+  [[ -f "$PIDFILE" ]] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null
+}
+
+start_cmd() {
+  load_config
+  local VIDEO_ARG="${VIDEO:-}"
+  local OUTPUTS_ARG="${OUTPUTS:-}"
+  local MUTE_FLAG="${MUTE:-}"
+  local LOOP_FLAG="${LOOP:-true}"
+  local MPV_ARGS_CONF="${MPV_ARGS:-}"
+  local ZORDER_LOCAL="${ZORDER:-bottom}"
+
+  # Parse flags and first positional as video
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --outputs=*) OUTPUTS_ARG="${1#*=}" ;;
+      --mute) MUTE_FLAG=true ;;
+      --no-loop) LOOP_FLAG=false ;;
+      --mpv-args=*) MPV_ARGS_CONF="${1#*=}" ;;
+      --top) ZORDER_LOCAL=top ;;
+      -h|--help) usage; exit 0 ;;
+      *) if [[ -z "$VIDEO_ARG" ]]; then VIDEO_ARG="$1"; else echo "Unknown arg: $1" >&2; fi ;;
+    esac
+    shift || true
+  done
+
+  if [[ -z "$VIDEO_ARG" ]]; then
+    echo "Error: No video provided and no VIDEO in $CONFIG_FILE" >&2
+    exit 1
+  fi
+  if [[ ! -f "$VIDEO_ARG" ]]; then
+    echo "Error: Video not found: $VIDEO_ARG" >&2
+    exit 1
+  fi
+  if command -v realpath >/dev/null 2>&1; then
+    VIDEO_ARG="$(realpath -m "$VIDEO_ARG")"
+  fi
+
+  # Clean stale pidfile
+  if [[ -f "$PIDFILE" ]] && ! kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+    rm -f "$PIDFILE"
+  fi
+  if [[ -f "$PIDFILE" ]]; then
+    echo "mpvpaper already running (pid $(cat "$PIDFILE")). Use stop or toggle." >&2
+    exit 0
+  fi
+
+  mkdir -p "$SOCKET_DIR"
+
+  if ! command -v mpvpaper >/dev/null 2>&1; then
+    echo "Error: mpvpaper is not installed. On Arch: sudo pacman -S mpvpaper" >&2
+    exit 1
+  fi
+
+  # Build outputs list
+  local OUTPUTS_LIST=""
+  if [[ -n "$OUTPUTS_ARG" ]]; then
+    IFS=',' read -r -a OUT_ARR <<< "$OUTPUTS_ARG"
+    for o in "${OUT_ARR[@]}"; do
+      [[ -n "$o" ]] && OUTPUTS_LIST+=" -o $o"
+    done
+  else
+    if command -v hyprctl >/dev/null 2>&1; then
+      if command -v jq >/dev/null 2>&1; then
+        mapfile -t MONS < <(hyprctl -j monitors | jq -r '.[].name')
+      else
+        mapfile -t MONS < <(hyprctl monitors | grep -E '^Monitor ' | awk '{print $2}')
+      fi
+      for m in "${MONS[@]}"; do
+        [[ -n "$m" ]] && OUTPUTS_LIST+=" -o $m"
+      done
+    fi
+  fi
+
+  # mpv flags
+  local MPV_FLAGS=""
+  [[ "${MUTE_FLAG}" == "true" ]] && MPV_FLAGS+=" --no-audio"
+  [[ "${LOOP_FLAG}" == "true" ]] && MPV_FLAGS+=" --loop=inf"
+  [[ -n "$MPV_ARGS_CONF" ]] && MPV_FLAGS+=" ${MPV_ARGS_CONF}"
+
+  # z-order
+  local ZFLAG=""
+  [[ "$ZORDER_LOCAL" == "top" ]] && ZFLAG="-f"
+
+  set -m
+  mpvpaper $ZFLAG $OUTPUTS_LIST -- "$VIDEO_ARG" $MPV_FLAGS &
+  local MPVPAPER_PID=$!
+  echo "$MPVPAPER_PID" > "$PIDFILE"
+  echo "Started mpvpaper (pid $MPVPAPER_PID) on outputs: ${OUTPUTS_ARG:-auto}. Video: $VIDEO_ARG"
+}
+
+stop_cmd() {
+  if [[ ! -f "$PIDFILE" ]]; then
+    if pgrep -x mpvpaper >/dev/null 2>&1; then
+      pkill -x mpvpaper || true
+      echo "Stopped mpvpaper (fallback)."
+    else
+      echo "mpvpaper is not running."
+    fi
+    return 0
+  fi
+  local PID
+  PID="$(cat "$PIDFILE")"
+  if kill -0 "$PID" 2>/dev/null; then
+    kill "$PID"
+    for _ in {1..30}; do
+      if kill -0 "$PID" 2>/dev/null; then sleep 0.1; else break; fi
+    done
+    if kill -0 "$PID" 2>/dev/null; then kill -9 "$PID" || true; fi
+    echo "Stopped mpvpaper (pid $PID)."
+  else
+    echo "Stale pidfile cleaned."
+  fi
+  rm -f "$PIDFILE"
+}
+
+toggle_cmd() {
+  if mpvpaper_is_running; then
+    stop_cmd
+  else
+    start_cmd "$@"
+  fi
+}
+
+set_default_cmd() {
+  local APPLY=false
+  if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 set-default /path/to/video.mp4 [--apply]" >&2
+    exit 1
+  fi
+  local VIDEO_PATH="$1"; shift || true
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --apply) APPLY=true ;;
+      -h|--help) usage; exit 0 ;;
+      *) echo "Unknown arg: $1" >&2 ;;
+    esac
+    shift || true
+  done
+  if [[ ! -f "$VIDEO_PATH" ]]; then
+    echo "Error: File not found: $VIDEO_PATH" >&2
+    exit 1
+  fi
+  mkdir -p "$CONFIG_DIR"
+  if [[ -f "$CONFIG_FILE" ]]; then
+    if grep -q '^VIDEO=' "$CONFIG_FILE"; then
+      sed -i "s|^VIDEO=.*$|VIDEO=\"$VIDEO_PATH\"|" "$CONFIG_FILE"
+    else
+      printf '\nVIDEO=\"%s\"\n' "$VIDEO_PATH" >> "$CONFIG_FILE"
+    fi
+  else
+    cat > "$CONFIG_FILE" <<EOF
+# Config for video wallpaper (mpvpaper)
+# VIDEO: path to default video file
+# OUTPUTS: comma-separated outputs (e.g., eDP-1,HDMI-A-1). Leave unset for all.
+# MUTE: true/false (default false)
+# LOOP: true/false (default true)
+# MPV_ARGS: additional mpv arguments
+# ZORDER: bottom|top (default bottom)
+VIDEO="$VIDEO_PATH"
+LOOP=true
+MUTE=false
+ZORDER=bottom
+EOF
+  fi
+  echo "Default video set to: $VIDEO_PATH"
+  if [[ "$APPLY" == "true" ]]; then
+    mpvpaper_is_running && stop_cmd || true
+    start_cmd
+  fi
+}
+
+main() {
+  local cmd="${1:-}"
+  case "$cmd" in
+    start) shift || true; start_cmd "$@" ;;
+    stop) shift || true; stop_cmd ;;
+    toggle) shift || true; toggle_cmd "$@" ;;
+    set-default) shift || true; set_default_cmd "$@" ;;
+    -h|--help|help|"") usage ;;
+    *) echo "Unknown command: $cmd" >&2; usage; exit 1 ;;
+  esac
+}
+
+main "$@"
+

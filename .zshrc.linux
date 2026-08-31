@@ -1,0 +1,378 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+HIST_STAMPS="dd/mm/yyyy"
+
+# Comment this line out to enable default emacs-like bindings
+bindkey -v
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+### CHANGE TITLE OF TERMINALS
+case ${TERM} in
+  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+        ;;
+  screen*)
+    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+    ;;
+esac
+
+plugins=(
+    git
+    archlinux
+    compleat
+    dirpersist
+    dircycle # cycle your directory stack {left,right} using Ctrl+Shift+Left/Right.
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# Set to this to use case-sensitive completion
+export CASE_SENSITIVE="false"
+
+# disable weekly auto-update checks
+# export DISABLE_AUTO_UPDATE="true"
+export DISABLE_UPDATE_PROMPT="true"
+
+# disable autosetting terminal title.
+export DISABLE_AUTO_TITLE="true"
+
+# Check archlinux plugin commands here
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/archlinux
+
+# Display Pokemon-colorscripts
+# Project page: https://gitlab.com/phoneybadger/pokemon-colorscripts#on-other-distros-and-macos
+#pokemon-colorscripts --no-title -s -r #without fastfetch
+
+# pokemon-colorscripts --no-title -s -r | fastfetch -c $HOME/.config/fastfetch/config-pokemon.jsonc --logo-type file-raw --logo-height 10 --logo-width 5 --logo -
+
+# fastfetch. Will be disabled if above colorscript was chosen to install
+#fastfetch -c $HOME/.config/fastfetch/config-compact.jsonc
+
+alias sf="spf"
+alias k="spf"
+
+# Set-up icons for files/directories in terminal using lsd
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
+# Set-up FZF key bindings (CTRL R for fuzzy history finder)
+source <(fzf --zsh)
+
+HISTFILE=~/.zsh_history
+# Set history size
+HISTSIZE=500000
+# Set the number of lines in $HISTFILE
+SAVEHIST="${HISTSIZE}"
+setopt appendhistory
+
+# # Enable history search with up and down arrows
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+[[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
+[[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
+
+alias upload0x0='f(){ curl -F "file=@$1" https://0x0.st; unset -f f; }; f'  # Usage: upload0x0 <filename>
+alias upload='f(){ curl -F "file=@$1" https://0x0.st; unset -f f; }; f'  # Usage: upload <file>
+export CRUSH_DISABLE_METRICS=1
+
+export TMUXAI_MAX_CAPTURE_LINES=300
+export TMUXAI_MAX_CONTEXT_SIZE=150000
+
+##### shopt
+
+# save timestamp of command and duration
+setopt extended_history
+
+# Add commands as they are typed, don't wait until shell exit
+setopt inc_append_history
+
+# when trimming history, lose oldest duplicates first
+setopt hist_expire_dups_first
+
+# Do not write events to history that are duplicates of previous events
+setopt hist_ignore_dups
+
+# remove command line from history list when first character on the line is a space
+setopt hist_ignore_space
+
+# When searching history don't display results already cycled through twice
+setopt hist_find_no_dups
+
+# don't execute, just expand history
+setopt hist_verify
+
+# Stop annoying error when using asterisk in shell commands (i.e. scp server:*.txt .)
+setopt nonomatch
+
+# extended globbing, awesome!
+setopt extendedGlob
+
+# Turn on command substitution in the prompt (and parameter expansion and arithmetic expansion).
+setopt promptsubst
+
+
+
+eval "$(starship init zsh)"
+
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+chpwd_functions+=(save_current_dir)
+save_current_dir() { export SHELL_SESSION_HISTORY_DIR="$PWD"; }
+if [ -n "$SHELL_SESSION_HISTORY_DIR" ] && [ -d "$SHELL_SESSION_HISTORY_DIR" ]; then cd "$SHELL_SESSION_HISTORY_DIR"; fi
+
+# pnpm
+export PNPM_HOME="/home/tg/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+mosh() {
+  while ! command mosh "$@"; do
+    sleep 5
+  done
+}
+
+alias vizgit="
+gource \
+    -s .03 \
+    -1920x1080 \
+    --seconds-per-day 0.25 \
+    --auto-skip-seconds .1 \
+    --multi-sampling \
+    --stop-at-end \
+    --key \
+    --highlight-users \
+    --date-format "%d/%m/%y" \
+    --hide mouse,filenames \
+    --file-idle-time 0 \
+    --max-files 0  \
+    --background-colour 000000 \
+    --font-size 25 \
+    --output-ppm-stream - \
+    --output-framerate 30 \
+    --colour-images \
+    --title 'Visualization' \
+    | ffmpeg -y -r 30 -f image2pipe -vcodec ppm -i - -b 65536K movie.mp4"
+
+function watcha {
+    watch -d -n 30 $(alias "$@" | cut -d\' -f2)
+}
+
+function docker_restart {
+    docker stop $(docker ps -a -q)
+    docker rm $(docker ps -a -q)
+    docker network rm $(docker network ls -q)
+    docker-compose build
+    docker-compose up -d
+}
+
+function docker_stop {
+    docker stop $(docker ps -a -q)
+}
+
+alias lg="lazygit"
+function docker_reset {
+    docker stop $(docker ps -a -q)
+    docker rm $(docker ps -a -q)
+    docker network rm $(docker network ls -q)
+    docker volume rm $(docker volume ls -q)
+    docker system prune --all --force
+}
+alias ld="doko"
+alias lddd="lazydocker"
+# alias l="ls -la --color"
+alias ..="cd .."
+alias dev="cd ~/dev/"
+alias emu="nvm use 16; firebase emulators:start --import=./firebase-data --export-on-exit"
+alias dd="docker-compose up -d"
+alias "?"="tldr"
+
+alias h="helix"
+
+# futurecommit "1h30m" "Your commit message"
+alias futurecommit='export GIT_AUTHOR_DATE="$(date -d "1 day" --utc)" && export GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE" && git commit -m'
+
+# GTK Dark Mode Configuration
+export GTK_THEME=Flat-Remix-GTK-Blue-Dark
+export GTK_ICON_THEME=Flat-Remix-Blue-Dark
+
+# Bitwarden SSH Agent
+export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/tg/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/tg/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/tg/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/tg/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+# opencode
+export PATH=/home/tg/.opencode/bin:$HOME/.apps:$PATH
+
+# Download helper: dl URL [URL...]
+# Usa curl: segue redirecionamentos, faz tentativas automáticas, retoma downloads (-C -), preserva timestamps e salva com o nome remoto.
+unalias dl 2>/dev/null || true
+unset -f dl 2>/dev/null || true
+
+# Função melhor que alias para aceitar múltiplos URLs/argumentos
+dl() {
+  command -v curl >/dev/null 2>&1 || { printf 'dl: curl não encontrado\n' >&2; return 127; }
+  if [ $# -eq 0 ]; then printf 'uso: dl URL [URL...]\n' >&2; return 2; fi
+
+  local url
+  for url in "$@"; do
+    # Google Arts & Culture (asset pages) - melhor resolução
+    if [[ "$url" =~ '^https?://(www\.)?artsandculture\.google\.com(/u/[0-9]+)?/asset/' ]]; then
+      # Normaliza URL (remove /u/<n>)
+      local u
+      u=$(printf %s "$url" | sed -E 's#/u/[0-9]+##')
+
+      # Se não tem ID no final, tenta resolver o asset canônico via busca
+      if [[ ! "$u" =~ '^https?://(www\.)?artsandculture\.google\.com/asset/[^/]+/[A-Za-z0-9_-]{6,}(/)?$' ]]; then
+        local slug search_html asset_path
+        slug=$(printf %s "$u" | sed -E 's|.*/asset/([^/?#]+).*|\1|')
+        search_html=$(curl -fsL "https://artsandculture.google.com/search?q=$slug" || true)
+        asset_path=$(printf %s "$search_html" | tr '\n' ' ' | grep -oE '/asset/[A-Za-z0-9-]+/[A-Za-z0-9_-]{6,}' | head -n 1)
+        if [ -z "$asset_path" ]; then
+          # Tenta com slug normalizado (sem sufixo numérico e com espaços)
+          local q
+          q=$(printf %s "$slug" | sed -E 's/-([0-9]+)$//; s/-/ /g')
+          search_html=$(curl -fsL "https://artsandculture.google.com/search?q=$(printf %s "$q" | sed -e s/%/%25/g -e s/\ /%20/g)" || true)
+          asset_path=$(printf %s "$search_html" | tr '\n' ' ' | grep -oE '/asset/[A-Za-z0-9-]+/[A-Za-z0-9_-]{6,}' | head -n 1)
+        fi
+        if [ -n "$asset_path" ]; then
+          u="https://artsandculture.google.com$asset_path"
+        else
+          printf 'dl: não foi possível resolver o asset para "%s"\n' "$url" >&2
+        fi
+      fi
+
+      # Tenta dezoomify (melhor resolução via tiles)
+      if command -v dezoomify-rs >/dev/null 2>&1; then
+        local base
+        base=$(printf %s "$u" | sed -E 's|.*/asset/([^/?#]+)/[A-Za-z0-9_-]+.*|\1|; s/[^A-Za-z0-9._-]+/_/g')
+        if dezoomify-rs -l "$u" "${base}.jpg"; then
+          continue
+        else
+          printf 'dl: dezoomify-rs falhou, tentando fallback og:image\n' >&2
+        fi
+      fi
+
+      # Fallback: baixar og:image e forçar =s0
+      local og img
+      og=$(curl -fsL "$u" | tr '\n' ' ' | sed -n 's/.*<meta property="og:image" content="\([^"]*\)".*/\1/p')
+      if [ -n "$og" ]; then
+        img="${og%%=*}=s0"
+        if curl -fL --retry 5 --retry-connrefused --retry-delay 2 -C - -OJ "$img"; then
+          continue
+        fi
+      fi
+
+      # Último recurso: baixa a própria página
+      curl -fL --retry 5 --retry-connrefused --retry-delay 2 --remote-name --remote-time -C - "$u" && continue
+    else
+      # Caso geral
+      curl -fL --retry 5 --retry-connrefused --retry-delay 2 --remote-name --remote-time -C - "$url"
+    fi
+  done
+}
+
+
+alias b1="ssh root@panel3.everadapt.au"
+# bun completions
+[ -s "/home/tg/.bun/_bun" ] && source "/home/tg/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+. "$HOME/.local/share/../bin/env"
+
+# Network shortcuts
+alias net-off='sudo ip link set enp8s0 down'
+alias net-on='sudo ip link set enp8s0 up'
+
+# opencode
+export PATH=/home/tg/.opencode/bin:$PATH
+
+alias rm='gio trash'
+
+# ocd: tmux + 3 painéis opencode idempotente
+export PATH="$HOME/.local/bin:$PATH"
+alias ocd='ocd'

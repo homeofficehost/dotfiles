@@ -1,0 +1,48 @@
+//* ---- 💫 https://github.com/JaKooLit 💫 ---- *//
+/* Waybar Modules Extras */
+
+/* This is where you can add Extra Modules you wish. copy.sh will try to restore*/
+/* this file along with the unique configs and styles. */
+/* IMPORTANT, be mindful with , or ". else waybar will not start */
+
+{
+
+// ZeroTier Status Module
+"custom/zerotier": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/zerotier-status.sh tifi",
+    "interval": 30,
+    "tooltip": true
+},
+
+// Virtual Mic Status Module
+"custom/mic-virtual": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/mic-virtual-status.sh",
+    "interval": 2,
+    "tooltip": true,
+    "on-click": "$HOME/.config/hypr/UserScripts/mic-virtual-toggle.sh"
+},
+
+// CPU Temperature Monitor Status
+"custom/cpu-temp-monitor": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/cpu-temp-monitor-status.sh",
+    "interval": 2,
+    "tooltip": true,
+    "on-click": "$HOME/.config/hypr/scripts/cpu-temp-toggle.sh"
+},
+
+// Kimi AI Usage Module
+"custom/kimi-usage": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/kimi-usage.sh",
+    "interval": 60,
+    "tooltip": true,
+    "on-click": "xdg-open https://www.kimi.com"
+}
+}
