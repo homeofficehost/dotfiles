@@ -1,4 +1,5 @@
-# Secrets — NEVER commit these
+# Secrets — NEVER commit these (API keys ficam no ~/.zshenv, não rastreado)
+.zshenv
 .ssh/id_*
 .ssh/known_hosts
 .ssh/authorized_keys
@@ -32,6 +33,11 @@
 # Previous dotfiles management
 .dotfiles-bare/
 .bare-dotfiles/
+
+# Hyprland: plugins clonados, wallpapers processados e backups
+.config/hypr/plugins/
+.config/hypr/wallpaper_effects/
+.config/hypr/**/*.bkp
 
 # Logs
 ansible*.log

@@ -1,0 +1,166 @@
+# ~/.zshrc.darwin — só macOS (sourced pelo ~/.zshrc)
+
+# ─── PATH ─────────────────────────────────────────────────────────────────────
+export PATH="/usr/local/anaconda3/bin:$PATH:/opt/homebrew/opt/llvm/bin"
+export JAVA_HOME="/opt/homebrew/opt/openjdk"
+export PATH="$JAVA_HOME/bin:$PATH"
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
+
+# ─── Color scheme (sketchybar, borders, etc.) ─────────────────────────────────
+export BLACK=0xff181819
+export WHITE=0xffe2e2e3
+export RED=0xfffc5d7c
+export GREEN=0xff9ed072
+export BLUE=0xff76cce0
+export YELLOW=0xffe7c664
+export ORANGE=0xfff39660
+export MAGENTA=0xffb39df3
+export GREY=0xff7f8490
+export TRANSPARENT=0x00000000
+export BG0=0xff2c2e34
+export BG1=0xff363944
+export BG2=0xff414550
+
+# ─── OpenCode TTS (ElevenLabs) ────────────────────────────────────────────────
+export OPENCODE_TTS_FALLBACK_SCRIPT="$HOME/.config/opencode/scripts/tts-elevenlabs.sh"
+export OPENCODE_TTS_CAN_SPEAK_URL="http://localhost:5555/api/speech/can-speak"
+export OPENCODE_TTS_ANNOUNCE_IDLE="true"
+export OPENCODE_TTS_IDLE_MESSAGE="Tarefa concluída."
+
+# ─── Aliases ──────────────────────────────────────────────────────────────────
+alias moji='open -a Moji'
+alias rmplaywright='rm -rf ~/Library/Caches/ms-playwright && echo "Playwright cache cleared"'
+alias clean='brew cleanup --prune=all; npm cache clean --force; docker system prune -f'
+alias colima_reset='colima stop && colima delete && colima start'
+
+# Kernel monitoring
+alias km='sudo log stream --predicate "processID == 0" --style compact | python3 ~/.config/opencode/scripts/km-interpreter.py'
+alias km-raw='sudo log stream --predicate "processID == 0" --style compact | grep -v -E "IOSurface|process_is_plugin_host"'
+alias km-err='sudo log stream --predicate "processID == 0" --style compact | grep -i "error\|panic\|fail\|assertion"'
+alias km-net='sudo log stream --predicate "processID == 0" --style compact | grep -i "tcp\|flow_entry\|wlan\|en0\|connect"'
+
+# rclone tgdevbkp (Backblaze B2)
+alias mnt-b2='/usr/local/bin/rclone mount tgdevbkp:tgdevbkp /Users/tg/tgdevbkp-mount --daemon --vfs-cache-mode full'
+alias umnt-b2='sudo umount /Users/tg/tgdevbkp-mount'
+hd() {
+  if mount | grep -q tgdevbkp-mount; then
+    sudo umount /Users/tg/tgdevbkp-mount
+    echo "🟢 tgdevbkp desmontado"
+  else
+    /usr/local/bin/rclone mount tgdevbkp:tgdevbkp /Users/tg/tgdevbkp-mount --daemon --vfs-cache-mode full
+    echo "🔵 tgdevbkp montado"
+  fi
+}
+
+# ─── Funções ──────────────────────────────────────────────────────────────────
+function suyabai () {
+  SHA256=$(shasum -a 256 /opt/homebrew/bin/yabai | awk "{print \$1;}")
+  if [ -f "/private/etc/sudoers.d/yabai" ]; then
+    sudo sed -i '' -e 's/sha256:[[:alnum:]]*/sha256:'${SHA256}'/' /private/etc/sudoers.d/yabai
+  else
+    echo "sudoers file does not exist yet"
+  fi
+}
+
+# Scud Race (Supermodel)
+scud() {
+  cd ~/supermodel && ./bin/supermodel ~/roms/supermodel/scud.zip -borderless -res=2560,1440 "$@"
+}
+
+# OCR da tela
+ocrscreen() { local f="/private/tmp/ocr_$$.png"; screencapture -x "$f" && tesseract "$f" stdout --psm 6; rm -f "$f"; }
+
+# ─── Hot corners toggle ───────────────────────────────────────────────────────
+alias thc='toggle-hot-corners'
+toggle-hot-corners() {
+  local state_file="$HOME/.config/hot-corners-state"
+  local corners=(wvous-tl-corner wvous-tr-corner wvous-bl-corner wvous-br-corner)
+  local modifiers=(wvous-tl-modifier wvous-tr-modifier wvous-bl-modifier wvous-br-modifier)
+  local any_active=0
+  for corner in "${corners[@]}"; do
+    local val=$(defaults read com.apple.dock "$corner" 2>/dev/null || echo 1)
+    if [[ "$val" != "1" ]]; then
+      any_active=1
+      break
+    fi
+  done
+  if [[ "$any_active" -eq 1 ]]; then
+    mkdir -p "$(dirname "$state_file")"
+    : > "$state_file"
+    for corner in "${corners[@]}"; do
+      local val=$(defaults read com.apple.dock "$corner" 2>/dev/null || echo 1)
+      echo "${corner}=${val}" >> "$state_file"
+    done
+    for mod in "${modifiers[@]}"; do
+      local val=$(defaults read com.apple.dock "$mod" 2>/dev/null || echo 0)
+      echo "${mod}=${val}" >> "$state_file"
+    done
+    for corner in "${corners[@]}"; do
+      defaults write com.apple.dock "$corner" -int 1
+    done
+    for mod in "${modifiers[@]}"; do
+      defaults write com.apple.dock "$mod" -int 0
+    done
+    killall Dock
+    echo "Hot corners disabled."
+  else
+    if [[ -f "$state_file" ]]; then
+      while IFS='=' read -r key value; do
+        [[ -n "$key" && -n "$value" ]] && defaults write com.apple.dock "$key" -int "$value"
+      done < "$state_file"
+      killall Dock
+      echo "Hot corners restored from saved state."
+    else
+      defaults write com.apple.dock wvous-tl-corner -int 2
+      defaults write com.apple.dock wvous-tr-corner -int 2
+      defaults write com.apple.dock wvous-bl-corner -int 6
+      defaults write com.apple.dock wvous-br-corner -int 6
+      for mod in "${modifiers[@]}"; do
+        defaults write com.apple.dock "$mod" -int 0
+      done
+      killall Dock
+      echo "Hot corners enabled with defaults (Mission Control top, Launchpad bottom)."
+    fi
+  fi
+}
+
+# ─── MLX / Qwen3.5 (modelos em /Volumes/life, HF_HOME no .zshenv) ────────────
+MLX_MODEL="mlx-community/Qwen3.5-9B-MLX-4bit"
+ask() {
+  mlx_vlm.generate --model "$MLX_MODEL" --prompt "$*" --max-tokens 500
+}
+askimg() {
+  local img="$1"; shift
+  mlx_vlm.generate --model "$MLX_MODEL" --image "$img" --prompt "$*" --max-tokens 500
+}
+alias qwen-chat='mlx_vlm.chat --model "$MLX_MODEL"'
+
+# ─── Markdown → PNG (mdimg; tema em ~/.config/mdimg/dracula.css) ─────────────
+_md2img_convert() {
+  local input="$1"
+  if [[ -z "$input" || ! -f "$input" ]]; then
+    echo "Uso: md2img <arquivo.md>" >&2
+    return 1
+  fi
+  local output="${input%.md}.png"
+  local chrome="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  if [[ -z "$PUPPETEER_EXECUTABLE_PATH" && -x "$chrome" ]]; then
+    export PUPPETEER_EXECUTABLE_PATH="$chrome"
+  fi
+  local theme_css="$HOME/.config/mdimg/dracula.css"
+  if ! command mdimg -i "$input" -o "$output" -w 950 --cssText "$(cat "$theme_css")" --theme dark; then
+    echo "Falha ao converter. A ferramenta 'mdimg' está instalada? (npm install -g mdimg)" >&2
+    return 1
+  fi
+  osascript -e "set the clipboard to (read (POSIX file \"${output}\") as «class PNGf»)"
+  echo "Salvo em: $output (copiado para a área de transferência)"
+}
+alias md2img='_md2img_convert'
+alias mdimg='_md2img_convert'
+alias md2png='_md2img_convert'
+alias mdpng='_md2img_convert'
+alias toimg='_md2img_convert'
+alias topng='_md2img_convert'
+
+# OpenClaw completion
+[ -f "$HOME/.openclaw/completions/openclaw.zsh" ] && source "$HOME/.openclaw/completions/openclaw.zsh"
