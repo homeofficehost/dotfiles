@@ -8,6 +8,8 @@
 .local/share/opencode/auth.json
 .env
 .zshrc.local
+.gitconfig.local
+.docker/config.json
 
 # Shell histories
 .zsh_history
