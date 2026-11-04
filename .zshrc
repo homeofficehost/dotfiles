@@ -32,6 +32,10 @@ export TMUXAI_MAX_CONTEXT_SIZE=150000
 # ─── PATH / runtimes ──────────────────────────────────────────────────────────
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$HOME/.local/bin:$HOME/.opencode/bin:$PATH"
+
+# Python 3.9 user-site scripts (mlx_vlm.generate etc.)
+[[ ":$PATH:" == *":$HOME/Library/Python/3.9/bin:"* ]] || export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -107,12 +111,17 @@ alias lg="lazygit"
 
 # OpenCode
 alias oc='opencode'
+# Modo local: sem plugins, agente enxuto (MCP do SwarmUI e skills local-*) no Ollama do devworkstation
+alias ocl='opencode --pure --agent local'
 alias oo='opencode'
 alias cc='opencode'
 
 # SSH shortcuts
 alias panel="ssh panel.buildaut.com.au"
 alias b1="ssh root@panel3.everadapt.au"
+
+# Backup: devworkstation:~/autobkp -> /Volumes/life/autobkp (rápido, resumível: rode de novo pra continuar)
+alias autobkp='rsync -aHAX --partial --append-verify --info=progress2 --human-readable --compress -e "ssh -T -o Compression=no" tg@devworkstation.local:~/autobkp/ /Volumes/life/autobkp/'
 
 # ─── Funções ──────────────────────────────────────────────────────────────────
 
@@ -232,3 +241,27 @@ case "$OSTYPE" in
   darwin*) [ -r ~/.zshrc.darwin ] && source ~/.zshrc.darwin ;;
   linux*)  [ -r ~/.zshrc.linux ]  && source ~/.zshrc.linux ;;
 esac
+
+# transcritomator (transcrição local de calls) — tmon liga, tmoff desliga
+alias tmon="$HOME/fun/transcritomator/scripts/ctl.sh start"
+alias tmoff="$HOME/fun/transcritomator/scripts/ctl.sh stop"
+alias tmst="$HOME/fun/transcritomator/scripts/ctl.sh status"
+alias tmwatch="$HOME/fun/transcritomator/scripts/ctl.sh watch"
+alias tmlogs="$HOME/fun/transcritomator/scripts/ctl.sh logs"
+
+
+# Entire CLI shell completion
+autoload -Uz compinit && compinit && source <(entire completion zsh)
+
+[ -f ~/.lampada.zsh ] && source ~/.lampada.zsh  # atalhos da lâmpada
+
+# Gravar som do computador (script ~/.local/bin/rec)
+alias grav='rec'
+
+# Tradução offline (Argos Translate). Uso: traduz "texto"  |  traduz < arquivo.txt  |  traduz-en "text" (EN -> PT)
+traduz() { printf %s "${*:-$(cat)}" | argos-translate --from-lang pt --to-lang en 2>/dev/null; echo; }
+traduz-en() { printf %s "${*:-$(cat)}" | argos-translate --from-lang en --to-lang pt 2>/dev/null; echo; }
+# Added by Kiro CLI
+case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="${PATH:+$PATH:}$HOME/.local/bin" ;; esac
+[ -f ~/.ia.zsh ] && source ~/.ia.zsh  # atalhos de IA local (ias lista)
+[ -f ~/.busca.zsh ] && source ~/.busca.zsh  # busca em texto com rg (busca lista)

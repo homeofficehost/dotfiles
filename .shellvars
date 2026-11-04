@@ -21,7 +21,8 @@ fi
 export HOMEBREW_EDITOR=$VISUAL
 # bindkey -v # Disabled for crontab be able to load
 export GOPATH=$HOME/Go
-export GOROOT=$USR_PATH/opt/go/libexec
+# GOROOT removido: apontava para o Homebrew Intel (/usr/local); o Go acha o próprio diretório.
+# export GOROOT=$USR_PATH/opt/go/libexec
 
 
 # export _JAVA_OPTIONS=-Xmx512M

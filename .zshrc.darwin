@@ -126,14 +126,20 @@ toggle-hot-corners() {
 
 # ─── MLX / Qwen3.5 (modelos em /Volumes/life, HF_HOME no .zshenv) ────────────
 MLX_MODEL="mlx-community/Qwen3.5-9B-MLX-4bit"
+MLX_BIN="$HOME/.local/venvs/mlx/bin"   # venv py3.13 com mlx-vlm atual (o mlx-vlm do Python 3.9 não conhece qwen3_5)
 ask() {
-  mlx_vlm.generate --model "$MLX_MODEL" --prompt "$*" --max-tokens 500
+  "$MLX_BIN/mlx_vlm.generate" --model "$MLX_MODEL" --prompt "$*" --max-tokens 500
 }
 askimg() {
   local img="$1"; shift
-  mlx_vlm.generate --model "$MLX_MODEL" --image "$img" --prompt "$*" --max-tokens 500
+  "$MLX_BIN/mlx_vlm.generate" --model "$MLX_MODEL" --image "$img" --prompt "$*" --max-tokens 500
 }
-alias qwen-chat='mlx_vlm.chat --model "$MLX_MODEL"'
+alias qwen-chat='"$MLX_BIN/mlx_vlm.chat" --model "$MLX_MODEL"'
+
+# askscreen/askstream/resumir/falar-stream vivem em ~/.local/bin (compartilhados
+# com o Hammerspoon). Encanáveis: askstream img.png | resumir | falar-stream
+alias resumo='pbpaste | resumir'          # resume o que está no clipboard
+alias resumo-fala='pbpaste | resumir | falar-stream'   # resume e lê em voz alta
 
 # ─── Markdown → PNG (mdimg; tema em ~/.config/mdimg/dracula.css) ─────────────
 _md2img_convert() {
