@@ -4,7 +4,7 @@
 # Fala direto com o Caddy (192.168.18.75): funciona mesmo onde home.arpa não resolve no DNS.
 _lampada() {
   local opts=()
-  [ -f ~/homelab/ca/rootCA.pem ] && opts+=(--cacert ~/homelab/ca/rootCA.pem)
+  [ -f ~/.config/infra/ca/rootCA.pem ] && opts+=(--cacert ~/.config/infra/ca/rootCA.pem)
   [ "$1" != estado ] && opts+=(-X POST -d "{\"entity_id\":\"light.lampada_t120_30w\"$2}")
   curl -sS --resolve home.arpa:443:192.168.18.75 "${opts[@]}" "https://home.arpa/api/lampada/$1"
 }

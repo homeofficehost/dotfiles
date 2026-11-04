@@ -1,6 +1,6 @@
-# ~/.zshrc — núcleo comum (macOS + Linux)
-# Específico de cada SO fica em ~/.zshrc.darwin / ~/.zshrc.linux (final do arquivo).
-# Segredos ficam em ~/.zshenv (fora do git).
+# ~/.zshrc — um só arquivo para macOS e Linux.
+# Regra: testar o recurso (command -v, -d, -x), não o SO. case $OSTYPE só se inevitável.
+# Segredos ficam em ~/.zshenv; o que é só desta máquina, em ~/.zshrc.local (ambos fora do git).
 
 # ─── Completion (cache; rebuild no máx. 1x/dia) ───────────────────────────────
 typeset -U fpath
@@ -236,32 +236,243 @@ export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
 # ─── Prompt ───────────────────────────────────────────────────────────────────
 command -v starship >/dev/null && eval "$(starship init zsh)"
 
-# ─── Overlay por SO ───────────────────────────────────────────────────────────
-case "$OSTYPE" in
-  darwin*) [ -r ~/.zshrc.darwin ] && source ~/.zshrc.darwin ;;
-  linux*)  [ -r ~/.zshrc.linux ]  && source ~/.zshrc.linux ;;
-esac
+# ─── Por recurso, não por SO (antes: ~/.zshrc.darwin / ~/.zshrc.linux) ────────
 
+# PATH extra: só o que existe nesta máquina
+[ -d /usr/local/anaconda3/bin ]      && export PATH="/usr/local/anaconda3/bin:$PATH"
+[ -d /opt/homebrew/opt/llvm/bin ]    && export PATH="$PATH:/opt/homebrew/opt/llvm/bin"
+[ -d /opt/homebrew/opt/openjdk ]     && export JAVA_HOME="/opt/homebrew/opt/openjdk" && export PATH="$JAVA_HOME/bin:$PATH"
+[ -d "$HOME/.codeium/windsurf/bin" ] && export PATH="$HOME/.codeium/windsurf/bin:$PATH"
+[ -f "$HOME/.local/bin/env" ]        && . "$HOME/.local/bin/env"   # uv
+
+# Color scheme (sketchybar, borders)
+if command -v sketchybar >/dev/null || command -v borders >/dev/null; then
+  export BLACK=0xff181819 WHITE=0xffe2e2e3 RED=0xfffc5d7c GREEN=0xff9ed072 BLUE=0xff76cce0
+  export YELLOW=0xffe7c664 ORANGE=0xfff39660 MAGENTA=0xffb39df3 GREY=0xff7f8490
+  export TRANSPARENT=0x00000000 BG0=0xff2c2e34 BG1=0xff363944 BG2=0xff414550
+fi
+
+# GTK dark mode
+if command -v gsettings >/dev/null; then
+  export GTK_THEME=Flat-Remix-GTK-Blue-Dark
+  export GTK_ICON_THEME=Flat-Remix-Blue-Dark
+fi
+
+# oh-my-zsh (onde estiver instalado)
+if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then   # só onde o OMZ está configurado
+  export ZSH="$HOME/.oh-my-zsh"
+  ZSH_THEME="robbyrussell"
+  COMPLETION_WAITING_DOTS="true"
+  DISABLE_UNTRACKED_FILES_DIRTY="true"
+  HIST_STAMPS="dd/mm/yyyy"
+  export CASE_SENSITIVE="false" DISABLE_UPDATE_PROMPT="true" DISABLE_AUTO_TITLE="true"
+  plugins=(git archlinux compleat dirpersist dircycle zsh-autosuggestions zsh-syntax-highlighting)
+  source "$ZSH/oh-my-zsh.sh"
+  bindkey -v
+fi
+
+# OpenCode TTS (ElevenLabs)
+if [ -x "$HOME/.config/opencode/scripts/tts-elevenlabs.sh" ]; then
+  export OPENCODE_TTS_FALLBACK_SCRIPT="$HOME/.config/opencode/scripts/tts-elevenlabs.sh"
+  export OPENCODE_TTS_CAN_SPEAK_URL="http://localhost:5555/api/speech/can-speak"
+  export OPENCODE_TTS_ANNOUNCE_IDLE="true"
+  export OPENCODE_TTS_IDLE_MESSAGE="Tarefa concluída."
+fi
+
+# ─── Aliases por ferramenta ───────────────────────────────────────────────────
+if command -v lsd >/dev/null; then
+  alias ls='lsd' l='ls -l' la='ls -a' lla='ls -la' lt='ls --tree'
+fi
+command -v spf        >/dev/null && alias sf="spf" k="spf"
+command -v doko       >/dev/null && alias ld="doko"
+command -v lazydocker >/dev/null && alias lddd="lazydocker"
+command -v gio        >/dev/null && alias rm='gio trash'
+command -v ip         >/dev/null && alias net-off='sudo ip link set enp8s0 down' net-on='sudo ip link set enp8s0 up'
+command -v limpar-cache >/dev/null && alias limpa="limpar-cache" limpa-tudo="limpar-cache --sim"   # "limpa" só mostra
+[ -d ~/dev ] && alias dev="cd ~/dev/"
+alias emu="nvm use 16; firebase emulators:start --import=./firebase-data --export-on-exit"
+# futurecommit "mensagem": commit datado de amanhã (precisa do date GNU)
+date --version >/dev/null 2>&1 && alias futurecommit='export GIT_AUTHOR_DATE="$(date -d "1 day" --utc)" && export GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE" && git commit -m'
+
+# macOS: apps e utilitários
+[ -d /Applications/Moji.app ] && alias moji='open -a Moji'
+command -v brew   >/dev/null && alias clean='brew cleanup --prune=all; npm cache clean --force; docker system prune -f'
+command -v colima >/dev/null && alias colima_reset='colima stop && colima delete && colima start'
+[ -d ~/Library/Caches ] && alias rmplaywright='rm -rf ~/Library/Caches/ms-playwright && echo "Playwright cache cleared"'
+
+# Kernel monitoring (log do macOS)
+if [ -x /usr/bin/log ] && [ "$(uname -s)" = Darwin ]; then
+  alias km='sudo log stream --predicate "processID == 0" --style compact | python3 ~/.config/opencode/scripts/km-interpreter.py'
+  alias km-raw='sudo log stream --predicate "processID == 0" --style compact | grep -v -E "IOSurface|process_is_plugin_host"'
+  alias km-err='sudo log stream --predicate "processID == 0" --style compact | grep -i "error\|panic\|fail\|assertion"'
+  alias km-net='sudo log stream --predicate "processID == 0" --style compact | grep -i "tcp\|flow_entry\|wlan\|en0\|connect"'
+fi
+
+# rclone tgdevbkp (Backblaze B2)
+if command -v rclone >/dev/null; then
+  alias mnt-b2='rclone mount tgdevbkp:tgdevbkp ~/tgdevbkp-mount --daemon --vfs-cache-mode full'
+  alias umnt-b2='sudo umount ~/tgdevbkp-mount'
+  hd() {
+    if mount | grep -q tgdevbkp-mount; then
+      sudo umount ~/tgdevbkp-mount && echo "🟢 tgdevbkp desmontado"
+    else
+      rclone mount tgdevbkp:tgdevbkp ~/tgdevbkp-mount --daemon --vfs-cache-mode full && echo "🔵 tgdevbkp montado"
+    fi
+  }
+fi
+
+# Visualização do histórico git com gource
+command -v gource >/dev/null && alias vizgit="
+gource \
+    -s .03 \
+    -1920x1080 \
+    --seconds-per-day 0.25 \
+    --auto-skip-seconds .1 \
+    --multi-sampling \
+    --stop-at-end \
+    --key \
+    --highlight-users \
+    --date-format "%d/%m/%y" \
+    --hide mouse,filenames \
+    --file-idle-time 0 \
+    --max-files 0  \
+    --background-colour 000000 \
+    --font-size 25 \
+    --output-ppm-stream - \
+    --output-framerate 30 \
+    --colour-images \
+    --title 'Visualization' \
+    | ffmpeg -y -r 30 -f image2pipe -vcodec ppm -i - -b 65536K movie.mp4"
+
+# ─── Funções por ferramenta ───────────────────────────────────────────────────
+command -v yabai >/dev/null && suyabai() {
+  local sha; sha=$(shasum -a 256 /opt/homebrew/bin/yabai | awk '{print $1}')
+  if [ -f /private/etc/sudoers.d/yabai ]; then
+    sudo sed -i '' -e "s/sha256:[[:alnum:]]*/sha256:${sha}/" /private/etc/sudoers.d/yabai
+  else
+    echo "sudoers file does not exist yet"
+  fi
+}
+
+# Scud Race (Supermodel)
+[ -x ~/supermodel/bin/supermodel ] && scud() {
+  cd ~/supermodel && ./bin/supermodel ~/roms/supermodel/scud.zip -borderless -res=2560,1440 "$@"
+}
+
+# OCR da tela
+command -v screencapture >/dev/null && command -v tesseract >/dev/null && \
+  ocrscreen() { local f="/private/tmp/ocr_$$.png"; screencapture -x "$f" && tesseract "$f" stdout --psm 6; rm -f "$f"; }
+
+# Hot corners toggle (Dock do macOS)
+if command -v defaults >/dev/null && [ -d /System/Library/CoreServices/Dock.app ]; then
+  alias thc='toggle-hot-corners'
+  toggle-hot-corners() {
+    local state_file="$HOME/.config/hot-corners-state"
+    local corners=(wvous-tl-corner wvous-tr-corner wvous-bl-corner wvous-br-corner)
+    local modifiers=(wvous-tl-modifier wvous-tr-modifier wvous-bl-modifier wvous-br-modifier)
+    local any_active=0
+    for corner in "${corners[@]}"; do
+      local val=$(defaults read com.apple.dock "$corner" 2>/dev/null || echo 1)
+      if [[ "$val" != "1" ]]; then
+        any_active=1
+        break
+      fi
+    done
+    if [[ "$any_active" -eq 1 ]]; then
+      mkdir -p "$(dirname "$state_file")"
+      : > "$state_file"
+      for corner in "${corners[@]}"; do
+        local val=$(defaults read com.apple.dock "$corner" 2>/dev/null || echo 1)
+        echo "${corner}=${val}" >> "$state_file"
+      done
+      for mod in "${modifiers[@]}"; do
+        local val=$(defaults read com.apple.dock "$mod" 2>/dev/null || echo 0)
+        echo "${mod}=${val}" >> "$state_file"
+      done
+      for corner in "${corners[@]}"; do
+        defaults write com.apple.dock "$corner" -int 1
+      done
+      for mod in "${modifiers[@]}"; do
+        defaults write com.apple.dock "$mod" -int 0
+      done
+      killall Dock
+      echo "Hot corners disabled."
+    else
+      if [[ -f "$state_file" ]]; then
+        while IFS='=' read -r key value; do
+          [[ -n "$key" && -n "$value" ]] && defaults write com.apple.dock "$key" -int "$value"
+        done < "$state_file"
+        killall Dock
+        echo "Hot corners restored from saved state."
+      else
+        defaults write com.apple.dock wvous-tl-corner -int 2
+        defaults write com.apple.dock wvous-tr-corner -int 2
+        defaults write com.apple.dock wvous-bl-corner -int 6
+        defaults write com.apple.dock wvous-br-corner -int 6
+        for mod in "${modifiers[@]}"; do
+          defaults write com.apple.dock "$mod" -int 0
+        done
+        killall Dock
+        echo "Hot corners enabled with defaults (Mission Control top, Launchpad bottom)."
+      fi
+    fi
+  }
+fi
+
+# MLX / Qwen3.5 (modelos em /Volumes/life, HF_HOME no .zshenv)
+MLX_MODEL="mlx-community/Qwen3.5-9B-MLX-4bit"
+MLX_BIN="$HOME/.local/venvs/mlx/bin"   # venv py3.13 com mlx-vlm atual
+if [ -x "$MLX_BIN/mlx_vlm.generate" ]; then
+  ask()    { "$MLX_BIN/mlx_vlm.generate" --model "$MLX_MODEL" --prompt "$*" --max-tokens 500; }
+  askimg() { local img="$1"; shift; "$MLX_BIN/mlx_vlm.generate" --model "$MLX_MODEL" --image "$img" --prompt "$*" --max-tokens 500; }
+  alias qwen-chat='"$MLX_BIN/mlx_vlm.chat" --model "$MLX_MODEL"'
+fi
+# askscreen/askstream/resumir/falar-stream vivem em ~/.local/bin. Encanáveis: askstream img.png | resumir | falar-stream
+command -v pbpaste >/dev/null && alias resumo='pbpaste | resumir' resumo-fala='pbpaste | resumir | falar-stream'
+
+# Markdown → PNG (mdimg; tema em ~/.config/mdimg/dracula.css)
+if command -v mdimg >/dev/null; then
+  _md2img_convert() {
+    local input="$1"
+    if [[ -z "$input" || ! -f "$input" ]]; then
+      echo "Uso: md2img <arquivo.md>" >&2
+      return 1
+    fi
+    local output="${input%.md}.png"
+    local chrome="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    if [[ -z "$PUPPETEER_EXECUTABLE_PATH" && -x "$chrome" ]]; then
+      export PUPPETEER_EXECUTABLE_PATH="$chrome"
+    fi
+    local theme_css="$HOME/.config/mdimg/dracula.css"
+    if ! command mdimg -i "$input" -o "$output" -w 950 --cssText "$(cat "$theme_css")" --theme dark; then
+      echo "Falha ao converter. A ferramenta 'mdimg' está instalada? (npm install -g mdimg)" >&2
+      return 1
+    fi
+    command -v osascript >/dev/null && osascript -e "set the clipboard to (read (POSIX file \"${output}\") as «class PNGf»)"
+    echo "Salvo em: $output (copiado para a área de transferência)"
+  }
+  alias md2img='_md2img_convert' mdimg='_md2img_convert' md2png='_md2img_convert' mdpng='_md2img_convert' toimg='_md2img_convert' topng='_md2img_convert'
+fi
+
+# Restaura último diretório entre sessões (Linux; no Mac o Terminal já faz isso)
+case "$OSTYPE" in linux*)
+  chpwd_functions+=(save_current_dir)
+  save_current_dir() { export SHELL_SESSION_HISTORY_DIR="$PWD"; }
+  [ -n "$SHELL_SESSION_HISTORY_DIR" ] && [ -d "$SHELL_SESSION_HISTORY_DIR" ] && cd "$SHELL_SESSION_HISTORY_DIR"
+;; esac
+
+# ─── Extras opcionais ─────────────────────────────────────────────────────────
 # transcritomator (transcrição local de calls) — tmon liga, tmoff desliga
-alias tmon="$HOME/fun/transcritomator/scripts/ctl.sh start"
-alias tmoff="$HOME/fun/transcritomator/scripts/ctl.sh stop"
-alias tmst="$HOME/fun/transcritomator/scripts/ctl.sh status"
-alias tmwatch="$HOME/fun/transcritomator/scripts/ctl.sh watch"
-alias tmlogs="$HOME/fun/transcritomator/scripts/ctl.sh logs"
+if [ -x "$HOME/fun/transcritomator/scripts/ctl.sh" ]; then
+  alias tmon="$HOME/fun/transcritomator/scripts/ctl.sh start" tmoff="$HOME/fun/transcritomator/scripts/ctl.sh stop"
+  alias tmst="$HOME/fun/transcritomator/scripts/ctl.sh status" tmwatch="$HOME/fun/transcritomator/scripts/ctl.sh watch"
+  alias tmlogs="$HOME/fun/transcritomator/scripts/ctl.sh logs"
+fi
+command -v rec >/dev/null && alias grav='rec'   # gravar som do computador (~/.local/bin/rec)
+command -v entire >/dev/null && source <(entire completion zsh)
+[ -f "$HOME/.openclaw/completions/openclaw.zsh" ] && source "$HOME/.openclaw/completions/openclaw.zsh"
+[ -f ~/.lampada.zsh ] && source ~/.lampada.zsh   # atalhos da lâmpada
+[ -f ~/.ia.zsh ]      && source ~/.ia.zsh        # atalhos de IA local (ias lista)
 
-
-# Entire CLI shell completion
-autoload -Uz compinit && compinit && source <(entire completion zsh)
-
-[ -f ~/.lampada.zsh ] && source ~/.lampada.zsh  # atalhos da lâmpada
-
-# Gravar som do computador (script ~/.local/bin/rec)
-alias grav='rec'
-
-# Tradução offline (Argos Translate). Uso: traduz "texto"  |  traduz < arquivo.txt  |  traduz-en "text" (EN -> PT)
-traduz() { printf %s "${*:-$(cat)}" | argos-translate --from-lang pt --to-lang en 2>/dev/null; echo; }
-traduz-en() { printf %s "${*:-$(cat)}" | argos-translate --from-lang en --to-lang pt 2>/dev/null; echo; }
-# Added by Kiro CLI
-case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="${PATH:+$PATH:}$HOME/.local/bin" ;; esac
-[ -f ~/.ia.zsh ] && source ~/.ia.zsh  # atalhos de IA local (ias lista)
-[ -f ~/.busca.zsh ] && source ~/.busca.zsh  # busca em texto com rg (busca lista)
+# ─── Só desta máquina (não rastreado) ────────────────────────────────────────
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
