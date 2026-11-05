@@ -98,6 +98,7 @@ alias h="$EDITOR"
 alias "?"="tldr"
 
 # Git
+alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'   # dotfiles: bare repo em ~/.dotfiles, worktree = $HOME
 alias add="git add"
 alias commit="git commit"
 alias pull="git pull"
